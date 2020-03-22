@@ -2,9 +2,6 @@ import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
-import plantUml.PlantUMLLexer;
-import plantUml.PlantUMLParser;
-
 import java.io.IOException;
 
 public class Main {
