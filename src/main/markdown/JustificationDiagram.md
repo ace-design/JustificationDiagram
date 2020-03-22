@@ -1,5 +1,0 @@
-@startuml
-
-strategy -- conclusion
-
-@enduml
