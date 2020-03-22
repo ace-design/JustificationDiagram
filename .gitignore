@@ -1,5 +1,6 @@
 .DS_Store
 .idea/
+src/main/java/plantUml/
 
 # Compiled class file
 *.class
