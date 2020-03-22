@@ -1,6 +1,3 @@
-import plantUml.PlantUMLBaseVisitor;
-import plantUml.PlantUMLParser;
-
 public class JustificationCompiler extends PlantUMLBaseVisitor<String> {
     JustificationDiagram diagram;
 

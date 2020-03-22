@@ -1,0 +1,10 @@
+digraph G {
+	rankdir = "BT"
+	C [shape=box, label="Software is ready for launch"];
+	S [shape=polygon, sides=4, skew=.4, label="Software is functionnal"];
+	A [shape=box, label="JUnit test logs"];
+	B [shape=box, label="Jenkins test logs"];
+	S -> C;
+	A -> S;
+	B -> S;
+}
