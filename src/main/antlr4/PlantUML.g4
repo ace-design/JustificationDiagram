@@ -16,7 +16,14 @@ instruction:
     relation;
 
 declaration:
-    TYPE ALIAS '=' label=STRING ('-' restriction=STRING)?;
+    element |
+    conclusion;
+
+element:
+    TYPE ALIAS '=' label=STRING;
+
+conclusion:
+    'conclusion' ALIAS '=' label=STRING ('-' restriction=STRING)?;
 
 relation:
     ALIAS LINK ALIAS;
@@ -34,12 +41,9 @@ END: '@enduml';
 
 TITLE: 'title ' ('A'..'Z' | 'a'..'z' | '1'..'9' | ' ')+ '\n';
 
-TYPE: ('conclusion' | 'subconclusion' | 'strategy' | 'rationale' | 'domain' | 'support');
+TYPE: ('subconclusion' | 'strategy' | 'rationale' | 'domain' | 'support');
 ALIAS: ('A'..'Z' | 'a'..'z' | '1'..'9')+;
 LINK: ('-->');
 
 STRING : '"' STRING_CHAR*? '"';
 STRING_CHAR : ~('\r' | '\n');
-
-
-

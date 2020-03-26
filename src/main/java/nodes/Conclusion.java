@@ -3,10 +3,6 @@ package nodes;
 public class Conclusion extends Node {
     String restriction;
 
-    public Conclusion(String alias, String label) {
-        super(alias, label);
-    }
-
     public Conclusion(String alias, String label, String restriction) {
         super(alias, label);
         this.restriction = restriction;
