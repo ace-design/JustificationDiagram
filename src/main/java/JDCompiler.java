@@ -4,7 +4,7 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import java.io.IOException;
 
-public class Main {
+public class JDCompiler {
 
     public static void main(String[] args) throws IOException {
         JustificationDiagram diagram = createDiagram("JustificationDiagram.txt");

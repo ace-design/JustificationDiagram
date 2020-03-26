@@ -4,7 +4,7 @@ target :
 	mvn compile
 
 graph.gv : target
-	mvn exec:java -Dexec.mainClass="Main"
+	mvn exec:java -Dexec.mainClass="JDCompiler"
 
 graph.png : graph.gv
 	dot -Tpng graph.gv -o graph.png
