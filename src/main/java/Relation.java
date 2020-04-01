@@ -7,8 +7,8 @@ public class Relation implements Visitable {
         this.to = to;
     }
 
-    public void accept(GraphDrawer visitor) {
-        visitor.visitRelation(this);
+    public void accept(JDVisitor JDVisitor) {
+        JDVisitor.visitRelation(this);
     }
 
 }

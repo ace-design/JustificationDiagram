@@ -1,0 +1,62 @@
+@startuml
+!include commons.style
+
+title Justification Diagram Compiler (Structure)
+center footer ACE - Corinne Pulgar
+
+package JustificationDiagram.ist {
+
+    class JustificationDiagram { }
+
+    interface JDVisitor {
+        + visitDiagram(JustificationDiagram)
+        + visitNode(Node)
+        + visitConclusion(Conclusion)
+        + visitSubConclusion(SubConclusion )
+        + visitStrategy(Strategy)
+        + visitDomain(Domain)
+        + visitRationale(Rationale)
+        + visitSupport(Support)
+        + visitRelation(Relation)
+    }
+
+    class GraphDrawer {
+        - graph
+        + draw()
+    }
+
+    interface Visitable {
+        + accept(JDVisitor)
+    }
+
+    class Node {
+        # alias
+        # label
+    }
+
+    class Conclusion {
+        # restriction
+    }
+
+    class Relation {
+        # from
+        # to
+    }
+
+    JustificationDiagram "1" o-- "*" Node : nodes
+    JustificationDiagram "1" o-- "*" Relation : relations
+
+
+    GraphDrawer -.up.-|> JDVisitor
+    JustificationDiagram -.up.-|> Visitable
+    Relation -.up.-|> Visitable
+    Node -.up.-|> Visitable
+    Node <|-- Conclusion
+    Node <|-- Strategy
+    Node <|-- Support
+
+
+}
+
+
+@enduml

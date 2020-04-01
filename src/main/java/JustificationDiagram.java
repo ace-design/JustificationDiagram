@@ -1,6 +1,3 @@
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class JustificationDiagram implements Visitable {
@@ -13,8 +10,8 @@ public class JustificationDiagram implements Visitable {
     }
 
     @Override
-    public void accept(GraphDrawer visitor) {
-        visitor.visitDiagram(this);
+    public void accept(JDVisitor JDVisitor) {
+        JDVisitor.visitDiagram(this);
     }
 
 }

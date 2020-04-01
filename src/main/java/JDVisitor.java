@@ -1,4 +1,4 @@
-public interface Visitor {
+public interface JDVisitor {
 
     void visitDiagram(JustificationDiagram diagram);
     void visitNode(Node node);

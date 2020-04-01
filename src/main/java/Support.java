@@ -4,8 +4,8 @@ public class Support extends Node {
         super(alias, label);
     }
 
-    public void accept(GraphDrawer visitor) {
-        visitor.visitSupport(this);
+    public void accept(JDVisitor JDVisitor) {
+        JDVisitor.visitSupport(this);
     }
 
 }

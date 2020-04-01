@@ -7,8 +7,8 @@ public class Node implements Visitable {
         this.label = label;
     }
 
-    public void accept(GraphDrawer visitor) {
-        visitor.visitNode(this);
+    public void accept(JDVisitor JDVisitor) {
+        JDVisitor.visitNode(this);
     }
 
 }
