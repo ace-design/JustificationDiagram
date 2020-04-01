@@ -1,5 +1,3 @@
-package nodes;
-
 public class Conclusion extends Node {
     String restriction;
 
@@ -8,8 +6,8 @@ public class Conclusion extends Node {
         this.restriction = restriction;
     }
 
-    @Override
-    public StringBuilder toGv() {
-        return new StringBuilder("\t" + alias + " [shape=box, label=" + label + "];\n");
+    public void accept(GraphDrawer visitor) {
+        visitor.visitConclusion(this);
     }
+
 }

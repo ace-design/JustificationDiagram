@@ -1,6 +1,4 @@
-import nodes.Node;
-
-public class Relation {
+public class Relation implements Visitable {
     String from;
     String to;
 
@@ -9,7 +7,8 @@ public class Relation {
         this.to = to;
     }
 
-    public StringBuilder toGv() {
-        return new StringBuilder("\t" + from + " -> " + to + ";\n");
+    public void accept(GraphDrawer visitor) {
+        visitor.visitRelation(this);
     }
+
 }

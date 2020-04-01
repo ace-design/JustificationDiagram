@@ -1,10 +1,9 @@
-import nodes.Node;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-public class JustificationDiagram {
+public class JustificationDiagram implements Visitable {
     ArrayList<Node> nodes;
     ArrayList<Relation> relations;
 
@@ -13,22 +12,9 @@ public class JustificationDiagram {
         relations = new ArrayList<>();
     }
 
-    public void createGraph(String file) throws IOException {
-        PrintWriter out = new PrintWriter(new FileWriter(file));
-        out.print(this.toGv());
-        out.close();
+    @Override
+    public void accept(GraphDrawer visitor) {
+        visitor.visitDiagram(this);
     }
 
-    public StringBuilder toGv() {
-        StringBuilder gv = new StringBuilder("digraph G {\n\trankdir = \"BT\"\n");
-
-        for (Node node : nodes) {
-            gv.append(node.toGv());
-        }
-
-        for (Relation relation : relations) {
-            gv.append(relation.toGv());
-        }
-        return gv.append("}\n");
-    }
 }

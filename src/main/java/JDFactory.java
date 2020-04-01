@@ -1,6 +1,4 @@
-import nodes.Conclusion;
-
-public class JustificationCompiler extends PlantUMLBaseVisitor<String> {
+public class JDFactory extends PlantUMLBaseVisitor<String> {
     JustificationDiagram diagram;
 
     @Override

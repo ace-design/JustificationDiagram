@@ -1,6 +1,4 @@
-package nodes;
-
-public class Node {
+public class Node implements Visitable {
     String alias;
     String label;
 
@@ -9,7 +7,8 @@ public class Node {
         this.label = label;
     }
 
-    public StringBuilder toGv() {
-        return new StringBuilder("\t" + alias + " [label=" + label + "];\n");
+    public void accept(GraphDrawer visitor) {
+        visitor.visitNode(this);
     }
+
 }
