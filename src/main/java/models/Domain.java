@@ -1,3 +1,7 @@
+package models;
+
+import export.*;
+
 public class Domain extends Node {
 
     public Domain(String alias, String label) {

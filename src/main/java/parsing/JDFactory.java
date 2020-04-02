@@ -1,5 +1,12 @@
+package parsing;
+
+import justificationDiagram.JustificationDiagram;
+import models.Conclusion;
+import models.NodeFactory;
+import models.Relation;
+
 public class JDFactory extends PlantUMLBaseVisitor<String> {
-    JustificationDiagram diagram;
+    public JustificationDiagram diagram;
 
     @Override
     public String visitDiagram(PlantUMLParser.DiagramContext ctx) {

@@ -1,6 +1,10 @@
+package models;
+
+import export.*;
+
 public class Node implements Visitable {
-    String alias;
-    String label;
+    public String alias;
+    public String label;
 
     public Node(String alias, String label) {
         this.alias = alias;

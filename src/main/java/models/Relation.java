@@ -1,6 +1,10 @@
+package models;
+
+import export.*;
+
 public class Relation implements Visitable {
-    String from;
-    String to;
+    public String from;
+    public String to;
 
     public Relation(String from, String to) {
         this.from = from;

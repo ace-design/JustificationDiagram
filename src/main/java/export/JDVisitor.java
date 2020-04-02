@@ -1,4 +1,9 @@
-public interface Visitor {
+package export;
+
+import justificationDiagram.JustificationDiagram;
+import models.*;
+
+public interface JDVisitor {
 
     void visitDiagram(JustificationDiagram diagram);
     void visitNode(Node node);

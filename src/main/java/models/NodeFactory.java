@@ -1,3 +1,5 @@
+package models;
+
 public class NodeFactory {
 
     public static Node create(String type, String alias, String label) {

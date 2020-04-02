@@ -1,0 +1,62 @@
+@startuml
+!include commons.style
+
+title Justification Diagram Compiler (Structure)
+center footer ACE - Corinne Pulgar
+
+package justificationDiagram.JustificationDiagram.ist {
+
+    class justificationDiagram.JustificationDiagram { }
+
+    interface export.JDVisitor {
+        + visitDiagram(justificationDiagram.JustificationDiagram)
+        + visitNode(models.Node)
+        + visitConclusion(models.Conclusion)
+        + visitSubConclusion(models.SubConclusion )
+        + visitStrategy(models.Strategy)
+        + visitDomain(models.Domain)
+        + visitRationale(models.Rationale)
+        + visitSupport(models.Support)
+        + visitRelation(models.Relation)
+    }
+
+    class export.GraphDrawer {
+        - graph
+        + draw()
+    }
+
+    interface models.Visitable {
+        + accept(export.JDVisitor)
+    }
+
+    class models.Node {
+        # alias
+        # label
+    }
+
+    class models.Conclusion {
+        # restriction
+    }
+
+    class models.Relation {
+        # from
+        # to
+    }
+
+    justificationDiagram.JustificationDiagram "1" o-- "*" models.Node : nodes
+    justificationDiagram.JustificationDiagram "1" o-- "*" models.Relation : relations
+
+
+    export.GraphDrawer -.up.-|> export.JDVisitor
+    justificationDiagram.JustificationDiagram -.up.-|> models.Visitable
+    models.Relation -.up.-|> models.Visitable
+    models.Node -.up.-|> models.Visitable
+    models.Node <|-- models.Conclusion
+    models.Node <|-- models.Strategy
+    models.Node <|-- models.Support
+
+
+}
+
+
+@enduml

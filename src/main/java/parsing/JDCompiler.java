@@ -1,3 +1,7 @@
+package parsing;
+
+import export.GraphDrawer;
+import justificationDiagram.JustificationDiagram;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -8,7 +12,7 @@ import java.io.IOException;
 public class JDCompiler {
 
     public static void main(String[] args) throws IOException {
-        JustificationDiagram diagram = createDiagram("JustificationDiagram.txt");
+        JustificationDiagram diagram = createDiagram("justificationDiagram.JustificationDiagram.txt");
         GraphDrawer drawer = new GraphDrawer();
         drawer.draw(diagram, "graph.gv");
     }

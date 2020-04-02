@@ -1,11 +1,14 @@
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+package justificationDiagram;
+
+import export.*;
+import models.Node;
+import models.Relation;
+import models.Visitable;
 import java.util.ArrayList;
 
 public class JustificationDiagram implements Visitable {
-    ArrayList<Node> nodes;
-    ArrayList<Relation> relations;
+    public ArrayList<Node> nodes;
+    public ArrayList<Relation> relations;
 
     public JustificationDiagram() {
         nodes = new ArrayList<>();

@@ -1,8 +1,12 @@
+package export;
+
+import justificationDiagram.JustificationDiagram;
+import models.*;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class GraphDrawer implements Visitor {
+public class GraphDrawer implements JDVisitor {
     private StringBuilder gv = new StringBuilder("");
 
     public void draw(JustificationDiagram diagram, String file) throws IOException {

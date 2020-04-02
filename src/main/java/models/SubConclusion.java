@@ -1,3 +1,7 @@
+package models;
+
+import export.*;
+
 public class SubConclusion extends Node {
 
     public SubConclusion(String alias, String label) {

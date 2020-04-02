@@ -1,3 +1,7 @@
+package models;
+
+import export.*;
+
 public class Conclusion extends Node {
     String restriction;
 
