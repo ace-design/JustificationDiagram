@@ -1,18 +1,15 @@
 package parsing;
 
 import justificationDiagram.JustificationDiagram;
-import models.Conclusion;
-import models.NodeFactory;
-import models.Relation;
+import models.*;
 
-public class JDFactory extends PlantUMLBaseVisitor<String> {
+public class JDInitializer extends PlantUMLBaseVisitor<String> {
     public JustificationDiagram diagram;
 
     @Override
     public String visitDiagram(PlantUMLParser.DiagramContext ctx) {
         diagram = new JustificationDiagram();
-        String ret = super.visitDiagram(ctx);
-        return ret;
+        return super.visitDiagram(ctx);
     }
 
     @Override
@@ -22,7 +19,6 @@ public class JDFactory extends PlantUMLBaseVisitor<String> {
 
     @Override
     public String visitRelation(PlantUMLParser.RelationContext ctx) {
-        diagram.relations.add(new Relation(ctx.ALIAS(0).getText(), ctx.ALIAS(1).getText()));
         return super.visitRelation(ctx);
     }
 
@@ -33,13 +29,15 @@ public class JDFactory extends PlantUMLBaseVisitor<String> {
 
     @Override
     public String visitElement(PlantUMLParser.ElementContext ctx) {
-        diagram.nodes.add(NodeFactory.create(ctx.TYPE().getText(), ctx.ALIAS().getText(),  ctx.label.getText()));
+        diagram.nodes.put(ctx.ALIAS().getText(),
+                NodeFactory.create(ctx.TYPE().getText(), ctx.ALIAS().getText(),  ctx.label.getText()));
         return super.visitElement(ctx);
     }
 
     @Override
     public String visitConclusion(PlantUMLParser.ConclusionContext ctx) {
-        diagram.nodes.add(new Conclusion(ctx.ALIAS().getText(),  ctx.label.getText(), ctx.restriction != null? ctx.restriction.getText() : null));
+        diagram.nodes.put(ctx.ALIAS().getText(), new Conclusion(ctx.ALIAS().getText(),
+                ctx.label.getText(), ctx.restriction != null? ctx.restriction.getText() : null));
         return super.visitConclusion(ctx);
     }
 }

@@ -5,6 +5,7 @@ import models.*;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Map;
 
 public class GraphDrawer implements JDVisitor {
     private StringBuilder gv = new StringBuilder("");
@@ -21,8 +22,8 @@ public class GraphDrawer implements JDVisitor {
     public void visitDiagram(JustificationDiagram diagram) {
         gv.append(new StringBuilder("digraph G {\n\trankdir = \"BT\"\n"));
 
-        for (Node node : diagram.nodes) {
-            node.accept(this);
+        for (String alias : diagram.nodes.keySet()) {
+            diagram.nodes.get(alias).accept(this);
         }
 
         for (Relation relation : diagram.relations) {
@@ -70,6 +71,6 @@ public class GraphDrawer implements JDVisitor {
 
     @Override
     public void visitRelation(Relation relation) {
-        gv.append(new StringBuilder("\t" + relation.from + " -> " + relation.to + ";\n"));
+        gv.append(new StringBuilder("\t" + relation.from.alias + " -> " + relation.to.alias + ";\n"));
     }
 }

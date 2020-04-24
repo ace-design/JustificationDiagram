@@ -4,15 +4,17 @@ import export.*;
 import models.Node;
 import models.Relation;
 import models.Visitable;
-import java.util.ArrayList;
+
+import java.util.HashMap;
+import java.util.HashSet;
 
 public class JustificationDiagram implements Visitable {
-    public ArrayList<Node> nodes;
-    public ArrayList<Relation> relations;
+    public HashMap<String, Node> nodes;
+    public HashSet<Relation> relations;
 
     public JustificationDiagram() {
-        nodes = new ArrayList<>();
-        relations = new ArrayList<>();
+        nodes = new HashMap<>();
+        relations = new HashSet<>();
     }
 
     @Override

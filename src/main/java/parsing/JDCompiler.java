@@ -12,15 +12,17 @@ import java.io.IOException;
 public class JDCompiler {
 
     public static void main(String[] args) throws IOException {
-        JustificationDiagram diagram = createDiagram("justificationDiagram.JustificationDiagram.txt");
+        JustificationDiagram diagram = createDiagram("JustificationDiagram.jd");
         GraphDrawer drawer = new GraphDrawer();
         drawer.draw(diagram, "graph.gv");
     }
 
     public static JustificationDiagram createDiagram(String file) {
-        JDFactory factory = new JDFactory();
+        JDInitializer factory = new JDInitializer();
         factory.visit(parseAntlr(file));
-        return factory.diagram;
+        JDLinker linker = new JDLinker(factory.diagram);
+        linker.visit(parseAntlr((file)));
+        return linker.diagram;
     }
 
     public static ParseTree parseAntlr(String file) {

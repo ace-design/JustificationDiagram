@@ -4,59 +4,66 @@
 title Justification Diagram Compiler (Structure)
 center footer ACE - Corinne Pulgar
 
-package justificationDiagram.JustificationDiagram.ist {
+package justificationDiagram {
 
-    class justificationDiagram.JustificationDiagram { }
+    class JustificationDiagram { }
 
-    interface export.JDVisitor {
-        + visitDiagram(justificationDiagram.JustificationDiagram)
-        + visitNode(models.Node)
-        + visitConclusion(models.Conclusion)
-        + visitSubConclusion(models.SubConclusion )
-        + visitStrategy(models.Strategy)
-        + visitDomain(models.Domain)
-        + visitRationale(models.Rationale)
-        + visitSupport(models.Support)
-        + visitRelation(models.Relation)
+}
+
+package export {
+
+    interface JDVisitor {
+        + visitDiagram(JustificationDiagram)
+        + visitNode(Node)
+        + visitConclusion(Conclusion)
+        + visitSubConclusion(SubConclusion )
+        + visitStrategy(Strategy)
+        + visitDomain(Domain)
+        + visitRationale(Rationale)
+        + visitSupport(Support)
+        + visitRelation(Relation)
     }
 
-    class export.GraphDrawer {
-        - graph
+    class GraphDrawer {
+        - gv
         + draw()
     }
 
-    interface models.Visitable {
-        + accept(export.JDVisitor)
+}
+
+package models {
+
+    interface Visitable {
+        + accept(JDVisitor)
     }
 
-    class models.Node {
+    class Node {
         # alias
         # label
     }
 
-    class models.Conclusion {
+    class Conclusion {
         # restriction
     }
 
-    class models.Relation {
-        # from
-        # to
-    }
+    class Relation { }
 
-    justificationDiagram.JustificationDiagram "1" o-- "*" models.Node : nodes
-    justificationDiagram.JustificationDiagram "1" o-- "*" models.Relation : relations
-
-
-    export.GraphDrawer -.up.-|> export.JDVisitor
-    justificationDiagram.JustificationDiagram -.up.-|> models.Visitable
-    models.Relation -.up.-|> models.Visitable
-    models.Node -.up.-|> models.Visitable
-    models.Node <|-- models.Conclusion
-    models.Node <|-- models.Strategy
-    models.Node <|-- models.Support
-
-
+    GraphDrawer -.up.-|> JDVisitor
+    JustificationDiagram -.up.-|> Visitable
+    Relation -.up.-|> Visitable
+    Relation "*" o-- "1" Node : from
+    Relation "*" o-- "1" Node : to
+    Node -.up.-|> Visitable
+    Node <|-- Domain
+    Node <|-- Conclusion
+    Node <|-- Rationale
+    Node <|-- Strategy
+    Node <|-- SubConclusion
+    Node <|-- Support
 }
+
+    JustificationDiagram "1" o-- "*" Node : nodes
+    JustificationDiagram "1" o-- "*" Relation : relations
 
 
 @enduml
