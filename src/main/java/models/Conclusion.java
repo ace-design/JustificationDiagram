@@ -3,7 +3,7 @@ package models;
 import export.*;
 
 public class Conclusion extends Node {
-    String restriction;
+    public String restriction;
 
     public Conclusion(String alias, String label, String restriction) {
         super(alias, label);

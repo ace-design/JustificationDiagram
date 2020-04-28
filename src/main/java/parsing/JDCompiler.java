@@ -7,6 +7,7 @@ import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.apache.commons.cli.*;
+
 import java.io.IOException;
 
 public class JDCompiler {
@@ -35,7 +36,7 @@ public class JDCompiler {
             GraphDrawer drawer = new GraphDrawer();
             drawer.draw(diagram, outputFilePath);
 
-        } catch (ParseException e) {
+        } catch (org.apache.commons.cli.ParseException e) {
             System.out.println(e.getMessage());
             formatter.printHelp("utility-name", options);
 
