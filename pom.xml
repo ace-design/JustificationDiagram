@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.ace-design</groupId>
-    <artifactId>justification-diagram</artifactId>
+    <artifactId>justification-diagram-generator</artifactId>
     <version>1.0</version>
 
     <properties>
@@ -45,6 +45,7 @@
     </dependencies>
 
     <build>
+        <finalName>JDGenerator</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
