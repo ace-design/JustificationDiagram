@@ -1,3 +1,7 @@
+package models;
+
+import export.*;
+
 public class Support extends Node {
 
     public Support(String alias, String label) {

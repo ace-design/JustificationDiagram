@@ -1,3 +1,8 @@
+package export;
+
+import justificationDiagram.JustificationDiagram;
+import models.*;
+
 public interface JDVisitor {
 
     void visitDiagram(JustificationDiagram diagram);

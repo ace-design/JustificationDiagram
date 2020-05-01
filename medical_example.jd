@@ -1,0 +1,35 @@
+@startuml
+
+conclusion C = "System integration tests validated" - "Internal"
+strategy S = "Evaluate integration tests"
+domain D = "Internal accreditation"
+rationale R = "ISO 62304"
+
+support E = "SoapUI logs"
+
+subconclusion CA = "Tests validated for module A"
+strategy SA = "Evaluate unit tests"
+rationale RAB = "ISO 62304"
+support A = "Module A source code"
+support J = "JUnit logs"
+
+subconclusion CB = "Tests validated for module B"
+strategy SB = "Evaluate unit tests"
+support B = "Module B source code"
+
+S --> C
+D --> S
+R --> S
+E --> S
+CA --> S
+CB --> S
+SA --> CA
+SB --> CB
+RAB --> SA
+RAB --> SB
+A --> SA
+B --> SB
+J --> SA
+J --> SB
+
+@enduml
