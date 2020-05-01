@@ -31,17 +31,26 @@ The text file should start and end by the corresponding tags.
 
 @enduml
 ```
+The order of the elements, either declarations or relations, doesn't matter.
 
 ### Declarations
-
+Write a declaration to create a node. The expected partern is as follow :
+```
+<TYPE> <ALIAS> = "<LABEL>"
+```
+The conclusion and subconclusion may have a restriction field. There can only be one conclusion per diagram.
+```
+<TYPE> <ALIAS> = "<LABEL>" - "<RESTRICTION>"
+```
 
 ### Relations
-
-
-
+At the moment, the prototype permits only one type and one direction of link.
+```
+<ALIAS_1> --> <ALIAS_2>
+```
 
 ## Example
-Here's an example of a text file and the graph it generated. 
+Here's an example of a text file and the graph it generates. 
 ```
 @startuml
 
@@ -84,7 +93,7 @@ J --> SB
 
 
 
-> The justification diagram was adapted from _Support of Justification Elicitation: Two Industrial Reports_ by Clément Duffau, Thomas Polacsek and Mireille Blay-Fornarino.
+> The justification diagram was adapted from _Support of Justification Elicitation: Two Industrial Reports_ by Clément Duffau, Thomas Polacsek and Mireille Blay-Fornarino, 2018.
 
 
 
