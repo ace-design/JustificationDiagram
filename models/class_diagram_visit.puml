@@ -4,12 +4,6 @@
 title Justification Diagram Compiler (Structure)
 center footer ACE - Corinne Pulgar
 
-<<<<<<< HEAD
-package JustificationDiagram.ist {
-
-    class JustificationDiagram { }
-
-=======
 package justificationDiagram {
 
     class JustificationDiagram { }
@@ -18,7 +12,6 @@ package justificationDiagram {
 
 package export {
 
->>>>>>> dev
     interface JDVisitor {
         + visitDiagram(JustificationDiagram)
         + visitNode(Node)
@@ -32,12 +25,6 @@ package export {
     }
 
     class GraphDrawer {
-<<<<<<< HEAD
-        - graph
-        + draw()
-    }
-
-=======
         - gv
         + draw()
     }
@@ -46,7 +33,6 @@ package export {
 
 package models {
 
->>>>>>> dev
     interface Visitable {
         + accept(JDVisitor)
     }
@@ -60,32 +46,11 @@ package models {
         # restriction
     }
 
-<<<<<<< HEAD
-    class Relation {
-        # from
-        # to
-    }
-
-    JustificationDiagram "1" o-- "*" Node : nodes
-    JustificationDiagram "1" o-- "*" Relation : relations
-
-=======
     class Relation { }
->>>>>>> dev
 
     GraphDrawer -.up.-|> JDVisitor
     JustificationDiagram -.up.-|> Visitable
     Relation -.up.-|> Visitable
-<<<<<<< HEAD
-    Node -.up.-|> Visitable
-    Node <|-- Conclusion
-    Node <|-- Strategy
-    Node <|-- Support
-
-
-}
-
-=======
     Relation "*" o-- "1" Node : from
     Relation "*" o-- "1" Node : to
     Node -.up.-|> Visitable
@@ -99,7 +64,5 @@ package models {
 
     JustificationDiagram "1" o-- "*" Node : nodes
     JustificationDiagram "1" o-- "*" Relation : relations
-
->>>>>>> dev
 
 @enduml
