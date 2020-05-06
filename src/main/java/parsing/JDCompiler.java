@@ -15,7 +15,34 @@ import java.io.*;
 public class JDCompiler {
 
     public static void main(String[] args) throws IOException {
+        CommandLine cmd = setup(args);
+        String inputFilePath = cmd.getOptionValue("input");
+        String outputFilePath = cmd.getOptionValue("output");
+
+        if (!argsAreValid(inputFilePath, outputFilePath)) {
+            System.exit(1);
+        }
+
+        JustificationDiagram diagram = createDiagram(inputFilePath);
+        GraphDrawer drawer = new GraphDrawer();
+        StringBuilder gv = drawer.draw(diagram);
+
+        if (cmd.hasOption("gv")) {
+            String fileName = outputFilePath.split("\\.png")[0];
+            PrintWriter out = new PrintWriter(new FileWriter(fileName + ".gv"));
+            out.print(gv);
+            out.close();
+        }
+
+        InputStream dot = new ByteArrayInputStream(gv.toString().getBytes());
+        MutableGraph g = new guru.nidi.graphviz.parse.Parser().read(dot);
+        Graphviz.fromGraph(g).render(Format.PNG).toFile(new File(outputFilePath));
+    }
+
+    private static CommandLine setup(String[] args) {
         Options options = new Options();
+        CommandLineParser parser = new DefaultParser();
+        HelpFormatter formatter = new HelpFormatter();
 
         Option input = new Option("i", "input", true, "input file path");
         input.setRequired(true);
@@ -27,36 +54,29 @@ public class JDCompiler {
 
         options.addOption("gv", "output gv files");
 
-        CommandLineParser parser = new DefaultParser();
-        HelpFormatter formatter = new HelpFormatter();
-        CommandLine cmd;
-
         try {
-            cmd = parser.parse(options, args);
-            String inputFilePath = cmd.getOptionValue("input");
-            String outputFilePath = cmd.getOptionValue("output");
-
-            JustificationDiagram diagram = createDiagram(inputFilePath);
-            GraphDrawer drawer = new GraphDrawer();
-            StringBuilder gv = drawer.draw(diagram);
-
-            if (cmd.hasOption("gv")) {
-                String fileName = outputFilePath.split("\\.png")[0];
-                PrintWriter out = new PrintWriter(new FileWriter(fileName + ".gv"));
-                out.print(gv);
-                out.close();
-            }
-
-            InputStream dot = new ByteArrayInputStream(gv.toString().getBytes());
-            MutableGraph g = new guru.nidi.graphviz.parse.Parser().read(dot);
-            Graphviz.fromGraph(g).render(Format.PNG).toFile(new File(outputFilePath));
-
+            return parser.parse(options, args);
         } catch (org.apache.commons.cli.ParseException e) {
             System.out.println(e.getMessage());
             formatter.printHelp("utility-name", options);
 
             System.exit(1);
+            return null;
         }
+    }
+
+    private static boolean argsAreValid(String in, String out) {
+        boolean valid = true;
+
+        if (!in.matches(".*\\.(jd|txt)")) {
+            valid = false;
+            System.err.println("The input file should end with .jd or .txt");
+        }
+        if (!out.matches(".*\\.png")) {
+            valid = false;
+            System.err.println("The output file should end with .png");
+        }
+        return valid;
     }
 
     public static JustificationDiagram createDiagram(String file) {

@@ -9,7 +9,7 @@ subconclusion C1 = "Specifications validated"
 strategy S1 = "Review specifications"
 support H = "Requirements"
 support I = "Technical specifications"
-Support J = "Functional specifications"
+support J = "Functional specifications"
 
 subconclusion C2 = "Feasible hard points"
 strategy S2 = "Review feasability"
