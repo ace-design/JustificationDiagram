@@ -1,14 +1,16 @@
 package parsing;
 
 import export.GraphDrawer;
+import guru.nidi.graphviz.engine.Format;
+import guru.nidi.graphviz.engine.Graphviz;
+import guru.nidi.graphviz.model.MutableGraph;
 import justificationDiagram.JustificationDiagram;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.apache.commons.cli.*;
-
-import java.io.IOException;
+import java.io.*;
 
 public class JDCompiler {
 
@@ -23,6 +25,8 @@ public class JDCompiler {
         output.setRequired(true);
         options.addOption(output);
 
+        options.addOption("gv", "output gv files");
+
         CommandLineParser parser = new DefaultParser();
         HelpFormatter formatter = new HelpFormatter();
         CommandLine cmd;
@@ -34,7 +38,18 @@ public class JDCompiler {
 
             JustificationDiagram diagram = createDiagram(inputFilePath);
             GraphDrawer drawer = new GraphDrawer();
-            drawer.draw(diagram, outputFilePath);
+            StringBuilder gv = drawer.draw(diagram);
+
+            if (cmd.hasOption("gv")) {
+                String fileName = outputFilePath.split("\\.png")[0];
+                PrintWriter out = new PrintWriter(new FileWriter(fileName + ".gv"));
+                out.print(gv);
+                out.close();
+            }
+
+            InputStream dot = new ByteArrayInputStream(gv.toString().getBytes());
+            MutableGraph g = new guru.nidi.graphviz.parse.Parser().read(dot);
+            Graphviz.fromGraph(g).render(Format.PNG).toFile(new File(outputFilePath));
 
         } catch (org.apache.commons.cli.ParseException e) {
             System.out.println(e.getMessage());
