@@ -1,7 +1,7 @@
 package parsing;
 
 import justificationDiagram.JustificationDiagram;
-import models.*;
+import models.RelationFactory;
 
 public class JDLinker extends PlantUMLBaseVisitor<String> {
     public JustificationDiagram diagram;
@@ -22,7 +22,7 @@ public class JDLinker extends PlantUMLBaseVisitor<String> {
 
     @Override
     public String visitRelation(PlantUMLParser.RelationContext ctx) {
-        diagram.relations.add(new Relation(diagram.nodes.get(ctx.ALIAS(0).getText()),
+        diagram.relations.add(RelationFactory.create(ctx.LINK().getText(), diagram.nodes.get(ctx.ALIAS(0).getText()),
                 diagram.nodes.get(ctx.ALIAS(1).getText())));
         return super.visitRelation(ctx);
     }

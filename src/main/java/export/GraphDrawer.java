@@ -2,6 +2,7 @@ package export;
 
 import justificationDiagram.JustificationDiagram;
 import models.*;
+import models.Relation;
 
 public class GraphDrawer implements JDVisitor {
     private final StringBuilder gv = new StringBuilder();
@@ -88,7 +89,12 @@ public class GraphDrawer implements JDVisitor {
 
     @Override
     public void visitRelation(Relation relation) {
-        gv.append("\t").append(relation.from.alias).append(" -> ").append(relation.to.alias).append(";\n");
+        gv.append("\t").append(relation.from.alias).append(" -> ").append(relation.to.alias);
+
+        if (relation.collapsed) {
+            gv.append(" [style=dashed]");
+        }
+        gv.append(";\n");
 
         if (relation.from instanceof Domain) {
             gv.append("\t{rank = same; ").append(relation.from.alias).append("; ").append(relation.to.alias).append(";}\n");
