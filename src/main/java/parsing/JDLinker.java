@@ -24,6 +24,8 @@ public class JDLinker extends PlantUMLBaseVisitor<String> {
     public String visitRelation(PlantUMLParser.RelationContext ctx) {
         diagram.relations.add(new Relation(diagram.nodes.get(ctx.ALIAS(0).getText()),
                 diagram.nodes.get(ctx.ALIAS(1).getText())));
+        diagram.nodes.get(ctx.ALIAS(0).getText()).addParent(diagram.nodes.get(ctx.ALIAS(1).getText()));
+        diagram.nodes.get(ctx.ALIAS(1).getText()).addChild(diagram.nodes.get(ctx.ALIAS(0).getText()));
         return super.visitRelation(ctx);
     }
 
