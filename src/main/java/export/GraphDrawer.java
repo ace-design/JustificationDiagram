@@ -19,11 +19,11 @@ public class GraphDrawer implements JDVisitor {
         for (String alias : diagram.nodes.keySet()) {
             diagram.nodes.get(alias).accept(this);
         }
-
         for (Relation relation : diagram.relations) {
             relation.accept(this);
         }
-
+        GraphDrawerLayout layout = new GraphDrawerLayout();
+        gv.append(layout.draw(diagram));
         gv.append("}\n");
     }
 
@@ -95,12 +95,5 @@ public class GraphDrawer implements JDVisitor {
             gv.append(" [style=dashed]");
         }
         gv.append(";\n");
-
-        if (relation.from instanceof Domain) {
-            gv.append("\t{rank = same; ").append(relation.from.alias).append("; ").append(relation.to.alias).append(";}\n");
-        } else if (relation.from instanceof Rationale) {
-            gv.append("\t").append(relation.to.alias).append(" -> ").append(relation.from.alias).append(" [style=invis];\n");
-            gv.append("\t{rank = same; ").append(relation.from.alias).append("; ").append(relation.to.alias).append(";}\n");
-        }
     }
 }

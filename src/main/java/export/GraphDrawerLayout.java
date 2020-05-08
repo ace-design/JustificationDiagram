@@ -12,7 +12,14 @@ public class GraphDrawerLayout implements JDVisitor {
     }
 
     @Override
-    public void visitDiagram(JustificationDiagram diagram) { }
+    public void visitDiagram(JustificationDiagram diagram) {
+        for (String alias : diagram.nodes.keySet()) {
+            diagram.nodes.get(alias).accept(this);
+        }
+        for (Relation relation : diagram.relations) {
+            relation.accept(this);
+        }
+    }
 
     @Override
     public void visitNode(Node node) { }
@@ -28,22 +35,22 @@ public class GraphDrawerLayout implements JDVisitor {
 
     @Override
     public void visitDomain(Domain domain) {
-
-        gv.append("\t{rank = same; ").append(domain.alias).append("; ").append(domain.input).append(";}\n");
+        for (Relation relation : domain.outputs) {
+            gv.append("\t{rank = same; ").append(domain.alias).append("; ").append(relation.to.alias).append(";}\n");
+        }
     }
 
     @Override
     public void visitRationale(Rationale rationale) {
-
+        for (Relation relation : rationale.outputs) {
+            gv.append("\t").append(relation.to.alias).append(" -> ").append(relation.from.alias).append(" [style=invis];\n");
+            gv.append("\t{rank = same; ").append(rationale.alias).append("; ").append(relation.to.alias).append(";}\n");
+        }
     }
 
     @Override
-    public void visitSupport(Support support) {
-
-    }
+    public void visitSupport(Support support) { }
 
     @Override
-    public void visitRelation(Relation relation) {
-
-    }
+    public void visitRelation(Relation relation) { }
 }
