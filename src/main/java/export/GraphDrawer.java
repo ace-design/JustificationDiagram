@@ -1,22 +1,15 @@
 package export;
 
-import guru.nidi.graphviz.engine.Format;
-import guru.nidi.graphviz.engine.Graphviz;
-import guru.nidi.graphviz.model.MutableGraph;
 import justificationDiagram.JustificationDiagram;
 import models.*;
-
-import java.io.*;
+import models.Relation;
 
 public class GraphDrawer implements JDVisitor {
     private final StringBuilder gv = new StringBuilder();
 
-    public void draw(JustificationDiagram diagram, String file) throws IOException {
+    public StringBuilder draw(JustificationDiagram diagram) {
         this.visitDiagram(diagram);
-
-        InputStream dot = new ByteArrayInputStream(gv.toString().getBytes());
-        MutableGraph g = new guru.nidi.graphviz.parse.Parser().read(dot);
-        Graphviz.fromGraph(g).render(Format.PNG).toFile(new File(file));
+        return gv;
     }
 
     @Override
@@ -96,7 +89,12 @@ public class GraphDrawer implements JDVisitor {
 
     @Override
     public void visitRelation(Relation relation) {
-        gv.append("\t").append(relation.from.alias).append(" -> ").append(relation.to.alias).append(";\n");
+        gv.append("\t").append(relation.from.alias).append(" -> ").append(relation.to.alias);
+
+        if (relation.collapsed) {
+            gv.append(" [style=dashed]");
+        }
+        gv.append(";\n");
 
         if (relation.from instanceof Domain) {
             gv.append("\t{rank = same; ").append(relation.from.alias).append("; ").append(relation.to.alias).append(";}\n");

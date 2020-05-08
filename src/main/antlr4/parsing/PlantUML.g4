@@ -43,7 +43,7 @@ TITLE: 'title ' ('A'..'Z' | 'a'..'z' | '1'..'9' | ' ')+ '\n';
 
 TYPE: ('subconclusion' | 'strategy' | 'rationale' | 'domain' | 'support');
 ALIAS: ('A'..'Z' | 'a'..'z' | '1'..'9')+;
-LINK: ('-->');
+LINK: ('-->' | '..>');
 
 STRING : '"' STRING_CHAR*? '"';
 STRING_CHAR : ~('\r' | '\n');
