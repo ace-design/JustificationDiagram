@@ -8,7 +8,7 @@ public class Domain extends Node {
         super(alias, label);
     }
 
-    public void accept(GraphDrawer visitor) {
-        visitor.visitDomain(this);
+    public void accept(JDVisitor JDVisitor) {
+        JDVisitor.visitDomain(this);
     }
 }

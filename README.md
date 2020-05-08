@@ -14,7 +14,7 @@ mvn compile
 mvn exec:java -Dexec.mainClass="parsing.JDCompiler" -i <INPUT_FILE_NAME> -o <OUTPUT_FILE_NAME>
 ```
 
-or download the jar file and run :
+or [download the jar file](https://github.com/ace-design/JustificationDiagram/releases/tag/v1.0) and run :
 ```
 java -jar JDGenerator-jar-with-dependencies.jar -i <INPUT_FILE_NAME> -o <OUTPUT_FILE_NAME>
 ```

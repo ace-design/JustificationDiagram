@@ -10,8 +10,8 @@ public class Conclusion extends Node {
         this.restriction = restriction;
     }
 
-    public void accept(GraphDrawer visitor) {
-        visitor.visitConclusion(this);
+    public void accept(JDVisitor JDVisitor) {
+        JDVisitor.visitConclusion(this);
     }
 
 }

@@ -9,7 +9,7 @@ public class SubConclusion extends Node {
         super(alias, label);
     }
 
-    public void accept(GraphDrawer visitor) {
-        visitor.visitSubConclusion(this);
+    public void accept(JDVisitor JDVisitor) {
+        JDVisitor.visitSubConclusion(this);
     }
 }

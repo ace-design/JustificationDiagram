@@ -65,5 +65,4 @@ package models {
     JustificationDiagram "1" o-- "*" Node : nodes
     JustificationDiagram "1" o-- "*" Relation : relations
 
-
 @enduml

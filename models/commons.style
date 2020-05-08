@@ -34,22 +34,22 @@ skinparam object {
 }
 
 skinparam package<<Layout>> {
-  borderColor         Transparent
-  backgroundColor     Transparent
-  fontColor           Transparent
-  stereotypeFontColor Transparent
+    borderColor         Transparent
+    backgroundColor     Transparent
+    fontColor           Transparent
+    stereotypeFontColor Transparent
 }
 
 skinparam sequence {
-	ArrowColor                  Gray
-  LifeLineBorderColor         CornFlowerBlue
-  LifeLineBackgroundColor     GhostWhite
-	ParticipantBorderColor      CornFlowerBlue
-	ParticipantBackgroundColor  GhostWhite
-  ActorBorderColor            CornFlowerBlue
-	ActorBackgroundColor        GhostWhite
-  BoxBorderColor         CornFlowerBlue
-  BoxBackgroundColor         GhostWhite
+    ArrowColor                  Gray
+    LifeLineBorderColor         CornFlowerBlue
+    LifeLineBackgroundColor     GhostWhite
+    ParticipantBorderColor      CornFlowerBlue
+    ParticipantBackgroundColor  GhostWhite
+    ActorBorderColor            CornFlowerBlue
+    ActorBackgroundColor        GhostWhite
+    BoxBorderColor              CornFlowerBlue
+    BoxBackgroundColor          GhostWhite
 }
 
 skinparam stereotypeCBackgroundColor CornflowerBlue
@@ -58,6 +58,6 @@ hide footbox
 hide empty members
 
 skinparam note {
- BackgroundColor GhostWhite
- BorderColor         CornFlowerBlue
+    BackgroundColor     GhostWhite
+    BorderColor         CornFlowerBlue
 }

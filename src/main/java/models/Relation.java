@@ -21,7 +21,7 @@ public class Relation implements Visitable {
         this.collapsed = collapsed;
     }
 
-    public void accept(GraphDrawer visitor) {
+    public void accept(JDVisitor visitor) {
         visitor.visitRelation(this);
     }
 

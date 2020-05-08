@@ -8,7 +8,7 @@ public class Rationale extends Node {
         super(alias, label);
     }
 
-    public void accept(GraphDrawer visitor) {
-        visitor.visitRationale(this);
+    public void accept(JDVisitor JDVisitor) {
+        JDVisitor.visitRationale(this);
     }
 }

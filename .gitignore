@@ -2,7 +2,6 @@
 .idea/
 target/
 *.gv
-*.png
 
 # Compiled class file
 *.class

@@ -18,7 +18,7 @@ public class JustificationDiagram implements Visitable {
     }
 
     @Override
-    public void accept(GraphDrawer visitor) {
+    public void accept(JDVisitor visitor) {
         visitor.visitDiagram(this);
     }
 

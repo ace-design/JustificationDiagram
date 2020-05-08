@@ -8,8 +8,8 @@ public class Strategy extends Node {
         super(alias, label);
     }
 
-    public void accept(GraphDrawer visitor) {
-        visitor.visitStrategy(this);
+    public void accept(JDVisitor JDVisitor) {
+        JDVisitor.visitStrategy(this);
     }
 
 }

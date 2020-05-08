@@ -12,7 +12,7 @@ public class Node implements Visitable {
         this.label = label;
     }
 
-    public void accept(GraphDrawer visitor) {
+    public void accept(JDVisitor visitor) {
         visitor.visitNode(this);
     }
 
