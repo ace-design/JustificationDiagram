@@ -5,12 +5,11 @@ import models.Node;
 import models.Relation;
 import models.Visitable;
 
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.*;
 
 public class JustificationDiagram implements Visitable {
     public HashMap<String, Node> nodes;
-    public HashSet<Relation> relations;
+    public Set<Relation> relations;
 
     public JustificationDiagram() {
         nodes = new HashMap<>();

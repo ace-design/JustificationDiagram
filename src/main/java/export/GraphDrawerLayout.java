@@ -29,7 +29,7 @@ public class GraphDrawerLayout implements JDVisitor {
     @Override
     public void visitDomain(Domain domain) {
 
-        gv.append("\t{rank = same; ").append(domain.alias).append("; ").append(domain.children).append(";}\n");
+        gv.append("\t{rank = same; ").append(domain.alias).append("; ").append(domain.input).append(";}\n");
     }
 
     @Override

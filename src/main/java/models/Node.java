@@ -1,29 +1,27 @@
 package models;
 
 import export.*;
-
-import java.util.HashSet;
-import java.util.Objects;
+import java.util.*;
 
 public class Node implements Visitable {
     public String alias;
     public String label;
-    public HashSet<Node> parents;
-    public HashSet<Node> children;
+    public Set<Relation> outputs;
+    public Set<Relation> inputs;
 
     public Node(String alias, String label) {
         this.alias = alias;
         this.label = label;
-        this.parents = new HashSet<>();
-        this.children = new HashSet<>();
+        this.outputs = new HashSet<>();
+        this.inputs = new HashSet<>();
     }
 
-    public void addParent(Node parent) {
-        this.parents.add(parent);
+    public void addOutput(Relation output) {
+        this.outputs.add(output);
     }
 
-    public void addChild(Node child) {
-        this.children.add(child);
+    public void addInput(Relation input) {
+        this.inputs.add(input);
     }
 
     public void accept(JDVisitor visitor) {
