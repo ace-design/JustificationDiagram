@@ -76,6 +76,19 @@ public class JDCompiler {
             valid = false;
             System.err.println("The output file should end with .png");
         }
+       
+        File outputFile = new File(out);
+        if (!(outputFile.exists())) {
+        	File outputpathDir = new File(outputFile.getAbsolutePath());
+        	outputpathDir.mkdirs();
+
+        	try {
+        		outputFile.createNewFile();
+        	} catch (IOException e) {
+        		System.err.println("Unable to create the output file  :" + out+ ":"+ e.getMessage());
+        	}
+        }
+
         return valid;
     }
 

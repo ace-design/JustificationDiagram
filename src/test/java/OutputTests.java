@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class OutputTests {
 
-	String outputPath = "src/test/output/images/";
+	String outputPath = "output/images/";
     @Test
     public void dummy() {
         assertEquals(0, 0);
