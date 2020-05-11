@@ -27,8 +27,8 @@ jobs:
       with: 
         name: fig
         path: path/output
-    -name: Archive generated codes
-     uses : actions/upload-artifact@v2
-     with: 
-        name : Conclusion
+    - name: Archive generated codes
+      uses: actions/upload-artifact@v2
+      with: 
+        name: Conclusion
         path: path/models
