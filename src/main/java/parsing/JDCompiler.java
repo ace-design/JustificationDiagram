@@ -37,7 +37,7 @@ public class JDCompiler {
         InputStream dot = new ByteArrayInputStream(gv.toString().getBytes());
         MutableGraph g = new guru.nidi.graphviz.parse.Parser().read(dot);
         Graphviz.fromGraph(g).render(Format.PNG).toFile(new File(outputFilePath));
-    }
+        System.out.println("Generation for " + inputFilePath + "to " + outputFilePath);  }
 
     private static CommandLine setup(String[] args) {
         Options options = new Options();
