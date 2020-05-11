@@ -28,9 +28,9 @@ jobs:
       uses: actions/upload-artifact@v2
       with: 
         name: fig
-        path: path/output
+        path: output/images
     - name: Archive generated codes
       uses: actions/upload-artifact@v2
       with: 
         name: Conclusion
-        path: path/models
+        path: models
