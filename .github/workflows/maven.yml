@@ -23,7 +23,7 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: Test with Maven
-      run: mvn test ; ls -la models
+      run: mvn test ; ls -la src/main/java/models
     - name: Archive images
       uses: actions/upload-artifact@v2
       with: 
@@ -33,4 +33,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with: 
         name: generatedCode
-        path: models
+        path: src/main/java/models
