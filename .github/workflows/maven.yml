@@ -22,3 +22,15 @@ jobs:
         java-version: 1.8
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+    - name: Test with Maven
+      run: mvn test
+    - name: Archive images
+      uses: actions/upload-artifact@v2
+      with: 
+        name: fig
+        path: path/output
+    - name: Archive generated codes
+      uses: actions/upload-artifact@v2
+      with: 
+        name: Conclusion
+        path: path/models
