@@ -27,10 +27,10 @@ jobs:
     - name: Archive images
       uses: actions/upload-artifact@v2
       with: 
-        name: fig
+        name: images
         path: output/images
     - name: Archive generated codes
       uses: actions/upload-artifact@v2
       with: 
-        name: Conclusion
+        name: generatedCode
         path: models
