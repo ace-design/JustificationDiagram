@@ -2,7 +2,6 @@ package export;
 
 import justificationDiagram.JustificationDiagram;
 import models.*;
-import models.Relation;
 
 public class GraphDrawer implements JDVisitor {
     private final StringBuilder gv = new StringBuilder();

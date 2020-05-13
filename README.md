@@ -11,7 +11,7 @@ JDGenerator is a Maven program. You can either clone the repo and run the follow
 ```
 mvn install
 mvn compile
-mvn exec:java -Dexec.mainClass="parsing.JDCompiler" -i <INPUT_FILE_NAME> -o <OUTPUT_FILE_NAME>
+mvn exec:java -Dexec.mainClass="JDCompiler" -i <INPUT_FILE_NAME> -o <OUTPUT_FILE_NAME>
 ```
 
 or [download the jar file](https://github.com/ace-design/JustificationDiagram/releases/tag/v1.0) and run :
@@ -89,7 +89,7 @@ J --> SB
 @enduml
 ```
 
-![](med_graph.png)
+![](examples/fig1.png)
 
 
 

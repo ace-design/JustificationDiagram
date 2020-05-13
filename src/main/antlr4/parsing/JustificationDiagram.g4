@@ -1,4 +1,4 @@
-grammar PlantUML;
+grammar JustificationDiagram;
 
 /*
  * Parser Rules

@@ -1,5 +1,3 @@
-package parsing;
-
 import export.GraphDrawer;
 import guru.nidi.graphviz.engine.Format;
 import guru.nidi.graphviz.engine.Graphviz;
@@ -10,6 +8,7 @@ import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.apache.commons.cli.*;
+import parsing.*;
 import java.io.*;
 
 public class JDCompiler {
@@ -95,9 +94,9 @@ public class JDCompiler {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        PlantUMLLexer lexer = new PlantUMLLexer(input); // create a buffer of tokens pulled from the lexer
+        JustificationDiagramLexer lexer = new JustificationDiagramLexer(input); // create a buffer of tokens pulled from the lexer
         CommonTokenStream tokens = new CommonTokenStream(lexer); // create a parser that feeds off the tokens buffer
-        PlantUMLParser parser = new PlantUMLParser(tokens);
+        JustificationDiagramParser parser = new JustificationDiagramParser(tokens);
         return parser.diagram();
     }
 }

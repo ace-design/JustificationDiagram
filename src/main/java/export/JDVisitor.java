@@ -2,7 +2,6 @@ package export;
 
 import justificationDiagram.JustificationDiagram;
 import models.*;
-import models.Relation;
 
 public interface JDVisitor {
 

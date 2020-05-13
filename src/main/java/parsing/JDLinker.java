@@ -4,7 +4,7 @@ import justificationDiagram.JustificationDiagram;
 import models.Relation;
 import models.RelationFactory;
 
-public class JDLinker extends PlantUMLBaseVisitor<String> {
+public class JDLinker extends JustificationDiagramBaseVisitor<String> {
     public JustificationDiagram diagram;
 
     public JDLinker(JustificationDiagram diagram) {
@@ -12,17 +12,17 @@ public class JDLinker extends PlantUMLBaseVisitor<String> {
     }
 
     @Override
-    public String visitDiagram(PlantUMLParser.DiagramContext ctx) {
+    public String visitDiagram(JustificationDiagramParser.DiagramContext ctx) {
         return super.visitDiagram(ctx);
     }
 
     @Override
-    public String visitDeclaration(PlantUMLParser.DeclarationContext ctx) {
+    public String visitDeclaration(JustificationDiagramParser.DeclarationContext ctx) {
         return super.visitDeclaration(ctx);
     }
 
     @Override
-    public String visitRelation(PlantUMLParser.RelationContext ctx) {
+    public String visitRelation(JustificationDiagramParser.RelationContext ctx) {
         Relation relation = RelationFactory.create(ctx.LINK().getText(), diagram.nodes.get(ctx.ALIAS(0).getText()),
                 diagram.nodes.get(ctx.ALIAS(1).getText()));
         diagram.relations.add(relation);
@@ -32,17 +32,17 @@ public class JDLinker extends PlantUMLBaseVisitor<String> {
     }
 
     @Override
-    public String visitInstruction(PlantUMLParser.InstructionContext ctx) {
+    public String visitInstruction(JustificationDiagramParser.InstructionContext ctx) {
         return super.visitInstruction(ctx);
     }
 
     @Override
-    public String visitElement(PlantUMLParser.ElementContext ctx) {
+    public String visitElement(JustificationDiagramParser.ElementContext ctx) {
         return super.visitElement(ctx);
     }
 
     @Override
-    public String visitConclusion(PlantUMLParser.ConclusionContext ctx) {
+    public String visitConclusion(JustificationDiagramParser.ConclusionContext ctx) {
         return super.visitConclusion(ctx);
     }
 }

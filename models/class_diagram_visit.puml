@@ -53,6 +53,8 @@ package models {
     Relation -.up.-|> Visitable
     Relation "*" o-- "1" Node : from
     Relation "*" o-- "1" Node : to
+    Node "1" o-- "*" Relation : inputs
+    Node "1" o-- "*" Relation : outputs
     Node -.up.-|> Visitable
     Node <|-- Domain
     Node <|-- Conclusion
