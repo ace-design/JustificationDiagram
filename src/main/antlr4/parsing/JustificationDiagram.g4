@@ -1,3 +1,5 @@
+// This grammar is strongly inspired from PlantUML's object and class diagram synthaxes.
+
 grammar JustificationDiagram;
 
 /*

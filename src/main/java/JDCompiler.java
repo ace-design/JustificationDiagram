@@ -1,4 +1,5 @@
 import export.GraphDrawer;
+import export.RequirementsLister;
 import guru.nidi.graphviz.engine.Format;
 import guru.nidi.graphviz.engine.Graphviz;
 import guru.nidi.graphviz.model.MutableGraph;
@@ -33,6 +34,13 @@ public class JDCompiler {
             out.close();
         }
 
+        if (cmd.hasOption("td")) {
+            String fileName = outputFilePath.split("\\.png")[0];
+            PrintWriter out = new PrintWriter(new FileWriter(fileName + ".todo"));
+            RequirementsLister lister = new RequirementsLister();
+            out.print(lister.generate(diagram));
+            out.close();
+        }
         InputStream dot = new ByteArrayInputStream(gv.toString().getBytes());
         MutableGraph g = new guru.nidi.graphviz.parse.Parser().read(dot);
         Graphviz.fromGraph(g).render(Format.PNG).toFile(new File(outputFilePath));
@@ -52,6 +60,8 @@ public class JDCompiler {
         options.addOption(output);
 
         options.addOption("gv", "output gv files");
+
+        options.addOption("td", "generate todo list");
 
         try {
             return parser.parse(options, args);
