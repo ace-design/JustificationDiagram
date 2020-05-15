@@ -39,9 +39,7 @@ public class RequirementsLister implements JDVisitor {
     }
 
     @Override
-    public void visitStrategy(Strategy strategy) {
-        //list.append("[ ]\t").append(strategy.label, 1, strategy.label.length() - 1).append("\n");
-    }
+    public void visitStrategy(Strategy strategy) { }
 
     @Override
     public void visitDomain(Domain domain) { }

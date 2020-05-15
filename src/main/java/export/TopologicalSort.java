@@ -6,10 +6,8 @@ import models.Relation;
 import java.util.*;
 
 public class TopologicalSort {
-    private HashMap<String, Node> white;
-    private HashMap<String, Node> grey;
-    private HashMap<String, Node> black;
-    private PriorityQueue<OrderedNode> finishingTime;
+    private Map<String, Node> toBeVisited;
+    private Queue<OrderedNode> finishingTime;
     private int time;
     LinkedList<Node> order;
 
@@ -42,17 +40,15 @@ public class TopologicalSort {
     }
 
     public void depthFirstSearch(JustificationDiagram diagraph) {
-        white = new HashMap<>();
-        grey = new HashMap<>();
-        black = new HashMap<>();
+        toBeVisited = new HashMap<>();
         finishingTime = new PriorityQueue<>();
 
         for (String u: diagraph.nodes.keySet()) {
-            white.put(u, diagraph.nodes.get(u));
+            toBeVisited.put(u, diagraph.nodes.get(u));
         }
         time = 0;
         for (String u: diagraph.nodes.keySet()) {
-            if (white.containsKey(u)) {
+            if (toBeVisited.containsKey(u)) {
                 depthFirstSearchVisit(diagraph.nodes.get(u));
             }
         }
@@ -60,18 +56,15 @@ public class TopologicalSort {
 
     private void depthFirstSearchVisit(Node u) {
         ++time;
-        white.remove(u.alias);
-        grey.put(u.alias, u);
+        toBeVisited.remove(u.alias);
 
         for (Relation relation: u.outputs) {
             Node v = relation.to;
 
-            if (white.containsValue(v)) {
+            if (toBeVisited.containsValue(v)) {
                 depthFirstSearchVisit(v);
             }
         }
-        grey.remove(u.alias);
-        black.put(u.alias, u);
         time = time + 1;
         finishingTime.add(new OrderedNode(time, u));
     }

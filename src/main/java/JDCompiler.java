@@ -23,7 +23,6 @@ public class JDCompiler {
                 System.exit(1);
             }
         }
-
         for (int i = 0; i < cmd.getArgs().length; ++i) {
             String inputFile = cmd.getArgs()[i];
             if (!inputIsValid(inputFile)) {
