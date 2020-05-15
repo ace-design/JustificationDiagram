@@ -11,16 +11,33 @@ JDGenerator is a Maven program. You can either clone the repo and run the follow
 ```
 mvn install
 mvn compile
-mvn exec:java -Dexec.mainClass="parsing.JDCompiler" -i <INPUT_FILE_NAME> -o <OUTPUT_FILE_NAME>
 ```
 
-or [download the jar file](https://github.com/ace-design/JustificationDiagram/releases/tag/v1.0) and run :
+or [download the jar file](https://github.com/ace-design/JustificationDiagram/releases/tag/v1.1).
+
+## Execution
+From the cloned repo, run 
 ```
-java -jar JDGenerator-jar-with-dependencies.jar -i <INPUT_FILE_NAME> -o <OUTPUT_FILE_NAME>
+mvn exec:java -Dexec.mainClass="JDCompiler" [OPTIONS] [FILE]
 ```
+
+or execute the jar file with 
+```
+java -jar JDGenerator-jar-with-dependencies.jar [OPTIONS] [FILE]
+```
+
+### Options
+| Flag  | Argument | Description                              |
+|-------|----------|------------------------------------------|
+| -o    | path     | Output file (no extension)               |
+| -png  | -        | Generate visual graph                    |
+| -gv   | -        | Generate text files before dot formating |
+| -list | -        | Generate todo list                       |
+
+If no output file is entered, the generated files will be named from the input file name. 
 
 ## Syntax
-The developped syntax strongly ressembles [PlantUML](https://plantuml.com/). 
+The developped syntax strongly ressembles [PlantUML](https://plantuml.com/)'s object and class diagram syntaxes. 
 
 ### Tags
 The text file should start and end by the corresponding tags.
@@ -44,56 +61,107 @@ The conclusion and subconclusion may have a restriction field. There can only be
 ```
 
 ### Relations
-At the moment, the prototype permits only one type and one direction of link.
+The prototype permits two types of oriented link.
+
+* Expanded link :
 ```
 <ALIAS_1> --> <ALIAS_2>
 ```
+* Collapsed link :
+```
+<ALIAS_1> ..> <ALIAS_2>
+```
 
 ## Example
-Here's an example of a text file and the graph it generates. 
+Here's an example of a text file, the graph and the todo list it generates. 
+
+#### example.jd
 ```
 @startuml
 
-conclusion C = "System integration tests validated" - "Internal"
-strategy S = "Evaluate integration tests"
+conclusion C = "Software safety validated" - "Internal"
+strategy S = "Assess software safety"
 domain D = "Internal accreditation"
-rationale R = "ISO 62304"
+rationale R = "Credentials for IEC 62304"
 
-support E = "SoapUI logs"
+subconclusion C1 = "Specifications validated"
 
-subconclusion CA = "Tests validated for module A"
-strategy SA = "Evaluate unit tests"
-rationale RAB = "ISO 62304"
-support A = "Module A source code"
-support J = "JUnit logs"
+subconclusion C2 = "Architecture validated"
+strategy S2 = "Review architecture"
+support F = "Architecture"
 
-subconclusion CB = "Tests validated for module B"
-strategy SB = "Evaluate unit tests"
-support B = "Module B source code"
+subconclusion C3 = "Safety specifications validated"
+strategy S3 = "Assess risk management"
+rationale R3 = "Credentials for ISO 14971"
+support G = "Risk mitigation plan"
+
+subconclusion C4 = "Risks consistency"
+strategy S4 = "Verify consistency"
+support H = "Technical specifications"
+support I = "Functional specifications"
+support J = "Identified risks"
+
+subconclusion C5 = "Feasible hard points"
 
 S --> C
 D --> S
 R --> S
-E --> S
-CA --> S
-CB --> S
-SA --> CA
-SB --> CB
-RAB --> SA
-RAB --> SB
-A --> SA
-B --> SB
-J --> SA
-J --> SB
+
+C1 --> S
+H ..> C1
+I ..> C1
+
+C2 --> S
+S2 --> C2
+F --> S2
+H --> S2
+
+C3 --> S
+C3 --> S2
+S3 --> C3
+R3 --> S3
+J --> S3
+G --> S3
+
+C4 --> S3
+S4 --> C4
+H --> S4
+I --> S4
+J --> S4
+
+C5 --> S2
+H ..> C5
 
 @enduml
 ```
 
-![](med_graph.png)
+#### example.png
 
-
+![](examples/fig3.png)
 
 > The justification diagram was adapted from _Support of Justification Elicitation: Two Industrial Reports_ by Clément Duffau, Thomas Polacsek and Mireille Blay-Fornarino, 2018.
+
+#### example.todo
+
+```
+Requirements list
+
+[ ]	Identified risks
+[ ]	Functional specifications
+[ ]	Technical specifications
+[ ]	Feasible hard points
+[ ]	Specifications validated
+[ ]	Risk mitigation plan
+[ ]	Architecture
+[ ]	Risks consistency
+[ ]	Safety specifications validated
+[ ]	Architecture validated
+-----------------------------------------------
+[ ]	Software safety validated
+-----------------------------------------------
+```
+
+
 
 
 
