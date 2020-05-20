@@ -36,4 +36,10 @@ public class OutputTests {
     public void figToDO() throws IOException {
         JDCompiler.main(new String[] { inputPath+"fig3.jd", "-o", outputPath+"fig2", "-td"});
     }
+    
+    @Test
+    public void test_Nico() throws IOException {
+    	JDCompiler.main(new String[] { inputPath+"test_NC.jd", "-o", outputPath+"test_NC", "-png"});
+        JDCompiler.main(new String[] { inputPath+"test_NC.jd", "-o", outputPath+"test_NC", "-td"});
+    }
 }

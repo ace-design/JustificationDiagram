@@ -1,0 +1,36 @@
+@startuml
+
+conclusion C = "Intégration continue Valide" - "Interne"
+
+subconclusion PV = "Le Projet est valide" 
+strategy SE = "Evaluation du projet"
+
+strategy SA = "Archivage des données"
+support AJ = "Archivage du rapport de Jacoco"
+support AC = "Archivage du code"
+support AI = "Archivage des images générais"
+
+subconclusion M = "Maven mis en place"
+strategy SM = "Evaluation du projet Maven"
+support LS = "LS de l'architecture du projet"
+support TM = "Test Maven"
+support GM = "Génération du projet Maven"
+
+GM --> SM
+TM --> SM
+LS --> SM
+SM --> M
+
+M --> SA
+AJ --> SA
+AC --> SA
+AI --> SA
+
+SA --> SE
+
+SE --> PV
+
+PV --> C
+
+
+@enduml
