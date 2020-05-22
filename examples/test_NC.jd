@@ -15,10 +15,13 @@ strategy SM = "Evaluation du projet Maven"
 support LS = "LS de l'architecture du projet"
 support TM = "Test Maven"
 support GM = "Génération du projet Maven"
+support RJ = "Production d'un rapport Jacoco"
+
 
 GM --> SM
 TM --> SM
 LS --> SM
+RJ --> SM
 SM --> M
 
 M --> SA
