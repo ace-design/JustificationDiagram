@@ -28,9 +28,15 @@ jobs:
       run: mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/test_NC.jd -o output/GeneratedJD/test_NC -png"
     - name: TODO generation 
       run: mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/test_NC.jd -o output/GeneratedJD/test_NC -td"
-    - name: Ls
+    - name: Tets Ecriture
       run: |
-        cat .gitignore
+        echo "bonjour" >> test1.txt
+        echo "bonjour" >> test2.txt
+   
+    
+
+    - name: Ls
+      run:
         ls -la *
     - name: Archive JD&TODO
       uses: actions/upload-artifact@v2

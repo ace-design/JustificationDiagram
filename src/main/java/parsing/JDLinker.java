@@ -26,7 +26,7 @@ public class JDLinker extends JustificationDiagramBaseVisitor<String> {
         Relation relation = RelationFactory.create(ctx.LINK().getText(), diagram.nodes.get(ctx.ALIAS(0).getText()),
                 diagram.nodes.get(ctx.ALIAS(1).getText()));
         diagram.relations.add(relation);
-        diagram.nodes.get(ctx.ALIAS(0).getText()).addOutput(relation);
+        diagram.nodes.get(ctx.ALIAS(0).getText()).addOutput(relation); 
         diagram.nodes.get(ctx.ALIAS(1).getText()).addInput(relation);
         return super.visitRelation(ctx);
     }

@@ -5,7 +5,11 @@ import models.*;
 
 public class RequirementsLister implements JDVisitor {
     StringBuilder list;
-
+    
+    // model in case of the evidences are todo or done
+    String model[] = {"[ ]\t","[X]\t"}; 
+    String modelUsed = model[0]; 
+    
     public StringBuilder generate(JustificationDiagram diagram) {
         TopologicalSort sort = new TopologicalSort(diagram);
         diagram.accept(this);
@@ -21,9 +25,10 @@ public class RequirementsLister implements JDVisitor {
         list = new StringBuilder("Requirements list\n\n");
     }
 
-    @Override
+    @Override 
     public void visitNode(Node node) {
-        list.append("[ ]\t").append(node.label, 1, node.label.length() - 1).append("\n");
+    	setModelUsed(node.state);
+        list.append(modelUsed).append(node.label, 1, node.label.length() - 1).append("\n");
     }
 
     @Override
@@ -35,7 +40,8 @@ public class RequirementsLister implements JDVisitor {
 
     @Override
     public void visitSubConclusion(SubConclusion subConclusion) {
-        list.append("[ ]\t").append(subConclusion.label, 1, subConclusion.label.length() - 1).append("\n");
+    	setModelUsed(subConclusion.state);
+        list.append(modelUsed).append(subConclusion.label, 1, subConclusion.label.length() - 1).append("\n");
     }
 
     @Override
@@ -49,9 +55,28 @@ public class RequirementsLister implements JDVisitor {
 
     @Override
     public void visitSupport(Support support) {
-        list.append("[ ]\t").append(support.label, 1, support.label.length() - 1).append("\n");
+    	setModelUsed(support.state);
+        list.append(modelUsed).append(support.label, 1, support.label.length() - 1).append("\n");
     }
 
     @Override
     public void visitRelation(Relation relation) { }
+    
+    
+    /**
+     * Analyse the state of the node and chose the corresponding model to used 
+     * 
+     * @param state state of the current node.
+     */
+    public void setModelUsed(State state) {
+    	System.out.println(State.DONE);
+    	if (state.equals(State.DONE)) {
+    		modelUsed = model[1];
+    		System.out.println(modelUsed);
+    	}
+    	else {
+    		modelUsed = model[0];
+    		System.out.println(modelUsed);
+    	}
+    }
 }

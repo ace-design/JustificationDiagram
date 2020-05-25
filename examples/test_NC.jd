@@ -1,21 +1,21 @@
 @startuml
 
-conclusion C = "Intégration continue Valide" - "Interne"
+conclusion C = "@TODO!-!Intégration continue Valide" - "Interne"
 
-subconclusion PV = "Le Projet est valide" 
-strategy SE = "Evaluation du projet"
+subconclusion PV = "@TODO!-!Le Projet est valide" 
+strategy SE = "@TODO!-!Evaluation du projet"
 
-strategy SA = "Archivage des données"
-support AJ = "Archivage du rapport de Jacoco"
-support AC = "Archivage du code"
-support AI = "Archivage des images générais"
+strategy SA = "@DONE!-!Archivage des données"
+support AJ = "@DONE!-!Archivage du rapport de Jacoco"
+support AC = "@DONE!-!Archivage du code"
+support AI = "@DONE!-!Archivage des images générais"
 
-subconclusion M = "Maven mis en place"
-strategy SM = "Evaluation du projet Maven"
-support LS = "LS de l'architecture du projet"
-support TM = "Test Maven"
-support GM = "Generation du projet Maven"
-support RJ = "Production d'un rapport Jacoco"
+subconclusion M = "@DONE!-!Maven mis en place"
+strategy SM = "@DONE!-!Evaluation du projet Maven"
+support LS = "@DONE!-!LS de l'architecture du projet"
+support TM = "@DONE!-!Test Maven"
+support GM = "@DONE!-!Generation du projet Maven" 
+support RJ = "@DONE!-!Production d'un rapport Jacoco"
 
 
 GM --> SM
