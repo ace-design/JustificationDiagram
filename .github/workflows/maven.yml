@@ -24,12 +24,6 @@ jobs:
       run: mvn -B package --file pom.xml
     - name: Test with Maven
       run: mvn test
-    - name: OUTPUT generation
-        run: mvn exec:java -Dexec.mainClass="JDCompiler" -o examples/test_NC
-    - name: JD generation 
-        run: mvn exec:java -Dexec.mainClass="JDCompiler" -png output/GenratedJD
-    - name: TODO generation 
-        run: mvn exec:java -Dexec.mainClass="JDCompiler" -td output/GenratedJD
     - name: Ls
       run: ls -la *
     - name: Archive images
