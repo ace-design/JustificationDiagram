@@ -26,7 +26,6 @@ jobs:
       run: mvn test
     - name: JD generation 
       run: mvn exec:java -Dexec.mainClass="JDCompiler" [OPTIONS] [FILE] -o examples/images/test_NC -png
-      run: ls -la *
     - name: TODO generation 
       run: mvn exec:java -Dexec.mainClass="JDCompiler" [OPTIONS] [FILE] -o examples/images/test_NC -td
     - name: Ls
