@@ -25,9 +25,10 @@ jobs:
     - name: Test with Maven
       run: mvn test
     - name: JD generation 
-      run: java -jar JDGenerator-jar-with-dependencies.jar -o examples/images/test_NC -png
+      run: mvn exec:java -Dexec.mainClass="JDCompiler" [OPTIONS] [FILE] -o examples/images/test_NC -png
+      run: ls -la *
     - name: TODO generation 
-      run: java -jar JDGenerator-jar-with-dependencies.jar -o examples/images/test_NC -td
+      run: mvn exec:java -Dexec.mainClass="JDCompiler" [OPTIONS] [FILE] -o examples/images/test_NC -td
     - name: Ls
       run: ls -la *
     - name: Archive images
