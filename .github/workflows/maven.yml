@@ -30,6 +30,11 @@ jobs:
       run: mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/test_NC.jd -o ouput/GenratedJD/test_NC -td"
     - name: Ls
       run: ls -la *
+    - name: Archive JD&TODO
+      uses: actions/upload-artifact@v2
+      with: 
+        name: GenratedJD
+        path: output/GenratedJD
     - name: Archive images
       uses: actions/upload-artifact@v2
       with: 
