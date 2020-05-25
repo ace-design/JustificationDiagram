@@ -29,7 +29,9 @@ jobs:
     - name: TODO generation 
       run: mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/test_NC.jd -o output/GeneratedJD/test_NC -td"
     - name: Ls
-      run: ls -la *
+      run: |
+        cat .gitignore
+        ls -la *
     - name: Archive JD&TODO
       uses: actions/upload-artifact@v2
       with: 
