@@ -14,7 +14,7 @@ subconclusion M = "Maven mis en place"
 strategy SM = "Evaluation du projet Maven"
 support LS = "LS de l'architecture du projet"
 support TM = "Test Maven"
-support GM = "Génération du projet Maven"
+support GM = "Generation du projet Maven"
 support RJ = "Production d'un rapport Jacoco"
 
 
