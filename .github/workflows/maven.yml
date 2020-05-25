@@ -24,6 +24,10 @@ jobs:
       run: mvn -B package --file pom.xml
     - name: Test with Maven
       run: mvn test
+    - name: JD generation 
+      run: java -jar JDGenerator-jar-with-dependencies.jar -o examples/images/test_NC -png
+    - name: TODO generation 
+      run: java -jar JDGenerator-jar-with-dependencies.jar -o examples/images/test_NC -td
     - name: Ls
       run: ls -la *
     - name: Archive images
@@ -31,6 +35,11 @@ jobs:
       with: 
         name: images
         path: output/images
+    - name: Archive JD generation
+      uses: actions/upload-artifact@v2
+      with: 
+        name: GenratedJD
+        path: output/GenratedJD
     - name: Archive Jacoco report
       uses: actions/upload-artifact@v2
       with: 
