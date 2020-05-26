@@ -1,6 +1,10 @@
 package models;
 
 import export.*;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.util.*;
 
 public class Node implements Visitable {
@@ -10,55 +14,67 @@ public class Node implements Visitable {
     public Set<Relation> outputs;
     public State state;
 
-    public Node(String alias, String label) {
-    	setStateAndLabel(label, this); 
+    public Node(String alias, String label) { 
+    	this.label = label;
         this.alias = alias;
         this.inputs = new HashSet<>();
         this.outputs = new HashSet<>();
+    	setState(this); 
+
     }
 
     public Node(Node node) {
-    	setStateAndLabel(node.label,node);
+    	this.label = node.label;
         this.alias = node.alias;
         this.inputs = node.inputs;
         this.outputs = node.outputs;
-    }
-    
-    /** 
-     * 
-     * used to set the label and the state of the node
-     * 
-     * @param label initial label of the node
-     * @param node node that will be changed 
-     */
-    public void setStateAndLabel(String label,Node node){
-    	    	
-    	if(label.contains("!-!")) {
-    		String[] result = label.split("!-!");
-        	node.state = setState(result[0].substring(1)); // if I don't add the substring; I have (for exemple) '"@DONE' instade of '@DONE' 
-        	node.label = "\"" + result[1]; // if I don't add the "\"", I have a probleme
-        	    	}
-    	else {
-    		node.label = label;
-    		node.state = State.TODO;
-    	}
-
+    	setState(node);
     }
     
     /**
      * used to return the correct State 
      * 
-     * @param label first label who have been find in the '.jd' 
-     * @return State corresponding to the label
+     * @param node whose state is sought
+     * @return State corresponding to the node
      */
-    public State setState(String label) {
-     	if(label.equalsIgnoreCase("@DONE")) {
-     		return State.DONE;
-     	}
-     	else {
-     		return State.TODO;
-     	}
+    public void setState(Node node) {
+    	
+    	
+    	File realization = new File("realization.txt");
+    	if(realization.exists()) {
+    		try {
+				analyseRealisation(realization,node);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
+
      }
+    
+    /**
+     * used to analyse the file 'realization.txt' who correpond to the tasks acomplished
+     * 
+     * @param realization list of tasks acomplished
+     * @param node corresponding to the task
+     * @throws IOException
+     */
+    public static void analyseRealisation(File realization,Node node) throws IOException {
+
+    	RandomAccessFile ranRealization = new RandomAccessFile(realization,"r");
+    	String lineRealization;    	
+    	
+    	while((lineRealization = ranRealization.readLine()) != null) {
+			if(node.label.contains('\"' + lineRealization + '\"')) {
+    			node.state = State.DONE;
+    			break;
+			}
+			else {
+				node.state = State.TODO;				
+    		}
+    	}
+    	ranRealization.close();
+    }
     
     
     

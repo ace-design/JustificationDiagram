@@ -128,7 +128,7 @@ public class JDCompiler {
         return linker.diagram;
     }
 
-    public static ParseTree parseAntlr(String file) {
+    public static ParseTree parseAntlr(String file) {    	
         // create a CharStream that reads from standard input
         CharStream input = null; // create a lexer that feeds off of input CharStream
         try {
@@ -141,4 +141,5 @@ public class JDCompiler {
         JustificationDiagramParser parser = new JustificationDiagramParser(tokens);
         return parser.diagram();
     }
+    
 }

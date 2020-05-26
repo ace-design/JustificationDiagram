@@ -1,14 +1,14 @@
 Requirements list
 
-[X]	Test Maven
-[X]	Production d'un rapport Jacoco
-[X]	Archivage du rapport de Jacoco
-[X]	Archivage des images générais
-[X]	LS de l'architecture du projet
-[X]	Generation du projet Maven
-[X]	Maven mis en place
-[X]	Archivage du code
-[ ]	Le Projet est valide
+[ ]	@DONE!-!Test Maven
+[ ]	@DONE!-!Production d'un rapport Jacoco
+[ ]	@DONE!-!Archivage du rapport de Jacoco
+[ ]	@DONE!-!Archivage des images générais
+[ ]	@DONE!-!LS de l'architecture du projet
+[ ]	@DONE!-!Generation du projet Maven
+[ ]	@DONE!-!Maven mis en place
+[ ]	@DONE!-!Archivage du code
+[ ]	@TODO!-!Le Projet est valide
 -----------------------------------------------
-[ ]	Intégration continue Valide
+[ ]	@TODO!-!Intégration continue Valide
 -----------------------------------------------
