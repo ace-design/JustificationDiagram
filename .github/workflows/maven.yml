@@ -32,19 +32,20 @@ jobs:
       with: 
         name: images
         path: output/images
-        run : echo "images Archivate" >> realization.txt
     - name: Archive Jacoco report
       uses: actions/upload-artifact@v2
       with: 
         name: jacoco
         path: target/site/jacoco
-      run : echo -e "Jacoco report Archivate\ntestCoverage Archivate\ntestCoverage Archivate\nJacoco Report\nValidate testCoverage\nTest Coverage validated" >> realization.txt
     - name: Archive generated codes
       uses: actions/upload-artifact@v2
       with: 
         name: generatedCode
         path: src/main/java/models
-      run : echo -e "code Archivate\nData Archivate\nArchivees Data" >> realization.txt
+    - name: Archive Realization 
+        run: echo "images Archivate" >> realization.txt & 
+        echo -e "Jacoco report Archivate\ntestCoverage Archivate\ntestCoverage Archivate\nJacoco Report\nValidate testCoverage\nTest Coverage validated" >> realization.txt & 
+        echo -e "code Archivate\nData Archivate\nArchivees Data" >> realization.txt
     - name: Realization
       run: echo "code Archivate" >> realization.txt
     - name: cat Realization
