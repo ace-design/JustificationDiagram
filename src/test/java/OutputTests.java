@@ -42,4 +42,11 @@ public class OutputTests {
     	JDCompiler.main(new String[] { inputPath+"test_NC.jd", "-o", outputPath+"test_NC", "-png"});
         JDCompiler.main(new String[] { inputPath+"test_NC.jd", "-o", outputPath+"test_NC", "-td"});
     }
+    
+    @Test
+    public void test_IC() throws IOException {
+    	JDCompiler.main(new String[] { inputPath+"Pattern4CI.jd", "-o", outputPath+"Pattern4CI", "-png"});
+        JDCompiler.main(new String[] { inputPath+"Pattern4CI.jd", "-o", outputPath+"Pattern4CI", "-td"});
+    }
+    
 }

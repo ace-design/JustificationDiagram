@@ -1,0 +1,52 @@
+@startuml
+
+conclusion C = "Intégration continue Valide"
+
+subconclusion PV = "Project Valid" 
+strategy SE = "Evaluate Project Quality"
+SE --> PV
+M --> SE
+ASC --> SE
+AJS --> SE
+
+subconclusion ASC = "Data Archivees" 
+strategy SA = "Archivate Data"
+support AC = "Archivage du code"
+support AI = "Archivage des images générais"
+
+SA --> ASC
+AJS --> SA
+AC --> SA
+AI --> SA
+
+subconclusion M = "Maven mis en place"
+strategy SM = "Evaluate Maven Project"
+support TM = "Test Maven passed"
+support GM = "Build Maven passed " 
+GM --> SM
+TM --> SM
+SM --> M
+
+
+
+subconclusion AJS = "Test Coverage validated and ARchived"
+strategy SJA = "Archive testCoverage"
+support AJ = "Archivage du rapport de Jacoco"
+JV --> SJA
+RJ --> SJA
+AJ --> SJA
+SJA --> AJS
+
+subconclusion JV = "Test Coverage validated"
+strategy SJ = "Validate testCoverage"
+support RJ = "Jacoco Report"
+RJ --> SJ
+SJ --> JV
+
+
+
+
+
+
+
+@enduml
