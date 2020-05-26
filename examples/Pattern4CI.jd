@@ -22,7 +22,7 @@ IA --> SD
 subconclusion M = "Maven ready"
 strategy SM = "Evaluate Maven Project"
 support TM = "Test Maven passed"
-support BM = "Build Maven passed " 
+support BM = "Build Maven passed" 
 BM --> SM
 TM --> SM
 SM --> M
