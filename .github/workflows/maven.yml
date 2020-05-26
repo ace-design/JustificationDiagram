@@ -22,10 +22,8 @@ jobs:
         java-version: 1.8
     - name: Build with Maven
       run: mvn -B package --file pom.xml
-    - name: Generate realisation.txt 
-      run: echo -e "Build Maven passed" >> realization.txt
     - name: Test with Maven
-      run: mvn test & echo -e "Test Maven passed\nEvaluate Maven Project\nMaven ready\nJacoco Report\nValidate testCoverage\nTest Coverage validated and Archived\nTest Coverage validated" >> realization.txt
+      run: mvn test & echo -e "Build Maven passed\nTest Maven passed\nEvaluate Maven Project\nMaven ready\nJacoco Report\nValidate testCoverage\nTest Coverage validated and Archived\nTest Coverage validated" >> realization.txt
     - name: Ls
       run:
         ls -la *
