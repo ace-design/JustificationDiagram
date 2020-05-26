@@ -40,7 +40,6 @@ jobs:
       with: 
         name: GeneratedJD
         path: output/GeneratedJD
-        path: output/GeneratedJD
     - name: Archive images
       uses: actions/upload-artifact@v2
       with: 
