@@ -20,6 +20,8 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
+    - name: Generate realisation.txt
+        run: echo "start" >> realization.txt
     - name: Build with Maven
       run: mvn -B package --file pom.xml & echo -e "Build Maven passed" >> realization.txt
     - name: Test with Maven
