@@ -69,14 +69,11 @@ public class RequirementsLister implements JDVisitor {
      * @param state state of the current node.
      */
     public void setModelUsed(State state) {
-    	System.out.println(State.DONE);
     	if (state.equals(State.DONE)) {
     		modelUsed = model[1];
-    		System.out.println(modelUsed);
     	}
     	else {
     		modelUsed = model[0];
-    		System.out.println(modelUsed);
     	}
     }
 }

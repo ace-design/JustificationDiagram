@@ -28,14 +28,14 @@ jobs:
       run: mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/test_NC.jd -o output/GeneratedJD/test_NC -png"
     - name: TODO generation 
       run: mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/test_NC.jd -o output/GeneratedJD/test_NC -td"
+    - name: Ls before Tets Ecriture
+      run:
+        ls -la *
     - name: Tets Ecriture
       run: |
-        echo "bonjour" >> test1.txt
-        echo "bonjour" >> test2.txt
-   
-    
-
-    - name: Ls
+        echo "bonjour" >> testbonjour1.txt
+        echo "bonjour" >> testbonjour2.txt
+    - name: Ls after Tets Ecriture
       run:
         ls -la *
     - name: Archive JD&TODO
