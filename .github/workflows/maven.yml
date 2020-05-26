@@ -43,9 +43,7 @@ jobs:
         name: generatedCode
         path: src/main/java/models
     - name: Archive Realization 
-        run: |
-        echo "images Archivate" >> realization.txt
-        echo -e "Jacoco report Archivate\ntestCoverage Archivate\ntestCoverage Archivate\nJacoco Report\nValidate testCoverage\nTest Coverage validated" >> realization.txt
+        run: echo "images Archivate" >> realization.txt
     - name: Realization
       run: echo "code Archivate" >> realization.txt
     - name: cat Realization
