@@ -9,32 +9,32 @@ M --> SE
 ASC --> SE
 AJS --> SE
 
-subconclusion ASC = "Data Archivees" 
-strategy SA = "Archivate Data"
-support AC = "Archivage du code"
-support AI = "Archivage des images générais"
+subconclusion ASC = "Archivees Data" 
+strategy SD = "Data Archivate"
+support CA = "code Archivate"
+support IA = "images Archivate"
 
-SA --> ASC
-AJS --> SA
-AC --> SA
-AI --> SA
+SD --> ASC
+AJS --> SD
+CA --> SD
+IA --> SD
 
-subconclusion M = "Maven mis en place"
+subconclusion M = "Maven ready"
 strategy SM = "Evaluate Maven Project"
 support TM = "Test Maven passed"
-support GM = "Build Maven passed " 
-GM --> SM
+support BM = "Build Maven passed " 
+BM --> SM
 TM --> SM
 SM --> M
 
 
 
 subconclusion AJS = "Test Coverage validated and ARchived"
-strategy SJA = "Archive testCoverage"
-support AJ = "Archivage du rapport de Jacoco"
+strategy SJA = "testCoverage Archivate"
+support JA = "Jacoco report Archivate"
 JV --> SJA
 RJ --> SJA
-AJ --> SJA
+JA --> SJA
 SJA --> AJS
 
 subconclusion JV = "Test Coverage validated"

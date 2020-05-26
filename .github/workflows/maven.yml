@@ -21,40 +21,40 @@ jobs:
       with:
         java-version: 1.8
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      run: mvn -B package --file pom.xml & echo "Build Maven passed" >> realization.txt
     - name: Test with Maven
-      run: mvn test
-    - name: JD generation 
-      run: mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/test_NC.jd -o output/GeneratedJD/test_NC -png"
-    - name: TODO generation 
-      run: mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/test_NC.jd -o output/GeneratedJD/test_NC -td"
-    - name: Ls before Tets Ecriture
+      run: mvn test & echo -e "Test Maven passed\nEvaluate Maven Project\nMaven ready" >> realization.txt
+    - name: Ls
       run:
         ls -la *
-    - name: Tets Ecriture
-      run: |
-        echo "bonjour" >> testbonjour1.txt
-        echo "bonjour" >> testbonjour2.txt
-    - name: Ls after Tets Ecriture
-      run:
-        ls -la *
-    - name: Archive JD&TODO
-      uses: actions/upload-artifact@v2
-      with: 
-        name: GeneratedJD
-        path: output/GeneratedJD
     - name: Archive images
       uses: actions/upload-artifact@v2
       with: 
         name: images
         path: output/images
+        run : echo "images Archivate" >> realization.txt
     - name: Archive Jacoco report
       uses: actions/upload-artifact@v2
       with: 
         name: jacoco
         path: target/site/jacoco
+      run : echo -e "Jacoco report Archivate\ntestCoverage Archivate\ntestCoverage Archivate\nJacoco Report\nValidate testCoverage\nTest Coverage validated" >> realization.txt
     - name: Archive generated codes
       uses: actions/upload-artifact@v2
       with: 
         name: generatedCode
         path: src/main/java/models
+      run : echo -e "code Archivate\nData Archivate\nArchivees Data" >> realization.txt
+    - name: Realization
+      run: echo "code Archivate" >> realization.txt
+      - name: cat Realization
+      run: cat realization.txt
+    - name: JD generation 
+      run: mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/Pattern4CI.jd -o output/GeneratedJD/Pattern4CI -png"
+    - name: TODO generation 
+      run: mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/Pattern4CI.jd -o output/GeneratedJD/Pattern4CI -td"
+    - name: Archive JD&TODO
+      uses: actions/upload-artifact@v2
+      with: 
+        name: GeneratedJD
+        path: output/GeneratedJD

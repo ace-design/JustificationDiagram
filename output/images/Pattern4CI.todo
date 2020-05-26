@@ -1,15 +1,16 @@
 Requirements list
 
+[ ]	code Archivate
 [ ]	Test Maven passed
 [ ]	Jacoco Report
+[ ]	images Archivate
+[ ]	Jacoco report Archivate
 [ ]	Test Coverage validated
-[ ]	Archivage du rapport de Jacoco
-[ ]	Test Coverage validated and ARchived
-[ ]	Archivage des images générais
 [ ]	Build Maven passed 
-[ ]	Maven mis en place
+[ ]	Maven ready
+[ ]	Test Coverage validated and ARchived
+[ ]	Archivees Data
+[ ]	Project Valid
 -----------------------------------------------
 [ ]	Intégration continue Valide
------------------------------------------------[ ]	Archivage du code
-[ ]	Data Archivees
-[ ]	Project Valid
+-----------------------------------------------
