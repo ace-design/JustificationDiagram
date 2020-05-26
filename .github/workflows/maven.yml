@@ -24,6 +24,13 @@ jobs:
       run: mvn -B package --file pom.xml & echo "Build Maven passed" >> realization.txt
     - name: Test with Maven
       run: mvn test & echo -e "Test Maven passed\nEvaluate Maven Project\nMaven ready" >> realization.txt
+    - name: Archive Realization 
+      run: echo "images Archivate" >> realization.txt & 
+      echo -e "Jacoco report Archivate\ntestCoverage Archivate\ntestCoverage Archivate\nJacoco Report\nValidate testCoverage\nTest Coverage validated" >> realization.txt & 
+      echo -e "code Archivate\nData Archivate\nArchivees Data" >> realization.txt
+    - name: Realization
+      run: echo "code Archivate" >> realization.txt
+    - name: cat Realization
     - name: Ls
       run:
         ls -la *
@@ -42,11 +49,6 @@ jobs:
       with: 
         name: generatedCode
         path: src/main/java/models
-    - name: Archive Realization 
-        run: echo "images Archivate" >> realization.txt
-    - name: Realization
-      run: echo "code Archivate" >> realization.txt
-    - name: cat Realization
       run: cat realization.txt
     - name: JD generation 
       run: mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/Pattern4CI.jd -o output/GeneratedJD/Pattern4CI -png"
