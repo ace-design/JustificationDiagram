@@ -23,14 +23,14 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: Test with Maven
-      run: mvn test & echo -e "Build Maven passed\nTest Maven passed\nEvaluate Maven Project\nMaven ready\nJacoco Report\nValidate testCoverage\nTest Coverage validated and Archived\nTest Coverage validated" >> realization.txt
+      run: mvn test & echo -e "Build Maven passed\nTest Maven passed\nEvaluate Maven Project\nMaven ready\nJacoco Report\nValidate testCoverage\nTest Coverage validated and Archived\nTest Coverage validated" >> output/realization/realization.txt
     - name: Ls
       run:
         ls -la *
     - name: Realization
-      run: echo -e "images Archivate\nJacoco report Archivate\ntestCoverage Archivate\ntestCoverage Archivate\ncode Archivate\nData Archivate\nArchivees Data\ncode Archivate" >> realization.txt
+      run: echo -e "images Archivate\nJacoco report Archivate\ntestCoverage Archivate\ntestCoverage Archivate\ncode Archivate\nData Archivate\nArchivees Data\ncode Archivate" >> output/realization/realization.txt
     - name: cat Realization
-      run: cat realization.txt
+      run: cat output/realization/realization.txt
     - name: JD generation 
       run: mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/Pattern4CI.jd -o output/GeneratedJD/Pattern4CI -png"
     - name: TODO generation 
@@ -40,6 +40,11 @@ jobs:
       with: 
         name: GeneratedJD
         path: output/GeneratedJD
+    - name: Archive realization
+      uses: actions/upload-artifact@v2
+      with: 
+        name: GeneratedJD
+        path: output/realization
     - name: Archive images
       uses: actions/upload-artifact@v2
       with: 

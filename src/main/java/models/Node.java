@@ -40,7 +40,7 @@ public class Node implements Visitable {
     public void setState(Node node) {
     	
     	
-    	File realization = new File("realization.txt");
+    	File realization = new File("output/realization/realization.txt");
     	if(realization.exists()) {
     		try {
 				analyseRealisation(realization,node);
@@ -65,7 +65,7 @@ public class Node implements Visitable {
     	String lineRealization;    	
     	
     	while((lineRealization = ranRealization.readLine()) != null) {
-			if(node.label.contains('\"' + lineRealization + '\"')) {
+    		if(node.label.contains('\"' + lineRealization + '\"')) {
     			node.state = State.DONE;
     			break;
 			}

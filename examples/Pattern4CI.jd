@@ -29,7 +29,7 @@ SM --> M
 
 
 
-subconclusion AJS = "Test Coverage validated and ARchived"
+subconclusion AJS = "Test Coverage validated and Archived"
 strategy SJA = "testCoverage Archivate"
 support JA = "Jacoco report Archivate"
 JV --> SJA
