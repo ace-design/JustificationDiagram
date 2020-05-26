@@ -43,6 +43,10 @@ public class Node implements Visitable {
     	File realization = new File("output/realization/realization.txt");
     	if(realization.exists()) {
     		try {
+    			System.out.println("exis");
+    			System.out.println("exis");
+    			System.out.println("exis");
+    			System.out.println("exis");
 				analyseRealisation(realization,node);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -65,6 +69,7 @@ public class Node implements Visitable {
     	String lineRealization;    	
     	
     	while((lineRealization = ranRealization.readLine()) != null) {
+    		System.out.println(lineRealization);
     		if(node.label.contains('\"' + lineRealization + '\"')) {
     			node.state = State.DONE;
     			break;
@@ -73,6 +78,11 @@ public class Node implements Visitable {
 				node.state = State.TODO;				
     		}
     	}
+    	
+    	if(node.state == null) {
+    		node.state = State.TODO;
+    	}
+    	System.out.println(node.state);
     	ranRealization.close();
     }
     

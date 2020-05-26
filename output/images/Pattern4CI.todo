@@ -2,7 +2,7 @@ Requirements list
 
 [ ]	code Archivate
 [ ]	Test Maven passed
-[X]	Jacoco Report
+[ ]	Jacoco Report
 [ ]	images Archivate
 [ ]	Jacoco report Archivate
 [ ]	Test Coverage validated
