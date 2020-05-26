@@ -27,6 +27,10 @@ jobs:
     - name: Ls
       run:
         ls -la *
+    - name: Realization
+      run: echo -e "images Archivate\nJacoco report Archivate\ntestCoverage Archivate\ntestCoverage Archivate\ncode Archivate\nData Archivate\nArchivees Data\ncode Archivate" >> realization.txt
+    - name: cat Realization
+      run: cat realization.txt
     - name: Archive images
       uses: actions/upload-artifact@v2
       with: 
@@ -42,9 +46,6 @@ jobs:
       with: 
         name: generatedCode
         path: src/main/java/models
-    - name: Archive Realization 
-        run: echo "test" >> test.txt
-    
     - name: JD generation 
       run: mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/Pattern4CI.jd -o output/GeneratedJD/Pattern4CI -png"
     - name: TODO generation 
