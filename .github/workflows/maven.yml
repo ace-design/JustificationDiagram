@@ -23,12 +23,12 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: Test with Maven
-      run: mvn test & echo -e "Build Maven passed\nTest Maven passed\nEvaluate Maven Project\nMaven ready\nJacoco Report\nValidate testCoverage\nTest Coverage validated and Archived\nTest Coverage validated" >> output/realization/realization.txt
+      run: mvn test & echo -e "Build Maven passed\nTest Maven passed\nJacoco Report\n" >> output/realization/realization.txt
     - name: Ls
       run:
         ls -la *
     - name: Realization
-      run: echo -e "images Archivate\nJacoco report Archivate\ntestCoverage Archivate\ntestCoverage Archivate\ncode Archivate\nData Archivate\nArchivees Data\ncode Archivate" >> output/realization/realization.txt
+      run: echo -e "images Archivate\nJacoco report Archivate\ncode Archivate" >> output/realization/realization.txt
     - name: cat Realization
       run: cat output/realization/realization.txt
     - name: JD generation 

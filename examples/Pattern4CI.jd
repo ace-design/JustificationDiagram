@@ -1,6 +1,7 @@
 @startuml
 
 conclusion C = "Intégration continue Valide"
+PV --> C
 
 subconclusion PV = "Project Valid" 
 strategy SE = "Evaluate Project Quality"

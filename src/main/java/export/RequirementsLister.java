@@ -27,35 +27,42 @@ public class RequirementsLister implements JDVisitor {
 
     @Override 
     public void visitNode(Node node) {
-    	setModelUsed(node.state);
+    	setModelUsed(node);
         list.append(modelUsed).append(node.label, 1, node.label.length() - 1).append("\n");
     }
 
     @Override
     public void visitConclusion(Conclusion conclusion) {
-        list.append("-----------------------------------------------\n[ ]\t")
+    	setModelUsed(conclusion);
+        list.append("-----------------------------------------------\n" + modelUsed + "\t")
                 .append(conclusion.label, 1, conclusion.label.length() - 1)
                 .append("\n-----------------------------------------------");
     }
 
     @Override
     public void visitSubConclusion(SubConclusion subConclusion) {
-    	setModelUsed(subConclusion.state);
+    	setModelUsed(subConclusion);
         list.append(modelUsed).append(subConclusion.label, 1, subConclusion.label.length() - 1).append("\n");
     }
 
     @Override
-    public void visitStrategy(Strategy strategy) { }
+    public void visitStrategy(Strategy strategy) {
+    	setModelUsed(strategy);
+    }
 
     @Override
-    public void visitDomain(Domain domain) { }
+    public void visitDomain(Domain domain) {
+    	setModelUsed(domain);
+    }
 
     @Override
-    public void visitRationale(Rationale rationale) { }
+    public void visitRationale(Rationale rationale) {
+    	setModelUsed(rationale);
+    }
 
     @Override
     public void visitSupport(Support support) {
-    	setModelUsed(support.state);
+    	setModelUsed(support);
         list.append(modelUsed).append(support.label, 1, support.label.length() - 1).append("\n");
     }
 
@@ -64,13 +71,15 @@ public class RequirementsLister implements JDVisitor {
     
     
     /**
-     * Analyse the state of the node and chose the corresponding model to used 
+     * Change the state of the node in fonction of there childrens, analyse the state of the node and chose the corresponding model to used   
      * 
-     * @param state state of the current node.
+     * @param node current node to analyse.
      */
-    public void setModelUsed(State state) {
-    	if (state.equals(State.DONE)) {
+    public void setModelUsed(Node node) {
+    	node.analyseRelation(node);
+    	if (node.state.equals(State.DONE)) {
     		modelUsed = model[1];
+
     	}
     	else {
     		modelUsed = model[0];

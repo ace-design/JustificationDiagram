@@ -19,8 +19,7 @@ public class Node implements Visitable {
         this.alias = alias;
         this.inputs = new HashSet<>();
         this.outputs = new HashSet<>();
-    	setState(this); 
-
+        this.state = State.TODO;        
     }
 
     public Node(Node node) {
@@ -28,62 +27,29 @@ public class Node implements Visitable {
         this.alias = node.alias;
         this.inputs = node.inputs;
         this.outputs = node.outputs;
-    	setState(node);
+        this.state = node.state;
     }
     
-    /**
-     * used to return the correct State 
-     * 
-     * @param node whose state is sought
-     * @return State corresponding to the node
-     */
-    public void setState(Node node) {
-    	
-    	
-    	File realization = new File("output/realization/realization.txt");
-    	if(realization.exists()) {
-    		try {
-    			System.out.println("exis");
-    			System.out.println("exis");
-    			System.out.println("exis");
-    			System.out.println("exis");
-				analyseRealisation(realization,node);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-    	}
 
-     }
-    
     /**
-     * used to analyse the file 'realization.txt' who correpond to the tasks acomplished
+     * Analanyse the children of the current node to changed is state. If all is children are DONE, i will done. If he don't have childrens, no changes will be made.
      * 
-     * @param realization list of tasks acomplished
-     * @param node corresponding to the task
-     * @throws IOException
+     * @param node to analyse and change
      */
-    public static void analyseRealisation(File realization,Node node) throws IOException {
-
-    	RandomAccessFile ranRealization = new RandomAccessFile(realization,"r");
-    	String lineRealization;    	
-    	
-    	while((lineRealization = ranRealization.readLine()) != null) {
-    		System.out.println(lineRealization);
-    		if(node.label.contains('\"' + lineRealization + '\"')) {
-    			node.state = State.DONE;
-    			break;
-			}
-			else {
-				node.state = State.TODO;				
+    public void analyseRelation(Node node) {
+    	boolean isDone = true;
+    	if(!node.inputs.isEmpty()) {
+    		for (Relation relation : node.inputs) {
+    			if(relation.from.state.equals(State.TODO)) {
+    				isDone = false;
+    				break;
+    			}
+    			
     		}
+        	if(isDone) {
+        		this.state = State.DONE;
+        	}
     	}
-    	
-    	if(node.state == null) {
-    		node.state = State.TODO;
-    	}
-    	System.out.println(node.state);
-    	ranRealization.close();
     }
     
     
