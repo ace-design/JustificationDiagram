@@ -59,6 +59,7 @@ public class JDCompiler {
     	System.out.println("Generate from " + inputFilePath + "  To  " + outputFilePath);
         JustificationDiagram diagram = createDiagram(inputFilePath);
         GraphDrawer drawer = new GraphDrawer();
+        
         StringBuilder gv = drawer.draw(diagram);
 
         if (cmd.hasOption("png")) {

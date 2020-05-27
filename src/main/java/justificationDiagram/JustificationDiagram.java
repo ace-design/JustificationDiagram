@@ -20,5 +20,12 @@ public class JustificationDiagram implements Visitable {
     public void accept(JDVisitor visitor) {
         visitor.visitDiagram(this);
     }
+    
+    public void analyseDiagrammeRelation() {
+    	for (Map.Entry<String, Node> entryNode : nodes.entrySet()) {
+    		entryNode.getValue().analyseRelation(entryNode.getValue());
+
+         }
+    }
 
 }
