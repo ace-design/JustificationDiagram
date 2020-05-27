@@ -83,7 +83,18 @@ public class GraphDrawer implements JDVisitor {
 
     @Override
     public void visitSupport(Support support) {
-        gv.append("\t").append(support.alias).append(" [shape=box, style=\"filled,rounded\", fillcolor=skyblue, label=").append(support.label).append("];\n");
+    	
+    	support.analyseRelation(support);
+    	gv.append("\t").append(support.alias).append(" [shape=none margin=0 label=<<table cellspacing=\"0\" " +
+                "cellborder=\"1\" border=\"0\"><tr><td COLSPAN=\"2\" sides=\"LT\" BGCOLOR=\"skyblue\" " +
+                "COLOR=\"black\">").append(support.label, 1, support.label.length() - 1)
+                .append("</td><td sides=\"TR\" BGCOLOR=\"skyblue\" COLOR=\"black\"></td><td sides=\"L\" " +
+                        "COLOR=\"black\"></td></tr><tr><td sides=\"LB\" BGCOLOR=\"skyblue\" COLOR=\"black\"></td>" +
+                        "<td sides=\"LTRB\" ROWSPAN=\"2\" colspan=\"3\" port=\"a\" BGCOLOR=\"" + setColorUsed(support) + "\" style=\"filled\">")
+                .append(support.state.toString(), 0, support.state.toString().length() )
+                .append("</td></tr></table>>];\n");
+    	
+        //gv.append("\t").append(support.alias).append(" [shape=box, style=\"filled,rounded\", fillcolor=skyblue, label=").append(support.label).append("];\n");
     }
 
     @Override
@@ -95,4 +106,13 @@ public class GraphDrawer implements JDVisitor {
         }
         gv.append(";\n");
     }
-}
+    
+    public String setColorUsed(Node node) {
+    	String colorUsed = "khaki1";
+    	if(node.state.equals(State.DONE)) {
+    		colorUsed = "darkolivegreen1"; 
+    	}
+    return colorUsed;
+    
+    }
+    }
