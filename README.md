@@ -25,6 +25,16 @@ or execute the jar file with
 ```
 java -jar JDGenerator-jar-with-dependencies.jar [OPTIONS] [FILE]
 ```
+or execute 
+```
+mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="[INPUT_FILE] -o [OUTPUT_FILE] [OPTIONS]"
+
+```
+example : 
+```
+mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="example/basic.jd -o output/images/basic -png"
+
+```
 
 ### Options
 | Flag  | Argument | Description                              |
@@ -32,7 +42,7 @@ java -jar JDGenerator-jar-with-dependencies.jar [OPTIONS] [FILE]
 | -o    | path     | Output file (no extension)               |
 | -png  | -        | Generate visual graph                    |
 | -gv   | -        | Generate text files before dot formating |
-| -list | -        | Generate todo list                       |
+| -td   | -        | Generate todo list                       |
 
 If no output file is entered, the generated files will be named from the input file name. 
 
