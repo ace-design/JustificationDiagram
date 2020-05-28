@@ -58,6 +58,7 @@ public class JDCompiler {
     private static void generateFiles(CommandLine cmd, String inputFilePath, String outputFilePath) throws IOException {
     	System.out.println("Generate from " + inputFilePath + "  To  " + outputFilePath);
         JustificationDiagram diagram = createDiagram(inputFilePath);
+        diagram.analyseDiagrammeRelation();
         GraphDrawer drawer = new GraphDrawer();
         
         StringBuilder gv = drawer.draw(diagram);

@@ -1,5 +1,6 @@
 package export;
 
+
 import justificationDiagram.JustificationDiagram;
 import models.*;
 
@@ -13,10 +14,13 @@ public class RequirementsLister implements JDVisitor {
     public StringBuilder generate(JustificationDiagram diagram) {
         TopologicalSort sort = new TopologicalSort(diagram);
         diagram.accept(this);
-
+        
+        
         for (Node node : sort.order) {
             node.accept(this);
+
         }
+
         return list;
     }
 
@@ -71,12 +75,11 @@ public class RequirementsLister implements JDVisitor {
     
     
     /**
-     * Change the state of the node in fonction of there childrens, analyse the state of the node and chose the corresponding model to used   
+     * Analyse the state of the node and chose the corresponding model to used   
      * 
      * @param node current node to analyse.
      */
     public void setModelUsed(Node node) {
-    	node.analyseRelation(node);
     	if (node.state.equals(State.DONE)) {
     		modelUsed = model[1];
 

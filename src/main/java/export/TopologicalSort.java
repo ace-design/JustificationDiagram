@@ -68,4 +68,8 @@ public class TopologicalSort {
         time = time + 1;
         finishingTime.add(new OrderedNode(time, u));
     }
+    
+    public LinkedList<Node> getOrder() {
+    	return order;
+    }
 }

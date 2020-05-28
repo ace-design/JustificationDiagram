@@ -37,28 +37,12 @@ public class Node implements Visitable {
      * @param node to analyse and change
      */
     public void analyseRelation(Node node) {
+    	
+    	
+    	
     	boolean isDone = true;
     	if(!node.inputs.isEmpty()) {
-    		
-    		/*
-    		System.out.println();
-    		System.out.println(node.label);
-    		
-    		for (Relation relation : inputs) {
-    			System.out.println("inputs");
-				System.out.println(relation.from.label);
-				System.out.println(relation.to.label);
-			}
-    		
-    		for (Relation relation : outputs) {
-    			System.out.println("outputs");
-				System.out.println(relation.from.label);
-				System.out.println(relation.to.label);
-			}
-    		
-    		System.out.println();
-    		System.out.println();*/
-    		
+
     		for (Relation relation : node.inputs) {
     			if(relation.from.state.equals(State.TODO)) {
     				isDone = false;
@@ -70,6 +54,8 @@ public class Node implements Visitable {
         		this.state = State.DONE;
         	}
     	}
+    	
+    	
     }
     
     
