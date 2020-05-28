@@ -176,7 +176,6 @@ H ..> C5
 #### example.png
 
 ![](examples/fig3.png)
-
 > The justification diagram was adapted from _Support of Justification Elicitation: Two Industrial Reports_ by Clément Duffau, Thomas Polacsek and Mireille Blay-Fornarino, 2018.
 
 #### example.todo
