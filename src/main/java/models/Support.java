@@ -10,7 +10,7 @@ public class Support extends Node {
 
     public Support(String alias, String label) {
         super(alias, label);
-        setState(this);
+        setState();
         
     }
 
@@ -19,18 +19,16 @@ public class Support extends Node {
     }
     
     /**
-     * used to return the correct State 
+     * Analyse the file 'realization.txt' and return the correct State for this node
      * 
-     * @param node whose state is sought
      * @return State corresponding to the node
      */
-    public void setState(Node node) {
-    	
+    public void setState() {
     	
     	File realization = new File("output/realization/realization.txt");
     	if(realization.exists()) {
     		try {
-				analyseRealisation(realization,node);
+				analyseRealisation(realization);
 			} catch (IOException e) {
 				System.out.println(e.getMessage());
 			}
@@ -42,16 +40,15 @@ public class Support extends Node {
      * used to analyse the file 'realization.txt' who correpond to the tasks acomplished
      * 
      * @param realization list of tasks acomplished
-     * @param node corresponding to the task
      * @throws IOException
      */
-    public void analyseRealisation(File realization,Node node) throws IOException {
+    public void analyseRealisation(File realization) throws IOException {
 
     	RandomAccessFile ranRealization = new RandomAccessFile(realization,"r");
     	String lineRealization;    	
     	
     	while((lineRealization = ranRealization.readLine()) != null) {
-    		if(node.label.contains('\"' + lineRealization + '\"')) {
+    		if(label.contains('\"' + lineRealization + '\"')) {
     			this.state = State.DONE;
     			break;
 			}

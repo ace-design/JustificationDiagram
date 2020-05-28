@@ -1,15 +1,15 @@
 Requirements list
 
-[ ]	Identified risks
-[ ]	Functional specifications
-[ ]	Technical specifications
-[ ]	Feasible hard points
-[ ]	Specifications validated
+[X]	Identified risks
+[X]	Functional specifications
+[X]	Technical specifications
+[X]	Feasible hard points
+[X]	Specifications validated
 [ ]	Risk mitigation plan
 [ ]	Architecture
-[ ]	Risks consistency
+[X]	Risks consistency
 [ ]	Safety specifications validated
 [ ]	Architecture validated
 -----------------------------------------------
-[ ]	Software safety validated
+[ ]		Software safety validated
 -----------------------------------------------

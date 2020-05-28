@@ -82,8 +82,36 @@ The prototype permits two types of oriented link.
 <ALIAS_1> ..> <ALIAS_2>
 ```
 
+## Realization
+
+During the Continuous integration, please add to a file named 'realization.txt' the supports, domains and rationale that have been validated.
+
+For this purpose, in '.github\workflows\maven.yml' add thid :
+
+```
+- name: Realization
+      run: echo -e "[Label of the accompliseh task]" >> output/realization/realization.txt
+```
+
 ## Example
-Here's an example of a text file, the graph and the todo list it generates. 
+Here's an example of a text file, the graph and the todo list it generates if you have validate 'Identified risks','Functional specifications' and 'Technical specifications'.
+
+
+
+#### maven.yl
+You should write this in 'maven.yml' :
+
+```
+- name: Realization
+      run: echo -e "Identified risks\nFunctional specifications\nTechnical specifications" >> output/realization/realization.txt
+```
+#### realization.txt
+
+```
+Identified risks
+Functional specifications
+Technical specifications
+```
 
 #### example.jd
 ```
@@ -157,23 +185,17 @@ _Generated List_
 ```
 Requirements list
 
-[ ]	Identified risks
-[ ]	Functional specifications
-[ ]	Technical specifications
-[ ]	Feasible hard points
-[ ]	Specifications validated
+[X]	Identified risks
+[X]	Functional specifications
+[X]	Technical specifications
+[X]	Feasible hard points
+[X]	Specifications validated
 [ ]	Risk mitigation plan
 [ ]	Architecture
-[ ]	Risks consistency
+[X]	Risks consistency
 [ ]	Safety specifications validated
 [ ]	Architecture validated
 -----------------------------------------------
-[ ]	Software safety validated
+[ ]		Software safety validated
 -----------------------------------------------
 ```
-
-
-
-
-
-
