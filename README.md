@@ -86,7 +86,7 @@ The prototype permits two types of oriented link.
 
 During the Continuous integration, please add to a file named 'realization.txt' the supports, domains and rationale that have been validated.
 
-For this purpose, in '.github\workflows\maven.yml' add thid :
+For this purpose, in '.github\workflows\maven.yml' add this after 'Test with Maven' and before 'JD generation' :
 
 ```
 - name: Realization
@@ -95,7 +95,6 @@ For this purpose, in '.github\workflows\maven.yml' add thid :
 
 ## Example
 Here's an example of a text file, the graph and the todo list it generates if you have validate 'Identified risks','Functional specifications' and 'Technical specifications'.
-
 
 
 #### maven.yl
