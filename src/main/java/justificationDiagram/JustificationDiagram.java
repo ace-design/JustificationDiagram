@@ -36,14 +36,13 @@ public class JustificationDiagram implements Visitable {
         HashMap <String,Node> newOrder = new HashMap<String,Node> ();
         
         for (Node node : sort.getOrder()) {
-            node.analyseRelation(node);
+            node.analyseRelation();
             newOrder.put(node.alias, node);
 
         }
         
         for (Node node : sort.getOrder()) {
         	this.nodes.get(node.alias).state = node.state;
-        	System.out.println(node.state);
 		}
 
     }

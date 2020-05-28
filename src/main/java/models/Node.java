@@ -32,18 +32,16 @@ public class Node implements Visitable {
     
 
     /**
-     * Analanyse the children of the current node to changed is state. If all is children are DONE, i will done. If he don't have childrens, no changes will be made.
+     * Analyse the children of the current node to changed is state. If all is children are DONE, i will done. If he don't have childrens, no changes will be made.
      * 
      * @param node to analyse and change
      */
-    public void analyseRelation(Node node) {
-    	
-    	
+    public void analyseRelation() {
     	
     	boolean isDone = true;
-    	if(!node.inputs.isEmpty()) {
+    	if(!inputs.isEmpty()) {
 
-    		for (Relation relation : node.inputs) {
+    		for (Relation relation : inputs) {
     			if(relation.from.state.equals(State.TODO)) {
     				isDone = false;
     				break;
@@ -53,8 +51,7 @@ public class Node implements Visitable {
         	if(isDone) {
         		this.state = State.DONE;
         	}
-    	}
-    	
+    	}	
     	
     }
     
