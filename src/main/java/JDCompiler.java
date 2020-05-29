@@ -2,6 +2,9 @@ import export.GraphDrawer;
 import export.RequirementsLister;
 import guru.nidi.graphviz.engine.Format;
 import guru.nidi.graphviz.engine.Graphviz;
+import guru.nidi.graphviz.engine.GraphvizCmdLineEngine;
+import guru.nidi.graphviz.engine.Rasterizer;
+import guru.nidi.graphviz.model.Graph;
 import guru.nidi.graphviz.model.MutableGraph;
 import justificationDiagram.JustificationDiagram;
 import org.antlr.v4.runtime.CharStream;
@@ -40,7 +43,7 @@ public class JDCompiler {
         Option output = new Option("o", "output", true, "output file path");
         options.addOption(output);
 
-        options.addOption("png", "generate graph");
+        options.addOption("svg", "generate graph");
         options.addOption("gv", "generate gv file");
         options.addOption("td", "generate todo list");
 
@@ -62,12 +65,21 @@ public class JDCompiler {
         GraphDrawer drawer = new GraphDrawer();
         
         StringBuilder gv = drawer.draw(diagram);
-
-        if (cmd.hasOption("png")) {
+        
+        if (cmd.hasOption("svg")) {
             InputStream dot = new ByteArrayInputStream(gv.toString().getBytes());
             MutableGraph g = new guru.nidi.graphviz.parse.Parser().read(dot);
-            Graphviz.fromGraph(g).render(Format.PNG).toFile(new File(outputFilePath + ".png"));
+            Graphviz.fromGraph(g).render(Format.SVG).toFile(new File(outputFilePath + ".svg"));
         }
+       /* if (cmd.hasOption("png")) {
+        	Graphviz.useEngine(new GraphvizCmdLineEngine()); // Rasterizer.builtIn() works only with CmdLineEngine
+        	Graph g = graph("example5").directed().with(node("abc").link(node("xyz")));
+        	Graphviz viz = Graphviz.fromGraph(g);
+        	viz.width(200).render(Format.SVG).toFile(new File("example/ex5.svg"));
+        	viz.width(200).rasterize(Rasterizer.BATIK).toFile(new File("example/ex5b.png"));
+        	viz.width(200).rasterize(Rasterizer.SALAMANDER).toFile(new File("example/ex5s.png"));
+        	viz.width(200).rasterize(Rasterizer.builtIn("pdf")).toFile(new File("example/ex5p"));
+        }*/
         if (cmd.hasOption("gv")) {
             PrintWriter out = new PrintWriter(new FileWriter(outputFilePath + ".gv"));
             out.print(gv);
