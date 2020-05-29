@@ -32,7 +32,7 @@ jobs:
     - name: cat Realization
       run: cat output/realization/realization.txt
     - name: JD generation 
-      run: mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/Pattern4CI.jd -o output/GeneratedJD/Pattern4CI -png"
+      run: mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/Pattern4CI.jd -o output/GeneratedJD/Pattern4CI -svg"
     - name: TODO generation 
       run: mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/Pattern4CI.jd -o output/GeneratedJD/Pattern4CI -td"
     - name: Archive JD&TODO
