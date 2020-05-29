@@ -14,12 +14,12 @@ public class OutputTests {
 
     @Test
     public void basic() throws IOException {
-        JDCompiler.main(new String[] {inputPath+"basic.jd", "-o", outputPath+"basic", "-png"});
+        JDCompiler.main(new String[] {inputPath+"basic.jd", "-o", outputPath+"basic", "-svg"});
     }
 
     @Test
     public void fig1() throws IOException {
-        JDCompiler.main(new String[] {inputPath+"fig1.jd", "-o", outputPath+"fig1", "-png"});
+        JDCompiler.main(new String[] {inputPath+"fig1.jd", "-o", outputPath+"fig1", "-svg"});
     }
 
     @Test
@@ -29,7 +29,7 @@ public class OutputTests {
 
     @Test
     public void fig3() throws IOException {
-        JDCompiler.main(new String[] { inputPath+"fig3.jd", "-o", outputPath+"fig3", "-png"});
+        JDCompiler.main(new String[] { inputPath+"fig3.jd", "-o", outputPath+"fig3", "-svg"});
     }
     
     @Test
@@ -39,13 +39,13 @@ public class OutputTests {
     
     @Test
     public void test_Nico() throws IOException {
-    	JDCompiler.main(new String[] { inputPath+"test_NC.jd", "-o", outputPath+"test_NC", "-png"});
+    	JDCompiler.main(new String[] { inputPath+"test_NC.jd", "-o", outputPath+"test_NC", "-svg"});
         JDCompiler.main(new String[] { inputPath+"test_NC.jd", "-o", outputPath+"test_NC", "-td"});
     }
     
     @Test
     public void test_IC() throws IOException {
-    	JDCompiler.main(new String[] { inputPath+"Pattern4CI.jd", "-o", outputPath+"Pattern4CI", "-png"});
+    	JDCompiler.main(new String[] { inputPath+"Pattern4CI.jd", "-o", outputPath+"Pattern4CI", "-svg"});
         JDCompiler.main(new String[] { inputPath+"Pattern4CI.jd", "-o", outputPath+"Pattern4CI", "-td"});
     }
     
