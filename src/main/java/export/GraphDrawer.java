@@ -21,7 +21,7 @@ public class GraphDrawer implements JDVisitor {
         for (Relation relation : diagram.relations) {
             relation.accept(this);
         }
-        GraphDrawerLayout layout = new GraphDrawerLayout();
+        GraphDrawerLayout layout = new GraphDrawerLayout(); 
         gv.append(layout.draw(diagram));
         gv.append("}\n");
     }
@@ -30,7 +30,7 @@ public class GraphDrawer implements JDVisitor {
     public void visitNode(Node node) {
         gv.append("\t").append(node.alias).append(" [shape=box, label=").append(node.label).append("];\n");
     }
-
+ 
     @Override
     public void visitConclusion(Conclusion conclusion) {
         if (conclusion.restriction != null) {
@@ -83,7 +83,7 @@ public class GraphDrawer implements JDVisitor {
 
     @Override
     public void visitSupport(Support support) {
-        gv.append("\t").append(support.alias).append(" [shape=box, style=\"filled,rounded\", fillcolor=skyblue, label=").append(support.label).append("];\n");
+        gv.append("\t").append(support.alias).append(" [shape=box, style=\"filled,rounded\", color=black fillcolor=skyblue, label=").append(support.label).append("];\n");
     }
 
     @Override
