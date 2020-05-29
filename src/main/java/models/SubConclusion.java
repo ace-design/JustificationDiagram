@@ -9,7 +9,9 @@ public class SubConclusion extends Node {
         super(alias, label);
     }
 
+    @Override
     public void accept(JDVisitor JDVisitor) {
         JDVisitor.visitSubConclusion(this);
     }
 }
+ 

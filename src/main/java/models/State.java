@@ -14,7 +14,7 @@ public enum State {
 	
 	private String nom = "";
 	
-	 private State(String nom) { 
+	 private State(String nom) {  
 		 this.nom = nom;
     }  
       

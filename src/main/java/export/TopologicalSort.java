@@ -19,7 +19,7 @@ public class TopologicalSort {
             this.weight = weight;
             this.node = node;
         }
-
+ 
         public int compareTo(OrderedNode n) {
             if (n != null) {
                 return this.weight - n.weight;

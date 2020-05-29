@@ -25,7 +25,7 @@ public class JustificationDiagram implements Visitable {
     public void accept(JDVisitor visitor) {
         visitor.visitDiagram(this);
     }
-    
+     
     /**
      * Change the state of the node in fonction of there childrens
      */

@@ -14,6 +14,7 @@ public class Support extends Node {
         setState(); 
     }
 
+    @Override
     public void accept(JDVisitor JDVisitor) {
         JDVisitor.visitSupport(this);
     }
@@ -31,7 +32,7 @@ public class Support extends Node {
     	else {
     		this.state = State.TODO;
     	}
- 
+  
     	
      }
 

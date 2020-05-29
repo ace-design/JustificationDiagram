@@ -199,8 +199,7 @@ public class JDCompiler {
     	    	ranRealization.close();
     	    	    	    }
 			catch (IOException e) {
-				// MODIFIER LE SYSOUT ICI !
-				System.out.println(e.getMessage());
+				e.printStackTrace();
 			}
     	}
     	

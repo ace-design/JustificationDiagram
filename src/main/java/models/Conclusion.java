@@ -9,9 +9,10 @@ public class Conclusion extends Node {
         super(alias, label);
         this.restriction = restriction;
     }
-
+    
+    @Override
     public void accept(JDVisitor JDVisitor) {
         JDVisitor.visitConclusion(this);
-    }
+    } 
 
 }

@@ -17,7 +17,7 @@ public class Domain extends Node {
     public void accept(JDVisitor JDVisitor) {
         JDVisitor.visitDomain(this);
     }
-    
+     
     /**
      * Analyse the file 'realization.txt' and return the correct State for this node
      * 

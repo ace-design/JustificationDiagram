@@ -13,7 +13,7 @@ public class Relation implements Visitable {
         this.from = from;
         this.to = to;
         this.collapsed = false;
-    }
+    } 
 
     public Relation(Node from, Node to, boolean collapsed) {
         this.from = from;

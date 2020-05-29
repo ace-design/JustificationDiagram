@@ -9,3 +9,4 @@ public class RelationFactory {
         return new Relation(from, to, false);
     }
 }
+ 

@@ -19,5 +19,5 @@ public class NodeFactory {
             default:
                 return new Node(alias, label);
         }
-    }
+    } 
 }

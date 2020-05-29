@@ -2,9 +2,6 @@ package models;
 
 import export.*;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.RandomAccessFile;
 import java.util.*;
 
 public class Node implements Visitable {
@@ -31,7 +28,7 @@ public class Node implements Visitable {
     }
     
 
-    /**
+    /** 
      * Analyse the children of the current node to changed is state. If all is children are DONE, i will done. If he don't have childrens, no changes will be made.
      * 
      * @param node to analyse and change
