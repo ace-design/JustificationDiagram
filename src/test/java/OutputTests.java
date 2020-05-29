@@ -21,7 +21,7 @@ public class OutputTests {
     public void fig1() throws IOException {
         JDCompiler.main(new String[] {inputPath+"fig1.jd", "-o", outputPath+"fig1", "-svg"});
     }
-
+ 
     @Test
     public void fig2() throws IOException {
         JDCompiler.main(new String[] {inputPath+"fig2.jd", "-o", outputPath+"fig2", "-gv"});
@@ -36,6 +36,13 @@ public class OutputTests {
     public void figToDO() throws IOException {
         JDCompiler.main(new String[] { inputPath+"fig3.jd", "-o", outputPath+"fig2", "-td"});
     }
+    
+    @Test
+    public void figToDOWithRea() throws IOException {
+        JDCompiler.main(new String[] { inputPath+"fig3.jd", "-o", outputPath+"fig3", "-td", "-svg", inputPath+"/realizationFig3.txt", "-rea"});
+    }
+    
+
     
     @Test
     public void test_Nico() throws IOException {

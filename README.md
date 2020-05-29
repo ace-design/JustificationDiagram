@@ -26,15 +26,6 @@ or execute the jar file with
 java -jar JDGenerator-jar-with-dependencies.jar [OPTIONS] [FILE]
 ```
 or execute 
-```
-mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="[INPUT_FILE] -o [OUTPUT_FILE] [OPTIONS]"
-
-```
-example : 
-```
-mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="example/basic.jd -o output/images/basic -png"
-
-```
 
 ### Options
 | Flag  | Argument | Description                              |
@@ -45,6 +36,22 @@ mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="example/basic.jd -o out
 | -td   | -        | Generate todo list                       |
 
 If no output file is entered, the generated files will be named from the input file name. 
+
+or you can also do this execution 
+
+```
+mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="[INPUT_FILE] -o [OUTPUT_FILE] [OPTIONS] ([INPUT_REALIZATION_FILE] -rea )"
+
+```
+examples : 
+```
+mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="example/basic.jd -o output/images/basic -png"
+
+mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="example/basic.jd -o output/images/basic -png output/realization/realization.txt -rea"
+
+mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="example/basic.jd -o output/images/basic -png -td output/realization/realization.txt -rea"
+
+```
 
 ## Syntax
 The developped syntax strongly ressembles [PlantUML](https://plantuml.com/)'s object and class diagram syntaxes. 
@@ -93,8 +100,107 @@ For this purpose, in '.github\workflows\maven.yml' add this after 'Test with Mav
       run: echo -e "[Label of the accompliseh task]" >> output/realization/realization.txt
 ```
 
-## Example
+## Example without realization
+Here's an example of a text file, the graph and the todo list it generates.
+
+run this : 
+```
+mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="example/fig3.jd -o output/images/fig3 -png -td"
+```
+
+#### example.jd
+```
+@startuml
+
+conclusion C = "Software safety validated" - "Internal"
+strategy S = "Assess software safety"
+domain D = "Internal accreditation"
+rationale R = "Credentials for IEC 62304"
+
+subconclusion C1 = "Specifications validated"
+
+subconclusion C2 = "Architecture validated"
+strategy S2 = "Review architecture"
+support F = "Architecture"
+
+subconclusion C3 = "Safety specifications validated"
+strategy S3 = "Assess risk management"
+rationale R3 = "Credentials for ISO 14971"
+support G = "Risk mitigation plan"
+
+subconclusion C4 = "Risks consistency"
+strategy S4 = "Verify consistency"
+support H = "Technical specifications"
+support I = "Functional specifications"
+support J = "Identified risks"
+
+subconclusion C5 = "Feasible hard points"
+
+S --> C
+D --> S
+R --> S
+
+C1 --> S
+H ..> C1
+I ..> C1
+
+C2 --> S
+S2 --> C2
+F --> S2
+H --> S2
+
+C3 --> S
+C3 --> S2
+S3 --> C3
+R3 --> S3
+J --> S3
+G --> S3
+
+C4 --> S3
+S4 --> C4
+H --> S4
+I --> S4
+J --> S4
+
+C5 --> S2
+H ..> C5
+
+@enduml
+```
+
+#### example.png
+
+![](examples/fig3.svg)
+> The justification diagram was adapted from _Support of Justification Elicitation: Two Industrial Reports_ by Clément Duffau, Thomas Polacsek and Mireille Blay-Fornarino, 2018.
+
+#### example.todo
+
+_Generated List_
+```
+Requirements list
+
+[ ]	Identified risks
+[ ]	Functional specifications
+[ ]	Technical specifications
+[ ]	Feasible hard points
+[ ]	Specifications validated
+[ ]	Risk mitigation plan
+[ ]	Architecture
+[ ]	Risks consistency
+[ ]	Safety specifications validated
+[ ]	Architecture validated
+-----------------------------------------------
+[ ]		Software safety validated
+-----------------------------------------------
+```
+
+## Example with realization
 Here's an example of a text file, the graph and the todo list it generates if you have validate 'Identified risks','Functional specifications' and 'Technical specifications'.
+
+run this : 
+```
+mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="example/fig3.jd -o output/images/fig3 -png -td "example/realizationFig3.txt -rea"
+```
 
 
 #### maven.yl
@@ -174,8 +280,12 @@ H ..> C5
 
 #### example.png
 
-![](examples/fig3.png)
+![](examples/fig3.svg)
 > The justification diagram was adapted from _Support of Justification Elicitation: Two Industrial Reports_ by Clément Duffau, Thomas Polacsek and Mireille Blay-Fornarino, 2018.
+
+#### example_REA.png
+
+![](examples/fig3_REA.svg)
 
 #### example.todo
 
