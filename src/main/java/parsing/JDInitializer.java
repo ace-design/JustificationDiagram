@@ -1,16 +1,24 @@
 package parsing;
 
+import java.util.ArrayList;
+
 import justificationDiagram.JustificationDiagram;
 import models.*;
 
 public class JDInitializer extends JustificationDiagramBaseVisitor<String> {
     public JustificationDiagram diagram;
+    public ArrayList<String> realizationList;
+    
+    
+    public void setRealizationList(ArrayList<String> realizationList) {
+    	this.realizationList = realizationList;
+    }
 
     @Override
     public String visitDiagram(JustificationDiagramParser.DiagramContext ctx) {
         diagram = new JustificationDiagram();
         return super.visitDiagram(ctx);
-    }
+    } 
 
     @Override
     public String visitDeclaration(JustificationDiagramParser.DeclarationContext ctx) {
@@ -30,7 +38,7 @@ public class JDInitializer extends JustificationDiagramBaseVisitor<String> {
     @Override
     public String visitElement(JustificationDiagramParser.ElementContext ctx) {
         diagram.nodes.put(ctx.ALIAS().getText(),
-                NodeFactory.create(ctx.TYPE().getText(), ctx.ALIAS().getText(),  ctx.label.getText()));
+                NodeFactory.create(ctx.TYPE().getText(), ctx.ALIAS().getText(),  ctx.label.getText(),realizationList));
         return super.visitElement(ctx);
     }
 

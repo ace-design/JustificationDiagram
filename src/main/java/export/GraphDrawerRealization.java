@@ -116,7 +116,7 @@ public class GraphDrawerRealization implements JDVisitor {
     }
     
     public String setColorUsed(Node node) {
-
+ 
     	String colorUsed = "red";
 
     	if(node.state.equals(State.DONE)) {

@@ -1,3 +1,6 @@
-Identified risks
-Functional specifications
-Technical specifications
+Jacoco Report
+code Archivate
+images Archivate
+Test Maven passed
+Build Maven passed
+Jacoco report Archivate

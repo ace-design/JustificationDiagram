@@ -1,10 +1,8 @@
 import export.GraphDrawer;
+import export.GraphDrawerRealization;
 import export.RequirementsLister;
 import guru.nidi.graphviz.engine.Format;
 import guru.nidi.graphviz.engine.Graphviz;
-import guru.nidi.graphviz.engine.GraphvizCmdLineEngine;
-import guru.nidi.graphviz.engine.Rasterizer;
-import guru.nidi.graphviz.model.Graph;
 import guru.nidi.graphviz.model.MutableGraph;
 import justificationDiagram.JustificationDiagram;
 import org.antlr.v4.runtime.CharStream;
@@ -14,24 +12,32 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.apache.commons.cli.*;
 import parsing.*;
 import java.io.*;
-
+import java.util.ArrayList;
+ 
 public class JDCompiler {
 
     public static void main(String[] args) throws IOException {
         CommandLine cmd = setup(args);
         String outputOption = cmd.getOptionValue("output");
-
+ 
         if (outputOption != null) {
             if (!outputIsValid(outputOption)) {
                 System.exit(1);
             }
         }
+        int numOutput = -1;
         for (int i = 0; i < cmd.getArgs().length; ++i) {
             String inputFile = cmd.getArgs()[i];
+            String inputRealizationFile = null;
+            numOutput++; 
             if (!inputIsValid(inputFile)) {
-                continue;
+            	continue;
             }
-            generateFiles(cmd, cmd.getArgs()[i], generateOutputName(outputOption, i, inputFile));
+            if(cmd.hasOption("rea")) {
+            	i++; 
+            	inputRealizationFile = cmd.getArgs()[i];
+            }
+            generateFiles(cmd, inputFile, generateOutputName(outputOption, numOutput, inputFile),inputRealizationFile);
         }
     }
 
@@ -46,6 +52,7 @@ public class JDCompiler {
         options.addOption("svg", "generate graph");
         options.addOption("gv", "generate gv file");
         options.addOption("td", "generate todo list");
+        options.addOption("rea", "generate realization graph");
 
         try {
             return parser.parse(options, args);
@@ -58,29 +65,34 @@ public class JDCompiler {
         }
     }
 
-    private static void generateFiles(CommandLine cmd, String inputFilePath, String outputFilePath) throws IOException {
+    private static void generateFiles(CommandLine cmd, String inputFilePath, String outputFilePath,String inputRealizationFilePath) throws IOException {
     	System.out.println("Generate from " + inputFilePath + "  To  " + outputFilePath);
-        JustificationDiagram diagram = createDiagram(inputFilePath);
+    	if(inputRealizationFilePath != null) {
+    		System.out.println("With Realization : " + inputRealizationFilePath);
+    	}
+        JustificationDiagram diagram = createDiagram(inputFilePath,inputRealizationFilePath);
         diagram.analyseDiagrammeRelation();
-        GraphDrawer drawer = new GraphDrawer();
         
-        StringBuilder gv = drawer.draw(diagram);
-        
-        if (cmd.hasOption("svg")) {
+        if (cmd.hasOption("svg") && cmd.hasOption("rea")) { 
+        	GraphDrawerRealization drawer = new GraphDrawerRealization();
+            StringBuilder gv = drawer.draw(diagram);
+            
             InputStream dot = new ByteArrayInputStream(gv.toString().getBytes());
             MutableGraph g = new guru.nidi.graphviz.parse.Parser().read(dot);
-            Graphviz.fromGraph(g).render(Format.SVG).toFile(new File(outputFilePath + ".svg"));
+            Graphviz.fromGraph(g).render(Format.SVG).toFile(new File(outputFilePath + "_REA" +".svg"));
         }
-       /* if (cmd.hasOption("png")) {
-        	Graphviz.useEngine(new GraphvizCmdLineEngine()); // Rasterizer.builtIn() works only with CmdLineEngine
-        	Graph g = graph("example5").directed().with(node("abc").link(node("xyz")));
-        	Graphviz viz = Graphviz.fromGraph(g);
-        	viz.width(200).render(Format.SVG).toFile(new File("example/ex5.svg"));
-        	viz.width(200).rasterize(Rasterizer.BATIK).toFile(new File("example/ex5b.png"));
-        	viz.width(200).rasterize(Rasterizer.SALAMANDER).toFile(new File("example/ex5s.png"));
-        	viz.width(200).rasterize(Rasterizer.builtIn("pdf")).toFile(new File("example/ex5p"));
-        }*/
+        if (cmd.hasOption("svg")) {
+        	GraphDrawer drawer = new GraphDrawer();
+            StringBuilder gv = drawer.draw(diagram);
+            
+        	InputStream dot = new ByteArrayInputStream(gv.toString().getBytes());
+        	MutableGraph g = new guru.nidi.graphviz.parse.Parser().read(dot);
+        	Graphviz.fromGraph(g).render(Format.SVG).toFile(new File(outputFilePath + ".svg"));
+        }
         if (cmd.hasOption("gv")) {
+        	GraphDrawer drawer = new GraphDrawer();
+            StringBuilder gv = drawer.draw(diagram);
+            
             PrintWriter out = new PrintWriter(new FileWriter(outputFilePath + ".gv"));
             out.print(gv);
             out.close();
@@ -134,14 +146,16 @@ public class JDCompiler {
         return true;
     }
 
-    public static JustificationDiagram createDiagram(String file) {
+    public static JustificationDiagram createDiagram(String file,String realizationFile) {
+    	ArrayList<String> realizationList = realizationAnalyse(realizationFile);
         JDInitializer factory = new JDInitializer();
+        factory.setRealizationList(realizationList);
         factory.visit(parseAntlr(file));
         JDLinker linker = new JDLinker(factory.diagram);
         linker.visit(parseAntlr((file)));
         return linker.diagram;
     }
-
+ 
     public static ParseTree parseAntlr(String file) {    	
         // create a CharStream that reads from standard input
         CharStream input = null; // create a lexer that feeds off of input CharStream
@@ -155,5 +169,35 @@ public class JDCompiler {
         JustificationDiagramParser parser = new JustificationDiagramParser(tokens);
         return parser.diagram();
     }
-    
+   
+    /**
+     * used to analyse the file 'realization.txt' who correpond to the tasks acomplished
+     * 
+     * @param realization list of tasks acomplished
+     * @throws IOException
+     */
+    public static ArrayList<String> realizationAnalyse(String realizationPath) {
+    	
+    	File realization = new File(realizationPath);
+    	ArrayList<String> realizationList = new ArrayList<String>(); 
+
+       	if(realization.exists()) {
+    		try {
+    			RandomAccessFile ranRealization = new RandomAccessFile(realization,"r");
+    	    	String line;    	
+    	    	
+    	    	while((line = ranRealization.readLine()) != null) {
+    	    		realizationList.add("\"" + line + "\"");
+    	    	}
+    	    	ranRealization.close();
+    	    	    	    }
+			catch (IOException e) {
+				// MODIFIER LE SYSOUT ICI !
+				System.out.println(e.getMessage());
+			}
+    	}
+
+    	return realizationList;
+    	
+    }
 }
