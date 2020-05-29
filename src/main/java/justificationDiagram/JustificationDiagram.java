@@ -32,18 +32,11 @@ public class JustificationDiagram implements Visitable {
     public void analyseDiagrammeRelation() {
     	
     	TopologicalSort sort = new TopologicalSort(this);
-        
-        HashMap <String,Node> newOrder = new HashMap<String,Node> ();
-        
+                
         for (Node node : sort.getOrder()) {
             node.analyseRelation();
-            newOrder.put(node.alias, node);
+        } 
 
-        }
-        
-        for (Node node : sort.getOrder()) {
-        	this.nodes.get(node.alias).state = node.state;
-		}
 
     }
 
