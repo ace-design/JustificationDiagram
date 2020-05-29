@@ -147,6 +147,7 @@ public class JDCompiler {
     }
 
     public static JustificationDiagram createDiagram(String file,String realizationFile) {
+    	
     	ArrayList<String> realizationList = realizationAnalyse(realizationFile);
         JDInitializer factory = new JDInitializer();
         factory.setRealizationList(realizationList);
@@ -171,17 +172,23 @@ public class JDCompiler {
     }
    
     /**
-     * used to analyse the file 'realization.txt' who correpond to the tasks acomplished
+     * 
      * 
      * @param realization list of tasks acomplished
      * @throws IOException
      */
+    
+    /** 
+     * used to analyse the file realizationPath who correpond to the tasks acomplished
+     * @param realizationPath path to the realization file 
+     * @return list of tasks validated
+     */
     public static ArrayList<String> realizationAnalyse(String realizationPath) {
-    	
-    	File realization = new File(realizationPath);
+
+    	File realization;
     	ArrayList<String> realizationList = new ArrayList<String>(); 
 
-       	if(realization.exists()) {
+       	if(realizationPath != null && (realization = new File(realizationPath)).exists()) {
     		try {
     			RandomAccessFile ranRealization = new RandomAccessFile(realization,"r");
     	    	String line;    	
@@ -196,6 +203,7 @@ public class JDCompiler {
 				System.out.println(e.getMessage());
 			}
     	}
+    	
 
     	return realizationList;
     	
