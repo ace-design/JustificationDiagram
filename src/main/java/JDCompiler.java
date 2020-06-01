@@ -34,8 +34,11 @@ public class JDCompiler {
             	continue;
             }
             if(cmd.hasOption("rea")) {
-            	i++; 
-            	inputRealizationFile = cmd.getArgs()[i];
+            	if(inputIsValid(cmd.getArgs()[i+1]) && i < cmd.getArgs().length ) {
+            		i++; 
+                	inputRealizationFile = cmd.getArgs()[i];
+            	}
+            	
             }
             generateFiles(cmd, inputFile, generateOutputName(outputOption, numOutput, inputFile),inputRealizationFile);
         }
