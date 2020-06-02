@@ -1,0 +1,181 @@
+<svg width="731px" height="340px"
+ viewBox="0.00 0.00 730.88 340.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(4 336)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-336 726.8844,-336 726.8844,4 -4,4"/>
+<!-- A -->
+<g id="node1" class="node">
+<title>A</title>
+<path fill="#87ceeb" stroke="#000000" d="M175.3569,-36C175.3569,-36 56.1168,-36 56.1168,-36 50.1168,-36 44.1168,-30 44.1168,-24 44.1168,-24 44.1168,-12 44.1168,-12 44.1168,-6 50.1168,0 56.1168,0 56.1168,0 175.3569,0 175.3569,0 181.3569,0 187.3569,-6 187.3569,-12 187.3569,-12 187.3569,-24 187.3569,-24 187.3569,-30 181.3569,-36 175.3569,-36"/>
+<text text-anchor="middle" x="115.7369" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">Module A source code</text>
+</g>
+<!-- SA -->
+<g id="node2" class="node">
+<title>SA</title>
+<polygon fill="#a2cd5a" stroke="#000000" points="231.7111,-108 36.0888,-108 -.2374,-72 195.385,-72 231.7111,-108"/>
+<text text-anchor="middle" x="115.7369" y="-85.8" font-family="Times,serif" font-size="14.00" fill="#000000">Evaluate unit tests</text>
+</g>
+<!-- A&#45;&gt;SA -->
+<g id="edge1" class="edge">
+<title>A&#45;&gt;SA</title>
+<path fill="none" stroke="#000000" d="M115.7369,-36.1686C115.7369,-43.869 115.7369,-53.0257 115.7369,-61.5834"/>
+<polygon fill="#000000" stroke="#000000" points="112.237,-61.5867 115.7369,-71.5867 119.237,-61.5868 112.237,-61.5867"/>
+</g>
+<!-- CA -->
+<g id="node3" class="node">
+<title>CA</title>
+<path fill="transparent" stroke="#4169e1" d="M281.5233,-180C281.5233,-180 125.9504,-180 125.9504,-180 119.9504,-180 113.9504,-174 113.9504,-168 113.9504,-168 113.9504,-156 113.9504,-156 113.9504,-150 119.9504,-144 125.9504,-144 125.9504,-144 281.5233,-144 281.5233,-144 287.5233,-144 293.5233,-150 293.5233,-156 293.5233,-156 293.5233,-168 293.5233,-168 293.5233,-174 287.5233,-180 281.5233,-180"/>
+<text text-anchor="middle" x="203.7369" y="-157.8" font-family="Times,serif" font-size="14.00" fill="#000000">Tests validated for module A</text>
+</g>
+<!-- SA&#45;&gt;CA -->
+<g id="edge2" class="edge">
+<title>SA&#45;&gt;CA</title>
+<path fill="none" stroke="#000000" d="M137.943,-108.1686C148.7819,-117.0368 161.9813,-127.8363 173.7046,-137.4282"/>
+<polygon fill="#000000" stroke="#000000" points="171.5819,-140.2136 181.5379,-143.8372 176.0146,-134.7959 171.5819,-140.2136"/>
+</g>
+<!-- RAB -->
+<g id="node7" class="node">
+<title>RAB</title>
+<ellipse fill="#ffdab9" stroke="#000000" cx="302.7369" cy="-90" rx="53.2955" ry="18"/>
+<text text-anchor="middle" x="302.7369" y="-85.8" font-family="Times,serif" font-size="14.00" fill="#000000">ISO 62304</text>
+</g>
+<!-- SA&#45;&gt;RAB -->
+<!-- S -->
+<g id="node4" class="node">
+<title>S</title>
+<polygon fill="#a2cd5a" stroke="#000000" points="598.548,-252 339.1034,-252 290.9257,-216 550.3703,-216 598.548,-252"/>
+<text text-anchor="middle" x="444.7369" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">Evaluate integration tests</text>
+</g>
+<!-- CA&#45;&gt;S -->
+<g id="edge4" class="edge">
+<title>CA&#45;&gt;S</title>
+<path fill="none" stroke="#000000" d="M264.2403,-180.0757C297.7594,-190.0897 339.5938,-202.588 374.5455,-213.03"/>
+<polygon fill="#000000" stroke="#000000" points="373.6251,-216.4078 384.2086,-215.9169 375.6289,-209.7007 373.6251,-216.4078"/>
+</g>
+<!-- C -->
+<g id="node5" class="node">
+<title>C</title>
+<polygon fill="#bfbfbf" stroke="transparent" points="341.7369,-310 341.7369,-332 535.7369,-332 535.7369,-310 341.7369,-310"/>
+<polyline fill="none" stroke="#4169e1" points="535.7369,-332 341.7369,-332 341.7369,-310 "/>
+<text text-anchor="start" x="344.449" y="-316.4" font-family="Times,serif" font-size="14.00" fill="#000000">System integration tests validated</text>
+<polygon fill="#bfbfbf" stroke="transparent" points="535.7369,-310 535.7369,-332 541.7369,-332 541.7369,-310 535.7369,-310"/>
+<polyline fill="none" stroke="#4169e1" points="541.7369,-310 541.7369,-332 535.7369,-332 "/>
+<polyline fill="none" stroke="#4169e1" points="541.7369,-332 541.7369,-310 "/>
+<polygon fill="#bfbfbf" stroke="transparent" points="341.7369,-296 341.7369,-310 422.7369,-310 422.7369,-296 341.7369,-296"/>
+<polyline fill="none" stroke="#4169e1" points="341.7369,-310 341.7369,-296 422.7369,-296 "/>
+<polygon fill="#fff68f" stroke="transparent" points="422.7369,-288 422.7369,-310 547.7369,-310 547.7369,-288 422.7369,-288"/>
+<polygon fill="none" stroke="#000000" stroke-dasharray="5,2" points="422.7369,-288 422.7369,-310 547.7369,-310 547.7369,-288 422.7369,-288"/>
+<text text-anchor="start" x="463.4711" y="-294.4" font-family="Times,serif" font-size="14.00" fill="#000000">Internal</text>
+</g>
+<!-- S&#45;&gt;C -->
+<g id="edge5" class="edge">
+<title>S&#45;&gt;C</title>
+<path fill="none" stroke="#000000" d="M444.7369,-252.0109C444.7369,-259.709 444.7369,-268.9371 444.7369,-277.7439"/>
+<polygon fill="#000000" stroke="#000000" points="441.237,-277.7718 444.7369,-287.7718 448.237,-277.7718 441.237,-277.7718"/>
+</g>
+<!-- R -->
+<g id="node6" class="node">
+<title>R</title>
+<ellipse fill="#ffdab9" stroke="#000000" cx="669.7369" cy="-234" rx="53.2955" ry="18"/>
+<text text-anchor="middle" x="669.7369" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">ISO 62304</text>
+</g>
+<!-- S&#45;&gt;R -->
+<!-- R&#45;&gt;S -->
+<g id="edge7" class="edge">
+<title>R&#45;&gt;S</title>
+<path fill="none" stroke="#000000" d="M623.4141,-225.1714C604.5914,-222.514 585.7687,-220.9904 566.946,-220.6006"/>
+<polygon fill="#000000" stroke="#000000" points="566.8316,-217.0993 556.7974,-220.5002 566.7623,-224.099 566.8316,-217.0993"/>
+</g>
+<!-- RAB&#45;&gt;SA -->
+<g id="edge8" class="edge">
+<title>RAB&#45;&gt;SA</title>
+<path fill="none" stroke="#000000" d="M257.8359,-80.1472C242.0504,-77.7779 226.2649,-76.563 210.4793,-76.5024"/>
+<polygon fill="#000000" stroke="#000000" points="210.0626,-73.0071 200.106,-76.6287 210.1479,-80.0066 210.0626,-73.0071"/>
+</g>
+<!-- SB -->
+<g id="node8" class="node">
+<title>SB</title>
+<polygon fill="#a2cd5a" stroke="#000000" points="605.7111,-108 410.0888,-108 373.7626,-72 569.385,-72 605.7111,-108"/>
+<text text-anchor="middle" x="489.7369" y="-85.8" font-family="Times,serif" font-size="14.00" fill="#000000">Evaluate unit tests</text>
+</g>
+<!-- RAB&#45;&gt;SB -->
+<g id="edge9" class="edge">
+<title>RAB&#45;&gt;SB</title>
+<path fill="none" stroke="#000000" d="M347.6607,-99.8562C363.4431,-102.2239 379.2255,-103.4378 395.0079,-103.4977"/>
+<polygon fill="#000000" stroke="#000000" points="395.4227,-106.993 405.3791,-103.3709 395.3371,-99.9935 395.4227,-106.993"/>
+</g>
+<!-- SB&#45;&gt;RAB -->
+<!-- CB -->
+<g id="node9" class="node">
+<title>CB</title>
+<path fill="transparent" stroke="#4169e1" d="M521.7537,-180C521.7537,-180 367.72,-180 367.72,-180 361.72,-180 355.72,-174 355.72,-168 355.72,-168 355.72,-156 355.72,-156 355.72,-150 361.72,-144 367.72,-144 367.72,-144 521.7537,-144 521.7537,-144 527.7537,-144 533.7537,-150 533.7537,-156 533.7537,-156 533.7537,-168 533.7537,-168 533.7537,-174 527.7537,-180 521.7537,-180"/>
+<text text-anchor="middle" x="444.7369" y="-157.8" font-family="Times,serif" font-size="14.00" fill="#000000">Tests validated for module B</text>
+</g>
+<!-- SB&#45;&gt;CB -->
+<g id="edge10" class="edge">
+<title>SB&#45;&gt;CB</title>
+<path fill="none" stroke="#000000" d="M478.3815,-108.1686C473.3043,-116.2921 467.2142,-126.0363 461.6192,-134.9882"/>
+<polygon fill="#000000" stroke="#000000" points="458.5772,-133.2517 456.2452,-143.5867 464.5132,-136.9617 458.5772,-133.2517"/>
+</g>
+<!-- CB&#45;&gt;S -->
+<g id="edge12" class="edge">
+<title>CB&#45;&gt;S</title>
+<path fill="none" stroke="#000000" d="M444.7369,-180.1686C444.7369,-187.869 444.7369,-197.0257 444.7369,-205.5834"/>
+<polygon fill="#000000" stroke="#000000" points="441.237,-205.5867 444.7369,-215.5867 448.237,-205.5868 441.237,-205.5867"/>
+</g>
+<!-- B -->
+<g id="node10" class="node">
+<title>B</title>
+<path fill="#87ceeb" stroke="#000000" d="M549.0873,-36C549.0873,-36 430.3864,-36 430.3864,-36 424.3864,-36 418.3864,-30 418.3864,-24 418.3864,-24 418.3864,-12 418.3864,-12 418.3864,-6 424.3864,0 430.3864,0 430.3864,0 549.0873,0 549.0873,0 555.0873,0 561.0873,-6 561.0873,-12 561.0873,-12 561.0873,-24 561.0873,-24 561.0873,-30 555.0873,-36 549.0873,-36"/>
+<text text-anchor="middle" x="489.7369" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">Module B source code</text>
+</g>
+<!-- B&#45;&gt;SB -->
+<g id="edge13" class="edge">
+<title>B&#45;&gt;SB</title>
+<path fill="none" stroke="#000000" d="M489.7369,-36.1686C489.7369,-43.869 489.7369,-53.0257 489.7369,-61.5834"/>
+<polygon fill="#000000" stroke="#000000" points="486.237,-61.5867 489.7369,-71.5867 493.237,-61.5868 486.237,-61.5867"/>
+</g>
+<!-- D -->
+<g id="node11" class="node">
+<title>D</title>
+<ellipse fill="#c1ffc1" stroke="#000000" stroke-dasharray="5,2" cx="179.7369" cy="-234" rx="93.1933" ry="18"/>
+<text text-anchor="middle" x="179.7369" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#000000">Internal accreditation</text>
+</g>
+<!-- D&#45;&gt;S -->
+<g id="edge14" class="edge">
+<title>D&#45;&gt;S</title>
+<path fill="none" stroke="#000000" d="M273.1597,-234C283.6564,-234 294.1531,-234 304.6497,-234"/>
+<polygon fill="#000000" stroke="#000000" points="304.7136,-237.5001 314.7136,-234 304.7135,-230.5001 304.7136,-237.5001"/>
+</g>
+<!-- E -->
+<g id="node12" class="node">
+<title>E</title>
+<path fill="#87ceeb" stroke="#000000" d="M625.3374,-180C625.3374,-180 564.1363,-180 564.1363,-180 558.1363,-180 552.1363,-174 552.1363,-168 552.1363,-168 552.1363,-156 552.1363,-156 552.1363,-150 558.1363,-144 564.1363,-144 564.1363,-144 625.3374,-144 625.3374,-144 631.3374,-144 637.3374,-150 637.3374,-156 637.3374,-156 637.3374,-168 637.3374,-168 637.3374,-174 631.3374,-180 625.3374,-180"/>
+<text text-anchor="middle" x="594.7369" y="-157.8" font-family="Times,serif" font-size="14.00" fill="#000000">SoapUI logs</text>
+</g>
+<!-- E&#45;&gt;S -->
+<g id="edge15" class="edge">
+<title>E&#45;&gt;S</title>
+<path fill="none" stroke="#000000" d="M556.8855,-180.1686C537.0023,-189.7126 512.4587,-201.4935 491.4063,-211.5987"/>
+<polygon fill="#000000" stroke="#000000" points="489.8167,-208.4793 482.316,-215.962 492.8458,-214.79 489.8167,-208.4793"/>
+</g>
+<!-- J -->
+<g id="node13" class="node">
+<title>J</title>
+<path fill="#87ceeb" stroke="#000000" d="M327.4047,-36C327.4047,-36 278.0691,-36 278.0691,-36 272.0691,-36 266.0691,-30 266.0691,-24 266.0691,-24 266.0691,-12 266.0691,-12 266.0691,-6 272.0691,0 278.0691,0 278.0691,0 327.4047,0 327.4047,0 333.4047,0 339.4047,-6 339.4047,-12 339.4047,-12 339.4047,-24 339.4047,-24 339.4047,-30 333.4047,-36 327.4047,-36"/>
+<text text-anchor="middle" x="302.7369" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">JUnit logs</text>
+</g>
+<!-- J&#45;&gt;SA -->
+<g id="edge16" class="edge">
+<title>J&#45;&gt;SA</title>
+<path fill="none" stroke="#000000" d="M265.7917,-32.2249C239.0909,-42.5054 202.534,-56.5808 172.1882,-68.2647"/>
+<polygon fill="#000000" stroke="#000000" points="170.6488,-65.1069 162.5742,-71.9664 173.164,-71.6394 170.6488,-65.1069"/>
+</g>
+<!-- J&#45;&gt;SB -->
+<g id="edge17" class="edge">
+<title>J&#45;&gt;SB</title>
+<path fill="none" stroke="#000000" d="M339.6821,-32.2249C366.3828,-42.5054 402.9398,-56.5808 433.2856,-68.2647"/>
+<polygon fill="#000000" stroke="#000000" points="432.3097,-71.6394 442.8995,-71.9664 434.8249,-65.1069 432.3097,-71.6394"/>
+</g>
+</g>
+</svg>

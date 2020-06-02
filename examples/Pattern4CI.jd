@@ -1,6 +1,6 @@
 @startuml
 
-conclusion C = "Integration continue Valide" - "interne"
+conclusion C = "Valid Continuous Integration" - "interne"
 PV --> C
 
 subconclusion PV = "Project Valid" 

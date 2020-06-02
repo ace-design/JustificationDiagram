@@ -32,21 +32,26 @@ public class RequirementsLister implements JDVisitor {
     @Override 
     public void visitNode(Node node) {
     	setModelUsed(node);
-        list.append(modelUsed).append(node.label, 1, node.label.length() - 1).append("\n");
+    	String stringToWrite = setLabel(node);
+
+        list.append(modelUsed).append(stringToWrite, 1, stringToWrite.length() - 1).append("\n");
     }
 
     @Override
     public void visitConclusion(Conclusion conclusion) {
     	setModelUsed(conclusion);
+    	String stringToWrite = setLabel(conclusion);
+
         list.append("-----------------------------------------------\n" + modelUsed + "\t")
-                .append(conclusion.label, 1, conclusion.label.length() - 1)
+                .append(stringToWrite, 1, stringToWrite.length() - 1)
                 .append("\n-----------------------------------------------");
     }
 
     @Override
     public void visitSubConclusion(SubConclusion subConclusion) {
     	setModelUsed(subConclusion);
-        list.append(modelUsed).append(subConclusion.label, 1, subConclusion.label.length() - 1).append("\n");
+    	String stringToWrite = setLabel(subConclusion);
+        list.append(modelUsed).append(stringToWrite, 1, stringToWrite.length() - 1).append("\n");
     }
 
     @Override
@@ -67,7 +72,8 @@ public class RequirementsLister implements JDVisitor {
     @Override
     public void visitSupport(Support support) {
     	setModelUsed(support);
-        list.append(modelUsed).append(support.label, 1, support.label.length() - 1).append("\n");
+    	String stringToWrite = setLabel(support);
+        list.append(modelUsed).append(stringToWrite, 1, stringToWrite.length() - 1).append("\n");
     }
 
     @Override
@@ -88,4 +94,14 @@ public class RequirementsLister implements JDVisitor {
     		modelUsed = model[0];
     	}
     }
-}
+    
+    public String setLabel(Node node) {
+    	if(node.references != null && !node.references.contains("!noRef!") && !node.references.equals(" ")) {
+    		return node.label.substring(0,node.label.length()-1) + " - references : " + node.references + "\"";
+    	}
+    	else {
+    		return node.label;
+    	}
+    	
+    }
+ }

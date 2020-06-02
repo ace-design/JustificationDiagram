@@ -10,8 +10,8 @@ public class JDInitializer extends JustificationDiagramBaseVisitor<String> {
     public ArrayList<String> realizationList;
     
     
-    public void setRealizationList(ArrayList<String> realizationList) {
-    	this.realizationList = realizationList;
+    public void setRealizationList(ArrayList<String> realizationResult) {
+    	this.realizationList = realizationResult;
     }
 
     @Override
@@ -45,7 +45,7 @@ public class JDInitializer extends JustificationDiagramBaseVisitor<String> {
     @Override
     public String visitConclusion(JustificationDiagramParser.ConclusionContext ctx) {
         diagram.nodes.put(ctx.ALIAS().getText(), new Conclusion(ctx.ALIAS().getText(),
-                ctx.label.getText(), ctx.restriction != null? ctx.restriction.getText() : null));
+                ctx.label.getText(), ctx.restriction != null? ctx.restriction.getText() : null,realizationList));
         return super.visitConclusion(ctx);
     }
 }

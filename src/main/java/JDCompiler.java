@@ -71,9 +71,9 @@ public class JDCompiler {
     }
 
     private static void generateFiles(CommandLine cmd, String inputFilePath, String outputFilePath,String inputRealizationFilePath) throws IOException {
-    	System.out.println("Generate from " + inputFilePath + "  To  " + outputFilePath);
+    	System.out.println("Generate from \n" + new File (inputFilePath).getAbsolutePath() + "\nTo  \n" + new File (outputFilePath).getAbsolutePath());
     	if(inputRealizationFilePath != null) {
-    		System.out.println("With Realization : " + inputRealizationFilePath);
+    		System.out.println("With Realization \n" + new File (inputRealizationFilePath).getAbsolutePath() + "\n");
     	}
         JustificationDiagram diagram = createDiagram(inputFilePath,inputRealizationFilePath);
         diagram.analyseDiagrammeRelation();
@@ -153,9 +153,9 @@ public class JDCompiler {
 
     public static JustificationDiagram createDiagram(String file,String realizationFile) {
     	
-    	ArrayList<String> realizationList = realizationAnalyse(realizationFile);
+    	ArrayList<String> realizationResult = realizationAnalyse(realizationFile);
         JDInitializer factory = new JDInitializer();
-        factory.setRealizationList(realizationList);
+        factory.setRealizationList(realizationResult);
         factory.visit(parseAntlr(file));
         JDLinker linker = new JDLinker(factory.diagram);
         linker.visit(parseAntlr((file)));
@@ -191,7 +191,7 @@ public class JDCompiler {
     public static ArrayList<String> realizationAnalyse(String realizationPath) {
 
     	File realization;
-    	ArrayList<String> realizationList = new ArrayList<String>(); 
+    	ArrayList<String> realizationResult = new ArrayList<String>(); 
 
        	if(realizationPath != null && (realization = new File(realizationPath)).exists()) {
     		try {
@@ -199,7 +199,7 @@ public class JDCompiler {
     	    	String line;    	
     	    	
     	    	while((line = ranRealization.readLine()) != null) {
-    	    		realizationList.add("\"" + line + "\"");
+    	    		realizationResult.add("\"" + line + "\"");
     	    	}
     	    	ranRealization.close();
     	    	    	    }
@@ -209,7 +209,7 @@ public class JDCompiler {
     	}
     	
 
-    	return realizationList;
+    	return realizationResult;
     	
     }
 }

@@ -42,6 +42,11 @@ public class OutputTests {
         JDCompiler.main(new String[] { inputPath+"fig3.jd", "-o", outputPath+"fig3", "-td", "-svg", inputPath+"/realizationFig3.txt", "-rea"});
     }
     
+    @Test
+    public void figToDOWithReaAndFileVerification() throws IOException {
+    	JDCompiler.main(new String[] { inputPath+"Pattern4CI.jd", "-o", outputPath+"Pattern4CI_NotValid", "-td", "-svgR", inputPath+"/realizationPattern4CINotValid.txt", "-rea"});
+    }
+    
 
     
     @Test
@@ -52,8 +57,7 @@ public class OutputTests {
     
     @Test
     public void test_IC() throws IOException {
-    	JDCompiler.main(new String[] { inputPath+"Pattern4CI.jd", "-o", outputPath+"Pattern4CI", "-svg"});
-        JDCompiler.main(new String[] { inputPath+"Pattern4CI.jd", "-o", outputPath+"Pattern4CI", "-td"});
+    	JDCompiler.main(new String[] { inputPath+"Pattern4CI.jd", "-o", outputPath+"Pattern4CI_Valid", "-td","-svg", "-svgR", inputPath+"/realizationPattern4CI.txt", "-rea"});
     }
     
 }

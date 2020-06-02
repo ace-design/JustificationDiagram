@@ -1,16 +1,14 @@
 package models;
 
+import java.io.File;
 import java.util.ArrayList;
 
 import export.*;
 
 public class Support extends Node {
 
-	private ArrayList<String> realizationList;
-
-    public Support(String alias, String label,ArrayList<String> realizationList) {
-        super(alias, label);
-        this.realizationList = realizationList;
+    public Support(String alias, String label,ArrayList<String> realizationResult) {
+        super(alias, label,realizationResult);
         setState(); 
     }
 
@@ -25,13 +23,25 @@ public class Support extends Node {
      * @return State corresponding to the node
      */
     public void setState() {    	
-    	
-    	if(realizationList != null && realizationList.contains(label)) {
+    	boolean isDone = true;
+
+    	if(!checkFile.isEmpty()) {
+    		for (String filePath : checkFile) {
+				if(!new File(filePath).exists()) {
+					isDone = false;
+					System.err.println("File " + filePath + " not found");
+    				break;
+				}
+			}
+    	}
+
+    	if(realizationList != null && realizationList.contains(label) && isDone) {
     		this.state = State.DONE;
     	}
     	else {
     		this.state = State.TODO;
     	}
+    	
   
     	
      }

@@ -1,0 +1,7 @@
+Jacoco Report!ref!Archi1
+code Archivate
+images Archivate!-!output/images/basic.svg;output/images/fig1.svg;output/images/fig2.gv;output/images/fig2.todo;output/images/fig3.svg;output/images/fig3.todo;output/images/Pattern4CI.svg;output/images/Pattern4CI.todo;output/images/test_NC.svg;output/images/test_NC.todo!ref!Archi1
+Test Maven passed
+Build Maven passed
+Jacoco report Archivate
+Evaluate Project Quality
