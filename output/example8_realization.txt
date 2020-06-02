@@ -1,0 +1,7 @@
+Jacoco Report
+code Archivate!ref!generatedCode
+images Archivate!-!output/images/basic.svg;output/images/fig1.svg;output/images/fig2.gv;output/images/fig2.todo;output/images/fig3.svg;output/images/fig3.todo;output/images/Pattern4CI_Valid_REA.svg;output/images/Pattern4CI_NotValid_REA.svg;output/images/Pattern4CI_NotValid.todo;output/images/Pattern4CI_Valid.svg;output/images/Pattern4CI_Valid.todo;output/images/test_NC.svg;output/images/test_NC.todo!ref!images
+Test Maven passed
+Build Maven passed
+Jacoco report Archivate!ref!jacoco
+Valid Continuous Integration!ref!GeneratedJD
