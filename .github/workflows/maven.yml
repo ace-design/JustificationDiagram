@@ -24,11 +24,6 @@ jobs:
       run: mvn -B package --file pom.xml
     - name: Test with Maven
       run: mvn test & echo -e "\nBuild Maven passed\nTest Maven passed\nJacoco Report" >> output/realization/realization.txt
-    
-    - name: test Echo1
-        run: echo -e "test1" >> test1.txt &
-            echo -e "test2" >> test2.txt &
-            echo -e "test3" >> test3.txt
     - name: Ls
       run:
         ls -la *
