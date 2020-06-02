@@ -34,7 +34,7 @@ jobs:
     - name: cat Realization
       run: cat output/realization/realization.txt
     - name: JD&TODO generation 
-      run: mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/Pattern4CI.jd -o output/GeneratedJD/Pattern4CI -svg -td output/realization/realization.txt -rea"
+      run: mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/Pattern4CI.jd -o output/GeneratedJD/Pattern4CI -svg -svgR -td output/realization/realization.txt -rea"
     - name: Archive JD&TODO
       uses: actions/upload-artifact@v2
       with: 
