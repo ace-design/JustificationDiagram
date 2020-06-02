@@ -1,3 +1,0 @@
-Identified risks
-Functional specifications
-Technical specifications

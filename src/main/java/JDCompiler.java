@@ -55,7 +55,9 @@ public class JDCompiler {
         options.addOption("svg", "generate graph");
         options.addOption("gv", "generate gv file");
         options.addOption("td", "generate todo list");
-        options.addOption("rea", "generate realization graph");
+        options.addOption("svgR", "generate realization graph");
+        options.addOption("rea", "indicate the realization file");
+
 
         try {
             return parser.parse(options, args);
@@ -76,7 +78,7 @@ public class JDCompiler {
         JustificationDiagram diagram = createDiagram(inputFilePath,inputRealizationFilePath);
         diagram.analyseDiagrammeRelation();
         
-        if (cmd.hasOption("svg") && cmd.hasOption("rea")) { 
+        if (cmd.hasOption("svgR") && cmd.hasOption("rea")) { 
         	GraphDrawerRealization drawer = new GraphDrawerRealization();
             StringBuilder gv = drawer.draw(diagram);
             

@@ -23,7 +23,7 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: Test with Maven
-      run: mvn test & echo -e "Build Maven passed\nTest Maven passed\nJacoco Report\n" >> output/realization/realization.txt
+      run: mvn test & echo -e "\nBuild Maven passed\nTest Maven passed\nJacoco Report" >> output/realization/realization.txt
     - name: Ls
       run:
         ls -la *
