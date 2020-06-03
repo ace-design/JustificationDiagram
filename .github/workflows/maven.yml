@@ -30,7 +30,7 @@ jobs:
     - name: images Archivate - Realization
       run: echo -e "images Archivate!-!output/images/!number!13!ref!images" >> output/realization/realization.txt
     - name: Realization
-      run: echo -e "Jacoco report Archivate!ref!jacoco\ncode Archivate!ref!generatedCode\nValid Continuous Integration!ref!GeneratedJD\n >> output/realization/realization.txt
+      run: echo -e "Jacoco report Archivate!ref!jacoco\ncode Archivate!ref!generatedCode\nValid Continuous Integration!ref!GeneratedJD\n" >> output/realization/realization.txt
     - name: cat Realization
       run: cat output/realization/realization.txt
     - name: JD&TODO generation 
