@@ -1,6 +1,0 @@
-Jacoco Report
-code Archivate
-images Archivate!-!output/images!number!13
-Test Maven passed
-Build Maven passed
-Jacoco report Archivate
