@@ -13,6 +13,11 @@ public class OutputTests {
     }
 
     @Test
+    public void test_IC() throws IOException {
+    	JDCompiler.main(new String[] { inputPath+"Pattern4CI.jd", "-o", outputPath+"Pattern4CI_Valid", "-td","-svg", "-svgR", inputPath+"/realizationPattern4CI.txt", "-rea"});
+    }
+    
+    @Test
     public void basic() throws IOException {
         JDCompiler.main(new String[] {inputPath+"basic.jd", "-o", outputPath+"basic", "-svg"});
     }
@@ -55,9 +60,6 @@ public class OutputTests {
         JDCompiler.main(new String[] { inputPath+"test_NC.jd", "-o", outputPath+"test_NC", "-td"});
     }
     
-    @Test
-    public void test_IC() throws IOException {
-    	JDCompiler.main(new String[] { inputPath+"Pattern4CI.jd", "-o", outputPath+"Pattern4CI_Valid", "-td","-svg", "-svgR", inputPath+"/realizationPattern4CI.txt", "-rea"});
-    }
+
     
 }

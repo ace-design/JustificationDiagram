@@ -76,7 +76,7 @@ public class JDCompiler {
     		System.out.println("With Realization \n" + new File (inputRealizationFilePath).getAbsolutePath() + "\n");
     	}
         JustificationDiagram diagram = createDiagram(inputFilePath,inputRealizationFilePath);
-        diagram.analyseDiagrammeRelation();
+        diagram.analysesDiagrammeRelation();
         
         if (cmd.hasOption("svgR") && cmd.hasOption("rea")) { 
         	GraphDrawerRealization drawer = new GraphDrawerRealization();
@@ -153,7 +153,7 @@ public class JDCompiler {
 
     public static JustificationDiagram createDiagram(String file,String realizationFile) {
     	
-    	ArrayList<String> realizationResult = realizationAnalyse(realizationFile);
+    	ArrayList<String> realizationResult = parseRealization(realizationFile);
         JDInitializer factory = new JDInitializer();
         factory.setRealizationList(realizationResult);
         factory.visit(parseAntlr(file));
@@ -176,19 +176,14 @@ public class JDCompiler {
         return parser.diagram();
     }
    
-    /**
-     * 
-     * 
-     * @param realization list of tasks acomplished
-     * @throws IOException
-     */
-    
+
     /** 
-     * used to analyse the file realizationPath who correpond to the tasks acomplished
+     * Used to parse the file 'realizationPath' who correpond to the tasks acomplished, required number of files and references of nodes.
+     * 
      * @param realizationPath path to the realization file 
-     * @return list of tasks validated
+     * @return list of node information 
      */
-    public static ArrayList<String> realizationAnalyse(String realizationPath) {
+    public static ArrayList<String> parseRealization(String realizationPath) {
 
     	File realization;
     	ArrayList<String> realizationResult = new ArrayList<String>(); 

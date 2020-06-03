@@ -7,7 +7,7 @@ import models.*;
 public class RequirementsLister implements JDVisitor {
     StringBuilder list;
     
-    // model in case of the evidences are todo or done
+    // model to use according to the state of the node (todo or done)
     String model[] = {"[ ]\t","[X]\t"}; 
     String modelUsed = model[0]; 
     
@@ -95,6 +95,13 @@ public class RequirementsLister implements JDVisitor {
     	}
     }
     
+    /**
+     * Checks if the current node has a reference. 
+     * If it does, return "'label' - references : 'ref'", otherwise return the 'label'.
+     * 
+     * @param node to check
+     * @return string to write in the todo file.
+     */
     public String setLabel(Node node) {
     	if(node.references != null && !node.references.contains("!noRef!") && !node.references.equals(" ")) {
     		return node.label.substring(0,node.label.length()-1) + " - references : " + node.references + "\"";

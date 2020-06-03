@@ -18,9 +18,9 @@ public class Support extends Node {
     }
     
     /**
-     * Analyse the file 'realization.txt' and return the correct State for this node
+     * Verifies that all necessary files are present and 
+     * analyse the list 'realizationList' and set the correct State for this node
      * 
-     * @return State corresponding to the node
      */
     public void setState() {    	
     	boolean isDone = true;

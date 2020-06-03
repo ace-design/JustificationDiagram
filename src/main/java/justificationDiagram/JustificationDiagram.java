@@ -27,9 +27,11 @@ public class JustificationDiagram implements Visitable {
     }
      
     /**
-     * Change the state of the node in fonction of there childrens
+     * Change the state of the node in fonction of there childrens.
+     * Uses a TopologicalSort but does not change the order of the nodes in the diagram (to avoid problems).
+     * call Node.analyseRelation();
      */
-    public void analyseDiagrammeRelation() {
+    public void analysesDiagrammeRelation() {
     	
     	TopologicalSort sort = new TopologicalSort(this);
                 

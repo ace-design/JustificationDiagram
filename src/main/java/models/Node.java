@@ -23,10 +23,9 @@ public class Node implements Visitable {
         this.inputs = new HashSet<>();
         this.outputs = new HashSet<>();
         this.references="!noRef!";
-        
         this.state = State.TODO;  
         
-        analyseRealizationResult(realizationResult);
+        realizationResultAnalysis(realizationResult);
 
     }
 
@@ -38,15 +37,16 @@ public class Node implements Visitable {
         this.state = node.state;
         this.references="!noRef!";
 
-        analyseRealizationResult(realizationResult);
+        realizationResultAnalysis(realizationResult);
 
     }
     
 
     /** 
-     * Analyse the children of the current node to changed is state. If all is children are DONE, i will done. If he don't have childrens, no changes will be made.
+     * Verifies that all necessary files are present
+     * Then analyze the children of the current node. If all the children of this one are DONE, it will be DONE, otherwise it will be TODO. 
+     * If he has no children, no change will be made.  
      * 
-     * @param node to analyse and change
      */
     public void analyseRelation() {
     	
@@ -75,21 +75,22 @@ public class Node implements Visitable {
         		this.state = State.DONE;
         	}
     	}	
-    	
-		
-    	
-    	
     }
 
-    
-    public void analyseRealizationResult(ArrayList<String> realizationResult) {
+    /**
+     * Analyzes the String list that contains the 'realization' information. 
+     * With this information, it will fill in the CheckList, the references and the list of labels made. 
+     * 
+     * @param realizationResult
+     */
+    public void realizationResultAnalysis(ArrayList<String> realizationResult) {
     	    	
-    	for (String string : realizationResult) {
+    	for (String realizationLine : realizationResult) {
     		
-    		string = string.replaceAll("\"", "");
+    		realizationLine = realizationLine.replaceAll("\"", "");
     		    		
-   			if(string.contains("!-!")) {
-				String[] tmp = string.split("!-!");
+   			if(realizationLine.contains("!-!")) {
+				String[] tmp = realizationLine.split("!-!");
 				
 				String currentLabel = "\"" + tmp[0] + "\"";
 				
@@ -97,6 +98,7 @@ public class Node implements Visitable {
 					realizationList.add("\"" + tmp[0] + "\"");
 					
 					if(tmp[1].contains("!ref!")) {
+						// if 'realizationLine' look like this : 'label!-!texte.txt!ref!references'
 						String[] tmp2 = tmp[1].split("!ref!");
 						
 						analyseChekFile(tmp2[0]);
@@ -104,6 +106,7 @@ public class Node implements Visitable {
 							
 					}
 					else {
+						// if 'realizationLine' look like this : 'label!-!texte.txt'
 						analyseChekFile(tmp[1]);
 						references = "!noRef!";
 					}
@@ -111,8 +114,9 @@ public class Node implements Visitable {
 				
 			
 			}
-			else if (string.contains("!ref!")) {
-				String[] tmp = string.split("!ref!");
+			else if (realizationLine.contains("!ref!")) {
+				// if 'realizationLine' look like this : 'label!ref!references'
+				String[] tmp = realizationLine.split("!ref!");
 				String currentLabel = "\"" + tmp[0] + "\"";
 				
 				if(currentLabel.equals(label)) {
@@ -124,9 +128,10 @@ public class Node implements Visitable {
 				
 			}
 			else {
-				String currentLabel = "\"" + string + "\"";
+				// if 'realizationLine' look like this : 'label'
+				String currentLabel = "\"" + realizationLine + "\"";
 				if(currentLabel.equals(label)) {
-					realizationList.add("\"" + string + "\"");
+					realizationList.add("\"" + realizationLine + "\"");
 					references = "!noRef!";
 					checkFile = new ArrayList<String>();
 				}
@@ -136,7 +141,13 @@ public class Node implements Visitable {
 		}
     	
     }
-    
+    // TODO : changer l'anaylise de l'existances de fichier par la vérification du 
+    // bon nombre de fichier dans la liste de repertoire donner (oui il faut donner une liste de repertoire, ça donne plus de liberté)
+    /**
+     * Analyzes the character string and decomposes it to obtain a list of paths to the files to check
+     * 
+     * @param string to analyzes (look like this : file1;file2;file3)
+     */
     public void analyseChekFile(String string) {
     	
     	String[] fileList = string.split(";");
@@ -148,7 +159,6 @@ public class Node implements Visitable {
 		}
     	
     }
-    
     
     
     public void addInput(Relation input) {
