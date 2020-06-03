@@ -36,7 +36,7 @@ public class JustificationDiagram implements Visitable {
     	TopologicalSort sort = new TopologicalSort(this);
                 
         for (Node node : sort.getOrder()) {
-            node.analyseRelation();
+            node.prerequisiteAnalysis();
         } 
 
 

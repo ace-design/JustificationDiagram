@@ -1,6 +1,5 @@
 package models;
 
-import java.io.File;
 import java.util.ArrayList;
 
 import export.*;
@@ -24,26 +23,21 @@ public class Domain extends Node {
      */
     public void setState() {    	
     	boolean isDone = true;
-
-    	if(!checkFile.isEmpty()) {
-    		for (String filePath : checkFile) {
-				if(!new File(filePath).exists()) {
-					isDone = false;
-					System.err.println("File " + filePath + " not found");
-    				break;
-				}
-			}
-    	}
-
-    	if(realizationList != null && realizationList.contains(label) && isDone) {
-    		this.state = State.DONE;
-    	}
-    	else {
-    		this.state = State.TODO;
-    	}
-    	
-  
-    	
-     }
+		// used to verify that the necessary files are present.  
+		if(!checkFile.isEmpty() && isDone) {
+			isDone = checkFileAnalyses();
+		}
+		// used to check the number of files in a repertory
+		if(!checkFileWithNumber.isEmpty() && isDone) {
+			isDone = CheckFileWithNumberAnalyses();
+		}
+	
+		if(realizationList != null && realizationList.contains(label) && isDone) {
+			this.state = State.DONE;
+		}
+		else {
+			this.state = State.TODO;
+		}
+    }
     
 }

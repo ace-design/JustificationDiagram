@@ -23,14 +23,14 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: Test with Maven
-      run: mvn test & echo -e "\nBuild Maven passed\nTest Maven passed\nJacoco Report" >> output/realization/realization.txt
+      run: mvn test & echo -e "\nBuild Maven passed\nTest Maven passed\nJacoco Report!-!target/index.html" >> output/realization/realization.txt
     - name: Ls
       run:
         ls -la *
     - name: images Archivate - Realization
-      run: echo -e "images Archivate!-!output/images/basic.svg;output/images/fig1.svg;output/images/fig2.gv;output/images/fig2.todo;output/images/fig3.svg;output/images/fig3.todo;output/images/Pattern4CI_Valid_REA.svg;output/images/Pattern4CI_NotValid_REA.svg;output/images/Pattern4CI_NotValid.todo;output/images/Pattern4CI_Valid.svg;output/images/Pattern4CI_Valid.todo;output/images/test_NC.svg;output/images/test_NC.todo!ref!images" >> output/realization/realization.txt
+      run: echo -e "images Archivate!-!output/images/!number!13!ref!images" >> output/realization/realization.txt
     - name: Realization
-      run: echo -e "Jacoco report Archivate!ref!jacoco\ncode Archivate!ref!generatedCode\nValid Continuous Integration!ref!GeneratedJD\nJacoco report Archivate!ref!jacoco\ncode Archivate!ref!generatedCode\nValid Continuous Integration!ref!GeneratedJD" >> output/realization/realization.txt
+      run: echo -e "Jacoco report Archivate!ref!jacoco\ncode Archivate!ref!generatedCode\nValid Continuous Integration!ref!GeneratedJD\n >> output/realization/realization.txt
     - name: cat Realization
       run: cat output/realization/realization.txt
     - name: JD&TODO generation 

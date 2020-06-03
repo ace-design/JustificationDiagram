@@ -15,6 +15,7 @@ public class Node implements Visitable {
     public ArrayList<String> realizationResult = new ArrayList<String>();
     public ArrayList<String> realizationList = new ArrayList<String>();
     public ArrayList<String> checkFile = new ArrayList<String>();
+    public HashMap<String,Integer> checkFileWithNumber = new HashMap<String,Integer>();
     public String references;
 
     public Node(String alias, String label,ArrayList<String> realizationResult) { 
@@ -48,33 +49,70 @@ public class Node implements Visitable {
      * If he has no children, no change will be made.  
      * 
      */
-    public void analyseRelation() {
+    public void prerequisiteAnalysis() {
     	
     	boolean isDone = true;
+    	// used to verify that the necessary files are present.
     	if(!inputs.isEmpty()) {
-
-    		for (Relation relation : inputs) {
-    			if(relation.from.state.equals(State.TODO)) {
-
-    				isDone = false;
-    				break;
-    			}
-    			if(!checkFile.isEmpty() && isDone) {
-    				
-    	    		for (String filePath : checkFile) {
-    					if(!new File(filePath).exists()) {
-    						isDone = false;
-    						System.err.println("File " + filePath + " not found");
-    	    				break;
-    					}
-    				}
-    	    	}
-    			
-    		}
-        	if(isDone) {
-        		this.state = State.DONE;
-        	}
+    		isDone = relationAnalyse();
     	}	
+    	
+    	// used to verify that the necessary files are present.  
+		if(!checkFile.isEmpty() && isDone) {
+			isDone = checkFileAnalyses();
+    	}
+		// used to check the number of files in a repertory
+		if(!checkFileWithNumber.isEmpty() && isDone) {
+			isDone = CheckFileWithNumberAnalyses();
+    	}
+    	if(isDone) {
+    		this.state = State.DONE;
+    	}
+    }
+    
+    /**
+     * used to verify that the necessary files are present.
+     * 
+     * @return true if all files are present, else return false.
+     */
+    public boolean relationAnalyse() {
+    	// used to verify that the necessary files are present.  
+		for (Relation relation : inputs) {
+			if(relation.from.state.equals(State.TODO)) {
+				return false;
+			}
+		}
+    	return true;
+    }
+    
+    /**
+     * used to verify that the necessary files are present.
+     * 
+     * @return true if all files are present, else return false.
+     */
+    public boolean checkFileAnalyses() {
+    	for (String filePath : checkFile) {
+			if(!new File(filePath).exists()) {
+				System.err.println("File " + filePath + " not found");
+				return false;
+			}
+		}
+    	return true;
+    }
+    
+    /**
+     * used to check the number of files in a repertory
+     * 
+     * @return returns true if the necessary number corresponds to the number of files to be found, else returen false.	
+     */
+    public boolean CheckFileWithNumberAnalyses() {
+    	for (Map.Entry<String,Integer> mapentry : checkFileWithNumber.entrySet()) {
+			if(!new File(mapentry.getKey()).exists() || new File(mapentry.getKey()).listFiles().length != mapentry.getValue() ) {
+				System.err.println("The repetoire " + mapentry.getKey() + " has " + new File(mapentry.getKey()).listFiles().length + " files instead of " + mapentry.getValue() );
+				return false;
+			}		
+		}
+    	return true;
     }
 
     /**
@@ -101,13 +139,13 @@ public class Node implements Visitable {
 						// if 'realizationLine' look like this : 'label!-!texte.txt!ref!references'
 						String[] tmp2 = tmp[1].split("!ref!");
 						
-						analyseChekFile(tmp2[0]);
+						setChekFile(tmp2[0]);
 						references = tmp2[1];
 							
 					}
 					else {
 						// if 'realizationLine' look like this : 'label!-!texte.txt'
-						analyseChekFile(tmp[1]);
+						setChekFile(tmp[1]);
 						references = "!noRef!";
 					}
 				}
@@ -148,13 +186,24 @@ public class Node implements Visitable {
      * 
      * @param string to analyzes (look like this : file1;file2;file3)
      */
-    public void analyseChekFile(String string) {
+    public void setChekFile(String realizationResult) {
     	
-    	String[] fileList = string.split(";");
+    	String[] fileList = realizationResult.split(";");
     	
-    	for (String string2 : fileList) {
-    		if(!string2.equals(" ") && string2 != null) {
-    			checkFile.add(string2);
+    	for (String filePath : fileList) {
+    		if(!filePath.equals(" ") && filePath != null ) {
+    			if(filePath.contains("!number!")) {
+    				// if 'filePath' look like this : 'directory!number!10'
+    				String[] tmp = filePath.split("!number!");
+    				Integer number = Integer.parseInt(tmp[1]);
+    				checkFileWithNumber.put(tmp[0], number);
+    			}
+    			else {
+    				// if 'filePath' look like this : 'test.txt'
+
+    				checkFile.add(filePath);
+    			}
+    			
     		}
 		}
     	
