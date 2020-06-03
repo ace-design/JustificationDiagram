@@ -179,8 +179,7 @@ public class Node implements Visitable {
 		}
     	
     }
-    // TODO : changer l'anaylise de l'existances de fichier par la vérification du 
-    // bon nombre de fichier dans la liste de repertoire donner (oui il faut donner une liste de repertoire, ça donne plus de liberté)
+
     /**
      * Analyzes the character string and decomposes it to obtain a list of paths to the files to check
      * 
