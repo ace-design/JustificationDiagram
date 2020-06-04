@@ -75,7 +75,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>parsing.JDCompiler</mainClass>
+							<mainClass>JDCompiler</mainClass>
 						</manifest>
 					</archive>
 					<descriptorRefs>

@@ -29,7 +29,7 @@ public class JDCompiler {
         for (int i = 0; i < cmd.getArgs().length; ++i) {
             String inputFile = cmd.getArgs()[i];
             String inputRealizationFile = null;
-            numOutput++; 
+            numOutput++;  
             if (!inputIsValid(inputFile)) {
             	continue;
             }
@@ -78,13 +78,20 @@ public class JDCompiler {
         JustificationDiagram diagram = createDiagram(inputFilePath,inputRealizationFilePath);
         diagram.analysesDiagrammeRelation();
         
-        if (cmd.hasOption("svgR") && cmd.hasOption("rea")) { 
-        	GraphDrawerRealization drawer = new GraphDrawerRealization();
-            StringBuilder gv = drawer.draw(diagram);
-            
-            InputStream dot = new ByteArrayInputStream(gv.toString().getBytes());
-            MutableGraph g = new guru.nidi.graphviz.parse.Parser().read(dot);
-            Graphviz.fromGraph(g).render(Format.SVG).toFile(new File(outputFilePath + "_REA" +".svg"));
+        if (cmd.hasOption("svgR")) { 
+        	if(cmd.hasOption("rea")) {
+        		GraphDrawerRealization drawer = new GraphDrawerRealization();
+                StringBuilder gv = drawer.draw(diagram);
+                
+                InputStream dot = new ByteArrayInputStream(gv.toString().getBytes());
+                MutableGraph g = new guru.nidi.graphviz.parse.Parser().read(dot);
+                Graphviz.fromGraph(g).render(Format.SVG).toFile(new File(outputFilePath + "_REA" +".svg"));
+        	}
+        	else {
+        		System.err.println("\nimpossible to generate a realization diagram without a realization file. Please add a realization file\n" + 
+        				"'example.jd -o output/example -svgR example/realization.txt -rea'");
+        	}
+        	
         }
         if (cmd.hasOption("svg")) {
         	GraphDrawer drawer = new GraphDrawer();
