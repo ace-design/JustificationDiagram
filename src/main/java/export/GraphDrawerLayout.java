@@ -31,7 +31,7 @@ public class GraphDrawerLayout implements JDVisitor {
     public void visitSubConclusion(SubConclusion subConclusion) { }
 
     @Override
-    public void visitStrategy(Strategy strategy) { }
+    public void visitStrategy(Strategy strategy) { } 
 
     @Override
     public void visitDomain(Domain domain) {

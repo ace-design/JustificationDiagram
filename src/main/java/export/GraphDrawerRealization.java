@@ -60,7 +60,7 @@ public class GraphDrawerRealization implements JDVisitor {
     @Override
     public void visitSubConclusion(SubConclusion subConclusion) {
 
-    	setColorUsed(subConclusion);
+    	setColorUsed(subConclusion); 
 
         if (subConclusion.restriction != null) {
         	gv.append("\t").append(subConclusion.alias).append(" [shape=none margin=0  fontcolor= " + colorUsed + " label=<<table cellspacing=\"0\" " +

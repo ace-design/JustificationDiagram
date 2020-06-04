@@ -23,11 +23,11 @@ public class Rationale extends Node {
     public void setState() {    	
     	boolean isDone = true;
 		// used to verify that the necessary files are present.  
-		if(!checkFile.isEmpty() && isDone) {
+		if(!checkFile.isEmpty()) {
 			isDone = checkFileAnalyses();
 		}
 		// used to check the number of files in a repertory
-		if(!checkFileWithNumber.isEmpty() && isDone) {
+		if(!checkFileWithNumber.isEmpty()) {
 			isDone = CheckFileWithNumberAnalyses();
 		}
 	

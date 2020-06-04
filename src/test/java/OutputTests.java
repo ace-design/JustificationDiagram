@@ -14,7 +14,18 @@ public class OutputTests {
 
     @Test
     public void test_IC() throws IOException {
-    	JDCompiler.main(new String[] { inputPath+"Pattern4CI.jd", "-o", outputPath+"Pattern4CI_Valid", "-td","-svg", "-svgR", inputPath+"/realizationPattern4CI.txt", "-rea"});
+    	JDCompiler.main(new String[] { inputPath+"Pattern4CI.jd", "-o", outputPath+"Pattern4CI_Valid", "-td","-svg", "-svgR", inputPath+"realization/realizationPattern4CI.txt", "-rea"});
+    }
+    
+    
+    @Test
+    public void figToDOWithRea() throws IOException {
+        JDCompiler.main(new String[] { inputPath+"fig3.jd", "-o", outputPath+"fig3", "-td", "-svg", "-svgR", inputPath+"realization/realizationFig3.txt", "-rea"});
+    }
+    
+    @Test
+    public void figToDOWithReaAndFileVerification() throws IOException {
+    	JDCompiler.main(new String[] { inputPath+"Pattern4CI.jd", "-o", outputPath+"Pattern4CI_NotValid", "-td", "-svgR", inputPath+"realization/realizationPattern4CINotValid.txt", "-rea"});
     }
     
     @Test
@@ -31,7 +42,7 @@ public class OutputTests {
     public void fig2() throws IOException {
         JDCompiler.main(new String[] {inputPath+"fig2.jd", "-o", outputPath+"fig2", "-gv"});
     }
-
+ 
     @Test
     public void fig3() throws IOException {
         JDCompiler.main(new String[] { inputPath+"fig3.jd", "-o", outputPath+"fig3", "-svg"});
@@ -41,25 +52,7 @@ public class OutputTests {
     public void figToDO() throws IOException {
         JDCompiler.main(new String[] { inputPath+"fig3.jd", "-o", outputPath+"fig2", "-td"});
     }
-    
-    @Test
-    public void figToDOWithRea() throws IOException {
-        JDCompiler.main(new String[] { inputPath+"fig3.jd", "-o", outputPath+"fig3", "-td", "-svg", "-svgR", inputPath+"/realizationFig3.txt", "-rea"});
-    }
-    
-    @Test
-    public void figToDOWithReaAndFileVerification() throws IOException {
-    	JDCompiler.main(new String[] { inputPath+"Pattern4CI.jd", "-o", outputPath+"Pattern4CI_NotValid", "-td", "-svgR", inputPath+"/realizationPattern4CINotValid.txt", "-rea"});
-    }
-    
 
-    
-    @Test
-    public void test_Nico() throws IOException {
-    	JDCompiler.main(new String[] { inputPath+"test_NC.jd", "-o", outputPath+"test_NC", "-svg"});
-        JDCompiler.main(new String[] { inputPath+"test_NC.jd", "-o", outputPath+"test_NC", "-td"});
-    }
-    
 
     
 }

@@ -3,7 +3,7 @@ package models;
 import java.util.ArrayList;
 
 public class NodeFactory {
-	/**
+	/** 
 	 * 
 	 * @param type (Domain,Rationale,Strategy,SubConclusion,Support or Node)
 	 * @param alias of the node in the jd file

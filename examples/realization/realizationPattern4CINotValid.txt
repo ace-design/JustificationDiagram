@@ -1,0 +1,7 @@
+Jacoco Report!ref!Archi1
+code Archivate
+images Archivate!-!output/images/!number!11;examples/realization/realizationPattern4CI.txt!ref!images
+Test Maven passed
+Build Maven passed
+Jacoco report Archivate
+Evaluate Project Quality!-!dontExist;dontExist2;dontExist3

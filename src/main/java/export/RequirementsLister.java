@@ -79,7 +79,7 @@ public class RequirementsLister implements JDVisitor {
     @Override
     public void visitRelation(Relation relation) { }
     
-    
+     
     /**
      * Analyse the state of the node and chose the corresponding model to used   
      * 
