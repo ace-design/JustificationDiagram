@@ -327,7 +327,7 @@ Requirements list
 [X]	Specifications validated
 [ ]	Risk mitigation plan
 [ ]	Architecture
-[X]	Risks consistency
+[ ]	Risks consistency
 [ ]	Safety specifications validated
 [ ]	Architecture validated
 -----------------------------------------------

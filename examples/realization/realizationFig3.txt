@@ -2,3 +2,4 @@ Identified risks!ref!Archi1
 Functional specifications!-!examples/realization/realizationFig3.txt!ref!Archi1
 Technical specifications!-!.github/workflows;.github/workflows!number!1
 Architectures!-!dontExit
+Risks consistency!-!dontExit
