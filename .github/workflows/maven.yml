@@ -28,11 +28,11 @@ jobs:
       run:
         ls -la *
     - name: Realization part1
-      run: echo -e "\nBuild Maven passed\nTest Maven passed\nJacoco Report!-!target/site/jacoco/index.html\nimages Archivate!-!output/images/!number!14!ref!images" >> output/realization/realization.txt
+      run: echo -e "\nBuild Maven passed\nTest Maven passed\nJacoco Report!-!target/site/jacoco/index.html\nimages Archivate!-!output/images/!number!14!ref!images" >> realization.txt
     - name: Realization part2
-      run: echo -e "Jacoco report Archivate!ref!jacoco\ncode Archivate!ref!generatedCode\nValid Continuous Integration!ref!GeneratedJD\n" >> output/realization/realization.txt
+      run: echo -e "Jacoco report Archivate!ref!jacoco\ncode Archivate!ref!generatedCode\nValid Continuous Integration!ref!GeneratedJD\n" >> realization.txt
     - name: cat Realization
-      run: cat output/realization/realization.txt
+      run: cat realization.txt
     - name: JD&TODO generation 
       run: mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/Pattern4CI.jd -o output/GeneratedJD/Pattern4CI -svg -svgR -td output/realization/realization.txt -rea"
     - name: Archive JD&TODO
