@@ -104,7 +104,7 @@ You can also specify whether a node needs to check the existence of a certain fi
 - name: Realization
       run: echo -e "[Label of the accompliseh task]!-![file necessery 1];[file necessery 2];|file necessery 3]" >> output/realization/realization.txt
       
-this will chek if 'file necessery 1', 'file necessery 2' ans 'file necessery 3' exist.
+<!-- this will chek if 'file necessery 1', 'file necessery 2' and 'file necessery 3' exist -->
 ```
 
 and you can ask if the number of files in a directory is correct.
@@ -113,7 +113,7 @@ and you can ask if the number of files in a directory is correct.
 - name: Realization
       run: echo -e "[Label of the accompliseh task]!-![repertory]/!number!10" >> output/realization/realization.txt
       
-it checks if the "directory" contains 10 files.
+<!-- it checks if the "directory" contains 10 files -->
 
 ```
 
@@ -131,7 +131,7 @@ Here's an example of a text file, the graph and the todo list it generates.
 
 run this : 
 ```
-mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="example/fig3.jd -o output/images/fig3 -png -td"
+mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="example/fig3.jd -o output/images/fig3 -png -td example/realization/realizationFig3.txt -rea"
 ```
 
 #### example.jd
@@ -239,9 +239,10 @@ You should write this in 'maven.yml' :
 #### realization.txt
 
 ```
-Identified risks
-Functional specifications
-Technical specifications
+Identified risks!ref!Archi1
+Functional specifications!-!example/realization/realizationFig3.txt!ref!Archi1
+Technical specifications!-!.github/workflows;.github/workflows!number!1
+Architectures!-!dontExit
 ```
 
 #### example.jd
@@ -319,8 +320,8 @@ _Generated List_
 ```
 Requirements list
 
-[X]	Identified risks
-[X]	Functional specifications
+[X]	Identified risks - references : Archi1
+[X]	Functional specifications - references : Archi1
 [X]	Technical specifications
 [X]	Feasible hard points
 [X]	Specifications validated
@@ -346,7 +347,7 @@ If you want to save the elements created during the continuous integration, alwa
     path: [OUTPUT_FILE]
     
     
-This will save all "OUTPUT_FILE" files in the specified artifact.
+<!-- This will save all "OUTPUT_FILE" files in the specified artifact -->
 ```
 
 if you want to save a specific file, you can write this :
@@ -357,6 +358,7 @@ if you want to save a specific file, you can write this :
   with: 
     name: Artifact1
     path: realization.txt
+    
 ```
 
 
