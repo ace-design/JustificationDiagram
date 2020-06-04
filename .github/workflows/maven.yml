@@ -28,7 +28,7 @@ jobs:
       run:
         ls -la *
     - name: Realization part1
-      run: echo -e "\nBuild Maven passed\nTest Maven passed\nJacoco Report!-!target/site/jacoco/index.html\nimages Archivate!-!output/images/!number!13!ref!images" >> output/realization/realization.txt
+      run: echo -e "\nBuild Maven passed\nTest Maven passed\nJacoco Report!-!target/site/jacoco/index.html\nimages Archivate!-!output/images/!number!14!ref!images" >> output/realization/realization.txt
     - name: Realization part2
       run: echo -e "Jacoco report Archivate!ref!jacoco\ncode Archivate!ref!generatedCode\nValid Continuous Integration!ref!GeneratedJD\n" >> output/realization/realization.txt
     - name: cat Realization
