@@ -17,7 +17,7 @@ public class Node implements Visitable {
     public ArrayList<String> checkFile = new ArrayList<String>();
     public HashMap<String,Integer> checkFileWithNumber = new HashMap<String,Integer>();
     public String references;
-
+ 
     public Node(String alias, String label,ArrayList<String> realizationResult) { 
     	this.label = label;
         this.alias = alias;
@@ -52,28 +52,28 @@ public class Node implements Visitable {
     public void prerequisiteAnalysis() {
     	
     	boolean isDone = true;
-    	// used to verify that the necessary files are present.
+    	// Use to check that the current node depends on the state of these inputs.
     	if(!inputs.isEmpty()) {
+    		// use to analyze the state of the child nodes 
     		isDone = relationAnalyse();
-    	}	
-    	
-    	// used to verify that the necessary files are present.  
-		if(!checkFile.isEmpty() && isDone) {
-			isDone = checkFileAnalyses();
-    	}
-		// used to check the number of files in a repertory
-		if(!checkFileWithNumber.isEmpty() && isDone) {
-			isDone = CheckFileWithNumberAnalyses();
-    	}
-    	if(isDone) {
-    		this.state = State.DONE;
+	    	// used to verify that the necessary files are present.  
+			if(!checkFile.isEmpty() && isDone) {
+				isDone = checkFileAnalyses();
+	    	}
+			// used to check the number of files in a repertory
+			if(!checkFileWithNumber.isEmpty() && isDone) {
+				isDone = CheckFileWithNumberAnalyses();
+	    	}
+	    	if(isDone) {
+	    		this.state = State.DONE;
+	    	}
     	}
     }
     
     /**
-     * used to verify that the necessary files are present.
+     * use to analyze the state of the child nodes 
      * 
-     * @return true if all files are present, else return false.
+     * @return true if all child node are DONE, else return false.
      */
     public boolean relationAnalyse() {
     	// used to verify that the necessary files are present.  

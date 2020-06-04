@@ -21,7 +21,7 @@ public class Support extends Node {
      * analyse the list 'realizationList' and set the correct State for this node
      * 
      */
-    public void setState() {    	
+    public void setState() {    
     	boolean isDone = true;
 		// used to verify that the necessary files are present.  
 		if(!checkFile.isEmpty() && isDone) {
@@ -31,13 +31,14 @@ public class Support extends Node {
 		if(!checkFileWithNumber.isEmpty() && isDone) {
 			isDone = CheckFileWithNumberAnalyses();
 		}
-	
+		// used to check id the label is contains in 'realizationList'
 		if(realizationList != null && realizationList.contains(label) && isDone) {
 			this.state = State.DONE;
 		}
 		else {
 			this.state = State.TODO;
 		}
+
     }
 
 }

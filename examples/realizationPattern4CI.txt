@@ -1,6 +1,6 @@
 Jacoco Report
 code Archivate!ref!generatedCode
-images Archivate!-!output/images/!number!13;examples/realizationPattern4CI.txt!ref!images
+images Archivate!-!output/images/!number!14;examples/realizationPattern4CI.txt!ref!images
 Test Maven passed
 Build Maven passed
 Jacoco report Archivate!ref!jacoco
