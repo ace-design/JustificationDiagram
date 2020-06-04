@@ -12,44 +12,42 @@ JDGenerator is a Maven program. You can either clone the repo and run the follow
 mvn install
 mvn compile
 ```
-
+<!-- TODO : changed the 'download the jar file' -->
 or [download the jar file](https://github.com/ace-design/JustificationDiagram/releases/tag/v1.1).
 
 ## Execution
 From the cloned repo, run 
 ```
-mvn exec:java -Dexec.mainClass="JDCompiler" [OPTIONS] [FILE]
+mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="[INPUT_FILE] -o [OUTPUT_FILE] [OPTIONS] ([INPUT_REALIZATION_FILE] -rea )"
+
 ```
 
 or execute the jar file with 
 ```
-java -jar JDGenerator-jar-with-dependencies.jar [OPTIONS] [FILE]
+java -jar JDGenerator-jar-with-dependencies.jar [INPUT_FILE] -o [OUTPUT_FILE] [OPTIONS] ([INPUT_REALIZATION_FILE] -rea )
 ```
-or execute 
 
 ### Options
 | Flag  | Argument | Description                              |
 |-------|----------|------------------------------------------|
 | -o    | path     | Output file (no extension)               |
-| -png  | -        | Generate visual graph                    |
+| -svg  | -        | Generate visual graph                    |
+| -svgR | -        | Generate visual realisation graph        |
 | -gv   | -        | Generate text files before dot formating |
 | -td   | -        | Generate todo list                       |
 
 If no output file is entered, the generated files will be named from the input file name. 
 
-or you can also do this execution 
 
+other examples : 
 ```
-mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="[INPUT_FILE] -o [OUTPUT_FILE] [OPTIONS] ([INPUT_REALIZATION_FILE] -rea )"
-
+mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="example/basic.jd -o output/images/basic -svg"
 ```
-examples : 
 ```
-mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="example/basic.jd -o output/images/basic -png"
-
-mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="example/basic.jd -o output/images/basic -png output/realization/realization.txt -rea"
-
-mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="example/basic.jd -o output/images/basic -png -td output/realization/realization.txt -rea"
+mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="example/basic.jd -o output/images/basic -svg output/realization/realization.txt -rea"
+```
+```
+mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="example/basic.jd -o output/images/basic -svg -td output/realization/realization.txt -rea"
 
 ```
 
@@ -93,12 +91,40 @@ The prototype permits two types of oriented link.
 
 During the Continuous integration, please add to a file named 'realization.txt' the supports, domains and rationale that have been validated.
 
-For this purpose, in '.github\workflows\maven.yml' add this after 'Test with Maven' and before 'JD generation' :
+For this purpose, in '.github\workflows\maven.yml' add this after the Build and Test of your project and before the generation of diagramm :
 
 ```
 - name: Realization
       run: echo -e "[Label of the accompliseh task]" >> output/realization/realization.txt
 ```
+
+You can also specify whether a node needs to check the existence of a certain files or directorys, 
+
+```
+- name: Realization
+      run: echo -e "[Label of the accompliseh task]!-![file necessery 1];[file necessery 2];|file necessery 3]" >> output/realization/realization.txt
+      
+this will chek if 'file necessery 1', 'file necessery 2' ans 'file necessery 3' exist.
+```
+
+and you can ask if the number of files in a directory is correct.
+
+```
+- name: Realization
+      run: echo -e "[Label of the accompliseh task]!-![repertory]/!number!10" >> output/realization/realization.txt
+      
+it checks if the "directory" contains 10 files.
+
+```
+
+You can also add references for a certain node with this
+
+```
+- name: Realization
+      run: echo -e "[Label of the accompliseh task]!ref!Artifacts1" >> output/realization/realization.txt
+      
+```
+
 
 ## Example without realization
 Here's an example of a text file, the graph and the todo list it generates.
@@ -307,3 +333,33 @@ Requirements list
 [ ]		Software safety validated
 -----------------------------------------------
 ```
+
+## Artifacts
+
+If you want to save the elements created during the continuous integration, always in your 'maven.yl' file, you can write this at the very end of your file :
+
+```
+- name: Archive generated codes
+  uses: actions/upload-artifact@v2
+  with: 
+    name: [Name of your Artifact]
+    path: [OUTPUT_FILE]
+    
+    
+This will save all "OUTPUT_FILE" files in the specified artifact.
+```
+
+if you want to save a specific file, you can write this :
+
+```
+- name: Archive generated codes
+  uses: actions/upload-artifact@v2
+  with: 
+    name: Artifact1
+    path: realization.txt
+```
+
+
+
+
+
