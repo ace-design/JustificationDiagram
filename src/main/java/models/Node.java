@@ -12,20 +12,26 @@ public class Node implements Visitable {
     public Set<Relation> outputs;
     public State state;
     
+    
     public ArrayList<String> realizationResult = new ArrayList<>();
     public ArrayList<String> realizationList = new ArrayList<>();
     public ArrayList<String> checkFile = new ArrayList<>();
     public HashMap<String,Integer> checkFileWithNumber = new HashMap<>();
     public String references;
-    public String constanteNoReferences = "!noRef!";
-    public String constanteReferences = "!ref!";
+    
+    public ArrayList<String> logForFiles = new ArrayList<>();
+    
+    // - constant
+    public String constantNoReferences = "!noRef!";
+    public String constantReferences = "!ref!";
+    public String constantNumber = "!number!";
  
     public Node(String alias, String label,ArrayList<String> realizationResult) { 
     	this.label = label;
         this.alias = alias;
         this.inputs = new HashSet<>();
         this.outputs = new HashSet<>();
-        this.references= constanteNoReferences;
+        this.references= constantNoReferences;
         this.state = State.TODO;  
         
         realizationResultAnalysis(realizationResult);
@@ -38,7 +44,7 @@ public class Node implements Visitable {
         this.inputs = node.inputs;
         this.outputs = node.outputs;
         this.state = node.state;
-        this.references = constanteNoReferences;
+        this.references = constantNoReferences;
 
         realizationResultAnalysis(realizationResult);
 
@@ -97,7 +103,12 @@ public class Node implements Visitable {
     	for (String filePath : checkFile) {
 			if(!new File(filePath).exists()) {
 				System.err.println("The file " + filePath + " was not found to validate the node " + label);
+				logForFiles.add("[ ] " + filePath + " - (not found)");
 				isDone = false;
+			}
+			else {
+				logForFiles.add("[X] " + filePath);
+
 			}
 		}
     	return isDone;
@@ -111,10 +122,20 @@ public class Node implements Visitable {
     public boolean CheckFileWithNumberAnalyses() {
     	boolean isDone = true;
     	for (Map.Entry<String,Integer> mapentry : checkFileWithNumber.entrySet()) {
-			if(!new File(mapentry.getKey()).exists() || new File(mapentry.getKey()).listFiles().length != mapentry.getValue() ) {
-				System.err.println("The repetoire " + mapentry.getKey() + " has " + new File(mapentry.getKey()).listFiles().length + " files instead of " + mapentry.getValue() + " . The node " + label + " can't be validate");
+    		String filePath = mapentry.getKey();
+    		int currentLenght = 0;
+			if(!new File(mapentry.getKey()).exists()) {
+				logForFiles.add("[ ] " + filePath  + " - (not found)");
+			}
+			else if((currentLenght = new File(filePath).listFiles().length) != mapentry.getValue()) {
+				logForFiles.add("[ ] " +  filePath  + " - (" + currentLenght +" files found instead of " + mapentry.getValue() + ")" );
+				System.err.println("The repetoire " + filePath + " has " + currentLenght + " files instead of " + mapentry.getValue() + " . The node " + label + " can't be validate");
 				isDone = false;
-			}		
+			}
+			else {
+				logForFiles.add("[x] "+  filePath);
+
+			}
 		}
     	return isDone;
     }
@@ -139,9 +160,9 @@ public class Node implements Visitable {
 				if(currentLabel.equals(label)) {
 					realizationList.add("\"" + tmp[0] + "\"");
 					
-					if(tmp[1].contains(constanteReferences)) {
+					if(tmp[1].contains(constantReferences)) {
 						// if 'realizationLine' look like this : 'label!-!texte.txt!ref!references'
-						String[] tmp2 = tmp[1].split(constanteReferences);
+						String[] tmp2 = tmp[1].split(constantReferences);
 						
 						setChekFile(tmp2[0]);
 						references = tmp2[1];
@@ -150,15 +171,15 @@ public class Node implements Visitable {
 					else {
 						// if 'realizationLine' look like this : 'label!-!texte.txt'
 						setChekFile(tmp[1]);
-						references = constanteNoReferences;
+						references = constantNoReferences;
 					}
 				}
 				
 			
 			}
-			else if (realizationLine.contains(constanteReferences)) {
+			else if (realizationLine.contains(constantReferences)) {
 				// if 'realizationLine' look like this : 'label!ref!references'
-				String[] tmp = realizationLine.split(constanteReferences);
+				String[] tmp = realizationLine.split(constantReferences);
 				String currentLabel = "\"" + tmp[0] + "\"";
 				
 				if(currentLabel.equals(label)) {
@@ -174,7 +195,7 @@ public class Node implements Visitable {
 				String currentLabel = "\"" + realizationLine + "\"";
 				if(currentLabel.equals(label)) {
 					realizationList.add("\"" + realizationLine + "\"");
-					references = constanteNoReferences;
+					references = constantNoReferences;
 					checkFile = new ArrayList<>();
 				}
 				
@@ -195,9 +216,9 @@ public class Node implements Visitable {
     	
     	for (String filePath : fileList) {
     		if(!filePath.equals(" ")) {
-    			if(filePath.contains("!number!")) {
+    			if(filePath.contains(constantNumber)) {
     				// if 'filePath' look like this : 'directory!number!10'
-    				String[] tmp = filePath.split("!number!");
+    				String[] tmp = filePath.split(constantNumber);
     				Integer number = Integer.parseInt(tmp[1]);
     				checkFileWithNumber.put(tmp[0], number);
     			}

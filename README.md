@@ -364,9 +364,11 @@ Requirements list
 [X]	Test Maven passed
 [X]	Jacoco Report
 [X]	images Archivate - references : images
+	[X] filePath - valid
 [X]	Jacoco report Archivate - references : jacoco
 [X]	Test Coverage validated
 [X]	Build Maven passed
+	[x] .github/workflows/ - valid
 [X]	Maven ready
 [X]	Test Coverage validated and Archived
 [X]	Archivees Data
@@ -429,16 +431,23 @@ Requirements list
 [X]	Test Maven passed
 [X]	Jacoco Report - references : Archi1
 [X]	images Archivate - references : images
+	[X] examples/exampleCI/Pattern4CI.jd
 [X]	Jacoco report Archivate
 [X]	Test Coverage validated
 [ ]	Build Maven passed
 [ ]	Maven ready
+	[ ] dontExist - (not found)
+	[ ] dontExist2 - (not found)
+	[ ] dontExist3 - (not found)
 [X]	Test Coverage validated and Archived
+[ ]	Data Archivate
+	[ ] .github/workflows/ - (1 files found instead of 0)
 [ ]	Archivees Data
 [ ]	Project Valid
 -----------------------------------------------
 [ ]		Valid Continuous Integration
 -----------------------------------------------
+
 ```
 
 

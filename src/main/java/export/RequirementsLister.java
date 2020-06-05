@@ -32,48 +32,74 @@ public class RequirementsLister implements JDVisitor {
     @Override 
     public void visitNode(Node node) {
     	setModelUsed(node);
-    	String stringToWrite = setLabel(node);
+    	String stringToWrite = setStringToWrite(node);
 
         list.append(modelUsed).append(stringToWrite, 1, stringToWrite.length() - 1).append("\n");
+        setLogForFiles(node);
     }
 
     @Override
     public void visitConclusion(Conclusion conclusion) {
     	setModelUsed(conclusion);
-    	String stringToWrite = setLabel(conclusion);
+    	String stringToWrite = setStringToWrite(conclusion);
 
         list.append("-----------------------------------------------\n" + modelUsed + "\t")
-                .append(stringToWrite, 1, stringToWrite.length() - 1)
-                .append("\n-----------------------------------------------");
+                .append(stringToWrite, 1, stringToWrite.length() - 1);
+        setLogForFiles(conclusion);
+        list.append("\n-----------------------------------------------");
     }
 
     @Override
     public void visitSubConclusion(SubConclusion subConclusion) {
     	setModelUsed(subConclusion);
-    	String stringToWrite = setLabel(subConclusion);
+    	String stringToWrite = setStringToWrite(subConclusion);
         list.append(modelUsed).append(stringToWrite, 1, stringToWrite.length() - 1).append("\n");
+        setLogForFiles(subConclusion);
+
     }
 
     @Override
     public void visitStrategy(Strategy strategy) {
-    	setModelUsed(strategy);
+    	if(!strategy.logForFiles.isEmpty()) {
+    		setModelUsed(strategy);
+        	String stringToWrite = setStringToWrite(strategy);
+
+            list.append(modelUsed).append(stringToWrite, 1, stringToWrite.length() - 1).append("\n");
+            setLogForFiles(strategy);
+    	}
     }
 
     @Override
     public void visitDomain(Domain domain) {
-    	setModelUsed(domain);
+    	if(!domain.logForFiles.isEmpty()) {
+    		setModelUsed(domain);
+        	String stringToWrite = setStringToWrite(domain);
+
+            list.append(modelUsed).append(stringToWrite, 1, stringToWrite.length() - 1).append("\n");
+            setLogForFiles(domain);
+    	}
+
     }
 
     @Override
     public void visitRationale(Rationale rationale) {
-    	setModelUsed(rationale);
+    	if(!rationale.logForFiles.isEmpty()) {
+    		setModelUsed(rationale);
+        	String stringToWrite = setStringToWrite(rationale);
+
+            list.append(modelUsed).append(stringToWrite, 1, stringToWrite.length() - 1).append("\n");
+            setLogForFiles(rationale);
+    	}
+
     }
 
     @Override
     public void visitSupport(Support support) {
     	setModelUsed(support);
-    	String stringToWrite = setLabel(support);
+    	String stringToWrite = setStringToWrite(support);
         list.append(modelUsed).append(stringToWrite, 1, stringToWrite.length() - 1).append("\n");
+        setLogForFiles(support);
+
     }
 
     @Override
@@ -102,12 +128,21 @@ public class RequirementsLister implements JDVisitor {
      * @param node to check
      * @return string to write in the todo file.
      */
-    public String setLabel(Node node) {
+    public String setStringToWrite(Node node) {
     	if(node.references != null && !node.references.contains("!noRef!") && !node.references.equals(" ")) {
     		return node.label.substring(0,node.label.length()-1) + " - references : " + node.references + "\"";
     	}
     	else {
     		return node.label;
+    	}
+    	 
+    }
+    
+    public void setLogForFiles(Node node) {
+    	if(!node.logForFiles.isEmpty()) {
+    		for (String log : node.logForFiles) {
+        		list.append("\t").append(log, 0, log.length()).append("\n");
+    		}
     	}
     	
     }
