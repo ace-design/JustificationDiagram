@@ -309,14 +309,9 @@ SJ --> JV
 ![](examples/exampleCI/Pattern4CI_Valid.svg)
 
 
+
 ## Valid Example with realization 
 Here's an example of a text file, the graph and the todo list it generates if you have validate all the evidences.
-
-run this : 
-```
-mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="example/fig3.jd -o output/images/fig3 -png -td "example/realizationFig3.txt -rea"
-```
-
 
 #### maven.yl - Valid 
 You should write this in 'maven.yml' :
