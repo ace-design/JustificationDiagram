@@ -12,8 +12,7 @@ JDGenerator is a Maven program. You can either clone the repo and run the follow
 mvn install
 mvn compile
 ```
-<!-- TODO : changed the 'download the jar file' -->
-or [download the jar file](https://github.com/ace-design/JustificationDiagram/releases/tag/v1.1).
+or [download the jar file](https://github.com/MireilleBF/JustificationDiagram/releases/tag/V1.2).
 
 ## Execution
 From the cloned repo, run 
@@ -322,7 +321,7 @@ You should write this in 'maven.yml' :
 - name: Realization part2
       run: echo -e "images Archivate!-!examples/exampleCI/Pattern4CI.jd!ref!images" >> realization.txt
 - name: Realization part3
-      run: echo -e "Test Maven passed\nBuild Maven passed!-!.github/workflows/!number!1" >> realization.txt
+      run: echo -e "Test Maven passed\nBuild Maven passed!-!examples!number!10" >> realization.txt
 - name: Realization part4
      run: echo -e "\nJacoco report Archivate!ref!jacoco\nValid Continuous Integration!ref!GeneratedJD" >> realization.txt
 - name: JD&TODO Generation     
@@ -341,7 +340,7 @@ Jacoco Report
 code Archivate!ref!generatedCode
 images Archivate!-!examples/exampleCI/Pattern4CI.jd!ref!images
 Test Maven passed
-Build Maven passed!-!.github/workflows/!number!1
+Build Maven passed!-!examples!number!10
 Jacoco report Archivate!ref!jacoco
 Valid Continuous Integration!ref!GeneratedJD
 
@@ -364,11 +363,11 @@ Requirements list
 [X]	Test Maven passed
 [X]	Jacoco Report
 [X]	images Archivate - references : images
-	[X] filePath - valid
+	[X] filePath
 [X]	Jacoco report Archivate - references : jacoco
 [X]	Test Coverage validated
 [X]	Build Maven passed
-	[x] .github/workflows/ - valid
+	[x] examples
 [X]	Maven ready
 [X]	Test Coverage validated and Archived
 [X]	Archivees Data
@@ -392,7 +391,7 @@ You should write this in 'maven.yml' :
 - name: Realization part2
       run: echo -e "images Archivate!-!examples/exampleCI/Pattern4CI.jd!ref!images" >> realization.txt
 - name: Realization part3
-      run: echo -e "Test Maven passed\nData Archivate!-!.github/workflows/!number!0\n" >> realization.txt
+      run: echo -e "Test Maven passed\nData Archivate!-!examples!number!0\n" >> realization.txt
 - name: Realization part4
      run: echo -e "Jacoco report Archivate\nMaven ready!-!dontExist;dontExist2;dontExist3" >> realization.txt
 - name: JD&TODO Generation     
@@ -411,7 +410,7 @@ Jacoco Report!ref!Archi1
 code Archivate
 images Archivate!-!examples/exampleCI/Pattern4CI.jd!ref!images
 Test Maven passed
-Data Archivate!-!.github/workflows/!number!0
+Data Archivate!-!examples!number!0
 Jacoco report Archivate
 Maven ready!-!dontExist;dontExist2;dontExist3
 ```
@@ -441,7 +440,7 @@ Requirements list
 	[ ] dontExist3 - (not found)
 [X]	Test Coverage validated and Archived
 [ ]	Data Archivate
-	[ ] .github/workflows/ - (1 files found instead of 0)
+	[ ] examples - (10 files found instead of 0)
 [ ]	Archivees Data
 [ ]	Project Valid
 -----------------------------------------------

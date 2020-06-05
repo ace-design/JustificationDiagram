@@ -138,6 +138,11 @@ public class RequirementsLister implements JDVisitor {
     	 
     }
     
+    /**
+     * Take the 'logForFiles' of the current node and write the log of the files in the 'list' (if they have an error or not)
+     * 
+     * @param node to check
+     */
     public void setLogForFiles(Node node) {
     	if(!node.logForFiles.isEmpty()) {
     		for (String log : node.logForFiles) {

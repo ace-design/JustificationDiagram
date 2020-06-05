@@ -4,9 +4,11 @@ Requirements list
 [X]	Test Maven passed
 [X]	Jacoco Report
 [X]	images Archivate - references : images
+	[X] examples/exampleCI/Pattern4CI.jd
 [X]	Jacoco report Archivate - references : jacoco
 [X]	Test Coverage validated
 [X]	Build Maven passed
+	[x] examples
 [X]	Maven ready
 [X]	Test Coverage validated and Archived
 [X]	Archivees Data

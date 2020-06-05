@@ -31,7 +31,7 @@ public class Node implements Visitable {
         this.alias = alias;
         this.inputs = new HashSet<>();
         this.outputs = new HashSet<>();
-        this.references= constantNoReferences;
+        this.references= constantNoReferences; 
         this.state = State.TODO;  
         
         realizationResultAnalysis(realizationResult);
@@ -126,6 +126,7 @@ public class Node implements Visitable {
     		int currentLenght = 0;
 			if(!new File(mapentry.getKey()).exists()) {
 				logForFiles.add("[ ] " + filePath  + " - (not found)");
+				isDone = false;
 			}
 			else if((currentLenght = new File(filePath).listFiles().length) != mapentry.getValue()) {
 				logForFiles.add("[ ] " +  filePath  + " - (" + currentLenght +" files found instead of " + mapentry.getValue() + ")" );
