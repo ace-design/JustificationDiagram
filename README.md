@@ -125,6 +125,35 @@ You can also add references for a certain node with this
       
 ```
 
+## Artifacts
+
+If you want to save the elements created during the continuous integration, always in your 'maven.yl' file, you can write this at the very end of your file :
+
+```
+- name: Archive generated codes
+  uses: actions/upload-artifact@v2
+  with: 
+    name: [Name of your Artifact]
+    path: [OUTPUT_FILE]
+    
+    
+<!-- This will save all "OUTPUT_FILE" files in the specified artifact -->
+```
+
+if you want to save a specific file, you can write this :
+
+```
+- name: Archive generated codes
+  uses: actions/upload-artifact@v2
+  with: 
+    name: Artifact1
+    path: realization.txt
+    
+```
+
+If you want more information about worflows, please [go here](https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions)
+
+
 ## Example without realization
 Here's an example of a text file, the graph and the todo list it generates.
 
@@ -219,68 +248,10 @@ Requirements list
 -----------------------------------------------
 ```
 
-## Example with realization
-Here's an example of a text file, the graph and the todo list it generates if you have validate 'Identified risks','Functional specifications' and 'Technical specifications'.
+## Example with realization 
 
-run this : 
-```
-mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="example/fig3.jd -o output/images/fig3 -png -td "example/realizationFig3.txt -rea"
-```
-
-
-#### maven.yl - Valid 
-You should write this in 'maven.yml' :
-
-```
-- name: Realization part1
-      run: echo -e "Jacoco Report\ncode Archivate!ref!generatedCode\n" >> realization.txt
-- name: Realization part2
-      run: echo -e "images Archivate!-!examples/exampleCI/Pattern4CI.jd!ref!images" >> realization.txt
-- name: Realization part3
-      run: echo -e "Test Maven passed\nBuild Maven passed!-!.github/workflows/!number!1" >> realization.txt
-- name: Realization part4
-     run: echo -e "\nJacoco report Archivate!ref!jacoco\nValid Continuous Integration!ref!GeneratedJD" >> realization.txt
-```
-
-#### maven.yl - Not Valid 
-You should write this in 'maven.yml' :
-
-```
-- name: Realization part1
-      run: echo -e "Jacoco Report!ref!Archi1\ncode Archivate\n" >> realization.txt
-- name: Realization part2
-      run: echo -e "images Archivate!-!examples/exampleCI/Pattern4CI.jd!ref!images" >> realization.txt
-- name: Realization part3
-      run: echo -e "Test Maven passed\nData Archivate!-!.github/workflows/!number!0\n" >> realization.txt
-- name: Realization part4
-     run: echo -e "Jacoco report Archivate\nMaven ready!-!dontExist;dontExist2;dontExist3" >> realization.txt
-```
-
-#### realization.txt - Valid 
-
-```
-Jacoco Report
-code Archivate!ref!generatedCode
-images Archivate!-!examples/exampleCI/Pattern4CI.jd!ref!images
-Test Maven passed
-Build Maven passed!-!.github/workflows/!number!1
-Jacoco report Archivate!ref!jacoco
-Valid Continuous Integration!ref!GeneratedJD
-
-```
-
-#### realization.txt - not Valid
-
-```
-Jacoco Report!ref!Archi1
-code Archivate
-images Archivate!-!examples/exampleCI/Pattern4CI.jd!ref!images
-Test Maven passed
-Data Archivate!-!.github/workflows/!number!0
-Jacoco report Archivate
-Maven ready!-!dontExist;dontExist2;dontExist3
-```
-
+Now we will see 2 examples of valid and invalid diagrams.
+To do so, we will use the following example for both diagrams.
 
 #### example.jd
 ```
@@ -338,13 +309,55 @@ SJ --> JV
 ![](examples/exampleCI/Pattern4CI_Valid.svg)
 
 
+## Valid Example with realization 
+Here's an example of a text file, the graph and the todo list it generates if you have validate all the evidences.
+
+run this : 
+```
+mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="example/fig3.jd -o output/images/fig3 -png -td "example/realizationFig3.txt -rea"
+```
+
+
+#### maven.yl - Valid 
+You should write this in 'maven.yml' :
+
+```
+- name: Realization part1
+      run: echo -e "Jacoco Report\ncode Archivate!ref!generatedCode\n" >> realization.txt
+- name: Realization part2
+      run: echo -e "images Archivate!-!examples/exampleCI/Pattern4CI.jd!ref!images" >> realization.txt
+- name: Realization part3
+      run: echo -e "Test Maven passed\nBuild Maven passed!-!.github/workflows/!number!1" >> realization.txt
+- name: Realization part4
+     run: echo -e "\nJacoco report Archivate!ref!jacoco\nValid Continuous Integration!ref!GeneratedJD" >> realization.txt
+- name: JD&TODO Generation     
+   run : mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/exampleCI/Pattern4CI.jd -o output/GeneratedJD/Pattern4CI -png -td realization.txt -rea"
+- name: Archive generated codes
+      uses: actions/upload-artifact@v2
+      with: 
+        name: GeneratedJD
+        path: output/GeneratedJD
+```
+
+#### realization.txt - Valid 
+
+```
+Jacoco Report
+code Archivate!ref!generatedCode
+images Archivate!-!examples/exampleCI/Pattern4CI.jd!ref!images
+Test Maven passed
+Build Maven passed!-!.github/workflows/!number!1
+Jacoco report Archivate!ref!jacoco
+Valid Continuous Integration!ref!GeneratedJD
+
+```
+
+
+
 #### example_REA.svg - Valid
 
 ![](examples/exampleCI/Pattern4CI_Valid_REA.svg)
 
-#### example_REA.svg - Not Valid
-
-![](examples/exampleCI/Pattern4CI_NotValid_REA.svg)
 
 #### example.todo - Valid
 
@@ -368,7 +381,50 @@ Requirements list
 -----------------------------------------------
 ```
 
-#### example.todo - Not Valid
+
+
+## Invalid Example with realization 
+Here's an example of a text file, the graph and the todo list it generates if you don't have validate 'Build Maven passed' and 'Maven ready'.
+
+#### maven.yl - Invalid
+You should write this in 'maven.yml' :
+
+```
+- name: Realization part1
+      run: echo -e "Jacoco Report!ref!Archi1\ncode Archivate\n" >> realization.txt
+- name: Realization part2
+      run: echo -e "images Archivate!-!examples/exampleCI/Pattern4CI.jd!ref!images" >> realization.txt
+- name: Realization part3
+      run: echo -e "Test Maven passed\nData Archivate!-!.github/workflows/!number!0\n" >> realization.txt
+- name: Realization part4
+     run: echo -e "Jacoco report Archivate\nMaven ready!-!dontExist;dontExist2;dontExist3" >> realization.txt
+- name: JD&TODO Generation     
+   run : mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/exampleCI/Pattern4CI.jd -o output/GeneratedJD/Pattern4CI -png -td realization.txt -rea"
+- name: Archive generated codes
+      uses: actions/upload-artifact@v2
+      with: 
+        name: GeneratedJD
+        path: output/GeneratedJD
+```
+
+#### realization.txt - Invalid
+
+```
+Jacoco Report!ref!Archi1
+code Archivate
+images Archivate!-!examples/exampleCI/Pattern4CI.jd!ref!images
+Test Maven passed
+Data Archivate!-!.github/workflows/!number!0
+Jacoco report Archivate
+Maven ready!-!dontExist;dontExist2;dontExist3
+```
+
+
+#### example_REA.svg - Invalid
+
+![](examples/exampleCI/Pattern4CI_NotValid_REA.svg)
+
+#### example.todo - Invalid
 
 _Generated List_
 ```
@@ -389,35 +445,6 @@ Requirements list
 [ ]		Valid Continuous Integration
 -----------------------------------------------
 ```
-
-## Artifacts
-
-If you want to save the elements created during the continuous integration, always in your 'maven.yl' file, you can write this at the very end of your file :
-
-```
-- name: Archive generated codes
-  uses: actions/upload-artifact@v2
-  with: 
-    name: [Name of your Artifact]
-    path: [OUTPUT_FILE]
-    
-    
-<!-- This will save all "OUTPUT_FILE" files in the specified artifact -->
-```
-
-if you want to save a specific file, you can write this :
-
-```
-- name: Archive generated codes
-  uses: actions/upload-artifact@v2
-  with: 
-    name: Artifact1
-    path: realization.txt
-    
-```
-
-If you want more information about worflows, please [go here : https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions](https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions "go here")
-
 
 
 
