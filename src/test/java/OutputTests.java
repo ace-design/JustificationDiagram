@@ -13,19 +13,19 @@ public class OutputTests {
     }
 
     @Test
-    public void test_IC() throws IOException {
-    	JDCompiler.main(new String[] { inputPath+"Pattern4CI.jd", "-o", outputPath+"Pattern4CI_Valid", "-td","-svg", "-svgR", inputPath+"realization/realizationPattern4CI.txt", "-rea"});
+    public void test_CI() throws IOException {
+    	JDCompiler.main(new String[] { inputPath+"exampleCI/Pattern4CI.jd", "-o", outputPath+"Pattern4CI_Valid", "-td","-svg", "-svgR", inputPath+"exampleCI/realizationPattern4CI.txt", "-rea"});
     }
     
     
     @Test
     public void figToDOWithRea() throws IOException {
-        JDCompiler.main(new String[] { inputPath+"fig3.jd", "-o", outputPath+"fig3", "-td", "-svg", "-svgR", inputPath+"realization/realizationFig3.txt", "-rea"});
+        JDCompiler.main(new String[] { inputPath+"fig3.jd", "-o", outputPath+"fig3", "-td", "-svg", "-svgR", inputPath+"exampleCI/realizationFig3.txt", "-rea"});
     }
     
     @Test
     public void figToDOWithReaAndFileVerification() throws IOException {
-    	JDCompiler.main(new String[] { inputPath+"Pattern4CI.jd", "-o", outputPath+"Pattern4CI_NotValid", "-td", "-svgR", inputPath+"realization/realizationPattern4CINotValid.txt", "-rea"});
+    	JDCompiler.main(new String[] { inputPath+"exampleCI/Pattern4CI.jd", "-o", outputPath+"Pattern4CI_NotValid", "-td", "-svgR", inputPath+"exampleCI/realizationPattern4CINotValid.txt", "-rea"});
     }
     
     @Test

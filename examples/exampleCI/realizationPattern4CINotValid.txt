@@ -1,0 +1,7 @@
+Jacoco Report!ref!Archi1
+code Archivate
+images Archivate!-!examples/exampleCI/Pattern4CI.jd!ref!images
+Test Maven passed
+Data Archivate!-!.github/workflows/!number!0
+Jacoco report Archivate
+Maven ready!-!dontExist;dontExist2;dontExist3

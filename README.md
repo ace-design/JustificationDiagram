@@ -125,7 +125,6 @@ You can also add references for a certain node with this
       
 ```
 
-
 ## Example without realization
 Here's an example of a text file, the graph and the todo list it generates.
 
@@ -194,7 +193,7 @@ H ..> C5
 @enduml
 ```
 
-#### example.png
+#### example.svg
 
 ![](examples/fig3.svg)
 > The justification diagram was adapted from _Support of Justification Elicitation: Two Industrial Reports_ by Clément Duffau, Thomas Polacsek and Mireille Blay-Fornarino, 2018.
@@ -229,109 +228,165 @@ mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="example/fig3.jd -o outp
 ```
 
 
-#### maven.yl
+#### maven.yl - Valid 
 You should write this in 'maven.yml' :
 
 ```
-- name: Realization
-      run: echo -e "Identified risks\nFunctional specifications\nTechnical specifications" >> output/realization/realization.txt
+- name: Realization part1
+      run: echo -e "Jacoco Report\ncode Archivate!ref!generatedCode\n" >> realization.txt
+- name: Realization part2
+      run: echo -e "images Archivate!-!examples/exampleCI/Pattern4CI.jd!ref!images" >> realization.txt
+- name: Realization part3
+      run: echo -e "Test Maven passed\nBuild Maven passed!-!.github/workflows/!number!1" >> realization.txt
+- name: Realization part4
+     run: echo -e "\nJacoco report Archivate!ref!jacoco\nValid Continuous Integration!ref!GeneratedJD" >> realization.txt
 ```
-#### realization.txt
+
+#### maven.yl - Not Valid 
+You should write this in 'maven.yml' :
 
 ```
-Identified risks!ref!Archi1
-Functional specifications!-!example/realization/realizationFig3.txt!ref!Archi1
-Technical specifications!-!.github/workflows;.github/workflows!number!1
-Architectures!-!dontExit
+- name: Realization part1
+      run: echo -e "Jacoco Report!ref!Archi1\ncode Archivate\n" >> realization.txt
+- name: Realization part2
+      run: echo -e "images Archivate!-!examples/exampleCI/Pattern4CI.jd!ref!images" >> realization.txt
+- name: Realization part3
+      run: echo -e "Test Maven passed\nData Archivate!-!.github/workflows/!number!0\n" >> realization.txt
+- name: Realization part4
+     run: echo -e "Jacoco report Archivate\nMaven ready!-!dontExist;dontExist2;dontExist3" >> realization.txt
 ```
+
+#### realization.txt - Valid 
+
+```
+Jacoco Report
+code Archivate!ref!generatedCode
+images Archivate!-!examples/exampleCI/Pattern4CI.jd!ref!images
+Test Maven passed
+Build Maven passed!-!.github/workflows/!number!1
+Jacoco report Archivate!ref!jacoco
+Valid Continuous Integration!ref!GeneratedJD
+
+```
+
+#### realization.txt - not Valid
+
+```
+Jacoco Report!ref!Archi1
+code Archivate
+images Archivate!-!examples/exampleCI/Pattern4CI.jd!ref!images
+Test Maven passed
+Data Archivate!-!.github/workflows/!number!0
+Jacoco report Archivate
+Maven ready!-!dontExist;dontExist2;dontExist3
+```
+
 
 #### example.jd
 ```
 @startuml
 
-conclusion C = "Software safety validated" - "Internal"
-strategy S = "Assess software safety"
-domain D = "Internal accreditation"
-rationale R = "Credentials for IEC 62304"
+conclusion C = "Valid Continuous Integration" - "interne"
+PV --> C
 
-subconclusion C1 = "Specifications validated"
+subconclusion PV = "Project Valid" 
+strategy SE = "Evaluate Project Quality"
+SE --> PV
+M --> SE
+ASC --> SE
+AJS --> SE
 
-subconclusion C2 = "Architecture validated"
-strategy S2 = "Review architecture"
-support F = "Architecture"
+subconclusion ASC = "Archivees Data" 
+strategy SD = "Data Archivate"
+support CA = "code Archivate"
+support IA = "images Archivate"
 
-subconclusion C3 = "Safety specifications validated"
-strategy S3 = "Assess risk management"
-rationale R3 = "Credentials for ISO 14971"
-support G = "Risk mitigation plan"
+SD --> ASC
+AJS --> SD
+CA --> SD
+IA --> SD
 
-subconclusion C4 = "Risks consistency"
-strategy S4 = "Verify consistency"
-support H = "Technical specifications"
-support I = "Functional specifications"
-support J = "Identified risks"
+subconclusion M = "Maven ready"
+strategy SM = "Evaluate Maven Project"
+support TM = "Test Maven passed"
+support BM = "Build Maven passed" 
+BM --> SM
+TM --> SM
+SM --> M
 
-subconclusion C5 = "Feasible hard points"
 
-S --> C
-D --> S
-R --> S
 
-C1 --> S
-H ..> C1
-I ..> C1
+subconclusion AJS = "Test Coverage validated and Archived"
+strategy SJA = "testCoverage Archivate"
+support JA = "Jacoco report Archivate"
+JV --> SJA
+RJ --> SJA
+JA --> SJA
+SJA --> AJS
 
-C2 --> S
-S2 --> C2
-F --> S2
-H --> S2
-
-C3 --> S
-C3 --> S2
-S3 --> C3
-R3 --> S3
-J --> S3
-G --> S3
-
-C4 --> S3
-S4 --> C4
-H --> S4
-I --> S4
-J --> S4
-
-C5 --> S2
-H ..> C5
+subconclusion JV = "Test Coverage validated"
+strategy SJ = "Validate testCoverage"
+support RJ = "Jacoco Report"
+RJ --> SJ
+SJ --> JV
 
 @enduml
 ```
 
-#### example.png
+#### example.svg
 
-![](examples/fig3.svg)
-> The justification diagram was adapted from _Support of Justification Elicitation: Two Industrial Reports_ by Clément Duffau, Thomas Polacsek and Mireille Blay-Fornarino, 2018.
+![](examples/exampleCI/Pattern4CI_Valid.svg)
 
-#### example_REA.png
 
-![](examples/fig3_REA.svg)
+#### example_REA.svg - Valid
 
-#### example.todo
+![](examples/exampleCI/Pattern4CI_Valid_REA.svg)
+
+#### example_REA.svg - Not Valid
+
+![](examples/exampleCI/Pattern4CI_NotValid_REA.svg)
+
+#### example.todo - Valid
 
 _Generated List_
 ```
 Requirements list
 
-[X]	Identified risks - references : Archi1
-[X]	Functional specifications - references : Archi1
-[X]	Technical specifications
-[X]	Feasible hard points
-[X]	Specifications validated
-[ ]	Risk mitigation plan
-[ ]	Architecture
-[ ]	Risks consistency
-[ ]	Safety specifications validated
-[ ]	Architecture validated
+[X]	code Archivate - references : generatedCode
+[X]	Test Maven passed
+[X]	Jacoco Report
+[X]	images Archivate - references : images
+[X]	Jacoco report Archivate - references : jacoco
+[X]	Test Coverage validated
+[X]	Build Maven passed
+[X]	Maven ready
+[X]	Test Coverage validated and Archived
+[X]	Archivees Data
+[X]	Project Valid
 -----------------------------------------------
-[ ]		Software safety validated
+[X]		Valid Continuous Integration - references : GeneratedJD
+-----------------------------------------------
+```
+
+#### example.todo - Not Valid
+
+_Generated List_
+```
+Requirements list
+
+[X]	code Archivate
+[X]	Test Maven passed
+[X]	Jacoco Report - references : Archi1
+[X]	images Archivate - references : images
+[X]	Jacoco report Archivate
+[X]	Test Coverage validated
+[ ]	Build Maven passed
+[ ]	Maven ready
+[X]	Test Coverage validated and Archived
+[ ]	Archivees Data
+[ ]	Project Valid
+-----------------------------------------------
+[ ]		Valid Continuous Integration
 -----------------------------------------------
 ```
 
@@ -360,6 +415,9 @@ if you want to save a specific file, you can write this :
     path: realization.txt
     
 ```
+
+If you want more information about worflows, please [go here : https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions](https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions "go here")
+
 
 
 

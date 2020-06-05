@@ -1,7 +1,7 @@
 Jacoco Report
 code Archivate!ref!generatedCode
-images Archivate!-!output/images/!number!12;examples/realization/realizationPattern4CI.txt!ref!images
+images Archivate!-!examples/exampleCI/Pattern4CI.jd!ref!images
 Test Maven passed
-Build Maven passed
+Build Maven passed!-!.github/workflows/!number!1
 Jacoco report Archivate!ref!jacoco
 Valid Continuous Integration!ref!GeneratedJD
