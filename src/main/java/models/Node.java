@@ -12,13 +12,14 @@ public class Node implements Visitable {
     public Set<Relation> outputs;
     public State state;
     
-    
+    // - information of realization file
     public ArrayList<String> realizationResult = new ArrayList<>();
     public ArrayList<String> realizationList = new ArrayList<>();
     public ArrayList<String> checkFile = new ArrayList<>();
     public HashMap<String,Integer> checkFileWithNumber = new HashMap<>();
     public String references;
     
+    // - log
     public ArrayList<String> logForFiles = new ArrayList<>();
     
     // - constant
@@ -34,7 +35,7 @@ public class Node implements Visitable {
         this.references= constantNoReferences; 
         this.state = State.TODO;  
         
-        realizationResultAnalysis(realizationResult);
+        realizationResultParse(realizationResult);
 
     }
 
@@ -46,13 +47,14 @@ public class Node implements Visitable {
         this.state = node.state;
         this.references = constantNoReferences;
 
-        realizationResultAnalysis(realizationResult);
+        realizationResultParse(realizationResult);
 
     }
     
 
     /** 
-     * Verifies that all necessary files are present
+     * If the current node have no child; check the realizationList.
+     * Verifies that all necessary files are present.
      * Then analyze the children of the current node. If all the children of this one are DONE, it will be DONE, otherwise it will be TODO. 
      * If he has no children, no change will be made.  
      * 
@@ -61,21 +63,23 @@ public class Node implements Visitable {
     	
     	boolean isDone = true;
     	// Use to check that the current node depends on the state of these inputs.
-    	if(!inputs.isEmpty()) {
-    		// use to analyze the state of the child nodes 
-    		isDone = relationAnalyse();
-	    	// used to verify that the necessary files are present.  
-			if(!checkFile.isEmpty()) {
-				isDone = checkFileAnalyses();
-	    	}
-			// used to check the number of files in a repertory
-			if(!checkFileWithNumber.isEmpty()) {
-				isDone = CheckFileWithNumberAnalyses();
-	    	}
-	    	if(isDone) {
-	    		this.state = State.DONE;
-	    	}
+    	if(inputs.isEmpty()) {
+    		isDone = realizationListAnalyses();
+    		}
+		// use to analyze the state of the child nodes 
+		isDone = relationAnalyse();
+    	// used to verify that the necessary files are present.  
+		if(!checkFile.isEmpty()) {
+			isDone = checkFileAnalyses();
     	}
+		// used to check the number of files in a repertory
+		if(!checkFileWithNumber.isEmpty()) {
+			isDone = CheckFileWithNumberAnalyses();
+    	}
+    	if(isDone) {
+    		this.state = State.DONE;
+    	}
+    	
     }
     
     /**
@@ -84,13 +88,26 @@ public class Node implements Visitable {
      * @return true if all child node are DONE, else return false.
      */
     public boolean relationAnalyse() {
-    	// used to verify that the necessary files are present.  
 		for (Relation relation : inputs) {
 			if(relation.from.state.equals(State.TODO)) {
 				return false;
 			}
 		}
     	return true;
+    }
+    
+    /**
+     * used to check if the label is contains in 'realizationList'
+     * @return true if the label is containt in 'realizationList'
+     */
+    public boolean realizationListAnalyses() {
+    	
+		if(realizationList != null && realizationList.contains(label)) {
+			return true;
+		}
+		else {
+			return false;
+		}
     }
     
     /**
@@ -147,7 +164,7 @@ public class Node implements Visitable {
      * 
      * @param realizationResult
      */
-    public void realizationResultAnalysis(ArrayList<String> realizationResult) {
+    public void realizationResultParse(ArrayList<String> realizationResult) {
     	    	 
     	for (String realizationLine : realizationResult) {
     		

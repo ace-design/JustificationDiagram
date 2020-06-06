@@ -8,7 +8,7 @@ public class Rationale extends Node {
 
     public Rationale(String alias, String label,ArrayList<String> realizationResult) {
         super(alias, label,realizationResult);
-        setState(); 
+        //setState(); 
     }
 
     public void accept(JDVisitor JDVisitor) {

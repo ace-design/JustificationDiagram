@@ -8,7 +8,7 @@ public class Support extends Node {
 
     public Support(String alias, String label,ArrayList<String> realizationResult) {
         super(alias, label,realizationResult);
-        setState(); 
+        //setState(); 
     }
 
     @Override

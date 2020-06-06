@@ -9,7 +9,7 @@ public class Domain extends Node {
 
     public Domain(String alias, String label,ArrayList<String> realizationResult) {
         super(alias, label,realizationResult);
-        setState(); 
+        //setState(); 
     }
 
     public void accept(JDVisitor JDVisitor) {
