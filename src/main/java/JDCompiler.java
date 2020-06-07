@@ -159,9 +159,9 @@ public class JDCompiler {
 
 	public static JustificationDiagram createDiagram(String file, String realizationFile) {
 
-		ArrayList<String> realizationResult = parseRealization(realizationFile);
+		ArrayList<String> realizationResult = realizationParse(realizationFile);
 		JDInitializer factory = new JDInitializer();
-		factory.setRealizationList(realizationResult);
+		factory.realizationList = realizationResult;
 		factory.visit(parseAntlr(file));
 		JDLinker linker = new JDLinker(factory.diagram);
 		linker.visit(parseAntlr((file)));
@@ -191,7 +191,7 @@ public class JDCompiler {
 	 * @param realizationPath path to the realization file
 	 * @return list of node information
 	 */
-	public static ArrayList<String> parseRealization(String realizationPath) {
+	public static ArrayList<String> realizationParse(String realizationPath) {
 
 		File realization;
 		ArrayList<String> realizationResult = new ArrayList<String>();

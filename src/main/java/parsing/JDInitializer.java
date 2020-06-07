@@ -8,11 +8,6 @@ import models.*;
 public class JDInitializer extends JustificationDiagramBaseVisitor<String> {
     public JustificationDiagram diagram;
     public ArrayList<String> realizationList;
-    
-    
-    public void setRealizationList(ArrayList<String> realizationResult) {
-    	this.realizationList = realizationResult;
-    }
 
     @Override
     public String visitDiagram(JustificationDiagramParser.DiagramContext ctx) {
