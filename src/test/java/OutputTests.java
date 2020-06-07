@@ -29,6 +29,12 @@ public class OutputTests {
     }
     
     @Test
+    public void basicEmpty() throws IOException {
+        JDCompiler.main(new String[] {inputPath+"basic.jd", "-o", outputPath+"basicEmpty","-td", "-svgR", inputPath+"realization/empty.txt", "-rea"});
+    }
+    
+    
+    @Test
     public void basic() throws IOException {
         JDCompiler.main(new String[] {inputPath+"basic.jd", "-o", outputPath+"basic", "-svg"});
     }
