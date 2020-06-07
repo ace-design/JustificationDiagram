@@ -60,21 +60,29 @@ public class Node implements Visitable {
      * 
      */
     public void prerequisiteAnalysis() {
-    	
+
     	boolean isDone = true;
     	// Use to check that the current node depends on the state of these inputs.
     	if(inputs.isEmpty()) {
     		isDone = realizationListAnalyses();
-    		}
+    	}
 		// use to analyze the state of the child nodes 
-		isDone = relationAnalyse();
+    	if(isDone) {
+    		isDone = relationAnalyse();
+		}
     	// used to verify that the necessary files are present.  
 		if(!checkFile.isEmpty()) {
-			isDone = checkFileAnalyses();
+			if(isDone) {
+				isDone = checkFileAnalyses();
+			}
+
     	}
 		// used to check the number of files in a repertory
 		if(!checkFileWithNumber.isEmpty()) {
-			isDone = CheckFileWithNumberAnalyses();
+			if(isDone) {
+				isDone = checkFileAnalyses();
+			}
+
     	}
     	if(isDone) {
     		this.state = State.DONE;
