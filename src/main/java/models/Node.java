@@ -70,11 +70,17 @@ public class Node implements Visitable {
     	if(isDone) {
     		isDone = relationAnalyse();
 		}
+    	else {
+    		relationAnalyse();
+    	}
     	// used to verify that the necessary files are present.  
 		if(!checkFile.isEmpty()) {
 			if(isDone) {
 				isDone = checkFileAnalyses();
 			}
+			else {
+	    		relationAnalyse();
+	    	}
 
     	}
 		// used to check the number of files in a repertory
@@ -82,6 +88,9 @@ public class Node implements Visitable {
 			if(isDone) {
 				isDone = checkFileAnalyses();
 			}
+			else {
+	    		relationAnalyse();
+	    	}
 
     	}
     	if(isDone) {
