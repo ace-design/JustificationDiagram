@@ -2,19 +2,20 @@ Requirements list
 
 [X]	code Archivate
 [X]	Test Maven passed
-[X]	Jacoco Report - references : Archi1
+[X]	Jacoco Report
 [X]	images Archivate - references : images
 	[X] examples/exampleCI/Pattern4CI.jd
 [X]	Jacoco report Archivate
 [X]	Test Coverage validated
-[ ]	Build Maven passed
+[X]	Build Maven passed
 [ ]	Maven ready
-	[ ] dontExist - (not found)
-	[ ] dontExist2 - (not found)
-	[ ] dontExist3 - (not found)
+	[ ] dontExist.txt - (not found)
+	[ ] dontExist2.jd - (not found)
+	[ ] dontExist3.todo - (not found)
 [X]	Test Coverage validated and Archived
 [ ]	Data Archivate
-	[ ] examples - (10 files found instead of 0)
+	[ ] examples - (3 file expected, but 10 found)
+	[ ] dontExist3.todo - (not found)
 [ ]	Archivees Data
 [ ]	Project Valid
 -----------------------------------------------

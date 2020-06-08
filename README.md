@@ -465,8 +465,8 @@ Requirements list
 	[ ] dontExist3.todo - (not found)
 [X]	Test Coverage validated and Archived
 [ ]	Data Archivate
-	[ ] examples - (3 file expected, but 10 found)
-    [ ] dontExist3.todo - (not found)
+    [ ] examples - (3 file expected, but 10 found
+	[ ] dontExist3.todo - (not found)
 [ ]	Archivees Data
 [ ]	Project Valid
 -----------------------------------------------

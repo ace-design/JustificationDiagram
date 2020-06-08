@@ -87,14 +87,14 @@
 <!-- BM -->
 <g id="node7" class="node">
 <title>BM</title>
-<path fill="#87ceeb" stroke="#cd0000" d="M619.484,-324C619.484,-324 512.8632,-324 512.8632,-324 506.8632,-324 500.8632,-318 500.8632,-312 500.8632,-312 500.8632,-300 500.8632,-300 500.8632,-294 506.8632,-288 512.8632,-288 512.8632,-288 619.484,-288 619.484,-288 625.484,-288 631.484,-294 631.484,-300 631.484,-300 631.484,-312 631.484,-312 631.484,-318 625.484,-324 619.484,-324"/>
-<text text-anchor="middle" x="566.1736" y="-301.8" font-family="Times,serif" font-size="14.00" fill="#cd0000">Build Maven passed</text>
+<path fill="#87ceeb" stroke="#0000cd" d="M619.484,-324C619.484,-324 512.8632,-324 512.8632,-324 506.8632,-324 500.8632,-318 500.8632,-312 500.8632,-312 500.8632,-300 500.8632,-300 500.8632,-294 506.8632,-288 512.8632,-288 512.8632,-288 619.484,-288 619.484,-288 625.484,-288 631.484,-294 631.484,-300 631.484,-300 631.484,-312 631.484,-312 631.484,-318 625.484,-324 619.484,-324"/>
+<text text-anchor="middle" x="566.1736" y="-301.8" font-family="Times,serif" font-size="14.00" fill="#0000cd">Build Maven passed</text>
 </g>
 <!-- SM -->
 <g id="node8" class="node">
 <title>SM</title>
-<polygon fill="#a2cd5a" stroke="#cd0000" points="712.8087,-396 465.4684,-396 419.5385,-360 666.8788,-360 712.8087,-396"/>
-<text text-anchor="middle" x="566.1736" y="-373.8" font-family="Times,serif" font-size="14.00" fill="#cd0000">Evaluate Maven Project</text>
+<polygon fill="#a2cd5a" stroke="#0000cd" points="712.8087,-396 465.4684,-396 419.5385,-360 666.8788,-360 712.8087,-396"/>
+<text text-anchor="middle" x="566.1736" y="-373.8" font-family="Times,serif" font-size="14.00" fill="#0000cd">Evaluate Maven Project</text>
 </g>
 <!-- BM&#45;&gt;SM -->
 <g id="edge7" class="edge">
