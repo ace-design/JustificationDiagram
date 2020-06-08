@@ -316,14 +316,25 @@ Here's an example of a text file, the graph and the todo list it generates if yo
 You should write this in 'maven.yml' :
 
 ```
+#"code Archivate" have the reference  'generatedCode'
 - name: Realization part1
       run: echo -e "Jacoco Report\ncode Archivate!ref!generatedCode\n" >> realization.txt
+
+#"images Archivate" must verify that 'examples/exampleCI/Pattern4CI.jd' exists and it has 'images' as reference.
 - name: Realization part2
       run: echo -e "images Archivate!-!examples/exampleCI/Pattern4CI.jd!ref!images" >> realization.txt
+
+#"Test Maven passed" is done
+#"Build Maven passed" must check that the 'examples' directory contains 10 files.
 - name: Realization part3
       run: echo -e "Test Maven passed\nBuild Maven passed!-!examples!number!10" >> realization.txt
+#"Jacoco report" is done
+#"Valid Continuous" have the reference  'GeneratedJD'
+#"Jacoco report Archivate" have the reference 'jacoco'
+
 - name: Realization part4
      run: echo -e "\nJacoco report Archivate!ref!jacoco\nValid Continuous Integration!ref!GeneratedJD" >> realization.txt
+
 - name: JD&TODO Generation     
    run : mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/exampleCI/Pattern4CI.jd -o output/GeneratedJD/Pattern4CI -png -td realization.txt -rea"
 - name: Archive generated codes
@@ -334,6 +345,9 @@ You should write this in 'maven.yml' :
 ```
 
 #### realization.txt - Valid 
+
+Here we say this:
+
 
 ```
 Jacoco Report
@@ -363,7 +377,7 @@ Requirements list
 [X]	Test Maven passed
 [X]	Jacoco Report
 [X]	images Archivate - references : images
-	[X] filePath
+	[X] examples/exampleCI/Pattern4CI.jd
 [X]	Jacoco report Archivate - references : jacoco
 [X]	Test Coverage validated
 [X]	Build Maven passed
@@ -386,14 +400,24 @@ Here's an example of a text file, the graph and the todo list it generates if yo
 You should write this in 'maven.yml' :
 
 ```
+# "Jacoco Report" have the reference 'archi1'.
+# "code Archivate" is done.
 - name: Realization part1
       run: echo -e "Jacoco Report!ref!Archi1\ncode Archivate\n" >> realization.txt
+      
+# "images Archivate" must verify that 'examples/exampleCI/Pattern4CI.jd' exists and it has 'images' as reference.
 - name: Realization part2
       run: echo -e "images Archivate!-!examples/exampleCI/Pattern4CI.jd!ref!images" >> realization.txt
+      
+#"Test Maven passed" is done.
+#"Data Archivate" must check that the 'examples' directory and 'dontExist3.todo' directory contains 3 files. This will lead to an error because 'examples' contains 10 files and 'dontExist3.todo' does not exist.
 - name: Realization part3
-      run: echo -e "Test Maven passed\nData Archivate!-!examples!number!0\n" >> realization.txt
+      run: echo -e "Test Maven passed\nData Archivate!-!examples!number!3;dontExist3.todo!number!3\n" >> realization.txt
+#"Jacoco report Archivate"  is done
+#"Maven ready" should check that the files 'dontExist.txt', 'dontExist2.jd' and 'dontExist3.todo' exist. This will lead to an error because it does not exist.
 - name: Realization part4
-     run: echo -e "Jacoco report Archivate\nMaven ready!-!dontExist;dontExist2;dontExist3" >> realization.txt
+     run: echo -e "Jacoco report Archivate\nMaven ready!-!dontExist.txt;dontExist2.jd;dontExist3.todo" >> realization.txt
+     
 - name: JD&TODO Generation     
    run : mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/exampleCI/Pattern4CI.jd -o output/GeneratedJD/Pattern4CI -png -td realization.txt -rea"
 - name: Archive generated codes
@@ -405,14 +429,15 @@ You should write this in 'maven.yml' :
 
 #### realization.txt - Invalid
 
+
 ```
 Jacoco Report!ref!Archi1
 code Archivate
 images Archivate!-!examples/exampleCI/Pattern4CI.jd!ref!images
 Test Maven passed
-Data Archivate!-!examples!number!0
+Data Archivate!-!examples!number!3;dontExist3.todo!number!3
 Jacoco report Archivate
-Maven ready!-!dontExist;dontExist2;dontExist3
+Maven ready!-!dontExist.txt;dontExist2.jd;dontExist3.todo
 ```
 
 
@@ -435,12 +460,13 @@ Requirements list
 [X]	Test Coverage validated
 [ ]	Build Maven passed
 [ ]	Maven ready
-	[ ] dontExist - (not found)
-	[ ] dontExist2 - (not found)
-	[ ] dontExist3 - (not found)
+	[ ] dontExist.txt - (not found)
+	[ ] dontExist2.jd - (not found)
+	[ ] dontExist3.todo - (not found)
 [X]	Test Coverage validated and Archived
 [ ]	Data Archivate
-	[ ] examples - (10 files found instead of 0)
+	[ ] examples - (3 file expected, but 10 found)
+    [ ] dontExist3.todo - (not found)
 [ ]	Archivees Data
 [ ]	Project Valid
 -----------------------------------------------

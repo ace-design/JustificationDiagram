@@ -1,7 +1,8 @@
-
+Build Maven passed
 code Archivate
 images Archivate!-!examples/exampleCI/Pattern4CI.jd!ref!images
 Test Maven passed
-Data Archivate!-!examples!number!0
+Data Archivate!-!examples!number!3;dontExist3.todo!number!3
+Jacoco Report
 Jacoco report Archivate
-Maven ready!-!dontExist;dontExist2;dontExist3
+Maven ready!-!dontExist.txt;dontExist2.jd;dontExist3.todo

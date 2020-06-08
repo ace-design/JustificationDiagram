@@ -69,27 +69,36 @@ public class Node implements Visitable {
 		// use to analyze the state of the child nodes 
     	if(isDone) {
     		isDone = relationAnalyse();
+
 		}
     	else {
+    		// use juste for the log
     		relationAnalyse();
+
     	}
     	// used to verify that the necessary files are present.  
 		if(!checkFile.isEmpty()) {
 			if(isDone) {
 				isDone = checkFileAnalyses();
+
 			}
 			else {
-	    		relationAnalyse();
+				// use juste for the log
+				checkFileAnalyses();
+
 	    	}
 
     	}
 		// used to check the number of files in a repertory
 		if(!checkFileWithNumber.isEmpty()) {
 			if(isDone) {
-				isDone = checkFileAnalyses();
+				isDone = CheckFileWithNumberAnalyses();
+
 			}
 			else {
-	    		relationAnalyse();
+				// use juste for the log
+				CheckFileWithNumberAnalyses();
+
 	    	}
 
     	}
@@ -163,7 +172,7 @@ public class Node implements Visitable {
 				isDone = false;
 			}
 			else if((currentLenght = new File(filePath).listFiles().length) != mapentry.getValue()) {
-				logForFiles.add("[ ] " +  filePath  + " - (" + currentLenght +" files found instead of " + mapentry.getValue() + ")" );
+				logForFiles.add("[ ] " +  filePath  + " - (" + mapentry.getValue()+" file expected, but " + currentLenght   + " found)" );
 				System.err.println("The repetoire " + filePath + " has " + currentLenght + " files instead of " + mapentry.getValue() + " . The node " + label + " can't be validate");
 				isDone = false;
 			}
@@ -256,6 +265,7 @@ public class Node implements Visitable {
     				String[] tmp = filePath.split(constantNumber);
     				Integer number = Integer.parseInt(tmp[1]);
     				checkFileWithNumber.put(tmp[0], number);
+
     			}
     			else {
     				// if 'filePath' look like this : 'test.txt'
