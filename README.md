@@ -155,17 +155,7 @@ If you want more information about worflows, please [go here](https://help.githu
 ## Example without realization
 Here's an example of a text file, the graph and the todo list it generates.
 
-run this : 
 
-```
-mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="example/fig3.jd -o output/images/fig3 -svg -td example/realization/realizationFig3.txt -rea"
-```
-
-or 
-
-```
-java -jar JDGenerator-jar-with-dependencies.jar example/fig3.jd -o output/images/fig3 -rea example/realization/realizationFig3.txt  -svg -td "
-```
 #### example.jd
 ```
 @startuml
@@ -224,6 +214,20 @@ C5 --> S2
 H ..> C5
 
 @enduml
+```
+
+#### generation of the diagrams
+
+run this : 
+
+```
+mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="example/fig3.jd -o output/images/fig3 -svg -td example/realization/realizationFig3.txt -rea"
+```
+
+or 
+
+```
+java -jar JDGenerator-jar-with-dependencies.jar example/fig3.jd -o output/images/fig3 -rea example/realization/realizationFig3.txt  -svg -td
 ```
 
 #### example.svg
