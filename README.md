@@ -46,7 +46,7 @@ mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="example/basic.jd -o out
 mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="example/basic.jd -o output/images/basic -rea output/realization/realization.txt -svg  "
 ```
 ```
-mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="example/basic.jd -o output/images/basic -rea output/realization/realization.txt -svg -td  "
+java -jar DGenerator-jar-with-dependencies.jar -Dexec.args="example/basic.jd -o output/images/basic -rea output/realization/realization.txt -svg -td  "
 ```
 
 ## Syntax
