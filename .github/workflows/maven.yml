@@ -25,7 +25,7 @@ jobs:
     - name: Test with Maven
       run: mvn test
     #set Variables
-    - name set Variables
+    - name: set Variables
         run : |
           echo -e "justification/examples/exampleCI/" >> Input.txt
           echo -e "justification/output/GeneratedJD/" >> Output.txt
