@@ -713,7 +713,9 @@ jobs:
     
     #I memorize all my files contained in the output directory 
     - name: memorise the final result
-      if: false
+      if: true
+      #WARNING !!!!!!
+      #If you don't have any changes for your diagrams, please write "false". Otherwise, you'll get an error in your CI.
       run: 
        git config user.name "GitHub Actions";
        git add $(cat Output.txt)*;
@@ -724,8 +726,6 @@ jobs:
 
 Now, in you readme, put this :
 
-
-
 ```
 Here is the realization diagram: 
 
@@ -735,6 +735,7 @@ And here's the pattern that fits him:
 <!-- this id an example -->
 ![link to Google](https://github.com/MireilleBF/JustificationDiagram/blob/master/examples/exampleCI/Pattern4CI_Valid.svg)
 ```
+
 
 
 
