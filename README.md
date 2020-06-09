@@ -47,7 +47,6 @@ mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="example/basic.jd -o out
 ```
 ```
 mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="example/basic.jd -o output/images/basic -rea output/realization/realization.txt -svg -td  "
-
 ```
 
 ## Syntax
@@ -156,6 +155,17 @@ If you want more information about worflows, please [go here](https://help.githu
 ## Example without realization
 Here's an example of a text file, the graph and the todo list it generates.
 
+run this : 
+
+```
+mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="example/fig3.jd -o output/images/fig3 -svg -td example/realization/realizationFig3.txt -rea"
+```
+
+or 
+
+```
+java -jar JDGenerator-jar-with-dependencies.jar example/fig3.jd -o output/images/fig3 -rea example/realization/realizationFig3.txt  -svg -td "
+```
 #### example.jd
 ```
 @startuml
@@ -340,7 +350,8 @@ jobs:
     - name: Test with Maven
       run: mvn test
       
-    #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    #---------JustificationDiagram-----------
+
     #Here, I'm going to create the realization file
     
     #"code Archivate" have the reference 'generatedCode'
@@ -400,7 +411,8 @@ jobs:
       with: 
         name: generatedCode
         path: src/main/java/models
-#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        
+     #---------JustificationDiagram-----------
 
 
 ```
@@ -490,7 +502,8 @@ jobs:
     - name: Test with Maven
       run: mvn test
       
-    #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    #---------JustificationDiagram-----------
+
     #Here, I'm going to create the realization file
     
     # "Jacoco Report" have the reference 'archi1'.
@@ -514,6 +527,7 @@ jobs:
 
     - name: JD&TODO Generation     
        run : mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/exampleCI/Pattern4CI.jd -o output/GeneratedJD/Pattern4CI -rea realization.txt -png -td "
+       
     - name: Archive generated codes
           uses: actions/upload-artifact@v2
           with: 
@@ -522,7 +536,7 @@ jobs:
          
     #I generate the two diagrams and the TODO list
     - name: JD&TODO Generation     
-       run : mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/exampleCI/Pattern4CI.jd -o output/GeneratedJD/Pattern4CI -png -td realization.txt -rea"
+       run : mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/exampleCI/Pattern4CI.jd -o output/GeneratedJD/Pattern4CI -svg -td realization.txt -rea"
     
     #I archive my diagramms create during the CI
     - name: Archive JD&TODO
@@ -558,7 +572,8 @@ jobs:
       with: 
         name: generatedCode
         path: src/main/java/models
-#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    #---------JustificationDiagram-----------
+
 
 ```
 
