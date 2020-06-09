@@ -465,8 +465,7 @@ Here's an example of a text file, the graph and the todo list it generates if yo
 #### maven.yl - Invalid
 You should write this in 'maven.yml' :
 
-```
-     
+```   
 # This workflow will build a Java project with Maven
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
 
@@ -569,7 +568,6 @@ jobs:
 
 
 ```
-
 Build Maven passed
 Jacoco Report!ref!Archi1
 code Archivate
@@ -587,8 +585,6 @@ Jacoco report Archivate
 
 _Generated List_
 ```
-Requirements list
-
 Requirements list
 
 [X]	code Archivate
