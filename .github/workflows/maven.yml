@@ -24,9 +24,11 @@ jobs:
       run: mvn -B package --file pom.xml
     - name: Test with Maven
       run: mvn test
-    - name: Ls
-      run:
-        ls -la *
+    #set Variables
+    - name set Variables
+        run : |
+          echo -e "justification/examples/exampleCI/" >> Input.txt
+          echo -e "justification/output/GeneratedJD/" >> Output.txt
     - name: Realization part1
       run: echo -e "\nBuild Maven passed\nTest Maven passed\nJacoco Report!-!target/site/jacoco/index.html\nimages Archivate!-!output/images/!number!14!ref!images" >> realization.txt
     - name: Realization part2
@@ -34,12 +36,12 @@ jobs:
     - name: cat Realization
       run: cat realization.txt
     - name: JD&TODO generation 
-      run: mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/Pattern4CI.jd -o output/GeneratedJD/Pattern4CI -rea realization.txt -svg -svgR -td "
+      run: java -jar JDGenerator-jar-with-dependencies $(cat Input.txt)Pattern4CI.jd -o $(cat Output.txt)Pattern4CI -rea realization.txt -svg -svgR -td
     - name: Archive JD&TODO
       uses: actions/upload-artifact@v2
       with: 
         name: GeneratedJD
-        path: output/GeneratedJD
+        path: $(cat Output.txt)
     - name: Archive realization
       uses: actions/upload-artifact@v2
       with: 
@@ -49,7 +51,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with: 
         name: images
-        path: output/images
+        path: justification/output/images
     - name: Archive Jacoco report
       uses: actions/upload-artifact@v2
       with: 
@@ -60,4 +62,12 @@ jobs:
       with: 
         name: generatedCode
         path: src/main/java/models
+    - name: memorise the final result
+      run: 
+       git config user.name "GitHub Actions";
+       git status; 
+       echo -e "--------------";
+       git diff --quiet && git diff --staged --quiet || (git add $(cat Output.txt)*;git commit -m “${COMMIT_MSG}“; git push origin master)
+       git status;
+       echo -e "--------------";
     

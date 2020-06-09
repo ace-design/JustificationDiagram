@@ -1,6 +1,0 @@
-Jacoco Report!-!file1;file2!ref!archi1
-code Archivate!ref!archi2
-images Archivate!-!file1;file2
-Test Maven passed
-Build Maven passed
-Jacoco report Archivate

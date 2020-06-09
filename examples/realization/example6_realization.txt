@@ -1,4 +1,0 @@
-JUnit test logs!-!output/example5_realization!ref!archi1
-Jenkins test logs
-Internal
-ISO 1234

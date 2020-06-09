@@ -1,7 +1,0 @@
-Jacoco Report
-code Archivate!ref!generatedCode
-images Archivate!-!examples/exampleCI/Pattern4CI.jd!ref!images
-Test Maven passed
-Build Maven passed!-!examples!number!10
-Jacoco report Archivate!ref!jacoco
-Valid Continuous Integration!ref!GeneratedJD
