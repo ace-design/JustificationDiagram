@@ -1,7 +1,7 @@
 # Justification Diagram Generator
 
-- Author : Corinne Pulgar
-- Supervision : Sébastien Mosser
+- Author : Corinne Pulgar and Nicolas Corbière
+- Supervision : Sébastien Mosser and mireille Blay-Fornarino
 
 This prototype generates a justification diagram from a text file. 
 
@@ -38,7 +38,7 @@ java -jar JDGenerator-jar-with-dependencies.jar [INPUT_FILE] -o [OUTPUT_FILE] [O
 If no output file is entered, the generated files will be named from the input file name. 
 
 
-other examples : 
+There are a few examples: 
 ```
 mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="example/basic.jd -o output/images/basic -svg"
 ```
@@ -316,32 +316,98 @@ Here's an example of a text file, the graph and the todo list it generates if yo
 You should write this in 'maven.yml' :
 
 ```
-#"code Archivate" have the reference  'generatedCode'
-- name: Realization part1
-      run: echo -e "Jacoco Report\ncode Archivate!ref!generatedCode\n" >> realization.txt
+# This workflow will build a Java project with Maven
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
 
-#"images Archivate" must verify that 'examples/exampleCI/Pattern4CI.jd' exists and it has 'images' as reference.
-- name: Realization part2
-      run: echo -e "images Archivate!-!examples/exampleCI/Pattern4CI.jd!ref!images" >> realization.txt
+name: Java CI with Maven
 
-#"Test Maven passed" is done
-#"Build Maven passed" must check that the 'examples' directory contains 10 files.
-- name: Realization part3
-      run: echo -e "Test Maven passed\nBuild Maven passed!-!examples!number!10" >> realization.txt
-#"Jacoco report" is done
-#"Valid Continuous" have the reference  'GeneratedJD'
-#"Jacoco report Archivate" have the reference 'jacoco'
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
-- name: Realization part4
-     run: echo -e "\nJacoco report Archivate!ref!jacoco\nValid Continuous Integration!ref!GeneratedJD" >> realization.txt
+jobs:
+  build:
 
-- name: JD&TODO Generation     
-   run : mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/exampleCI/Pattern4CI.jd -o output/GeneratedJD/Pattern4CI -png -td realization.txt -rea"
-- name: Archive generated codes
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+    #Build of the project
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
+    #Test of the project
+    - name: Test with Maven
+      run: mvn test
+      
+    #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    #Here, I'm going to create the realization file
+    
+    #"code Archivate" have the reference 'generatedCode'
+    - name: Realization part1
+          run: echo -e "Jacoco Report\ncode Archivate!ref!generatedCode\n" >> realization.txt
+
+    #"images Archivate" must verify that 'examples/exampleCI/Pattern4CI.jd' exists and it has 'images' as reference.
+    - name: Realization part2
+          run: echo -e "images Archivate!-!examples/exampleCI/Pattern4CI.jd!ref!images" >> realization.txt
+
+    #"Test Maven passed" is done
+    #"Build Maven passed" must check that the 'examples' directory contains 10 files.
+    - name: Realization part3
+          run: echo -e "Test Maven passed\nBuild Maven passed!-!examples!number!10" >> realization.txt
+    #"Jacoco report" is done
+    #"Valid Continuous" have the reference  'GeneratedJD'
+    #"Jacoco report Archivate" have the reference 'jacoco'
+
+    - name: Realization part4
+         run: echo -e "\nJacoco report Archivate!ref!jacoco\nValid Continuous Integration!ref!GeneratedJD" >> realization.txt
+         
+    #I generate the two diagrams and the TODO list
+    - name: JD&TODO Generation     
+       run : mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/exampleCI/Pattern4CI.jd -o output/GeneratedJD/Pattern4CI -png -td realization.txt -rea"
+    
+    #I archive my diagramms create during the CI
+    - name: Archive JD&TODO
       uses: actions/upload-artifact@v2
       with: 
         name: GeneratedJD
         path: output/GeneratedJD
+        
+    #I archive my realization file in the same artifacts as my diagramms
+    - name: Archive realization
+      uses: actions/upload-artifact@v2
+      with: 
+        name: GeneratedJD
+        path: realization.txt
+        
+    #I archive the diagrams generated during the test
+    - name: Archive images
+      uses: actions/upload-artifact@v2
+      with: 
+        name: images
+        path: output/images
+        
+    #I archive the Jacoco report
+    - name: Archive Jacoco report
+      uses: actions/upload-artifact@v2
+      with: 
+        name: jacoco
+        path: target/site/jacoco
+        
+    #I archive the generated codes
+    - name: Archive generated codes
+      uses: actions/upload-artifact@v2
+      with: 
+        name: generatedCode
+        path: src/main/java/models
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
 ```
 
 #### realization.txt - Valid 
@@ -400,31 +466,106 @@ Here's an example of a text file, the graph and the todo list it generates if yo
 You should write this in 'maven.yml' :
 
 ```
-# "Jacoco Report" have the reference 'archi1'.
-# "code Archivate" is done.
-- name: Realization part1
-      run: echo -e "Jacoco Report!ref!Archi1\ncode Archivate\n" >> realization.txt
+
+        
+        
+# This workflow will build a Java project with Maven
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+
+name: Java CI with Maven
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+    #Build of the project
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
+    #Test of the project
+    - name: Test with Maven
+      run: mvn test
       
-# "images Archivate" must verify that 'examples/exampleCI/Pattern4CI.jd' exists and it has 'images' as reference.
-- name: Realization part2
-      run: echo -e "images Archivate!-!examples/exampleCI/Pattern4CI.jd!ref!images" >> realization.txt
-      
-#"Test Maven passed" is done.
-#"Data Archivate" must check that the 'examples' directory and 'dontExist3.todo' directory contains 3 files. This will lead to an error because 'examples' contains 10 files and 'dontExist3.todo' does not exist.
-- name: Realization part3
-      run: echo -e "Test Maven passed\nData Archivate!-!examples!number!3;dontExist3.todo!number!3\n" >> realization.txt
-#"Jacoco report Archivate"  is done
-#"Maven ready" should check that the files 'dontExist.txt', 'dontExist2.jd' and 'dontExist3.todo' exist. This will lead to an error because it does not exist.
-- name: Realization part4
-     run: echo -e "Jacoco report Archivate\nMaven ready!-!dontExist.txt;dontExist2.jd;dontExist3.todo" >> realization.txt
-     
-- name: JD&TODO Generation     
-   run : mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/exampleCI/Pattern4CI.jd -o output/GeneratedJD/Pattern4CI -png -td realization.txt -rea"
-- name: Archive generated codes
+    #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    #Here, I'm going to create the realization file
+    # "Jacoco Report" have the reference 'archi1'.
+    # "code Archivate" is done.
+    - name: Realization part1
+          run: echo -e "Jacoco Report!ref!Archi1\ncode Archivate\n" >> realization.txt
+
+    # "images Archivate" must verify that 'examples/exampleCI/Pattern4CI.jd' exists and it has 'images' as reference.
+    - name: Realization part2
+          run: echo -e "images Archivate!-!examples/exampleCI/Pattern4CI.jd!ref!images" >> realization.txt
+
+    #"Test Maven passed" is done.
+    #"Data Archivate" must check that the 'examples' directory and 'dontExist3.todo' directory contains 3 files. This will lead to an error because 'examples' contains 10 files and 'dontExist3.todo' does not exist.
+    - name: Realization part3
+          run: echo -e "Test Maven passed\nData Archivate!-!examples!number!3;dontExist3.todo!number!3\n" >> realization.txt
+    #"Jacoco report Archivate"  is done
+    #"Maven ready" should check that the files 'dontExist.txt', 'dontExist2.jd' and 'dontExist3.todo' exist. This will lead to an error because it does not exist.
+    - name: Realization part4
+         run: echo -e "Jacoco report Archivate\nMaven ready!-!dontExist.txt;dontExist2.jd;dontExist3.todo" >> realization.txt
+
+    - name: JD&TODO Generation     
+       run : mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/exampleCI/Pattern4CI.jd -o output/GeneratedJD/Pattern4CI -png -td realization.txt -rea"
+    - name: Archive generated codes
+          uses: actions/upload-artifact@v2
+          with: 
+            name: GeneratedJD
+            path: output/GeneratedJD
+         
+    #I generate the two diagrams and the TODO list
+    - name: JD&TODO Generation     
+       run : mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/exampleCI/Pattern4CI.jd -o output/GeneratedJD/Pattern4CI -png -td realization.txt -rea"
+    
+    #I archive my diagramms create during the CI
+    - name: Archive JD&TODO
       uses: actions/upload-artifact@v2
       with: 
         name: GeneratedJD
         path: output/GeneratedJD
+        
+    #I archive my realization file in the same artifacts as my diagramms
+    - name: Archive realization
+      uses: actions/upload-artifact@v2
+      with: 
+        name: GeneratedJD
+        path: realization.txt
+        
+    #I archive the diagrams generated during the test
+    - name: Archive images
+      uses: actions/upload-artifact@v2
+      with: 
+        name: images
+        path: output/images
+        
+    #I archive the Jacoco report
+    - name: Archive Jacoco report
+      uses: actions/upload-artifact@v2
+      with: 
+        name: jacoco
+        path: target/site/jacoco
+        
+    #I archive the generated codes
+    - name: Archive generated codes
+      uses: actions/upload-artifact@v2
+      with: 
+        name: generatedCode
+        path: src/main/java/models
+#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 ```
 
 #### realization.txt - Invalid
@@ -465,11 +606,7 @@ Requirements list
 	[ ] dontExist3.todo - (not found)
 [X]	Test Coverage validated and Archived
 [ ]	Data Archivate
-<<<<<<< HEAD
     [ ] examples - (3 file expected, but 10 found)
-=======
-        [ ] examples - (3 file expected, but 10 found)
->>>>>>> b08cb74a591abd9c65e9a8d3a03deaa75351e480
 	[ ] dontExist3.todo - (not found)
 [ ]	Archivees Data
 [ ]	Project Valid
