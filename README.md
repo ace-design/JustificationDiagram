@@ -221,13 +221,13 @@ H ..> C5
 run this : 
 
 ```
-mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="example/fig3.jd -o output/images/fig3 -svg -td example/realization/realizationFig3.txt -rea"
+mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="example/fig3.jd -o output/images/fig3 -svg -td"
 ```
 
 or 
 
 ```
-java -jar JDGenerator-jar-with-dependencies.jar example/fig3.jd -o output/images/fig3 -rea example/realization/realizationFig3.txt  -svg -td
+java -jar JDGenerator-jar-with-dependencies.jar example/fig3.jd -o output/images/fig3 -svg -td
 ```
 
 #### example.svg
@@ -256,7 +256,7 @@ Requirements list
 -----------------------------------------------
 ```
 
-## Example with realization 
+## Example with realization and application in IC
 
 Now we will see 2 examples of valid and invalid diagrams.
 To do so, we will use the following example for both diagrams.
