@@ -624,9 +624,9 @@ Requirements list
 
 ## Tips and tricks
 
-### Saving Variables in the Workflow
+### Saving global variables in the Workflow
 
-If you want to save variables, such as the input or output of your project, there is a tip for you.
+If you want to save variables, such as the input or output of your project, there is a tricks for you.
 
 ```
 name: Java CI with Maven
@@ -668,7 +668,7 @@ jobs:
 
 ### Saving the last diagrammes generated in a readme
 
-If you want to save yout last diagrammes in a readme there is a tip for you.
+If you want to save yout last diagrammes in a readme there is a tricks for you.
 
 ```
 name: Java CI with Maven
