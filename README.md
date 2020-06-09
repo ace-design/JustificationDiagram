@@ -110,7 +110,7 @@ and you can ask if the number of files in a directory is correct.
 
 ```
 - name: Realization
-      run: echo -e "[Label of the accompliseh task]!-![repertory]/!number!10" >> output/realization/realization.txt
+      run: echo -e "[Label of the accompliseh task]!-![directory]/!number!10" >> output/realization/realization.txt
       
 <!-- it checks if the "directory" contains 10 files -->
 
@@ -155,11 +155,6 @@ If you want more information about worflows, please [go here](https://help.githu
 
 ## Example without realization
 Here's an example of a text file, the graph and the todo list it generates.
-
-run this : 
-```
-mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="example/fig3.jd -o output/images/fig3 -png -td example/realization/realizationFig3.txt -rea"
-```
 
 #### example.jd
 ```
@@ -497,6 +492,7 @@ jobs:
       
     #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     #Here, I'm going to create the realization file
+    
     # "Jacoco Report" have the reference 'archi1'.
     # "code Archivate" and "Build Maven passed" is done.
     - name: Realization part1
@@ -506,7 +502,9 @@ jobs:
     - name: Realization part2
           run: echo -e "images Archivate!-!examples/exampleCI/Pattern4CI.jd!ref!images" >> realization.txt
 
-    #"Data Archivate" must check that the 'examples' directory and 'dontExist.txt' directory contains 3 files and need to verify than 'dontExist.todo' exist. This will lead to an error because 'examples' contains 10 files and 'dontExist.txt' and 'dontExist.todo' does not exist.
+    #"Data Archivate" must check that the 'examples' directory and 'dontExist.txt' directory contains 3 files 
+    #and need to verify than 'dontExist.todo' exist. This will lead to an error because 'examples' contains 10 files 
+    #and 'dontExist.txt' and 'dontExist.todo' does not exist.
     - name: Realization part3
           run: echo -e "Test Maven passed\nData Archivate!-!examples!number!3;dontExist.txt!number!3;dontExist.todo" >> realization.txt
           
