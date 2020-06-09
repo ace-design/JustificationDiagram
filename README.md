@@ -622,7 +622,115 @@ Requirements list
 
 ```
 
+## Tips and tricks
 
+### Saving Variables in the Workflow
+
+If you want to save variables, such as the input or output of your project, there is a tip for you.
+
+```
+name: Java CI with Maven
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+    #Build of the project
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
+    #Test of the project
+    - name: Test with Maven
+      run: mvn test
+    
+    #set Variables
+    - name set Variables
+        run : |
+          echo -e "examples/exampleCI/" >> Ouput.txt
+          echo -e "output/GeneratedJD/" >> Input.txt
+        
+    #I generate the two diagrams and the TODO list and used the Variables
+    - name: JD&TODO Generation     
+       run : java -jar JDGenerator-jar-with-dependencies.jar (cat varInput.txt)/Pattern4CI.jd -o $(cat varOutput.txt)Pattern4CI -rea realization.txt  -svg -td 
+```
+
+### Saving the last diagrammes generated in a readme
+
+If you want to save yout last diagrammes in a readme there is a tip for you.
+
+```
+name: Java CI with Maven
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up JDK 1.8
+      uses: actions/setup-java@v1
+      with:
+        java-version: 1.8
+    #Build of the project
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
+    #Test of the project
+    - name: Test with Maven
+      run: mvn test
+    
+    #set Variables
+    - name set Variables
+        run : |
+          echo -e "examples/exampleCI/" >> Ouput.txt
+          echo -e "output/GeneratedJD/" >> Input.txt
+        
+    #I generate the two diagrams and the TODO list and used the Variables
+    - name: JD&TODO Generation     
+       run : java -jar JDGenerator-jar-with-dependencies.jar (cat varInput.txt)/Pattern4CI.jd -o $(cat varOutput.txt)Pattern4CI -rea realization.txt  -svg -td 
+    
+    #I memorize all my files contained in the output directory 
+    - name: memorise the final result
+      if: false
+      run: 
+       git config user.name "GitHub Actions";
+       git add $(cat Output.txt)*;
+       # $(cat Output.txt)* == output/GeneratedJD/*
+       git commit -m "add output";
+       git push -v;
+```
+
+Now, in you readme, put this :
+
+
+
+```
+Here is the realization diagram: 
+
+![link to Google]([link to the diagrammes])
+
+And here's the pattern that fits him:
+<!-- this id an example -->
+![link to Google](https://github.com/MireilleBF/JustificationDiagram/blob/master/examples/exampleCI/Pattern4CI_Valid.svg)
+```
 
 
 
