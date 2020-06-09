@@ -27,8 +27,8 @@ jobs:
     #set Variables
     - name: set Variable
       run: |
-        echo -e "justification/examples/exampleCI/" >> varOutput.txt
-        echo -e "justification/output/GeneratedJD/" >> varInput.txt
+        echo -e "justification/examples/exampleCI/" >> varIntput.txt
+        echo -e "justification/output/GeneratedJD/" >> varOutput.txt
     - name: Realization part1
       run: echo -e "\nBuild Maven passed\nTest Maven passed\nJacoco Report!-!target/site/jacoco/index.html\nimages Archivate!-!output/images/!number!14!ref!images" >> realization.txt
     - name: Realization part2
@@ -36,7 +36,8 @@ jobs:
     - name: cat Realization
       run: cat realization.txt
     - name: JD&TODO generation 
-      run: java -jar JDGenerator-jar-with-dependencies $(cat varInput.txt)Pattern4CI.jd -o $(cat varOutput.txt)Pattern4CI -rea realization.txt -svg -svgR -td
+      run: mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="$(cat varInput.txt)/Pattern4CI.jd -o $(cat varOutput.txt)Pattern4CI -rea realization.txt -svg -svgR -td "
+
     - name: Archive JD&TODO
       uses: actions/upload-artifact@v2
       with: 
