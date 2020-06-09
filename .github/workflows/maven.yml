@@ -63,7 +63,7 @@ jobs:
        git config user.name "GitHub Actions";
        git status; 
        echo -e "--------------";
-       git diff --quiet && git diff --staged --quiet || (git add justification/output/GeneratedJD/);git commit -m "add output";git push origin master)
+       git diff --quiet && git diff --staged --quiet || (git add justification/output/GeneratedJD/);git commit -m "add output";git push origin master);
        git status;
        echo -e "--------------";
     
