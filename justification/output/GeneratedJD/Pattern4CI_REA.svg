@@ -7,22 +7,22 @@
 <g id="node1" class="node">
 <title>C</title>
 <polygon fill="#bfbfbf" stroke="transparent" points="276.1736,-670 276.1736,-692 446.1736,-692 446.1736,-670 276.1736,-670"/>
-<polyline fill="none" stroke="#cd0000" points="446.1736,-692 276.1736,-692 276.1736,-670 "/>
-<text text-anchor="start" x="279.1301" y="-676.4" font-family="Times,serif" font-size="14.00" fill="#cd0000">Valid Continuous Integration</text>
+<polyline fill="none" stroke="#0000cd" points="446.1736,-692 276.1736,-692 276.1736,-670 "/>
+<text text-anchor="start" x="279.1301" y="-676.4" font-family="Times,serif" font-size="14.00" fill="#0000cd">Valid Continuous Integration</text>
 <polygon fill="#bfbfbf" stroke="transparent" points="446.1736,-670 446.1736,-692 452.1736,-692 452.1736,-670 446.1736,-670"/>
-<polyline fill="none" stroke="#cd0000" points="452.1736,-670 452.1736,-692 446.1736,-692 "/>
-<polyline fill="none" stroke="#cd0000" points="452.1736,-692 452.1736,-670 "/>
+<polyline fill="none" stroke="#0000cd" points="452.1736,-670 452.1736,-692 446.1736,-692 "/>
+<polyline fill="none" stroke="#0000cd" points="452.1736,-692 452.1736,-670 "/>
 <polygon fill="#bfbfbf" stroke="transparent" points="276.1736,-656 276.1736,-670 348.1736,-670 348.1736,-656 276.1736,-656"/>
-<polyline fill="none" stroke="#cd0000" points="276.1736,-670 276.1736,-656 348.1736,-656 "/>
+<polyline fill="none" stroke="#0000cd" points="276.1736,-670 276.1736,-656 348.1736,-656 "/>
 <polygon fill="#fff68f" stroke="transparent" points="348.1736,-648 348.1736,-670 458.1736,-670 458.1736,-648 348.1736,-648"/>
 <polygon fill="none" stroke="#000000" stroke-dasharray="5,2" points="348.1736,-648 348.1736,-670 458.1736,-670 458.1736,-648 348.1736,-648"/>
-<text text-anchor="start" x="383.7381" y="-654.4" font-family="Times,serif" font-size="14.00" fill="#cd0000">interne</text>
+<text text-anchor="start" x="383.7381" y="-654.4" font-family="Times,serif" font-size="14.00" fill="#0000cd">interne</text>
 </g>
 <!-- PV -->
 <g id="node2" class="node">
 <title>PV</title>
-<path fill="transparent" stroke="#cd0000" d="M400.43,-612C400.43,-612 333.9172,-612 333.9172,-612 327.9172,-612 321.9172,-606 321.9172,-600 321.9172,-600 321.9172,-588 321.9172,-588 321.9172,-582 327.9172,-576 333.9172,-576 333.9172,-576 400.43,-576 400.43,-576 406.43,-576 412.43,-582 412.43,-588 412.43,-588 412.43,-600 412.43,-600 412.43,-606 406.43,-612 400.43,-612"/>
-<text text-anchor="middle" x="367.1736" y="-589.8" font-family="Times,serif" font-size="14.00" fill="#cd0000">Project Valid</text>
+<path fill="transparent" stroke="#0000cd" d="M400.43,-612C400.43,-612 333.9172,-612 333.9172,-612 327.9172,-612 321.9172,-606 321.9172,-600 321.9172,-600 321.9172,-588 321.9172,-588 321.9172,-582 327.9172,-576 333.9172,-576 333.9172,-576 400.43,-576 400.43,-576 406.43,-576 412.43,-582 412.43,-588 412.43,-588 412.43,-600 412.43,-600 412.43,-606 406.43,-612 400.43,-612"/>
+<text text-anchor="middle" x="367.1736" y="-589.8" font-family="Times,serif" font-size="14.00" fill="#0000cd">Project Valid</text>
 </g>
 <!-- PV&#45;&gt;C -->
 <g id="edge1" class="edge">
@@ -39,8 +39,8 @@
 <!-- SD -->
 <g id="node4" class="node">
 <title>SD</title>
-<polygon fill="#a2cd5a" stroke="#cd0000" points="310.9559,-396 144.3325,-396 113.3913,-360 280.0147,-360 310.9559,-396"/>
-<text text-anchor="middle" x="212.1736" y="-373.8" font-family="Times,serif" font-size="14.00" fill="#cd0000">Data Archivate</text>
+<polygon fill="#a2cd5a" stroke="#0000cd" points="310.9559,-396 144.3325,-396 113.3913,-360 280.0147,-360 310.9559,-396"/>
+<text text-anchor="middle" x="212.1736" y="-373.8" font-family="Times,serif" font-size="14.00" fill="#0000cd">Data Archivate</text>
 </g>
 <!-- AJS&#45;&gt;SD -->
 <g id="edge2" class="edge">
@@ -51,8 +51,8 @@
 <!-- SE -->
 <g id="node6" class="node">
 <title>SE</title>
-<polygon fill="#a2cd5a" stroke="#cd0000" points="516.8941,-540 264.3494,-540 217.4531,-504 469.9978,-504 516.8941,-540"/>
-<text text-anchor="middle" x="367.1736" y="-517.8" font-family="Times,serif" font-size="14.00" fill="#cd0000">Evaluate Project Quality</text>
+<polygon fill="#a2cd5a" stroke="#0000cd" points="516.8941,-540 264.3494,-540 217.4531,-504 469.9978,-504 516.8941,-540"/>
+<text text-anchor="middle" x="367.1736" y="-517.8" font-family="Times,serif" font-size="14.00" fill="#0000cd">Evaluate Project Quality</text>
 </g>
 <!-- AJS&#45;&gt;SE -->
 <g id="edge3" class="edge">
@@ -63,8 +63,8 @@
 <!-- ASC -->
 <g id="node5" class="node">
 <title>ASC</title>
-<path fill="transparent" stroke="#cd0000" d="M289.3467,-468C289.3467,-468 211.0005,-468 211.0005,-468 205.0005,-468 199.0005,-462 199.0005,-456 199.0005,-456 199.0005,-444 199.0005,-444 199.0005,-438 205.0005,-432 211.0005,-432 211.0005,-432 289.3467,-432 289.3467,-432 295.3467,-432 301.3467,-438 301.3467,-444 301.3467,-444 301.3467,-456 301.3467,-456 301.3467,-462 295.3467,-468 289.3467,-468"/>
-<text text-anchor="middle" x="250.1736" y="-445.8" font-family="Times,serif" font-size="14.00" fill="#cd0000">Archivees Data</text>
+<path fill="transparent" stroke="#0000cd" d="M289.3467,-468C289.3467,-468 211.0005,-468 211.0005,-468 205.0005,-468 199.0005,-462 199.0005,-456 199.0005,-456 199.0005,-444 199.0005,-444 199.0005,-438 205.0005,-432 211.0005,-432 211.0005,-432 289.3467,-432 289.3467,-432 295.3467,-432 301.3467,-438 301.3467,-444 301.3467,-444 301.3467,-456 301.3467,-456 301.3467,-462 295.3467,-468 289.3467,-468"/>
+<text text-anchor="middle" x="250.1736" y="-445.8" font-family="Times,serif" font-size="14.00" fill="#0000cd">Archivees Data</text>
 </g>
 <!-- SD&#45;&gt;ASC -->
 <g id="edge4" class="edge">
@@ -87,14 +87,14 @@
 <!-- BM -->
 <g id="node7" class="node">
 <title>BM</title>
-<path fill="#87ceeb" stroke="#cd0000" d="M619.484,-324C619.484,-324 512.8632,-324 512.8632,-324 506.8632,-324 500.8632,-318 500.8632,-312 500.8632,-312 500.8632,-300 500.8632,-300 500.8632,-294 506.8632,-288 512.8632,-288 512.8632,-288 619.484,-288 619.484,-288 625.484,-288 631.484,-294 631.484,-300 631.484,-300 631.484,-312 631.484,-312 631.484,-318 625.484,-324 619.484,-324"/>
-<text text-anchor="middle" x="566.1736" y="-301.8" font-family="Times,serif" font-size="14.00" fill="#cd0000">Build Maven passed</text>
+<path fill="#87ceeb" stroke="#0000cd" d="M619.484,-324C619.484,-324 512.8632,-324 512.8632,-324 506.8632,-324 500.8632,-318 500.8632,-312 500.8632,-312 500.8632,-300 500.8632,-300 500.8632,-294 506.8632,-288 512.8632,-288 512.8632,-288 619.484,-288 619.484,-288 625.484,-288 631.484,-294 631.484,-300 631.484,-300 631.484,-312 631.484,-312 631.484,-318 625.484,-324 619.484,-324"/>
+<text text-anchor="middle" x="566.1736" y="-301.8" font-family="Times,serif" font-size="14.00" fill="#0000cd">Build Maven passed</text>
 </g>
 <!-- SM -->
 <g id="node8" class="node">
 <title>SM</title>
-<polygon fill="#a2cd5a" stroke="#cd0000" points="712.8087,-396 465.4684,-396 419.5385,-360 666.8788,-360 712.8087,-396"/>
-<text text-anchor="middle" x="566.1736" y="-373.8" font-family="Times,serif" font-size="14.00" fill="#cd0000">Evaluate Maven Project</text>
+<polygon fill="#a2cd5a" stroke="#0000cd" points="712.8087,-396 465.4684,-396 419.5385,-360 666.8788,-360 712.8087,-396"/>
+<text text-anchor="middle" x="566.1736" y="-373.8" font-family="Times,serif" font-size="14.00" fill="#0000cd">Evaluate Maven Project</text>
 </g>
 <!-- BM&#45;&gt;SM -->
 <g id="edge7" class="edge">
@@ -105,8 +105,8 @@
 <!-- M -->
 <g id="node9" class="node">
 <title>M</title>
-<path fill="transparent" stroke="#cd0000" d="M536.1384,-468C536.1384,-468 470.2088,-468 470.2088,-468 464.2088,-468 458.2088,-462 458.2088,-456 458.2088,-456 458.2088,-444 458.2088,-444 458.2088,-438 464.2088,-432 470.2088,-432 470.2088,-432 536.1384,-432 536.1384,-432 542.1384,-432 548.1384,-438 548.1384,-444 548.1384,-444 548.1384,-456 548.1384,-456 548.1384,-462 542.1384,-468 536.1384,-468"/>
-<text text-anchor="middle" x="503.1736" y="-445.8" font-family="Times,serif" font-size="14.00" fill="#cd0000">Maven ready</text>
+<path fill="transparent" stroke="#0000cd" d="M536.1384,-468C536.1384,-468 470.2088,-468 470.2088,-468 464.2088,-468 458.2088,-462 458.2088,-456 458.2088,-456 458.2088,-444 458.2088,-444 458.2088,-438 464.2088,-432 470.2088,-432 470.2088,-432 536.1384,-432 536.1384,-432 542.1384,-432 548.1384,-438 548.1384,-444 548.1384,-444 548.1384,-456 548.1384,-456 548.1384,-462 542.1384,-468 536.1384,-468"/>
+<text text-anchor="middle" x="503.1736" y="-445.8" font-family="Times,serif" font-size="14.00" fill="#0000cd">Maven ready</text>
 </g>
 <!-- SM&#45;&gt;M -->
 <g id="edge8" class="edge">
@@ -171,8 +171,8 @@
 <!-- IA -->
 <g id="node14" class="node">
 <title>IA</title>
-<path fill="#87ceeb" stroke="#cd0000" d="M102.5213,-324C102.5213,-324 11.8259,-324 11.8259,-324 5.8259,-324 -.1741,-318 -.1741,-312 -.1741,-312 -.1741,-300 -.1741,-300 -.1741,-294 5.8259,-288 11.8259,-288 11.8259,-288 102.5213,-288 102.5213,-288 108.5213,-288 114.5213,-294 114.5213,-300 114.5213,-300 114.5213,-312 114.5213,-312 114.5213,-318 108.5213,-324 102.5213,-324"/>
-<text text-anchor="middle" x="57.1736" y="-301.8" font-family="Times,serif" font-size="14.00" fill="#cd0000">images Archivate</text>
+<path fill="#87ceeb" stroke="#0000cd" d="M102.5213,-324C102.5213,-324 11.8259,-324 11.8259,-324 5.8259,-324 -.1741,-318 -.1741,-312 -.1741,-312 -.1741,-300 -.1741,-300 -.1741,-294 5.8259,-288 11.8259,-288 11.8259,-288 102.5213,-288 102.5213,-288 108.5213,-288 114.5213,-294 114.5213,-300 114.5213,-300 114.5213,-312 114.5213,-312 114.5213,-318 108.5213,-324 102.5213,-324"/>
+<text text-anchor="middle" x="57.1736" y="-301.8" font-family="Times,serif" font-size="14.00" fill="#0000cd">images Archivate</text>
 </g>
 <!-- IA&#45;&gt;SD -->
 <g id="edge14" class="edge">
