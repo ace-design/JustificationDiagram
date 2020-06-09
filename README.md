@@ -460,15 +460,13 @@ Requirements list
 
 
 ## Invalid Example with realization 
-Here's an example of a text file, the graph and the todo list it generates if you don't have validate 'Build Maven passed' and 'Maven ready'.
+Here's an example of a text file, the graph and the todo list it generates if you don't have validate 'Build Maven passed' and 'Test Maven passed'.
 
 #### maven.yl - Invalid
 You should write this in 'maven.yml' :
 
 ```
-
-        
-        
+     
 # This workflow will build a Java project with Maven
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
 
@@ -501,22 +499,21 @@ jobs:
     #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     #Here, I'm going to create the realization file
     # "Jacoco Report" have the reference 'archi1'.
-    # "code Archivate" is done.
+    # "code Archivate" and "Build Maven passed" is done.
     - name: Realization part1
-          run: echo -e "Jacoco Report!ref!Archi1\ncode Archivate\n" >> realization.txt
+          run: echo -e "Jacoco Report!ref!Archi1\ncode Archivate\nBuild Maven passed" >> realization.txt
 
     # "images Archivate" must verify that 'examples/exampleCI/Pattern4CI.jd' exists and it has 'images' as reference.
     - name: Realization part2
           run: echo -e "images Archivate!-!examples/exampleCI/Pattern4CI.jd!ref!images" >> realization.txt
 
-    #"Test Maven passed" is done.
-    #"Data Archivate" must check that the 'examples' directory and 'dontExist3.todo' directory contains 3 files. This will lead to an error because 'examples' contains 10 files and 'dontExist3.todo' does not exist.
+    #"Data Archivate" must check that the 'examples' directory and 'dontExist.txt' directory contains 3 files and need to verify than 'dontExist.todo' exist. This will lead to an error because 'examples' contains 10 files and 'dontExist.txt' and 'dontExist.todo' does not exist.
     - name: Realization part3
-          run: echo -e "Test Maven passed\nData Archivate!-!examples!number!3;dontExist3.todo!number!3\n" >> realization.txt
+          run: echo -e "Test Maven passed\nData Archivate!-!examples!number!3;dontExist.txt!number!3;dontExist.todo" >> realization.txt
+          
     #"Jacoco report Archivate"  is done
-    #"Maven ready" should check that the files 'dontExist.txt', 'dontExist2.jd' and 'dontExist3.todo' exist. This will lead to an error because it does not exist.
     - name: Realization part4
-         run: echo -e "Jacoco report Archivate\nMaven ready!-!dontExist.txt;dontExist2.jd;dontExist3.todo" >> realization.txt
+         run: echo -e "Jacoco report Archivate\n" >> realization.txt
 
     - name: JD&TODO Generation     
        run : mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/exampleCI/Pattern4CI.jd -o output/GeneratedJD/Pattern4CI -png -td realization.txt -rea"
@@ -572,13 +569,13 @@ jobs:
 
 
 ```
+
+Build Maven passed
 Jacoco Report!ref!Archi1
 code Archivate
 images Archivate!-!examples/exampleCI/Pattern4CI.jd!ref!images
-Test Maven passed
-Data Archivate!-!examples!number!3;dontExist3.todo!number!3
+Data Archivate!-!examples!number!3;dontExist.txt!number!3;dontExist.todo
 Jacoco report Archivate
-Maven ready!-!dontExist.txt;dontExist2.jd;dontExist3.todo
 ```
 
 
@@ -592,22 +589,22 @@ _Generated List_
 ```
 Requirements list
 
+Requirements list
+
 [X]	code Archivate
-[X]	Test Maven passed
+[ ]	Test Maven passed
 [X]	Jacoco Report - references : Archi1
 [X]	images Archivate - references : images
 	[X] examples/exampleCI/Pattern4CI.jd
 [X]	Jacoco report Archivate
 [X]	Test Coverage validated
-[ ]	Build Maven passed
+[X]	Build Maven passed
 [ ]	Maven ready
-	[ ] dontExist.txt - (not found)
-	[ ] dontExist2.jd - (not found)
-	[ ] dontExist3.todo - (not found)
 [X]	Test Coverage validated and Archived
 [ ]	Data Archivate
-    [ ] examples - (3 file expected, but 10 found)
-	[ ] dontExist3.todo - (not found)
+	[ ] dontExist.todo - (not found)
+	[ ] examples - (3 file expected, but 10 found)
+	[ ] dontExist.txt - (not found)
 [ ]	Archivees Data
 [ ]	Project Valid
 -----------------------------------------------
