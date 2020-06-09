@@ -1,0 +1,18 @@
+Requirements list
+
+[X]	code Archivate - references : generatedCode
+[X]	Test Maven passed
+[X]	Jacoco Report
+[ ]	images Archivate - references : images
+	[ ] examples/exampleCI/Pattern4CI.jd - (not found)
+[X]	Jacoco report Archivate - references : jacoco
+[X]	Test Coverage validated
+[ ]	Build Maven passed
+	[ ] examples - (not found)
+[ ]	Maven ready
+[X]	Test Coverage validated and Archived
+[ ]	Archivees Data
+[ ]	Project Valid
+-----------------------------------------------
+[ ]		Valid Continuous Integration - references : GeneratedJD
+-----------------------------------------------
