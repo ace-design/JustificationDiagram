@@ -17,7 +17,7 @@ or [download the jar file](https://github.com/MireilleBF/JustificationDiagram/re
 ## Execution
 From the cloned repo, run 
 ```
-mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="[INPUT_FILE] -o [OUTPUT_FILE] [OPTIONS] ([INPUT_REALIZATION_FILE] -rea )"
+mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="[INPUT_FILE] -o [OUTPUT_FILE] (-rea [INPUT_REALIZATION_FILE]) [OPTIONS]"
 
 ```
 
@@ -43,10 +43,10 @@ There are a few examples:
 mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="example/basic.jd -o output/images/basic -svg"
 ```
 ```
-mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="example/basic.jd -o output/images/basic -svg output/realization/realization.txt -rea"
+mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="example/basic.jd -o output/images/basic -rea output/realization/realization.txt -svg  "
 ```
 ```
-mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="example/basic.jd -o output/images/basic -svg -td output/realization/realization.txt -rea"
+mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="example/basic.jd -o output/images/basic -rea output/realization/realization.txt -svg -td  "
 
 ```
 
@@ -364,7 +364,7 @@ jobs:
          
     #I generate the two diagrams and the TODO list
     - name: JD&TODO Generation     
-       run : mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/exampleCI/Pattern4CI.jd -o output/GeneratedJD/Pattern4CI -png -td realization.txt -rea"
+       run : mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/exampleCI/Pattern4CI.jd -o output/GeneratedJD/Pattern4CI -rea realization.txt -png -td"
     
     #I archive my diagramms create during the CI
     - name: Archive JD&TODO
@@ -513,7 +513,7 @@ jobs:
          run: echo -e "Jacoco report Archivate\n" >> realization.txt
 
     - name: JD&TODO Generation     
-       run : mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/exampleCI/Pattern4CI.jd -o output/GeneratedJD/Pattern4CI -png -td realization.txt -rea"
+       run : mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/exampleCI/Pattern4CI.jd -o output/GeneratedJD/Pattern4CI -rea realization.txt -png -td "
     - name: Archive generated codes
           uses: actions/upload-artifact@v2
           with: 
