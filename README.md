@@ -632,47 +632,55 @@ Requirements list
 
 If you want to save variables, such as the input or output of your project, there is a tricks for you.
 
-```
-name: Java CI with Maven
-
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-
-jobs:
-  build:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: Set up JDK 1.8
-      uses: actions/setup-java@v1
-      with:
-        java-version: 1.8
-    #Build of the project
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml
-    #Test of the project
-    - name: Test with Maven
-      run: mvn test
-    
+```    
     #set Variables
     - name set Variables
         run : |
-          echo -e "examples/exampleCI/" >> Ouput.txt
-          echo -e "output/GeneratedJD/" >> Input.txt
+          echo -e "examples/" >> Ouput.txt
+          echo -e "output/" >> Input.txt
         
     #I generate the two diagrams and the TODO list and used the Variables
     - name: JD&TODO Generation     
-       run : java -jar JDGenerator-jar-with-dependencies.jar (cat varInput.txt)/Pattern4CI.jd -o $(cat varOutput.txt)Pattern4CI -rea realization.txt  -svg -td 
+       run : |
+         cat $(cat Ouput.txt)
+	 cat $(cat varInput.txt)
+       
+```
+
+Here is the result :
+
+```
+> Run echo -e $(cat varOutput.txt)
+examples/
+output/
 ```
 
 ### Saving the last diagrams generated in a readme
 
-If you want to save yout last diagrams in a readme there is a tricks for you.
+If you want to save your latest diagrams in a readme, there is a tip for you.
+
+For example, you want to generate a diagram with the following text (contained in "examples/exampleCI/basic").
+
+```
+@startuml
+
+conclusion C = "Software is ready for launch" - "Internal"
+strategy S = "Software is functionnal"
+domain D = "Internal"
+rationale R = "ISO 1234"
+support A = "JUnit test logs"
+support B = "Jenkins test logs"
+
+S --> C
+D --> S
+R --> S
+A --> S
+B --> S
+
+@enduml
+```
+And you want to save the diagram generated with this text.
+To do this, use this:
 
 ```
 name: Java CI with Maven
@@ -694,12 +702,7 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-    #Build of the project
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml
-    #Test of the project
-    - name: Test with Maven
-      run: mvn test
+    #---------JustificationDiagram-----------
     
     #set Variables
     - name set Variables
@@ -709,19 +712,18 @@ jobs:
         
     #I generate the two diagrams and the TODO list and used the Variables
     - name: JD&TODO Generation     
-       run : java -jar JDGenerator-jar-with-dependencies.jar (cat varInput.txt)/Pattern4CI.jd -o $(cat varOutput.txt)Pattern4CI -rea realization.txt  -svg -td 
+       run : java -jar JDGenerator-jar-with-dependencies.jar $(cat varInput.txt)/Pattern4CI.jd -o $(cat varOutput.txt)Pattern4CI -rea realization.txt  -svg -td 
     
+    #---------------Saving the last diagrams generated in a readme---------------
     #I memorize all my files contained in the output directory 
     - name: memorise the final result
-      if: true
-      #WARNING !!!!!!
-      #If you don't have any changes for your diagrams, please write "false". Otherwise, you'll get an error in your CI.
+      #If you don't have any changes for your diagrams, nothing will be push.
       run: 
        git config user.name "GitHub Actions";
-       git add $(cat Output.txt)*;
-       # $(cat Output.txt)* == output/GeneratedJD/*
-       git commit -m "add output";
-       git push -v;
+       git diff --quiet && git diff --staged --quiet || (git add $(cat varOutput.txt)*;git commit -m “${COMMIT_MSG}“; git push origin master)
+       
+    #---------------Saving the last diagrams generated in a readme---------------       
+    #---------JustificationDiagram-----------
 ```
 
 Now, in you readme, put this :
@@ -731,8 +733,10 @@ Here is the realization diagram:
 
 ![link to Google]([link to the diagram])
 
-And here's the pattern that fits him:
-<!-- this id an example -->
+
+
+
+<!-- this is an example -->
 ![link to Google](https://github.com/MireilleBF/JustificationDiagram/blob/master/examples/exampleCI/Pattern4CI_Valid.svg)
 ```
 
