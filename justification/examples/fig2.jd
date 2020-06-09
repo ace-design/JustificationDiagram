@@ -1,0 +1,41 @@
+@startuml
+
+conclusion C = "Software safety validated" - "Internal"
+strategy S = "Assess software safety"
+domain D = "Internal accreditation"
+rationale R = "Credentials for IEC 62304"
+
+subconclusion C1 = "Specifications validated"
+strategy S1 = "Review specifications"
+support H = "Requirements"
+support I = "Technical specifications"
+support J = "Functional specifications"
+
+subconclusion C2 = "Feasible hard points"
+strategy S2 = "Review feasability"
+support K = "Feasibility studies"
+
+subconclusion C3 = "Hard points validated"
+strategy S3 = "Validate hard points"
+support L = "Hard points"
+
+S --> C
+D --> S
+R --> S
+
+C1 --> S
+S1 --> C1
+H --> S1
+I --> S1
+J --> S1
+
+C2 --> S
+S2 --> C2
+K --> S2
+
+C3 --> S2
+S3 --> C3
+I --> S3
+L --> S3
+
+@enduml
