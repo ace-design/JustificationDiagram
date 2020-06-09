@@ -89,7 +89,7 @@ The prototype permits two types of oriented link.
 
 During the Continuous integration, please add to a file named 'realization.txt' the supports, domains and rationale that have been validated.
 
-For this purpose, in '.github\workflows\maven.yml' add this after the Build and Test of your project and before the generation of diagramm :
+For this purpose, in '.github\workflows\maven.yml' add this after the Build and Test of your project and before the generation of diagrams :
 
 ```
 - name: Realization
@@ -377,14 +377,14 @@ jobs:
     - name: JD&TODO Generation     
        run : mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/exampleCI/Pattern4CI.jd -o output/GeneratedJD/Pattern4CI -rea realization.txt -png -td"
     
-    #I archive my diagramms create during the CI
+    #I archive my diagrams create during the CI
     - name: Archive JD&TODO
       uses: actions/upload-artifact@v2
       with: 
         name: GeneratedJD
         path: output/GeneratedJD
         
-    #I archive my realization file in the same artifacts as my diagramms
+    #I archive my realization file in the same artifacts as my diagrams
     - name: Archive realization
       uses: actions/upload-artifact@v2
       with: 
@@ -538,14 +538,14 @@ jobs:
     - name: JD&TODO Generation     
        run : mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/exampleCI/Pattern4CI.jd -o output/GeneratedJD/Pattern4CI -svg -td realization.txt -rea"
     
-    #I archive my diagramms create during the CI
+    #I archive my diagrams create during the CI
     - name: Archive JD&TODO
       uses: actions/upload-artifact@v2
       with: 
         name: GeneratedJD
         path: output/GeneratedJD
         
-    #I archive my realization file in the same artifacts as my diagramms
+    #I archive my realization file in the same artifacts as my diagrams
     - name: Archive realization
       uses: actions/upload-artifact@v2
       with: 
@@ -666,9 +666,9 @@ jobs:
        run : java -jar JDGenerator-jar-with-dependencies.jar (cat varInput.txt)/Pattern4CI.jd -o $(cat varOutput.txt)Pattern4CI -rea realization.txt  -svg -td 
 ```
 
-### Saving the last diagrammes generated in a readme
+### Saving the last diagrams generated in a readme
 
-If you want to save yout last diagrammes in a readme there is a tricks for you.
+If you want to save yout last diagrams in a readme there is a tricks for you.
 
 ```
 name: Java CI with Maven
@@ -725,7 +725,7 @@ Now, in you readme, put this :
 ```
 Here is the realization diagram: 
 
-![link to Google]([link to the diagrammes])
+![link to Google]([link to the diagram])
 
 And here's the pattern that fits him:
 <!-- this id an example -->
