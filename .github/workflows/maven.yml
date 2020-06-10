@@ -58,15 +58,6 @@ jobs:
       with: 
         name: generatedCode
         path: src/main/java/models
-    - name: ls
-      run: ls -la
-    - name: SonarCloud Scan
-      uses: sonarsource/sonarcloud-github-action@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-    - name: ls
-      run: ls -la
     - name: memorise the final result
       run: 
        git config user.name "GitHub Actions";
