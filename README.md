@@ -5,6 +5,11 @@
 
 This prototype generates a justification diagram from a text file. 
 
+## KickStart
+
+If you want to see the kisk start, [go here](https://github.com/Nicolas-Corbiere/TestProjet/blob/master/KickStart.md)
+Or see the test project used [here](https://github.com/Nicolas-Corbiere/TestProjet)
+
 ## Installation
 
 JDGenerator is a Maven program. You can either clone the repo and run the following commands :
