@@ -7,8 +7,9 @@ This prototype generates a justification diagram from a text file.
 
 ## KickStart
 
-If you want to see the kisk start, [go here](https://github.com/Nicolas-Corbiere/TestProjet/blob/master/KickStart.md)
-Or see the test project used [here](https://github.com/Nicolas-Corbiere/TestProjet)
+If you want to see the kisk start, [go here](https://github.com/Nicolas-Corbiere/TestProjet/blob/master/KickStart.md).
+
+Or see the test project used [here](https://github.com/Nicolas-Corbiere/TestProjet).
 
 ## Installation
 
