@@ -1,7 +1,7 @@
 # Justification Diagram Generator
 
 - Author : Corinne Pulgar and Nicolas Corbière
-- Supervision : Sébastien Mosser and mireille Blay-Fornarino
+- Supervision : Sébastien Mosser and Mireille Blay-Fornarino
 
 This prototype generates a justification diagram from a text file. 
 
