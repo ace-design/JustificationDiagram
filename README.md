@@ -131,7 +131,7 @@ You can also add references for a certain node with this
 
 ## Artifacts
 
-If you want to save the elements created during the continuous integration, always in your 'maven.yl' file, you can write this at the very end of your file :
+If you want to save the elements created during the continuous integration, always in your 'maven.yml' file, you can write this at the very end of your file :
 
 ```
 - name: Archive generated codes
@@ -327,7 +327,7 @@ SJ --> JV
 ## Valid Example with realization 
 Here's an example of a text file, the graph and the todo list it generates if you have validate all the evidences.
 
-#### maven.yl - Valid 
+#### maven.yml - Valid 
 You should write this in 'maven.yml' :
 
 ```
@@ -479,7 +479,7 @@ Requirements list
 ## Invalid Example with realization 
 Here's an example of a text file, the graph and the todo list it generates if you don't have validate 'Build Maven passed' and 'Test Maven passed'.
 
-#### maven.yl - Invalid
+#### maven.yml - Invalid
 You should write this in 'maven.yml' :
 
 ```   
