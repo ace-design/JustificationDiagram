@@ -24,6 +24,8 @@ jobs:
       run: mvn -B package --file pom.xml
     - name: Test with Maven
       run: mvn test
+    - name: Call sonarCloud
+      run: mvn verify sonar:sonar 
     - name: Realization part1
       run: echo -e "\nBuild Maven passed\nTest Maven passed\nJacoco Report!-!target/site/jacoco/index.html\nimages Archivate!-!justification/output/images/!number!14!ref!images" >> realization.txt
     - name: Realization part2
