@@ -25,10 +25,8 @@ jobs:
     - name: Test with Maven
       run: mvn test
     - name: SonarCloud Scan
-      uses: sonarsource/sonarcloud-github-action@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      run: 
+       mvn -B verify sonar:sonar
     - name: Realization part1
       run: echo -e "\nBuild Maven passed\nTest Maven passed\nJacoco Report!-!target/site/jacoco/index.html\nimages Archivate!-!justification/output/images/!number!14!ref!images" >> realization.txt
     - name: Realization part2
@@ -37,7 +35,6 @@ jobs:
       run: cat realization.txt
     - name: JD&TODO generation 
       run: mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="justification/examples/exampleCI/Pattern4CI.jd -o justification/output/GeneratedJD/Pattern4CI -rea realization.txt -svg -svgR -td "
-
     - name: Archive JD&TODO
       uses: actions/upload-artifact@v2
       with: 
