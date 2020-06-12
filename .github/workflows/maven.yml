@@ -27,6 +27,9 @@ jobs:
     - name: SonarCloud Scan
       run: 
        mvn -B verify sonar:sonar
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
     - name: Realization part1
       run: echo -e "\nBuild Maven passed\nTest Maven passed\nJacoco Report!-!target/site/jacoco/index.html\nimages Archivate!-!justification/output/images/!number!14!ref!images" >> realization.txt
     - name: Realization part2
