@@ -20,7 +20,7 @@ public class OutputTests {
     
     @Test
     public void figToDOWithRea() throws IOException {
-        JDCompiler.main(new String[] { inputPath+"fig3.jd", "-o", outputPath+"fig3", "-td", "-svg", "-svgR", inputPath+"realization/realizationFig3.txt", "-rea"});
+        JDCompiler.main(new String[] { inputPath+"fig3.jd", "-o", outputPath+"fig3","-rea", inputPath+"realization/realizationFig3.txt", "-info", inputPath+"information/infoFig3.json", "-td", "-svg", "-svgR"});
     }
     
     @Test
@@ -54,10 +54,6 @@ public class OutputTests {
         JDCompiler.main(new String[] { inputPath+"fig3.jd", "-o", outputPath+"fig3", "-svg"});
     }
     
-    @Test
-    public void figToDO() throws IOException {
-        JDCompiler.main(new String[] { inputPath+"fig3.jd", "-o", outputPath+"fig2", "-td"});
-    }
 
 
     

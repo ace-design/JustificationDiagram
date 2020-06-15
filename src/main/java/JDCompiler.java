@@ -29,6 +29,7 @@ public class JDCompiler {
 		for (int i = 0; i < cmd.getArgs().length; ++i) {
 			String inputFile = cmd.getArgs()[i];
 			String inputRealizationFile = null;
+			String inputInformationFile = null;
 			numOutput++;
 			if (!inputIsValid(inputFile)) {
 				continue;
@@ -38,7 +39,12 @@ public class JDCompiler {
 				inputRealizationFile = cmd.getArgs()[i];
 
 			}
-			generateFiles(cmd, inputFile, generateOutputName(outputOption, numOutput, inputFile), inputRealizationFile);
+			if (cmd.hasOption("info") && inputIsValid(cmd.getArgs()[i + 1]) && i < cmd.getArgs().length) {
+				i++;
+				inputInformationFile = cmd.getArgs()[i];
+
+			}
+			generateFiles(cmd, inputFile, generateOutputName(outputOption, numOutput, inputFile), inputRealizationFile,inputInformationFile);
 		}
 	}
 
@@ -55,6 +61,7 @@ public class JDCompiler {
 		options.addOption("td", "generate todo list");
 		options.addOption("svgR", "generate realization graph");
 		options.addOption("rea", "indicate the realization file");
+		options.addOption("info", "indicate the information file");
 
 		try {
 			return parser.parse(options, args);
@@ -68,15 +75,25 @@ public class JDCompiler {
 	}
 
 	private static void generateFiles(CommandLine cmd, String inputFilePath, String outputFilePath,
-			String inputRealizationFilePath) throws IOException {
+			String inputRealizationFilePath,String inputInformationFile) throws IOException {
 		System.out.println("Generate from \n" + new File(inputFilePath).getAbsolutePath() + "\nTo  \n"
 				+ new File(outputFilePath).getAbsolutePath());
 		if (inputRealizationFilePath != null) {
 			System.out.println("With Realization \n" + new File(inputRealizationFilePath).getAbsolutePath() + "\n");
 		}
+		if (inputInformationFile != null) {
+			System.out.println("And With Information \n" + new File(inputInformationFile).getAbsolutePath() + "\n");
+		}
+		
 		
 		JustificationDiagram diagram = createDiagram(inputFilePath, inputRealizationFilePath);
-		diagram.analysesDiagrammeRelation();
+		// TODO : crée a ce niveau le parser
+		
+		RealizationParser realizationParser = new RealizationParser(inputRealizationFilePath);
+		InformationNodeParsing informationNodeParsing = new InformationNodeParsing(inputInformationFile);
+		
+		diagram.analysesInformationNode(informationNodeParsing.information);
+		diagram.analysesDiagrammeRelation(realizationParser.labelList);
 		
 		if (cmd.hasOption("svgR")) {
 			if (cmd.hasOption("rea")) {
@@ -118,7 +135,7 @@ public class JDCompiler {
 	}
 
 	private static boolean inputIsValid(String in) {
-		if (!in.matches(".*\\.(jd|txt)")) {
+		if (!in.matches(".*\\.(jd|txt|json)")) {
 			System.err.println(in + " is not a valid name. The input file should end with .jd or .txt");
 			return false;
 		}
@@ -159,9 +176,7 @@ public class JDCompiler {
 
 	public static JustificationDiagram createDiagram(String file, String realizationFile) {
 
-		ArrayList<String> realizationResult = realizationParse(realizationFile);
 		JDInitializer factory = new JDInitializer();
-		factory.realizationList = realizationResult;
 		factory.visit(parseAntlr(file));
 		JDLinker linker = new JDLinker(factory.diagram);
 		linker.visit(parseAntlr((file)));

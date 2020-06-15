@@ -14,17 +14,20 @@
 		<antlr4.listener>true</antlr4.listener>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-		<!-- 
-  		<sonar.projectKey>Nicolas-Corbiere_TestProjet</sonar.projectKey>
-  		<sonar.organization>nicolas-corbiere</sonar.organization>
-  		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
-  		<sonar.login>95f1a89b96480f264330b832ed5f374f75182298</sonar.login>
-  		<sonar.source>src</sonar.source>
-  		<sonar.tests>src/test/</sonar.tests>
-  		 -->
+		<!-- <sonar.projectKey>Nicolas-Corbiere_TestProjet</sonar.projectKey> <sonar.organization>nicolas-corbiere</sonar.organization> 
+			<sonar.host.url>https://sonarcloud.io</sonar.host.url> <sonar.login>95f1a89b96480f264330b832ed5f374f75182298</sonar.login> 
+			<sonar.source>src</sonar.source> <sonar.tests>src/test/</sonar.tests> -->
 	</properties>
 
 	<dependencies>
+
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+
+
 		<dependency>
 			<groupId>org.antlr</groupId>
 			<artifactId>antlr4-runtime</artifactId>
@@ -136,26 +139,26 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.22.1</version>
 			</plugin>
-		<plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.2</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                    <!-- attached to Maven test phase -->
-                    <execution>
-                        <id>report</id>
-                        <phase>test</phase>
-                        <goals>
-                            <goal>report</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.2</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<!-- attached to Maven test phase -->
+					<execution>
+						<id>report</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 </project>

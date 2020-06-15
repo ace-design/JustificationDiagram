@@ -1,5 +1,5 @@
 Identified risks
+Functional specifications
 Technical specifications
 Architectures
 Risks consistency
-Credentials for ISO 14971

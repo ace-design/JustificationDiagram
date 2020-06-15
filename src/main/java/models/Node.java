@@ -13,29 +13,35 @@ public class Node implements Visitable {
     public State state;
     
     // - information of realization file
-    public ArrayList<String> realizationResult = new ArrayList<>();
-    public ArrayList<String> realizationList = new ArrayList<>();
-    public ArrayList<String> checkFile = new ArrayList<>();
-    public HashMap<String,Integer> checkFileWithNumber = new HashMap<>();
-    public String references;
+   // public ArrayList<String> realizationResult = new ArrayList<>();
+   // public ArrayList<String> realizationList = new ArrayList<>(); // TODO a supprimer
+   // public ArrayList<String> checkFile = new ArrayList<>();
+   // public HashMap<String,Integer> checkFileWithNumber = new HashMap<>();
+   // public String references;
+    
+    //information
+    public InformationNode informationNode; 
     
     // - log
     public ArrayList<String> logForFiles = new ArrayList<>();
     
     // - constant
     public String constantNoReferences = "!noRef!";
-    public String constantReferences = "!ref!";
-    public String constantNumber = "!number!";
+    //public String constantReferences = "!ref!";
+    //public String constantNumber = "!number!";
  
     public Node(String alias, String label,ArrayList<String> realizationResult) { 
     	this.label = label;
         this.alias = alias;
         this.inputs = new HashSet<>();
         this.outputs = new HashSet<>();
-        this.references= constantNoReferences; 
+        //this.references= constantNoReferences; 
         this.state = State.TODO;  
         
-        realizationResultParse(realizationResult);
+        informationNode = new InformationNode();
+        
+        // TODO : remplacer 'realizationResultParse' par 'InformationOfNodeParsing'
+        //realizationResultParse(realizationResult);
 
     }
 
@@ -45,9 +51,13 @@ public class Node implements Visitable {
         this.inputs = node.inputs;
         this.outputs = node.outputs;
         this.state = node.state;
-        this.references = constantNoReferences;
+        
+        informationNode = new InformationNode();
 
-        realizationResultParse(realizationResult);
+       // this.references = constantNoReferences;
+
+        // TODO : remplacer 'realizationResultParse' par 'InformationOfNodeParsing'
+        //realizationResultParse(realizationResult);
 
     }
     
@@ -59,12 +69,13 @@ public class Node implements Visitable {
      * If he has no children, no change will be made.  
      * 
      */
-    public void prerequisiteAnalysis() {
-
+    public void prerequisiteAnalysis(ArrayList<String> labelList) {
+  
     	boolean isDone = true;
     	// Use to check that the current node depends on the state of these inputs.
+    	// TODO : modifier les commentaires ici
     	if(inputs.isEmpty()) {
-    		isDone = realizationListAnalyses();
+    		isDone = realizationListAnalyses(labelList);
     	}
 		// use to analyze the state of the child nodes 
     	if(isDone) {
@@ -76,8 +87,8 @@ public class Node implements Visitable {
     		relationAnalyse();
 
     	}
-    	// used to verify that the necessary files are present.  
-		if(!checkFile.isEmpty()) {
+    	// used to verify that the necessary files are present. 
+		if(informationNode != null && informationNode.path != null && !informationNode.path.isEmpty()) {
 			if(isDone) {
 				isDone = checkFileAnalyses();
 
@@ -90,7 +101,7 @@ public class Node implements Visitable {
 
     	}
 		// used to check the number of files in a repertory
-		if(!checkFileWithNumber.isEmpty()) {
+		if(informationNode != null && informationNode.pathWithNumber != null&& !informationNode.pathWithNumber.isEmpty()) {
 			if(isDone) {
 				isDone = CheckFileWithNumberAnalyses();
 
@@ -115,7 +126,7 @@ public class Node implements Visitable {
      */
     public boolean relationAnalyse() {
 		for (Relation relation : inputs) {
-			if(relation.from.state.equals(State.TODO)) {
+			if(!relation.from.informationNode.optional && relation.from.state.equals(State.TODO)) {
 				return false;
 			}
 		}
@@ -126,9 +137,9 @@ public class Node implements Visitable {
      * used to check if the label is contains in 'realizationList'
      * @return true if the label is containt in 'realizationList'
      */
-    public boolean realizationListAnalyses() {
+    public boolean realizationListAnalyses(ArrayList<String> labelList) {
     	
-		if(realizationList != null && realizationList.contains(label)) {
+		if(labelList != null && labelList.contains(label)) {
 			return true;
 		}
 		else {
@@ -143,7 +154,7 @@ public class Node implements Visitable {
      */
     public boolean checkFileAnalyses() {
     	boolean isDone = true;
-    	for (String filePath : checkFile) {
+    	for (String filePath : informationNode.path) {
 			if(!new File(filePath).exists()) {
 				System.err.println("The file " + filePath + " was not found to validate the node " + label);
 				logForFiles.add("[ ] " + filePath + " - (not found)");
@@ -164,7 +175,7 @@ public class Node implements Visitable {
      */
     public boolean CheckFileWithNumberAnalyses() {
     	boolean isDone = true;
-    	for (Map.Entry<String,Integer> mapentry : checkFileWithNumber.entrySet()) {
+    	for (Map.Entry<String,Integer> mapentry : informationNode.pathWithNumber.entrySet()) {
     		String filePath = mapentry.getKey();
     		int currentLenght = 0;
 			if(!new File(mapentry.getKey()).exists()) {
@@ -184,13 +195,14 @@ public class Node implements Visitable {
     	return isDone;
     }
 
+    
     /**
      * Analyzes the String list that contains the 'realization' information. 
      * With this information, it will fill in the CheckList, the references and the list of labels made. 
      * 
      * @param realizationResult
      */
-    public void realizationResultParse(ArrayList<String> realizationResult) {
+    /*public void realizationResultParse(ArrayList<String> realizationResult) {
     	    	 
     	for (String realizationLine : realizationResult) {
     		
@@ -247,14 +259,14 @@ public class Node implements Visitable {
         	
 		}
     	
-    }
+    }*/
 
     /**
      * Analyzes the character string and decomposes it to obtain a list of paths to the files to check
      * 
      * @param string to analyzes (look like this : file1;file2;file3)
      */
-    public void setChekFile(String realizationResult) {
+    /*public void setChekFile(String realizationResult) {
     	
     	String[] fileList = realizationResult.split(";");
     	
@@ -269,14 +281,13 @@ public class Node implements Visitable {
     			}
     			else {
     				// if 'filePath' look like this : 'test.txt'
-
     				checkFile.add(filePath);
     			}
     			
     		}
 		}
     	
-    }
+    }*/
     
     
     public void addInput(Relation input) {
@@ -304,4 +315,13 @@ public class Node implements Visitable {
     public int hashCode() {
         return Objects.hash(alias, label);
     }
+    
+    // TODO: faire la javadoc ! 
+    /**
+	 *
+     */
+    public void setInformationNode(InformationNode informationNode) {
+    	this.informationNode = informationNode;
+    }
+    
 }

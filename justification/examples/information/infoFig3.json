@@ -1,0 +1,57 @@
+[  
+    { 
+        "Node":{
+            "Label":"Identified risks",
+            "Optional":"true",
+            "Reference":"Archi1",
+                
+        }
+    },
+    {
+        "Node": {
+            "Label":"Functional specifications",
+            "Optional":"true",
+            "Reference":"Archi1",
+            "Files": [  
+                "justification/examples/realization/realizationFig3.txt"
+            ],
+            
+        }
+        
+    },
+    {
+        "Node":{
+            "Label":"Technical specifications",
+            "Reference":"jacoco", 
+            "Files": [  
+                ".github/workflows"
+            ],
+            "FilesNumber": [  
+                {   
+                    "Path":".github/workflows",
+                    "Number":"1"     
+                },
+            ],    
+        }
+        
+        
+    },
+    {
+        "Node":{
+            "Label":"Architecture validated",
+            "Files": [  
+                "dontExit"
+            ],
+
+        }
+    },
+    {
+        "Node": {
+            "Label":"Risks consistency",
+            "Files": [  
+                "dontExit"
+            ],
+        }
+        
+    },
+]
