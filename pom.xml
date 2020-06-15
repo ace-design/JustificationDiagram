@@ -19,7 +19,7 @@
         <sonar.organization>mireillebf-github</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <sonar.login>5ce8a205c4e7861d7c31ea0a1ddffe4142cc01d9</sonar.login>
-		
+
 	</properties>
 
 	<dependencies>
