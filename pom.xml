@@ -14,9 +14,12 @@
 		<antlr4.listener>true</antlr4.listener>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-		<!-- <sonar.projectKey>Nicolas-Corbiere_TestProjet</sonar.projectKey> <sonar.organization>nicolas-corbiere</sonar.organization> 
-			<sonar.host.url>https://sonarcloud.io</sonar.host.url> <sonar.login>95f1a89b96480f264330b832ed5f374f75182298</sonar.login> 
-			<sonar.source>src</sonar.source> <sonar.tests>src/test/</sonar.tests> -->
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <sonar.projectKey>MireilleBF_JustificationDiagram</sonar.projectKey>
+        <sonar.organization>mireillebf-github</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <sonar.login>5ce8a205c4e7861d7c31ea0a1ddffe4142cc01d9</sonar.login>
+		
 	</properties>
 
 	<dependencies>
