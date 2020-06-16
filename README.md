@@ -374,7 +374,7 @@ java -jar JDGenerator-jar-with-dependencies.jar example/fig3.jd -o output/images
 
 #### example.svg
 
-![](examples/fig3.svg)
+![](justification/examples/fig3.svg)
 > The justification diagram was adapted from _Support of Justification Elicitation: Two Industrial Reports_ by Clément Duffau, Thomas Polacsek and Mireille Blay-Fornarino, 2018.
 
 #### example.todo
