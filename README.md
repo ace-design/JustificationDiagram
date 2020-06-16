@@ -7,7 +7,7 @@ This prototype generates a justification diagram from a text file.
 
 ## KickStart
 
-If you want to see the kisk start, [go here](https://github.com/Nicolas-Corbiere/TestProjet/blob/master/KickStart.md).
+If you want to see the quick start, [go here](https://github.com/Nicolas-Corbiere/TestProjet/blob/master/KickStart.md).
 
 Or see the test project used [here](https://github.com/Nicolas-Corbiere/TestProjet).
 
@@ -23,23 +23,30 @@ or [download the jar file](https://github.com/MireilleBF/JustificationDiagram/re
 ## Execution
 From the cloned repo, run 
 ```
-mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="[INPUT_FILE] -o [OUTPUT_FILE] (-rea [INPUT_REALIZATION_FILE]) [OPTIONS]"
+mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="[INPUT_FILE] -o [OUTPUT_FILE] (-rea [INPUT_REALIZATION_FILE]) (-info
+[INPUT_INFORMATION_FILE]) [OPTIONS]"
 
 ```
 
 or execute the jar file with 
 ```
-java -jar JDGenerator-jar-with-dependencies.jar [INPUT_FILE] -o [OUTPUT_FILE] (-rea [INPUT_REALIZATION_FILE]) [OPTIONS] 
+java -jar JDGenerator-jar-with-dependencies.jar [INPUT_FILE] -o [OUTPUT_FILE] (-rea [INPUT_REALIZATION_FILE]) (-info [INPUT_INFORMATION_FILE]) [OPTIONS] 
 ```
 
 ### Options
 | Flag  | Argument | Description                              |
 |-------|----------|------------------------------------------|
 | -o    | path     | Output file (no extension)               |
+| -rea  | path     | indicate the realization file            |
+| -info | path     | indicate the information file            |
+| ----- | -------- | ---------------------------------------- |
 | -svg  | -        | Generate visual graph                    |
 | -svgR | -        | Generate visual realisation graph        |
 | -gv   | -        | Generate text files before dot formating |
 | -td   | -        | Generate todo list                       |
+
+
+
 
 If no output file is entered, the generated files will be named from the input file name. 
 
@@ -49,10 +56,10 @@ There are a few examples:
 mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="example/basic.jd -o output/images/basic -svg"
 ```
 ```
-mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="example/basic.jd -o output/images/basic -rea output/realization/realization.txt -svg  "
+mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="justification/example/basic.jd -o output/images/basic -rea output/realization/realization.txt -svg  "
 ```
 ```
-java -jar DGenerator-jar-with-dependencies.jar -Dexec.args="example/basic.jd -o output/images/basic -rea output/realization/realization.txt -svg -td  "
+java -jar DGenerator-jar-with-dependencies.jar -Dexec.args="example/basic.jd -o output/images/basic -rea output/realization/realization.txt -info information/infoBasic.json -svg -td  "
 ```
 
 ## Syntax
@@ -93,13 +100,142 @@ The prototype permits two types of oriented link.
 
 ## Realization
 
-During the Continuous integration, please add to a file named 'realization.txt' the supports, domains and rationale that have been validated.
+During the Continuous integration, please add to a file named 'realization.txt' the nodes without childs that have been validated. ( normaly the supports, domains and rationale)
 
 For this purpose, in '.github\workflows\maven.yml' add this after the Build and Test of your project and before the generation of diagrams :
 
 ```
 - name: Realization
       run: echo -e "[Label of the accompliseh task]" >> output/realization/realization.txt
+```
+
+## Information
+
+The information file is a json file that contains all additional information for a node (like the information to verify or the reference).
+
+For example, if you have a node with a "Validated Architecture" label and you want to add a "archi1" reference, you should write this :
+
+### informationReference.json
+
+```
+[
+    {
+        "Node":{
+            "Label":"Architecture validated",
+            "Reference":"archi1"
+        }
+    },
+ ]
+```
+
+You can also specify whether a node is optional. In this case, if that node is the child of another node, the state of the latter will not take into account the state of that child.
+
+For the example, we will put the node "Validated Architecture" as optional.
+
+### informationOptional.json
+
+```
+[
+    {
+        "Node":{
+            "Label":"Architecture validated",
+	    "Optional":"true",
+            "Reference":"archi1"
+        }
+    },
+ ]
+```
+The last information you can write is to verify that a specific directory contains a certain number of files in order to validate a node. 
+
+For the example, we will say that the "Validated Architecture" node must verify that "test3" have 2 files and "test4" have 3 files.
+
+### informationFiles.json
+```
+[
+    {
+        "Node":{
+            "Label":"Architecture validated",
+	    "Optional":"true",
+            "Reference":"archi1",
+	    "Files": [
+	    	"test1",
+		"test2.txt"
+	    ]
+        }
+    },
+ ]
+```
+
+The last information than you can write is to specify for a node to verify than a specific repertory contains a specific nuùbers of files.  
+
+For the example, we will say that the "Validated Architecture" node must verify that "test3" have 2 files and "test4" have 3 files.
+
+### informationFilesNumber.json
+```
+[
+    {
+        "Node":{
+            "Label":"Architecture validated",
+	    "Optional":"true",
+            "Reference":"archi1",
+	    "Files": [
+	    	"test1",
+		"test2.txt"
+	    ],
+	    "FilesNumber": [  
+                {   
+                    "Path":"test3",
+                    "Number":"2"     
+                },
+		
+                {   
+                    "Path":"test4",
+                    "Number":"3"     
+                },
+            ],    
+        }
+    },
+ ]
+```
+
+### other example
+
+Here is a more detailed example
+
+```
+[
+    {
+        "Node":{
+            "Label":"Technical specifications",
+            "Reference":"archi2", 
+            "Files": [  
+                ".github/workflows"
+            ],
+            "FilesNumber": [  
+                {   
+                    "Path":".github/workflows",
+                    "Number":"1"     
+                },
+            ],    
+        }
+    },
+    {
+        "Node":{
+            "Label":"Architecture validated",
+	    "Optional":"false",
+            "Reference":"archi1"
+        }
+    },
+    {
+        "Node":{
+            "Label":"Risks consistency",
+	    "Optional":"true",
+            "Reference":"archi2"
+        }
+    },
+ ]
+
+
 ```
 
 You can also specify whether a node needs to check the existence of a certain files or directorys, 
