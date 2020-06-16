@@ -701,7 +701,7 @@ Requirements list
 
 
 ## Invalid Example with realization 
-Here's an example of a text file, the graph and the todo list it generates if you don't have validate 'Build Maven passed', 'Test Maven passed' and 'Jacoco Report'.
+Here is an example of a text file, the graphic and the to-do list it generates if you have not enabled "Build Maven passed", "Test Maven passed" and "Jacoco Report" (the latter being optional).
 
 #### infoInvalid.json - Invalid
 
