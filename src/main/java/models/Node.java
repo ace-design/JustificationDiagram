@@ -12,13 +12,6 @@ public class Node implements Visitable {
     public Set<Relation> outputs;
     public State state;
     
-    // - information of realization file
-   // public ArrayList<String> realizationResult = new ArrayList<>();
-   // public ArrayList<String> realizationList = new ArrayList<>(); // TODO a supprimer
-   // public ArrayList<String> checkFile = new ArrayList<>();
-   // public HashMap<String,Integer> checkFileWithNumber = new HashMap<>();
-   // public String references;
-    
     //information
     public InformationNode informationNode; 
     
@@ -27,22 +20,15 @@ public class Node implements Visitable {
     
     // - constant
     public String constantNoReferences = "!noRef!";
-    //public String constantReferences = "!ref!";
-    //public String constantNumber = "!number!";
  
     public Node(String alias, String label,ArrayList<String> realizationResult) { 
     	this.label = label;
         this.alias = alias;
         this.inputs = new HashSet<>();
         this.outputs = new HashSet<>();
-        //this.references= constantNoReferences; 
         this.state = State.TODO;  
         
         informationNode = new InformationNode();
-        
-        // TODO : remplacer 'realizationResultParse' par 'InformationOfNodeParsing'
-        //realizationResultParse(realizationResult);
-
     }
 
     public Node(Node node) {
@@ -53,12 +39,6 @@ public class Node implements Visitable {
         this.state = node.state;
         
         informationNode = new InformationNode();
-
-       // this.references = constantNoReferences;
-
-        // TODO : remplacer 'realizationResultParse' par 'InformationOfNodeParsing'
-        //realizationResultParse(realizationResult);
-
     }
     
 
@@ -134,8 +114,8 @@ public class Node implements Visitable {
     }
     
     /**
-     * used to check if the label is contains in 'realizationList'
-     * @return true if the label is containt in 'realizationList'
+     * used to check if the label is contains in 'labelList'
+     * @return true if the label is containt in 'labelList'
      */
     public boolean realizationListAnalyses(ArrayList<String> labelList) {
     	
@@ -188,108 +168,13 @@ public class Node implements Visitable {
 				isDone = false;
 			}
 			else {
-				logForFiles.add("[x] "+  filePath);
+				logForFiles.add("[x] "+  filePath + " (" + mapentry.getValue() + " Files found)");
 
 			}
 		}
     	return isDone;
     }
 
-    
-    /**
-     * Analyzes the String list that contains the 'realization' information. 
-     * With this information, it will fill in the CheckList, the references and the list of labels made. 
-     * 
-     * @param realizationResult
-     */
-    /*public void realizationResultParse(ArrayList<String> realizationResult) {
-    	    	 
-    	for (String realizationLine : realizationResult) {
-    		
-    		realizationLine = realizationLine.replaceAll("\"", "");
-    		    		 
-   			if(realizationLine.contains("!-!")) {
-				String[] tmp = realizationLine.split("!-!");
-				
-				String currentLabel = "\"" + tmp[0] + "\"";
-				
-				if(currentLabel.equals(label)) {
-					realizationList.add("\"" + tmp[0] + "\"");
-					
-					if(tmp[1].contains(constantReferences)) {
-						// if 'realizationLine' look like this : 'label!-!texte.txt!ref!references'
-						String[] tmp2 = tmp[1].split(constantReferences);
-						
-						setChekFile(tmp2[0]);
-						references = tmp2[1];
-							
-					}
-					else {
-						// if 'realizationLine' look like this : 'label!-!texte.txt'
-						setChekFile(tmp[1]);
-						references = constantNoReferences;
-					}
-				}
-				
-			
-			}
-			else if (realizationLine.contains(constantReferences)) {
-				// if 'realizationLine' look like this : 'label!ref!references'
-				String[] tmp = realizationLine.split(constantReferences);
-				String currentLabel = "\"" + tmp[0] + "\"";
-				
-				if(currentLabel.equals(label)) {
-					realizationList.add("\"" + tmp[0] + "\"");
-					references = tmp[1];
-					checkFile = new ArrayList<>();
-				}
-				
-				
-			}
-			else {
-				// if 'realizationLine' look like this : 'label'
-				String currentLabel = "\"" + realizationLine + "\"";
-				if(currentLabel.equals(label)) {
-					realizationList.add("\"" + realizationLine + "\"");
-					references = constantNoReferences;
-					checkFile = new ArrayList<>();
-				}
-				
-			}
-        	
-		}
-    	
-    }*/
-
-    /**
-     * Analyzes the character string and decomposes it to obtain a list of paths to the files to check
-     * 
-     * @param string to analyzes (look like this : file1;file2;file3)
-     */
-    /*public void setChekFile(String realizationResult) {
-    	
-    	String[] fileList = realizationResult.split(";");
-    	
-    	for (String filePath : fileList) {
-    		if(!filePath.equals(" ")) {
-    			if(filePath.contains(constantNumber)) {
-    				// if 'filePath' look like this : 'directory!number!10'
-    				String[] tmp = filePath.split(constantNumber);
-    				Integer number = Integer.parseInt(tmp[1]);
-    				checkFileWithNumber.put(tmp[0], number);
-
-    			}
-    			else {
-    				// if 'filePath' look like this : 'test.txt'
-    				checkFile.add(filePath);
-    			}
-    			
-    		}
-		}
-    	
-    }*/
-    
-    
     public void addInput(Relation input) {
         this.inputs.add(input);
     }

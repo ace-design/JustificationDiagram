@@ -1,18 +1,20 @@
 Requirements list
 
-[X]	code Archivate - references : generatedCode
+[X]	code Archivate - reference : generatedCode
 [X]	Test Maven passed
-[X]	Jacoco Report
-[X]	images Archivate - references : images
-	[X] examples/exampleCI/Pattern4CI.jd
-[X]	Jacoco report Archivate - references : jacoco
+[X]	Jacoco Report (optional) 
+	[X] target/site/jacoco/index.html
+[X]	images Archivate - reference : images
+	[x] justification/output/images/
+	[x] justification/
+[X]	Jacoco report Archivate - reference : jacoco
 [X]	Test Coverage validated
 [X]	Build Maven passed
-	[x] examples
+	[x] justification/examples
 [X]	Maven ready
 [X]	Test Coverage validated and Archived
 [X]	Archivees Data
 [X]	Project Valid
 -----------------------------------------------
-[X]		Valid Continuous Integration - references : GeneratedJD
+[X]		Valid Continuous Integration
 -----------------------------------------------

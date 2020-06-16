@@ -2,7 +2,7 @@
     { 
         "Node":{
             "Label":"Identified risks",
-            "Optional":"true",
+            "Optional":"false",
             "Reference":"Archi1",
                 
         }
@@ -48,6 +48,7 @@
     {
         "Node": {
             "Label":"Risks consistency",
+            "Optional":"true",
             "Files": [  
                 "dontExit"
             ],

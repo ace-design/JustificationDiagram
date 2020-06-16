@@ -12,6 +12,13 @@ import org.json.simple.parser.JSONParser;
 
 import models.InformationNode;
 
+/**
+ * 
+ * This class analyzes an information file and creates a map that contains the label of the node and the corresponding InformationNode.
+ * 
+ * @author Nicolas-Corbiere
+ *
+ */
 public class InformationNodeParsing {
 
 	public String path;
@@ -25,6 +32,9 @@ public class InformationNodeParsing {
 		
 	}
 
+	/**
+	 * retrieve the objects from the json file and analyze them
+	 */
 	public void parseInfomation() {
 
 		information = new HashMap<String,InformationNode>();
@@ -38,7 +48,9 @@ public class InformationNodeParsing {
 			try {
 				obj = jsonParser.parse(reader);
 			} catch (org.json.simple.parser.ParseException e) {
-				e.printStackTrace();
+				// if the information files is null
+	    		System.err.println("InformationNodes is null, there is no information in this file.");
+	    		return;
 			}
 
 			JSONArray employeeList = (JSONArray) obj;
@@ -56,6 +68,12 @@ public class InformationNodeParsing {
 
 	}
 
+	/**
+	 * create an InformationNode with the information from the JsonInformation
+	 * 
+	 * @param JsonInformation object find in the file, the object correspond to a node
+	 * @return
+	 */
 	public static InformationNode parseInformation(JSONObject JsonInformation) {
 
 		ArrayList<String> fileList = null;
@@ -107,8 +125,6 @@ public class InformationNodeParsing {
 		}
 
 		return new InformationNode(label, reference, fileList, fileNumberMap,optional);
-		
-
 	}
 
 

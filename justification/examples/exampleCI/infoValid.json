@@ -2,28 +2,48 @@
     { 
         "Node":{
             "Label":"Jacoco Report",
-            "test":"true",
+            "Optional":"false",
             "Files": [  
                 "target/site/jacoco/index.html"
             ]    
         }
     },
     {
+        "Node":{
+            "Label":"code Archivate",
+            "Reference":"generatedCode",    
+        }
+    },
+    {
         "Node": {
             "Label":"images Archivate",
+            "Reference":"images",
             "FilesNumber": [  
                 {   
                     "Path":"justification/output/images/",
-                    "Number":"14"     
+                    "Number":"13"     
                 },
                 {   
                     "Path":"justification/",
-                    "Number":"14"    
+                    "Number":"2"    
                 },
 
 
             ],    
         }
+        
+    },
+    {
+        "Node":{
+            "Label":"Build Maven passed",
+            "FilesNumber": [  
+                {   
+                    "Path":"justification/examples",
+                    "Number":"10"     
+                },
+            ]
+        }
+        
         
     },
     {
@@ -34,12 +54,7 @@
         
         
     },
-    {
-        "Node":{
-            "Label":"code Archivate",
-            "Reference":"generatedCode",    
-        }
-    },
+    
     {
         "Node": {
             "Label":"Continuous Integration",

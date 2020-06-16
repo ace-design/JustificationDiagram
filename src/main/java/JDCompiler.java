@@ -87,13 +87,19 @@ public class JDCompiler {
 		
 		
 		JustificationDiagram diagram = createDiagram(inputFilePath, inputRealizationFilePath);
-		// TODO : crée a ce niveau le parser
 		
-		RealizationParser realizationParser = new RealizationParser(inputRealizationFilePath);
-		InformationNodeParsing informationNodeParsing = new InformationNodeParsing(inputInformationFile);
+		// if inputInformationFile is not null, I analyse the information file
+		if(inputInformationFile != null) {
+			InformationNodeParsing informationNodeParsing = new InformationNodeParsing(inputInformationFile);	
+			diagram.setInformationNode(informationNodeParsing.information);
+		}
 		
-		diagram.analysesInformationNode(informationNodeParsing.information);
-		diagram.analysesDiagrammeRelation(realizationParser.labelList);
+		// if inputRealizationFilePath is not null, I analyze the realization file and the state of the nodes
+		if(inputRealizationFilePath != null) {
+			RealizationParser realizationParser = new RealizationParser(inputRealizationFilePath);
+			diagram.analysesDiagrammeRelation(realizationParser.labelList);
+
+		}
 		
 		if (cmd.hasOption("svgR")) {
 			if (cmd.hasOption("rea")) {

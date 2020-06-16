@@ -3,6 +3,13 @@ package models;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * 
+ * This class is used to store information retrieved with the "InformationNodeParsing" parser.
+ * 
+ * @author Nicolas-Corbiere
+ *
+ */
 public class InformationNode {
 	
 	public String label;

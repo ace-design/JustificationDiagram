@@ -1,0 +1,6 @@
+Build Maven passed
+Jacoco Report
+code Archivate
+images Archivate
+Data Archivate
+Jacoco report Archivate

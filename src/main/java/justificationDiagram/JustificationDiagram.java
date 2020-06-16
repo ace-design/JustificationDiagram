@@ -28,12 +28,12 @@ public class JustificationDiagram implements Visitable {
         visitor.visitDiagram(this);
     }
     
-    
-    // TODO: faire la javadoc ! 
     /**
-	 *
+     * Used to set the informationNode to the corresponding node.
+     * 
+     * @param informationNodes Map of information found in the informations file with the label of the node and the informationNode
      */
-    public void analysesInformationNode(HashMap<String,InformationNode> informationNodes) {
+    public void setInformationNode(HashMap<String,InformationNode> informationNodes) {
    
     	if(informationNodes != null) {
     		    		
@@ -44,18 +44,15 @@ public class JustificationDiagram implements Visitable {
 
     			if(informationNodes.containsKey(realLabel)) {
     	    	 	node.getValue().setInformationNode(informationNodes.get(realLabel));
-    	    	 	System.out.println(informationNodes.get(realLabel).optional);
     			}	
             }
     	}
     	else {
-    		//TODO : ajouter une gestion d'erreur ici !
+    		System.err.println("InformationNodes is null, there is no information in this file.");
     	}
-     	
-
-
     }
      
+    
     /**
      * Change the state of the node in fonction of there childrens.
      * Uses a TopologicalSort but does not change the order of the nodes in the diagram (to avoid problems).

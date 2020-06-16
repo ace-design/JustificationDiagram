@@ -1,0 +1,68 @@
+[  
+    { 
+        "Node":{
+            "Label":"Jacoco Report",
+            "Reference":"Archi1",
+            "Files": [  
+                "target/site/jacoco/index.html"
+            ]    
+        }
+    },
+    {
+        "Node":{
+            "Label":"code Archivate",
+            "Reference":"generatedCode",    
+        }
+    },
+    {
+        "Node": {
+            "Label":"images Archivate",
+            "Reference":"images",
+            "Files": [  
+                "justification/examples/exampleCI/Pattern4CI.jd"
+            ],
+        }
+        
+    },
+    {
+        "Node":{
+            "Label":"Build Maven passed",
+            "FilesNumber": [  
+                {   
+                    "Path":"justification/examples",
+                    "Number":"10"     
+                },
+            ]
+        }
+        
+        
+    },
+    {
+        "Node":{
+            "Label":"Jacoco report Archivate",
+            "Reference":"jacoco",    
+        }
+        
+        
+    },
+    
+    {
+        "Node": {
+            "Label":"Data Archivate",
+            "Files": [  
+                "dontExist.todo","justification/output/images"
+            ],
+            "FilesNumber": [  
+                {   
+                    "Path":"justification/examples",
+                    "Number":"3"     
+                },
+                {   
+                    "Path":"dontExist.txt",
+                    "Number":"3"     
+                },
+            ],
+        }
+        
+    },
+]

@@ -14,7 +14,7 @@ public class OutputTests {
 
     @Test
     public void test_CI() throws IOException {
-    	JDCompiler.main(new String[] { inputPath+"exampleCI/Pattern4CI.jd", "-o", outputPath+"Pattern4CI_Valid", "-td","-svg", "-svgR", inputPath+"exampleCI/realizationPattern4CI.txt", "-rea"});
+    	JDCompiler.main(new String[] { inputPath+"exampleCI/Pattern4CI.jd", "-o", outputPath+"Pattern4CI_Valid", "-rea", inputPath+"exampleCI/realizationPattern4CI.txt", "-info", inputPath+"exampleCI/infoValid.json", "-td","-svg", "-svgR"});
     }
     
     
@@ -25,7 +25,7 @@ public class OutputTests {
     
     @Test
     public void figToDOWithReaAndFileVerification() throws IOException {
-    	JDCompiler.main(new String[] { inputPath+"exampleCI/Pattern4CI.jd", "-o", outputPath+"Pattern4CI_NotValid", "-td", "-svgR", inputPath+"exampleCI/realizationPattern4CINotValid.txt", "-rea"});
+    	JDCompiler.main(new String[] { inputPath+"exampleCI/Pattern4CI.jd", "-o", outputPath+"Pattern4CI_Invalid", "-rea", inputPath+"exampleCI/realizationPattern4CIInvalid.txt", "-info", inputPath+"exampleCI/infoInvalid.json", "-td", "-svgR"});
     }
     
     @Test

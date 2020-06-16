@@ -140,7 +140,7 @@ public class RequirementsLister implements JDVisitor {
     	}
     	else {
     		if(node.informationNode.optional) {
-    			return node.label + " (optional) \"";
+    			return node.label.substring(0,node.label.length()-1)  + " (optional) \"";
     		}
     		else  {
         		return node.label;

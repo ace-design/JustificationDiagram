@@ -24,8 +24,8 @@
 <!-- R3 -->
 <g id="node8" class="node">
 <title>R3</title>
-<ellipse fill="#ffdab9" stroke="#cd0000" cx="430.8616" cy="-234" rx="113.426" ry="18"/>
-<text text-anchor="middle" x="430.8616" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#cd0000">Credentials for ISO 14971</text>
+<ellipse fill="#ffdab9" stroke="#0000cd" cx="430.8616" cy="-234" rx="113.426" ry="18"/>
+<text text-anchor="middle" x="430.8616" y="-229.8" font-family="Times,serif" font-size="14.00" fill="#0000cd">Credentials for ISO 14971</text>
 </g>
 <!-- S3&#45;&gt;R3 -->
 <!-- S -->
@@ -227,8 +227,8 @@
 <!-- I -->
 <g id="node17" class="node">
 <title>I</title>
-<path fill="#87ceeb" stroke="#0000cd" d="M471.2162,-36C471.2162,-36 338.507,-36 338.507,-36 332.507,-36 326.507,-30 326.507,-24 326.507,-24 326.507,-12 326.507,-12 326.507,-6 332.507,0 338.507,0 338.507,0 471.2162,0 471.2162,0 477.2162,0 483.2162,-6 483.2162,-12 483.2162,-12 483.2162,-24 483.2162,-24 483.2162,-30 477.2162,-36 471.2162,-36"/>
-<text text-anchor="middle" x="404.8616" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#0000cd">Functional specifications</text>
+<path fill="#87ceeb" stroke="#cd0000" d="M471.2162,-36C471.2162,-36 338.507,-36 338.507,-36 332.507,-36 326.507,-30 326.507,-24 326.507,-24 326.507,-12 326.507,-12 326.507,-6 332.507,0 338.507,0 338.507,0 471.2162,0 471.2162,0 477.2162,0 483.2162,-6 483.2162,-12 483.2162,-12 483.2162,-24 483.2162,-24 483.2162,-30 477.2162,-36 471.2162,-36"/>
+<text text-anchor="middle" x="404.8616" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#cd0000">Functional specifications</text>
 </g>
 <!-- I&#45;&gt;S4 -->
 <g id="edge23" class="edge">
