@@ -5,9 +5,9 @@
 
 This prototype generates a justification diagram from a text file. 
 
-## KickStart
+## QuickStart
 
-If you want to see the quick start, [go here](https://github.com/Nicolas-Corbiere/TestProjet/blob/master/KickStart.md).
+If you want to see the quick start, [go here](https://github.com/Nicolas-Corbiere/TestProjet/blob/master/QuickStart.md).
 
 Or see the test project used [here](https://github.com/Nicolas-Corbiere/TestProjet).
 
@@ -294,7 +294,7 @@ if you want to save a specific file, you can write this :
 If you want more information about worflows, please [go here](https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions)
 
 
-## Example without realization
+## Example without realization and information
 Here's an example of a text file, the graph and the todo list it generates.
 
 
@@ -398,7 +398,7 @@ Requirements list
 -----------------------------------------------
 ```
 
-## Example with realization and application in IC
+## Example with realization file,information file and application in IC
 
 Now we will see 2 examples of valid and invalid diagrams.
 To do so, we will use the following example for both diagrams.
@@ -456,12 +456,99 @@ SJ --> JV
 
 #### example.svg
 
-![](examples/exampleCI/Pattern4CI_Valid.svg)
+![](justification/examples/exampleCI/Pattern4CI.svg)
 
 
-
-## Valid Example with realization 
+## Valid Example with realization and information files
 Here's an example of a text file, the graph and the todo list it generates if you have validate all the evidences.
+
+#### infoValid.json
+
+In this file, I will specify any additional information, such as the reference and files to check for each node.
+I'll just add comments with "@comment": "this is a comment".
+
+```
+[  
+    { 
+        "Node":{
+	    "@comment": "The node labeled "Jacoco Repor" is optional and... ".     
+            "Label":"Jacoco Report",
+            "Optional":"true",
+	    "@comment2": "...need to check the exitance of the file 'target/site/jacoco/index.html'" 
+            "Files": [  
+                "target/site/jacoco/index.html"
+            ]    
+        }
+    },
+    {
+        "Node":{
+	    "@comment": "The node labeled "code Archivate" has "generatedCode" for reference."
+            "Label":"code Archivate",
+            "Reference":"generatedCode",    
+        }
+    },
+    {
+        "Node": {
+	    "@comment": "The node labeled "images Archivate" has "images" for reference and..."
+            "Label":"images Archivate",
+            "Reference":"images",
+	    
+            "FilesNumber": [  
+                {   
+         	    "@comment2": "...need to check if of the repertory 'justification/output/images/' have 13 files..." 
+                    "Path":"justification/output/images/",
+                    "Number":"13"     
+                },
+                {   
+                    "@comment3": "... and need to check if of the repertory 'justification/' have 2 files." 
+                    "Path":"justification/",
+                    "Number":"2"    
+                },
+
+
+            ],    
+        }
+        
+    },
+    {
+        "Node":{
+	   "@comment": "The node labeled "Build Maven passed"..."
+            "Label":"Build Maven passed",
+            "FilesNumber": [  
+                {   
+		    "@comment2":"need to check if of the repertory 'justification/examples' have 10 files"
+                    "Path":"justification/examples",
+                    "Number":"10"     
+                },
+            ]
+        }
+        
+        
+    },
+    {
+        "Node":{
+	    "@comment": "The node labeled "Jacoco report Archivate" has "jacoco" for reference."
+            "Label":"Jacoco report Archivate",
+            "Reference":"jacoco",    
+        }
+        
+        
+    },
+    
+    {
+        "Node": {
+	    "@comment": "The node labeled "Continuous Integration" has "GeneratedJD" for reference."
+            "Label":"Continuous Integration",
+            "Reference":"GeneratedJD",
+        }
+        
+    },
+]
+
+
+```
+
+
 
 #### maven.yml - Valid 
 You should write this in 'maven.yml' :
@@ -500,28 +587,24 @@ jobs:
 
     #Here, I'm going to create the realization file
     
-    #"code Archivate" have the reference 'generatedCode'
+    #"Jacoco Report" and "code Archivate" are done
     - name: Realization part1
-          run: echo -e "Jacoco Report\ncode Archivate!ref!generatedCode\n" >> realization.txt
+          run: echo -e "Jacoco Report\ncode Archivate\n" >> realization.txt
 
-    #"images Archivate" must verify that 'examples/exampleCI/Pattern4CI.jd' exists and it has 'images' as reference.
+    #"images Archivate", "Test Maven passed" and "Build Maven passed" are done
     - name: Realization part2
-          run: echo -e "images Archivate!-!examples/exampleCI/Pattern4CI.jd!ref!images" >> realization.txt
-
-    #"Test Maven passed" is done
-    #"Build Maven passed" must check that the 'examples' directory contains 10 files.
+          run: 
+	  	echo -e "images Archivate" >> realization.txt;
+		echo -e "Test Maven passed" >> realization.txt;
+		echo -e "Build Maven passed" >> realization.txt;
+		
+     #"Jacoco report", "Valid Continuous" and "Jacoco report Archivate" are done
     - name: Realization part3
-          run: echo -e "Test Maven passed\nBuild Maven passed!-!examples!number!10" >> realization.txt
-    #"Jacoco report" is done
-    #"Valid Continuous" have the reference  'GeneratedJD'
-    #"Jacoco report Archivate" have the reference 'jacoco'
-
-    - name: Realization part4
-         run: echo -e "\nJacoco report Archivate!ref!jacoco\nValid Continuous Integration!ref!GeneratedJD" >> realization.txt
+         run: echo -e "Jacoco report Archivate\nValid Continuous Integration" >> realization.txt
          
     #I generate the two diagrams and the TODO list
     - name: JD&TODO Generation     
-       run : mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/exampleCI/Pattern4CI.jd -o output/GeneratedJD/Pattern4CI -rea realization.txt -png -td"
+       run : mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/exampleCI/Pattern4CI.jd -o output/GeneratedJD/Pattern4CI -rea realization.txt -info example/exampleCI/infoValid.json -png -td"
     
     #I archive my diagrams create during the CI
     - name: Archive JD&TODO
@@ -570,12 +653,12 @@ Here we say this:
 
 ```
 Jacoco Report
-code Archivate!ref!generatedCode
-images Archivate!-!examples/exampleCI/Pattern4CI.jd!ref!images
+code Archivate
+images Archivate
 Test Maven passed
-Build Maven passed!-!examples!number!10
-Jacoco report Archivate!ref!jacoco
-Valid Continuous Integration!ref!GeneratedJD
+Build Maven passed
+Jacoco report Archivate
+Valid Continuous Integration
 
 ```
 
