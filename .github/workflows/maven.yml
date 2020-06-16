@@ -48,6 +48,11 @@ jobs:
       with: 
         name: GeneratedJD
         path: realization.txt
+    - name: Archive information
+      uses: actions/upload-artifact@v2
+      with: 
+        name: GeneratedJD
+        path: justification/example/exampleCI/infoValid.json
     - name: Archive images
       uses: actions/upload-artifact@v2
       with: 
