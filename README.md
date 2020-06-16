@@ -910,7 +910,7 @@ Jacoco report Archivate
 
 #### example_REA.svg - Invalid
 
-![](justification/examples/exampleCI/Pattern4CI_NotValid_REA.svg)
+![](justification/examples/exampleCI/Pattern4CI_Invalid_REA.svg)
 
 #### example.todo - Invalid
 
