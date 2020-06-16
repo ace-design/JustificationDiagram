@@ -462,7 +462,7 @@ SJ --> JV
 ## Valid Example with realization and information files
 Here's an example of a text file, the graph and the todo list it generates if you have validate all the evidences.
 
-#### infoValid.json
+#### infoValid.json - Valid
 
 In this file, I will specify any additional information, such as the reference and files to check for each node.
 I'll just add comments with "@comment": "this is a comment".
@@ -471,10 +471,10 @@ I'll just add comments with "@comment": "this is a comment".
 [  
     { 
         "Node":{
-	    "@comment": "The node labeled "Jacoco Repor" is optional and... ".     
+	    "@comment": "The node labeled 'Jacoco Repor' is optional and... ",     
             "Label":"Jacoco Report",
             "Optional":"true",
-	    "@comment2": "...need to check the exitance of the file 'target/site/jacoco/index.html'" 
+	    "@comment2": "...need to check the exitance of the file 'target/site/jacoco/index.html'." ,
             "Files": [  
                 "target/site/jacoco/index.html"
             ]    
@@ -482,25 +482,24 @@ I'll just add comments with "@comment": "this is a comment".
     },
     {
         "Node":{
-	    "@comment": "The node labeled "code Archivate" has "generatedCode" for reference."
+	    "@comment": "The node labeled 'code Archivate' has 'generatedCode' for reference.",
             "Label":"code Archivate",
             "Reference":"generatedCode",    
         }
     },
     {
         "Node": {
-	    "@comment": "The node labeled "images Archivate" has "images" for reference and..."
+	    "@comment": "The node labeled 'images Archivate' has 'images' for reference and...",
             "Label":"images Archivate",
             "Reference":"images",
-	    
             "FilesNumber": [  
-                {   
-         	    "@comment2": "...need to check if of the repertory 'justification/output/images/' have 13 files..." 
+                {     
+		    "@comment2": "...need to check if of the repertory 'justification/output/images/' have 13 files..." ,
                     "Path":"justification/output/images/",
                     "Number":"13"     
                 },
                 {   
-                    "@comment3": "... and need to check if of the repertory 'justification/' have 2 files." 
+                    "@comment3": "... and need to check if of the repertory 'justification/' have 2 files.",
                     "Path":"justification/",
                     "Number":"2"    
                 },
@@ -512,11 +511,11 @@ I'll just add comments with "@comment": "this is a comment".
     },
     {
         "Node":{
-	   "@comment": "The node labeled "Build Maven passed"..."
+	    "@comment": "The node labeled 'Build Maven passed'...",
             "Label":"Build Maven passed",
             "FilesNumber": [  
                 {   
-		    "@comment2":"need to check if of the repertory 'justification/examples' have 10 files"
+		    "@comment2":"need to check if of the repertory 'justification/examples' have 10 files.",
                     "Path":"justification/examples",
                     "Number":"10"     
                 },
@@ -527,7 +526,7 @@ I'll just add comments with "@comment": "this is a comment".
     },
     {
         "Node":{
-	    "@comment": "The node labeled "Jacoco report Archivate" has "jacoco" for reference."
+	    "@comment": "The node labeled 'Jacoco report Archivate' has 'jacoco' for reference.",
             "Label":"Jacoco report Archivate",
             "Reference":"jacoco",    
         }
@@ -537,14 +536,13 @@ I'll just add comments with "@comment": "this is a comment".
     
     {
         "Node": {
-	    "@comment": "The node labeled "Continuous Integration" has "GeneratedJD" for reference."
+	    "@comment": "The node labeled 'Continuous Integration' has 'GeneratedJD' for reference.",
             "Label":"Continuous Integration",
             "Reference":"GeneratedJD",
         }
         
     },
 ]
-
 
 ```
 
@@ -619,6 +617,13 @@ jobs:
       with: 
         name: GeneratedJD
         path: realization.txt
+	
+    #I archive my information file in the same artifacts as my diagrams
+    - name: Archive realization
+      uses: actions/upload-artifact@v2
+      with: 
+        name: GeneratedJD
+        path: example/exampleCI/infoValid.json
         
     #I archive the diagrams generated during the test
     - name: Archive images
@@ -648,7 +653,7 @@ jobs:
 
 #### realization.txt - Valid 
 
-Here we say this:
+We end up with this realization file:
 
 
 ```
@@ -662,8 +667,6 @@ Valid Continuous Integration
 
 ```
 
-
-
 #### example_REA.svg - Valid
 
 ![](examples/exampleCI/Pattern4CI_Valid_REA.svg)
@@ -675,28 +678,120 @@ _Generated List_
 ```
 Requirements list
 
-[X]	code Archivate - references : generatedCode
+[X]	code Archivate - reference : generatedCode
 [X]	Test Maven passed
-[X]	Jacoco Report
-[X]	images Archivate - references : images
-	[X] examples/exampleCI/Pattern4CI.jd
-[X]	Jacoco report Archivate - references : jacoco
+[X]	Jacoco Report (optional) 
+	[X] target/site/jacoco/index.html
+[X]	images Archivate - reference : images
+	[x] justification/output/images/ (13 Files found)
+	[x] justification/ (2 Files found)
+[X]	Jacoco report Archivate - reference : jacoco
 [X]	Test Coverage validated
 [X]	Build Maven passed
-	[x] examples
+	[x] justification/examples (10 Files found)
 [X]	Maven ready
 [X]	Test Coverage validated and Archived
 [X]	Archivees Data
 [X]	Project Valid
 -----------------------------------------------
-[X]		Valid Continuous Integration - references : GeneratedJD
+[X]		Valid Continuous Integration
 -----------------------------------------------
 ```
 
 
 
 ## Invalid Example with realization 
-Here's an example of a text file, the graph and the todo list it generates if you don't have validate 'Build Maven passed' and 'Test Maven passed'.
+Here's an example of a text file, the graph and the todo list it generates if you don't have validate 'Build Maven passed', 'Test Maven passed' and 'Jacoco Report'.
+
+#### infoInvalid.json - Invalid
+
+In this file, I will specify any additional information, such as the reference and files to check for each node.
+I'll just add comments with "@comment": "this is a comment".
+
+```   
+[  
+    { 
+        "Node":{
+            "@comment": "The node labeled 'Jacoco Repor' is optional, has 'Archi1' for reference and... ",     
+            "Label":"Jacoco Report",
+            "Optional":"true",
+            "Reference":"Archi1",
+	        "@comment2": "...need to check the exitance of the file 'target/site/jacoco/index.html'." ,
+            "Files": [  
+                "target/site/jacoco/index.html"
+            ]    
+        }
+    },
+    {
+        "Node":{
+	        "@comment": "The node labeled 'code Archivate' has 'generatedCode' for reference.",
+            "Label":"code Archivate",
+            "Reference":"generatedCode",    
+        }
+    },
+    {
+        "Node": {
+	        "@comment": "The node labeled 'images Archivate' has 'images' for reference and...",
+            "Label":"images Archivate",
+            "Reference":"images",
+	        "@comment2": "...need to check the exitance of the file 'justification/examples/exampleCI/Pattern4CI.jd'." ,
+            "Files": [  
+                "justification/examples/exampleCI/Pattern4CI.jd"
+            ],
+        }
+        
+    },
+    {
+        "Node":{
+	        "@comment": "The node labeled 'Build Maven passed'...",
+            "Label":"Build Maven passed",
+            "FilesNumber": [  
+                {   
+		           "@comment2":"need to check if of the repertory 'justification/examples' have 10 files.",
+                    "Path":"justification/examples",
+                    "Number":"10"     
+                },
+            ]
+        }
+        
+        
+    },
+    {
+        "Node":{
+	        "@comment": "The node labeled 'Jacoco report Archivate' has 'jacoco' for reference.",
+            "Label":"Jacoco report Archivate",
+            "Reference":"jacoco",    
+        }
+        
+        
+    },
+    
+    {
+        "Node": {
+	        "@comment": "The node labeled 'Data Archivat'...",
+            "Label":"Data Archivate",
+	        "@comment2": "...need to check the exitance of the file 'dontExist.todo' and 'justification/output/images' and..." ,
+            "Files": [  
+                "dontExist.todo","justification/output/images"
+            ],
+            "FilesNumber": [  
+                {   
+		            "@comment4":"...need to check if of the repertory 'justification/examples' have 10 files...",
+                    "Path":"justification/examples",
+                    "Number":"3"     
+                },
+                { 
+                    "@comment3":"...need to check if of the repertory 'justification/examples' have 10 files.",
+                    "Path":"dontExist.txt",
+                    "Number":"3"     
+                },
+            ],
+        }
+        
+    },
+]
+
+```   
 
 #### maven.yml - Invalid
 You should write this in 'maven.yml' :
@@ -735,37 +830,24 @@ jobs:
 
     #Here, I'm going to create the realization file
     
-    # "Jacoco Report" have the reference 'archi1'.
-    # "code Archivate" and "Build Maven passed" is done.
+    #"code Archivate" are done
     - name: Realization part1
-          run: echo -e "Jacoco Report!ref!Archi1\ncode Archivate\nBuild Maven passed" >> realization.txt
+          run: echo -e "code Archivate\n" >> realization.txt
 
-    # "images Archivate" must verify that 'examples/exampleCI/Pattern4CI.jd' exists and it has 'images' as reference.
+    #"images Archivate", "Test Maven passed" and "Build Maven passed" are done
     - name: Realization part2
-          run: echo -e "images Archivate!-!examples/exampleCI/Pattern4CI.jd!ref!images" >> realization.txt
-
-    #"Data Archivate" must check that the 'examples' directory and 'dontExist.txt' directory contains 3 files 
-    #and need to verify than 'dontExist.todo' exist. This will lead to an error because 'examples' contains 10 files 
-    #and 'dontExist.txt' and 'dontExist.todo' does not exist.
+          run: 
+	  	echo -e "images Archivate" >> realization.txt;
+		echo -e "Test Maven passed" >> realization.txt;
+		echo -e "Build Maven passed" >> realization.txt;
+		
+     #"Jacoco report", "Valid Continuous" and "Jacoco report Archivate" are done
     - name: Realization part3
-          run: echo -e "Test Maven passed\nData Archivate!-!examples!number!3;dontExist.txt!number!3;dontExist.todo" >> realization.txt
-          
-    #"Jacoco report Archivate"  is done
-    - name: Realization part4
-         run: echo -e "Jacoco report Archivate\n" >> realization.txt
-
-    - name: JD&TODO Generation     
-       run : mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/exampleCI/Pattern4CI.jd -o output/GeneratedJD/Pattern4CI -rea realization.txt -png -td "
-       
-    - name: Archive generated codes
-          uses: actions/upload-artifact@v2
-          with: 
-            name: GeneratedJD
-            path: output/GeneratedJD
+         run: echo -e "Jacoco report Archivate\nValid Continuous Integration" >> realization.txt
          
     #I generate the two diagrams and the TODO list
     - name: JD&TODO Generation     
-       run : mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/exampleCI/Pattern4CI.jd -o output/GeneratedJD/Pattern4CI -svg -td realization.txt -rea"
+       run : mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/exampleCI/Pattern4CI.jd -o output/GeneratedJD/Pattern4CI -rea realization.txt -info example/exampleCI/infoInvalid.json -png -td"
     
     #I archive my diagrams create during the CI
     - name: Archive JD&TODO
@@ -780,6 +862,13 @@ jobs:
       with: 
         name: GeneratedJD
         path: realization.txt
+	
+    #I archive my information file in the same artifacts as my diagrams
+    - name: Archive realization
+      uses: actions/upload-artifact@v2
+      with: 
+        name: GeneratedJD
+        path: example/exampleCI/infoValid.json
         
     #I archive the diagrams generated during the test
     - name: Archive images
@@ -801,8 +890,8 @@ jobs:
       with: 
         name: generatedCode
         path: src/main/java/models
-    #---------JustificationDiagram-----------
-
+        
+     #---------JustificationDiagram-----------
 
 ```
 
@@ -821,7 +910,7 @@ Jacoco report Archivate
 
 #### example_REA.svg - Invalid
 
-![](examples/exampleCI/Pattern4CI_NotValid_REA.svg)
+![](justification/examples/exampleCI/Pattern4CI_NotValid_REA.svg)
 
 #### example.todo - Invalid
 
@@ -829,19 +918,22 @@ _Generated List_
 ```
 Requirements list
 
-[X]	code Archivate
+[X]	code Archivate - reference : generatedCode
 [ ]	Test Maven passed
-[X]	Jacoco Report - references : Archi1
-[X]	images Archivate - references : images
-	[X] examples/exampleCI/Pattern4CI.jd
-[X]	Jacoco report Archivate
+[ ]	Jacoco Report - reference : Archi1 (optional) 
+	[X] target/site/jacoco/index.html
+[X]	images Archivate - reference : images
+	[X] justification/examples/exampleCI/Pattern4CI.jd
+[X]	Jacoco report Archivate - reference : jacoco
 [X]	Test Coverage validated
 [X]	Build Maven passed
+	[x] justification/examples (10 Files found)
 [ ]	Maven ready
 [X]	Test Coverage validated and Archived
 [ ]	Data Archivate
 	[ ] dontExist.todo - (not found)
-	[ ] examples - (3 file expected, but 10 found)
+	[X] justification/output/images
+	[ ] justification/examples - (3 file expected, but 10 found)
 	[ ] dontExist.txt - (not found)
 [ ]	Archivees Data
 [ ]	Project Valid
