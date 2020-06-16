@@ -1054,9 +1054,9 @@ Here is the realization diagram:
 
 
 <!-- this is an example -->
-![link to Google](https://github.com/MireilleBF/JustificationDiagram/blob/master/justification/examples/exampleCI/Pattern4CI_Valid.svg)
+![link to Google](https://github.com/MireilleBF/JustificationDiagram/blob/master/justification/examples/exampleCI/Pattern4CI_Valid_REA.svg)
 ```
 
-![link to Google](https://github.com/MireilleBF/JustificationDiagram/blob/master/justification/examples/exampleCI/Pattern4CI_Valid.svg)
+![link to Google](https://github.com/MireilleBF/JustificationDiagram/blob/master/justification/examples/exampleCI/Pattern4CI_Valid_REA.svg)
 
 
