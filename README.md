@@ -669,7 +669,7 @@ Valid Continuous Integration
 
 #### example_REA.svg - Valid
 
-![](examples/exampleCI/Pattern4CI_Valid_REA.svg)
+![](justification/examples/exampleCI/Pattern4CI_Valid_REA.svg)
 
 
 #### example.todo - Valid
