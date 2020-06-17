@@ -20,39 +20,25 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml
+    - name: 
+        Build with Maven;
+        echo -e "\nCreation of the README" >> realization.txt;
+        echo -e "Build Maven passed" >> realization.txt;
+      run: 
+        mvn -B package --file pom.xml;
+        echo -e "Test Maven passed" >> realization.txt;
     - name: Test with Maven
       run: mvn test
     - name: SonarCloud Scan
       run: 
-       mvn -B verify sonar:sonar
+       mvn -B verify sonar:sonar;
+       echo -e "Scanning the project with SonarCloud" >> realization.txt;
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-    - name: Realization part1   
-      run: echo -e "\nBuild Maven passed\nTest Maven passed\nJacoco Report\nimages Archivate" >> realization.txt
-    - name: Realization part2
-      run: echo -e "Jacoco report Archivate\ncode Archivate\nValid Continuous Integration" >> realization.txt
     - name: cat Realization
       run: cat realization.txt
-    - name: JD&TODO generation 
-      run: mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="justification/examples/exampleCI/Pattern4CI.jd -o justification/output/GeneratedJD/Pattern4CI -rea realization.txt -info justification/examples/exampleCI/infoValid.json -svg -svgR -td "
-    - name: Archive JD&TODO
-      uses: actions/upload-artifact@v2
-      with: 
-        name: GeneratedJD
-        path: justification/output/GeneratedJD/
-    - name: Archive realization
-      uses: actions/upload-artifact@v2
-      with: 
-        name: GeneratedJD
-        path: realization.txt
-    - name: Archive information
-      uses: actions/upload-artifact@v2
-      with: 
-        name: GeneratedJD
-        path: justification/examples/exampleCI/infoValid.json
+   
     - name: Archive images
       uses: actions/upload-artifact@v2
       with: 
@@ -68,6 +54,30 @@ jobs:
       with: 
         name: generatedCode
         path: src/main/java/models
+        
+    - name: Realization part1   
+      run: echo -e "Jacoco Report\nimages Archivate" >> realization.txt
+    - name: Realization part2
+      run: echo -e "Jacoco report Archivate\ncode Archivate\nValid Continuous Integration" >> realization.txt
+    
+     - name: JD&TODO generation 
+      run: mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="justification/examples/exampleCI/Pattern4CI.jd -o justification/output/GeneratedJD/Pattern4CI -rea realization.txt -info justification/examples/exampleCI/infoValid.json -svg -svgR -td "
+    - name: Archive JD&TODO
+      uses: actions/upload-artifact@v2
+      with: 
+        name: GeneratedJD
+        path: justification/output/GeneratedJD/
+    - name: Archive realization
+      uses: actions/upload-artifact@v2
+      with: 
+        name: GeneratedJD
+        path: realization.txt
+        
+    - name: Archive information
+      uses: actions/upload-artifact@v2
+      with: 
+        name: GeneratedJD
+        path: justification/examples/exampleCI/infoValid.json
     - name: memorise the final result
       run: 
        git config user.name "GitHub Actions";
