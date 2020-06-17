@@ -7,28 +7,28 @@
 <g id="node1" class="node">
 <title>C</title>
 <polygon fill="#bfbfbf" stroke="transparent" points="523.9257,-670 523.9257,-692 693.9257,-692 693.9257,-670 523.9257,-670"/>
-<polyline fill="none" stroke="#0000cd" points="693.9257,-692 523.9257,-692 523.9257,-670 "/>
-<text text-anchor="start" x="526.8822" y="-676.4" font-family="Times,serif" font-size="14.00" fill="#0000cd">Valid Continuous Integration</text>
+<polyline fill="none" stroke="#cd0000" points="693.9257,-692 523.9257,-692 523.9257,-670 "/>
+<text text-anchor="start" x="526.8822" y="-676.4" font-family="Times,serif" font-size="14.00" fill="#cd0000">Valid Continuous Integration</text>
 <polygon fill="#bfbfbf" stroke="transparent" points="693.9257,-670 693.9257,-692 699.9257,-692 699.9257,-670 693.9257,-670"/>
-<polyline fill="none" stroke="#0000cd" points="699.9257,-670 699.9257,-692 693.9257,-692 "/>
-<polyline fill="none" stroke="#0000cd" points="699.9257,-692 699.9257,-670 "/>
+<polyline fill="none" stroke="#cd0000" points="699.9257,-670 699.9257,-692 693.9257,-692 "/>
+<polyline fill="none" stroke="#cd0000" points="699.9257,-692 699.9257,-670 "/>
 <polygon fill="#bfbfbf" stroke="transparent" points="523.9257,-656 523.9257,-670 595.9257,-670 595.9257,-656 523.9257,-656"/>
-<polyline fill="none" stroke="#0000cd" points="523.9257,-670 523.9257,-656 595.9257,-656 "/>
+<polyline fill="none" stroke="#cd0000" points="523.9257,-670 523.9257,-656 595.9257,-656 "/>
 <polygon fill="#fff68f" stroke="transparent" points="595.9257,-648 595.9257,-670 705.9257,-670 705.9257,-648 595.9257,-648"/>
 <polygon fill="none" stroke="#000000" stroke-dasharray="5,2" points="595.9257,-648 595.9257,-670 705.9257,-670 705.9257,-648 595.9257,-648"/>
-<text text-anchor="start" x="631.4902" y="-654.4" font-family="Times,serif" font-size="14.00" fill="#0000cd">interne</text>
+<text text-anchor="start" x="631.4902" y="-654.4" font-family="Times,serif" font-size="14.00" fill="#cd0000">interne</text>
 </g>
 <!-- PS -->
 <g id="node2" class="node">
 <title>PS</title>
-<polygon fill="#a2cd5a" stroke="#0000cd" points="283.4251,-396 140.8937,-396 114.4263,-360 256.9577,-360 283.4251,-396"/>
-<text text-anchor="middle" x="198.9257" y="-373.8" font-family="Times,serif" font-size="14.00" fill="#0000cd">Project Scan</text>
+<polygon fill="#a2cd5a" stroke="#cd0000" points="283.4251,-396 140.8937,-396 114.4263,-360 256.9577,-360 283.4251,-396"/>
+<text text-anchor="middle" x="198.9257" y="-373.8" font-family="Times,serif" font-size="14.00" fill="#cd0000">Project Scan</text>
 </g>
 <!-- SCR -->
 <g id="node3" class="node">
 <title>SCR</title>
-<path fill="transparent" stroke="#0000cd" d="M285.9015,-468C285.9015,-468 191.9499,-468 191.9499,-468 185.9499,-468 179.9499,-462 179.9499,-456 179.9499,-456 179.9499,-444 179.9499,-444 179.9499,-438 185.9499,-432 191.9499,-432 191.9499,-432 285.9015,-432 285.9015,-432 291.9015,-432 297.9015,-438 297.9015,-444 297.9015,-444 297.9015,-456 297.9015,-456 297.9015,-462 291.9015,-468 285.9015,-468"/>
-<text text-anchor="middle" x="238.9257" y="-445.8" font-family="Times,serif" font-size="14.00" fill="#0000cd">SonarCloud ready</text>
+<path fill="transparent" stroke="#cd0000" d="M285.9015,-468C285.9015,-468 191.9499,-468 191.9499,-468 185.9499,-468 179.9499,-462 179.9499,-456 179.9499,-456 179.9499,-444 179.9499,-444 179.9499,-438 185.9499,-432 191.9499,-432 191.9499,-432 285.9015,-432 285.9015,-432 291.9015,-432 297.9015,-438 297.9015,-444 297.9015,-444 297.9015,-456 297.9015,-456 297.9015,-462 291.9015,-468 285.9015,-468"/>
+<text text-anchor="middle" x="238.9257" y="-445.8" font-family="Times,serif" font-size="14.00" fill="#cd0000">SonarCloud ready</text>
 </g>
 <!-- PS&#45;&gt;SCR -->
 <g id="edge1" class="edge">
@@ -39,8 +39,8 @@
 <!-- SE -->
 <g id="node4" class="node">
 <title>SE</title>
-<polygon fill="#a2cd5a" stroke="#0000cd" points="764.6462,-540 512.1015,-540 465.2052,-504 717.7499,-504 764.6462,-540"/>
-<text text-anchor="middle" x="614.9257" y="-517.8" font-family="Times,serif" font-size="14.00" fill="#0000cd">Evaluate Project Quality</text>
+<polygon fill="#a2cd5a" stroke="#cd0000" points="764.6462,-540 512.1015,-540 465.2052,-504 717.7499,-504 764.6462,-540"/>
+<text text-anchor="middle" x="614.9257" y="-517.8" font-family="Times,serif" font-size="14.00" fill="#cd0000">Evaluate Project Quality</text>
 </g>
 <!-- SCR&#45;&gt;SE -->
 <g id="edge2" class="edge">
@@ -51,8 +51,8 @@
 <!-- PV -->
 <g id="node5" class="node">
 <title>PV</title>
-<path fill="transparent" stroke="#0000cd" d="M648.1821,-612C648.1821,-612 581.6693,-612 581.6693,-612 575.6693,-612 569.6693,-606 569.6693,-600 569.6693,-600 569.6693,-588 569.6693,-588 569.6693,-582 575.6693,-576 581.6693,-576 581.6693,-576 648.1821,-576 648.1821,-576 654.1821,-576 660.1821,-582 660.1821,-588 660.1821,-588 660.1821,-600 660.1821,-600 660.1821,-606 654.1821,-612 648.1821,-612"/>
-<text text-anchor="middle" x="614.9257" y="-589.8" font-family="Times,serif" font-size="14.00" fill="#0000cd">Project Valid</text>
+<path fill="transparent" stroke="#cd0000" d="M648.1821,-612C648.1821,-612 581.6693,-612 581.6693,-612 575.6693,-612 569.6693,-606 569.6693,-600 569.6693,-600 569.6693,-588 569.6693,-588 569.6693,-582 575.6693,-576 581.6693,-576 581.6693,-576 648.1821,-576 648.1821,-576 654.1821,-576 660.1821,-582 660.1821,-588 660.1821,-588 660.1821,-600 660.1821,-600 660.1821,-606 654.1821,-612 648.1821,-612"/>
+<text text-anchor="middle" x="614.9257" y="-589.8" font-family="Times,serif" font-size="14.00" fill="#cd0000">Project Valid</text>
 </g>
 <!-- SE&#45;&gt;PV -->
 <g id="edge3" class="edge">
@@ -195,8 +195,8 @@
 <!-- SC -->
 <g id="node16" class="node">
 <title>SC</title>
-<path fill="#87ceeb" stroke="#0000cd" d="M217.7771,-324C217.7771,-324 12.0743,-324 12.0743,-324 6.0743,-324 .0743,-318 .0743,-312 .0743,-312 .0743,-300 .0743,-300 .0743,-294 6.0743,-288 12.0743,-288 12.0743,-288 217.7771,-288 217.7771,-288 223.7771,-288 229.7771,-294 229.7771,-300 229.7771,-300 229.7771,-312 229.7771,-312 229.7771,-318 223.7771,-324 217.7771,-324"/>
-<text text-anchor="middle" x="114.9257" y="-301.8" font-family="Times,serif" font-size="14.00" fill="#0000cd">Scanning the project with SonarCloud</text>
+<path fill="#87ceeb" stroke="#cd0000" d="M217.7771,-324C217.7771,-324 12.0743,-324 12.0743,-324 6.0743,-324 .0743,-318 .0743,-312 .0743,-312 .0743,-300 .0743,-300 .0743,-294 6.0743,-288 12.0743,-288 12.0743,-288 217.7771,-288 217.7771,-288 223.7771,-288 229.7771,-294 229.7771,-300 229.7771,-300 229.7771,-312 229.7771,-312 229.7771,-318 223.7771,-324 217.7771,-324"/>
+<text text-anchor="middle" x="114.9257" y="-301.8" font-family="Times,serif" font-size="14.00" fill="#cd0000">Scanning the project with SonarCloud</text>
 </g>
 <!-- SC&#45;&gt;PS -->
 <g id="edge16" class="edge">
@@ -285,8 +285,8 @@
 <!-- CRM -->
 <g id="node23" class="node">
 <title>CRM</title>
-<path fill="#87ceeb" stroke="#0000cd" d="M1188.9993,-324C1188.9993,-324 1050.8521,-324 1050.8521,-324 1044.8521,-324 1038.8521,-318 1038.8521,-312 1038.8521,-312 1038.8521,-300 1038.8521,-300 1038.8521,-294 1044.8521,-288 1050.8521,-288 1050.8521,-288 1188.9993,-288 1188.9993,-288 1194.9993,-288 1200.9993,-294 1200.9993,-300 1200.9993,-300 1200.9993,-312 1200.9993,-312 1200.9993,-318 1194.9993,-324 1188.9993,-324"/>
-<text text-anchor="middle" x="1119.9257" y="-301.8" font-family="Times,serif" font-size="14.00" fill="#0000cd">Creation of the README</text>
+<path fill="#87ceeb" stroke="#cd0000" d="M1188.9993,-324C1188.9993,-324 1050.8521,-324 1050.8521,-324 1044.8521,-324 1038.8521,-318 1038.8521,-312 1038.8521,-312 1038.8521,-300 1038.8521,-300 1038.8521,-294 1044.8521,-288 1050.8521,-288 1050.8521,-288 1188.9993,-288 1188.9993,-288 1194.9993,-288 1200.9993,-294 1200.9993,-300 1200.9993,-300 1200.9993,-312 1200.9993,-312 1200.9993,-318 1194.9993,-324 1188.9993,-324"/>
+<text text-anchor="middle" x="1119.9257" y="-301.8" font-family="Times,serif" font-size="14.00" fill="#cd0000">Creation of the README</text>
 </g>
 <!-- CRM&#45;&gt;PDOC -->
 <g id="edge24" class="edge">
