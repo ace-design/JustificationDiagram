@@ -87,13 +87,20 @@
     },
     {
         "Node":{
-	        "@comment": "The node labeled 'Creation of the README' is optional and... ",     
+	        "@comment": "The node labeled 'Creation of the README'... ",     
             "Label":"Creation of the README",
-            "Optional":"true",  
 	        "@comment3": "...and need to check the exitance of the file 'README.md'",
             "Files": [  
                 "README.md"
             ]  
+        }
+    },
+    {
+        "Node":{
+	        "@comment": "The node labeled 'Documentation ready' is optional",     
+            "Label":"Documentation ready",
+            "Optional":"true",  
+
         }
     }
 ]
