@@ -1,0 +1,20 @@
+Requirements list
+
+[X]	Identified risks - reference : Archi1
+[ ]	Functional specifications - reference : Archi1 (optional) 
+	[X] justification/examples/realization/realizationFig3.txt
+[X]	Technical specifications - reference : jacoco
+	[X] .github/workflows
+	[x] .github/workflows (1 Files found)
+[X]	Feasible hard points
+[X]	Specifications validated
+[ ]	Risk mitigation plan
+[ ]	Architecture
+[ ]	Risks consistency (optional) 
+	[ ] dontExit - (not found)
+[ ]	Safety specifications validated
+[ ]	Architecture validated
+	[ ] dontExit - (not found)
+-----------------------------------------------
+[ ]		Software safety validated
+-----------------------------------------------

@@ -14,9 +14,13 @@ public class InformationNode {
 	
 	public String label;
 	public String reference;
-	public ArrayList<String> path;
+	public ArrayList<String> path; 
 	public HashMap<String,Integer> pathWithNumber;
 	public boolean optional;
+
+	public ArrayList<String> action; 
+
+	//TODO: ajouter une liste de action
 	
 	public InformationNode() {
 		label = null;
@@ -26,12 +30,13 @@ public class InformationNode {
 		optional = false;
 	}
 	
-	public InformationNode(String label,String reference,ArrayList<String> path, HashMap<String,Integer> pathWithNumber,boolean optional) {
+	public InformationNode(String label,String reference,ArrayList<String> path, HashMap<String,Integer> pathWithNumber,boolean optional,ArrayList<String> action) {
 		this.label = label;
 		this.path = path;
 		this.pathWithNumber = pathWithNumber;
 		this.reference = reference;
 		this.optional = optional;
+		this.action = action;
 	}
 
 
@@ -52,10 +57,8 @@ public class InformationNode {
 		this.pathWithNumber = pathWithNumber;
 	}
 	
-	
-	
-	
-	
-	
+	public void setAction(ArrayList<String> action) {
+		this.action = action;
+	}
 
 }

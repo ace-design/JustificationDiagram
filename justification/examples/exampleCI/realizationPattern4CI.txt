@@ -5,3 +5,5 @@ Test Maven passed
 Build Maven passed
 Jacoco report Archivate
 Valid Continuous Integration
+Creation of the README
+Scanning the project with SonarCloud

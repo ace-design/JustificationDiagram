@@ -1,0 +1,30 @@
+Requirements list
+
+[X]	Creation of the README (optional) 
+	[X] README.md
+[X]	code Archivate - reference : generatedCode
+[ ]	Test Maven passed
+[ ]	Jacoco Report - reference : Archi1
+	[ ] dontExist.todo - (not found)
+	[X] target/site/jacoco/index.html
+	[ ] justification/examples - (3 file expected, but 10 found)
+	[ ] dontExist.txt - (not found)
+	[ ] Current coverage is 80,  it's not > 80
+[X]	images Archivate - reference : images
+	[X] justification/examples/exampleCI/Pattern4CI.jd
+[ ]	Jacoco report Archivate - reference : jacoco
+[X]	Scanning the project with SonarCloud
+[X]	Documentation ready
+[ ]	Test Coverage validated
+[X]	Build Maven passed
+	[x] justification/examples (10 Files found)
+[ ]	Maven ready
+[ ]	Test Coverage validated and Archived (optional) 
+[X]	Data Archivate
+	[X] justification/output/images
+[X]	Archivees Data
+[X]	SonarCloud ready
+[ ]	Project Valid
+-----------------------------------------------
+[ ]		Valid Continuous Integration
+-----------------------------------------------

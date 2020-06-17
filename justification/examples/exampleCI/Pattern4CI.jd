@@ -45,9 +45,20 @@ RJ --> SJ
 SJ --> JV
 
 
+support SC = "Scanning the project with SonarCloud"
+strategy PS = "Project Scan"
+subconclusion SCR = "SonarCloud ready"
 
+SC --> PS 
+PS --> SCR
+SCR --> SE 
 
+support CRM = "Creation of the README"
+strategy PDOC = "Project documented"
+subconclusion DOCR = "Documentation ready"
 
-
+CRM --> PDOC
+PDOC --> DOCR
+DOCR --> SE
 
 @enduml

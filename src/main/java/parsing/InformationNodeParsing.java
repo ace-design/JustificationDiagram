@@ -78,7 +78,8 @@ public class InformationNodeParsing {
 
 		ArrayList<String> fileList = null;
 		HashMap<String, Integer> fileNumberMap = null;
-
+		ArrayList<String> actionList = null;
+		
 		// Get Node object within list
 		JSONObject informationObject = (JSONObject) JsonInformation.get("Node");
 
@@ -123,8 +124,18 @@ public class InformationNodeParsing {
 			}
 
 		}
+		
+		JSONArray arrActions = (JSONArray) informationObject.get("Actions");
 
-		return new InformationNode(label, reference, fileList, fileNumberMap,optional);
+		if (arrActions != null) {
+			actionList = new ArrayList<String>();
+			for (Object object : arrActions) {
+				actionList.add(object.toString());
+			}
+
+		}
+
+		return new InformationNode(label, reference, fileList, fileNumberMap,optional,actionList);
 	}
 
 

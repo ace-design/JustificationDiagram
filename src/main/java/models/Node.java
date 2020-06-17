@@ -1,9 +1,14 @@
 package models;
 
-import export.*;
-
 import java.io.File;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
+
+import command.CommandFactory;
+import export.JDVisitor;
 
 public class Node implements Visitable {
     public String alias;
@@ -53,7 +58,6 @@ public class Node implements Visitable {
   
     	boolean isDone = true;
     	// Use to check that the current node depends on the state of these inputs.
-    	// TODO : modifier les commentaires ici
     	if(inputs.isEmpty()) {
     		isDone = realizationListAnalyses(labelList);
     	}
@@ -81,7 +85,7 @@ public class Node implements Visitable {
 
     	}
 		// used to check the number of files in a repertory
-		if(informationNode != null && informationNode.pathWithNumber != null&& !informationNode.pathWithNumber.isEmpty()) {
+		if(informationNode.pathWithNumber != null&& !informationNode.pathWithNumber.isEmpty()) {
 			if(isDone) {
 				isDone = CheckFileWithNumberAnalyses();
 
@@ -93,6 +97,28 @@ public class Node implements Visitable {
 	    	}
 
     	}
+		if(informationNode.action != null && !informationNode.action.isEmpty()) {
+			CommandFactory cf = CommandFactory.getInstance();
+
+			for(String command : informationNode.action) {
+				cf.create();
+				ArrayList<String> returnOfExecute = cf.executeCommand(command);
+				
+				// get the boolean of the execution
+				if(returnOfExecute.get(0).contains("true")) {
+					isDone = true;
+				}
+				else {
+					isDone = false;
+				}
+				
+				// get the logs of the execution
+				if(!returnOfExecute.get(1).isBlank()) {
+					logForFiles.add(returnOfExecute.get(1));
+				}
+			}
+		}
+		
     	if(isDone) {
     		this.state = State.DONE;
     	}

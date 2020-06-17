@@ -113,6 +113,7 @@ public class JDCompiler {
 				System.err.println(
 						"\nimpossible to generate a realization diagram without a realization file. Please add a realization file\n"
 								+ "'example.jd -o output/example -svgR example/realization.txt -rea'");
+				// TODO: message d'érreur en si il n'y a pas de fichier d'information
 			}
 
 		}

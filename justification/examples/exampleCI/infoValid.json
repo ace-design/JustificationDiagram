@@ -1,8 +1,14 @@
 [  
     { 
         "Node":{
+	        "@comment": "The node labeled 'Jacoco Repor' is not optional... ",     
             "Label":"Jacoco Report",
             "Optional":"false",
+	        "@comment2": "...the total coverage need to be superior to 80%... ",     
+            "Actions": [
+                "CheckCoverage target/site/jacoco/index.html >= 80", 
+            ],
+	        "@comment3": "...and need to check the exitance of the file 'target/site/jacoco/index.html'." ,
             "Files": [  
                 "target/site/jacoco/index.html"
             ]    
@@ -10,20 +16,26 @@
     },
     {
         "Node":{
+	        "@comment": "The node labeled 'code Archivate' has 'generatedCode' for reference.",
             "Label":"code Archivate",
             "Reference":"generatedCode",    
+            "Action":"CheckSize > 10",
         }
     },
     {
         "Node": {
+	        "@comment": "The node labeled 'images Archivate' has 'images' for reference and...",
             "Label":"images Archivate",
             "Reference":"images",
+	    
             "FilesNumber": [  
                 {   
+         	       "@comment2": "...need to check if of the repertory 'justification/output/images/' have 13 files..." ,
                     "Path":"justification/output/images/",
                     "Number":"13"     
                 },
                 {   
+                    "@comment3": "... and need to check if of the repertory 'justification/' have 2 files.",
                     "Path":"justification/",
                     "Number":"2"    
                 },
@@ -35,9 +47,11 @@
     },
     {
         "Node":{
+	        "@comment": "The node labeled 'Build Maven passed'...",
             "Label":"Build Maven passed",
             "FilesNumber": [  
                 {   
+		           "@comment2":"need to check if of the repertory 'justification/examples' have 10 files.",
                     "Path":"justification/examples",
                     "Number":"10"     
                 },
@@ -48,6 +62,7 @@
     },
     {
         "Node":{
+	        "@comment": "The node labeled 'Jacoco report Archivate' has 'jacoco' for reference.",
             "Label":"Jacoco report Archivate",
             "Reference":"jacoco",    
         }
@@ -57,9 +72,28 @@
     
     {
         "Node": {
+	    "@comment": "The node labeled 'Continuous Integration' has 'GeneratedJD' for reference.",
             "Label":"Continuous Integration",
             "Reference":"GeneratedJD",
         }
         
     },
+    {
+        "Node":{
+	        "@comment": "The node labeled 'Test Coverage validated and Archived' is optional. ",     
+            "Label":"Test Coverage validated and Archived",
+            "Optional":"true",      
+        }
+    },
+    {
+        "Node":{
+	        "@comment": "The node labeled 'Creation of the README' is optional and... ",     
+            "Label":"Creation of the README",
+            "Optional":"true",  
+	        "@comment3": "...and need to check the exitance of the file 'README.md'",
+            "Files": [  
+                "README.md"
+            ]  
+        }
+    }
 ]
