@@ -57,6 +57,11 @@ public class CommandCheckCoverage implements Command{
 				isDone = "true";
 			}
 		}
+		else if(operator.equals("!=")) {
+			if(coverageFind != coverage) {
+				isDone = "true";
+			}
+		}
 		
 		String log = "";
 		if(isDone.contains("true")) {

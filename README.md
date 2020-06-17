@@ -166,7 +166,7 @@ For the example, we will say that the "Validated Architecture" node must verify 
  ]
 ```
 
-The last information than you can write is to specify for a node to verify than a specific repertory contains a specific nuùbers of files.  
+The next information than you can write is to specify for a node to verify than a specific repertory contains a specific numbers of files.  
 
 For the example, we will say that the "Validated Architecture" node must verify that "test3" have 2 files and "test4" have 3 files.
 
@@ -198,6 +198,56 @@ For the example, we will say that the "Validated Architecture" node must verify 
  ]
 ```
 
+The last information is a list of information to verify. This one can have a lot of options. For now, there is a verification of the test coverage of your project.
+
+### CheckCoverage
+
+```
+[
+    {
+        "Node":{
+	    "Actions": [
+            "CheckCoverage [INPUT_JACOCO_REPORT_INDEX.hml] [OPERATOR] [NUMBER]", 
+        ]
+    },
+ ]
+```
+
+You need to specify where is the index.html of the jacoco report in 'INPUT_JACOCO_REPORT_INDEX.html'.
+
+
+### OPERATOR
+| Argument | Description                                                           |
+|----------|-----------------------------------------------------------------------|
+| '=='     | Verifies than the test coverage is equal to 'NUMBER'                  |
+| '!='     | Verifies than the test coverage is not equal to 'NUMBER'              |
+| '>'      | Verifies than the test coverage is greater than 'NUMBER'              |
+| '>="     | Verifies that the test coverage is greater than or equal to "NUMBER"  |
+| '<'      | Verifies that the test coverage is less than "NUMBER".                |
+| '<='     | Verifies that the test coverage is less than or equal to "NUMBER"     |
+
+
+
+For the example, we will say that the "Validated Architecture" node must verify that the coverage is greater than or equal to 80. For this, we need "site/jacoco/index.html". 
+
+### informationActionsCheckCoverage.json
+```
+[
+    {
+        "Node":{
+            "Label":"Architecture validated",
+	    "Optional":"true",
+            "Reference":"archi1",
+	    "Actions": [
+            "CheckCoverage target/site/jacoco/index.html >= 80", 
+        ]
+    },
+ ]
+```
+
+
+
+
 ### other example
 
 Here is a more detailed example
@@ -222,15 +272,24 @@ Here is a more detailed example
     {
         "Node":{
             "Label":"Architecture validated",
-	    "Optional":"false",
+	        "Optional":"false",
             "Reference":"archi1"
         }
     },
     {
         "Node":{
             "Label":"Risks consistency",
-	    "Optional":"true",
+	       "Optional":"true",
             "Reference":"archi2"
+        }
+    },
+    {
+        "Node":{
+            "Label":"Jacoco Report",
+            "Reference":"archi2",
+            "Actions": [
+                "CheckCoverage target/site/jacoco/index.html == 80", 
+            ]
         }
     },
  ]
