@@ -1,6 +1,6 @@
 Requirements list
 
-[X]	Creation of the README (optional) 
+[ ]	Creation of the README (optional) 
 	[X] README.md
 [X]	code Archivate - reference : generatedCode
 [X]	Test Maven passed
@@ -11,7 +11,7 @@ Requirements list
 	[x] justification/output/images/ (13 Files found)
 	[x] justification/ (2 Files found)
 [X]	Jacoco report Archivate - reference : jacoco
-[X]	Scanning the project with SonarCloud
+[ ]	Scanning the project with SonarCloud
 [X]	Documentation ready
 [X]	Test Coverage validated
 [X]	Build Maven passed
@@ -19,8 +19,8 @@ Requirements list
 [X]	Maven ready
 [X]	Test Coverage validated and Archived (optional) 
 [X]	Archivees Data
-[X]	SonarCloud ready
-[X]	Project Valid
+[ ]	SonarCloud ready
+[ ]	Project Valid
 -----------------------------------------------
-[X]		Valid Continuous Integration
+[ ]		Valid Continuous Integration
 -----------------------------------------------
