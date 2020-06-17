@@ -113,7 +113,7 @@ public class Node implements Visitable {
 				}
 				
 				// get the logs of the execution
-				if(!returnOfExecute.get(1).isBlank()) {
+				if(!returnOfExecute.get(1).isEmpty()) {
 					logForFiles.add(returnOfExecute.get(1));
 				}
 			}
