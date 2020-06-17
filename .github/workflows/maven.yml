@@ -56,9 +56,9 @@ jobs:
         path: src/main/java/models
         
     - name: Realization part1   
-      run: echo -e "Jacoco Report\nimages Archivate" >> realization.txt
+      run: echo -e "Jacoco Report\nJacoco report Archivate" >> realization.txt
     - name: Realization part2
-      run: echo -e "Jacoco report Archivate\ncode Archivate\nValid Continuous Integration" >> realization.txt
+      run: echo -e "images Archivate\ncode Archivate" >> realization.txt
     
     - name: JD&TODO generation 
       run: mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="justification/examples/exampleCI/Pattern4CI.jd -o justification/output/GeneratedJD/Pattern4CI -rea realization.txt -info justification/examples/exampleCI/infoValid.json -svg -svgR -td "

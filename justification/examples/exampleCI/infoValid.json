@@ -6,7 +6,7 @@
             "Optional":"false",
 	        "@comment2": "...the total coverage need to be superior to 80%... ",     
             "Actions": [
-                "CheckCoverage target/site/jacoco/index.html >= 80", 
+                "CheckCoverage target/site/jacoco/index.html >= 70", 
             ],
 	        "@comment3": "...and need to check the exitance of the file 'target/site/jacoco/index.html'." ,
             "Files": [  
