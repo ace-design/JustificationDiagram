@@ -60,7 +60,7 @@ jobs:
     - name: Realization part2
       run: echo -e "Jacoco report Archivate\ncode Archivate\nValid Continuous Integration" >> realization.txt
     
-     - name: JD&TODO generation 
+    - name: JD&TODO generation 
       run: mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="justification/examples/exampleCI/Pattern4CI.jd -o justification/output/GeneratedJD/Pattern4CI -rea realization.txt -info justification/examples/exampleCI/infoValid.json -svg -svgR -td "
     - name: Archive JD&TODO
       uses: actions/upload-artifact@v2
