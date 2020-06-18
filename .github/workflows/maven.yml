@@ -30,8 +30,8 @@ jobs:
     #Test of the project, 'Test Maven passed' is done
     - name: Test with Maven
       run: 
-        mvn test;
         echo -e "Test Maven passed" >> realization.txt;
+        mvn test;
     #Scanning the project with SonarCloud
     - name: SonarCloud Scan
       run: 
