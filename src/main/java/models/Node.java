@@ -85,7 +85,7 @@ public class Node implements Visitable {
 
     	}
 		// used to check the number of files in a repertory
-		if(informationNode.pathWithNumber != null&& !informationNode.pathWithNumber.isEmpty()) {
+		if(informationNode != null && informationNode.pathWithNumber != null&& !informationNode.pathWithNumber.isEmpty()) {
 			if(isDone) {
 				isDone = CheckFileWithNumberAnalyses();
 
@@ -97,7 +97,7 @@ public class Node implements Visitable {
 	    	}
 
     	}
-		if(informationNode.action != null && !informationNode.action.isEmpty()) {
+		if(informationNode != null && informationNode.action != null && !informationNode.action.isEmpty()) {
 			if(isDone) {
 				isDone = CheckAction();
 
