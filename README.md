@@ -767,20 +767,26 @@ _Generated List_
 ```
 Requirements list
 
+[X]	Creation of the README
+	[X] README.md
 [X]	code Archivate - reference : generatedCode
 [X]	Test Maven passed
-[X]	Jacoco Report (optional) 
+[X]	Jacoco Report
 	[X] target/site/jacoco/index.html
+	[x] Current coverage is 80, it's >= 70
 [X]	images Archivate - reference : images
 	[x] justification/output/images/ (13 Files found)
 	[x] justification/ (2 Files found)
 [X]	Jacoco report Archivate - reference : jacoco
+[X]	Scanning the project with SonarCloud
+[X]	Documentation ready (optional) 
 [X]	Test Coverage validated
 [X]	Build Maven passed
 	[x] justification/examples (10 Files found)
 [X]	Maven ready
-[X]	Test Coverage validated and Archived
+[X]	Test Coverage validated and Archived (optional) 
 [X]	Archivees Data
+[X]	SonarCloud ready
 [X]	Project Valid
 -----------------------------------------------
 [X]		Valid Continuous Integration
@@ -1039,24 +1045,30 @@ _Generated List_
 ```
 Requirements list
 
+[X]	Creation of the README
+	[X] README.md
 [X]	code Archivate - reference : generatedCode
 [ ]	Test Maven passed
-[ ]	Jacoco Report - reference : Archi1 (optional) 
+[ ]	Jacoco Report - reference : Archi1
+	[ ] dontExist.todo - (not found)
 	[X] target/site/jacoco/index.html
+	[ ] justification/examples - (3 file expected, but 10 found)
+	[ ] dontExist.txt - (not found)
+	[x] Current coverage is 80, it's > 70
 [X]	images Archivate - reference : images
 	[X] justification/examples/exampleCI/Pattern4CI.jd
-[X]	Jacoco report Archivate - reference : jacoco
-[X]	Test Coverage validated
+[ ]	Jacoco report Archivate - reference : jacoco
+[X]	Scanning the project with SonarCloud
+[X]	Documentation ready (optional) 
+[ ]	Test Coverage validated
 [X]	Build Maven passed
 	[x] justification/examples (10 Files found)
 [ ]	Maven ready
-[X]	Test Coverage validated and Archived
-[ ]	Data Archivate
-	[ ] dontExist.todo - (not found)
+[ ]	Test Coverage validated and Archived (optional) 
+[X]	Data Archivate
 	[X] justification/output/images
-	[ ] justification/examples - (3 file expected, but 10 found)
-	[ ] dontExist.txt - (not found)
-[ ]	Archivees Data
+[X]	Archivees Data
+[X]	SonarCloud ready
 [ ]	Project Valid
 -----------------------------------------------
 [ ]		Valid Continuous Integration
