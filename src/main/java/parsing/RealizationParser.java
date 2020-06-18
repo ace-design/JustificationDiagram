@@ -16,7 +16,11 @@ public class RealizationParser {
 	public RealizationParser(String path) {
 		this.path = path;
 		
-		labelList = realizationParse(path);
+		try {
+			labelList = realizationParse(path);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 		
 	}
@@ -27,13 +31,17 @@ public class RealizationParser {
 	 * 
 	 * @param realizationPath path to the realization file
 	 * @return list of node information
+	 * @throws IOException 
 	 */
-	public static ArrayList<String> realizationParse(String realizationPath) {
+	public static ArrayList<String> realizationParse(String realizationPath) throws IOException {
 
 		File realization;
 		ArrayList<String> realizationResult = new ArrayList<String>();
+		
 		if (realizationPath != null) {
+			
 			if ((realization = new File(realizationPath)).exists()) {
+				
 				RandomAccessFile ranRealization = null;
 				try {
 					ranRealization = new RandomAccessFile(realization, "r");
@@ -46,7 +54,14 @@ public class RealizationParser {
 
 				} catch (IOException e) {
 					e.printStackTrace();
+					
 				} 
+				finally {
+					if(ranRealization != null) {
+						ranRealization.close();
+					}
+				  }
+
 			} else {
 				System.err.println(realizationPath + " don't exist");
 			}

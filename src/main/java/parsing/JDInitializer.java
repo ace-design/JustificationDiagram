@@ -7,7 +7,6 @@ import models.*;
 
 public class JDInitializer extends JustificationDiagramBaseVisitor<String> {
     public JustificationDiagram diagram;
-    public ArrayList<String> realizationList;
 
     @Override
     public String visitDiagram(JustificationDiagramParser.DiagramContext ctx) {
@@ -33,14 +32,14 @@ public class JDInitializer extends JustificationDiagramBaseVisitor<String> {
     @Override
     public String visitElement(JustificationDiagramParser.ElementContext ctx) {
         diagram.nodes.put(ctx.ALIAS().getText(),
-                NodeFactory.create(ctx.TYPE().getText(), ctx.ALIAS().getText(),  ctx.label.getText(),realizationList));
+                NodeFactory.create(ctx.TYPE().getText(), ctx.ALIAS().getText(),  ctx.label.getText()));
         return super.visitElement(ctx);
     }
 
     @Override
     public String visitConclusion(JustificationDiagramParser.ConclusionContext ctx) {
         diagram.nodes.put(ctx.ALIAS().getText(), new Conclusion(ctx.ALIAS().getText(),
-                ctx.label.getText(), ctx.restriction != null? ctx.restriction.getText() : null,realizationList));
+                ctx.label.getText(), ctx.restriction != null? ctx.restriction.getText() : null));
         return super.visitConclusion(ctx);
     }
 }

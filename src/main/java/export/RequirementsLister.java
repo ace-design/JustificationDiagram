@@ -60,7 +60,7 @@ public class RequirementsLister implements JDVisitor {
 
     @Override
     public void visitStrategy(Strategy strategy) {
-    	if(!strategy.logForFiles.isEmpty()) {
+    	if(!strategy.log.isEmpty()) {
     		setModelUsed(strategy);
         	String stringToWrite = setStringToWrite(strategy);
 
@@ -71,7 +71,7 @@ public class RequirementsLister implements JDVisitor {
 
     @Override
     public void visitDomain(Domain domain) {
-    	if(!domain.logForFiles.isEmpty()) {
+    	if(!domain.log.isEmpty()) {
     		setModelUsed(domain);
         	String stringToWrite = setStringToWrite(domain);
 
@@ -83,7 +83,7 @@ public class RequirementsLister implements JDVisitor {
 
     @Override
     public void visitRationale(Rationale rationale) {
-    	if(!rationale.logForFiles.isEmpty()) {
+    	if(!rationale.log.isEmpty()) {
     		setModelUsed(rationale);
         	String stringToWrite = setStringToWrite(rationale);
 
@@ -122,8 +122,11 @@ public class RequirementsLister implements JDVisitor {
     }
     
     /**
-     * Checks if the current node has a reference. 
-     * If it does, return "'label' - references : 'ref'", otherwise return the 'label'.
+     * Checks if the current node has a reference and if it is optional. 
+     * If this is the case, return "'label' - references: 'ref' (optional)". 
+     * If there is only the reference, return "'label'" - references: 'ref'".
+     * If there is no reference and the node is optional, return "'label' (optional)".
+     * Otherwise, return "label".
      * 
      * @param node to check
      * @return string to write in the todo file.
@@ -150,13 +153,13 @@ public class RequirementsLister implements JDVisitor {
     }
     
     /**
-     * Take the 'logForFiles' of the current node and write the log of the files in the 'list' (if they have an error or not)
+     * Take the 'log' of the current node and write the log of the files in the 'list' (if they have an error or not)
      * 
      * @param node to check
      */
     public void setLogForFiles(Node node) {
-    	if(!node.logForFiles.isEmpty()) {
-    		for (String log : node.logForFiles) {
+    	if(!node.log.isEmpty()) {
+    		for (String log : node.log) {
         		list.append("\t").append(log, 0, log.length()).append("\n");
     		}
     	}

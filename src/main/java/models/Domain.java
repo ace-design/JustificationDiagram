@@ -1,14 +1,12 @@
 package models;
 
-import java.util.ArrayList;
-
 import export.*;
 
 public class Domain extends Node {
 	
 
-    public Domain(String alias, String label,ArrayList<String> realizationResult) {
-        super(alias, label,realizationResult);
+    public Domain(String alias, String label) {
+        super(alias, label);
     }
 
     public void accept(JDVisitor JDVisitor) {

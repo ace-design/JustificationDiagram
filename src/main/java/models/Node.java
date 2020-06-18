@@ -21,12 +21,12 @@ public class Node implements Visitable {
     public InformationNode informationNode; 
     
     // - log
-    public ArrayList<String> logForFiles = new ArrayList<>();
+    public ArrayList<String> log = new ArrayList<>();
     
     // - constant
     public String constantNoReferences = "!noRef!";
  
-    public Node(String alias, String label,ArrayList<String> realizationResult) { 
+    public Node(String alias, String label) { 
     	this.label = label;
         this.alias = alias;
         this.inputs = new HashSet<>();
@@ -98,31 +98,49 @@ public class Node implements Visitable {
 
     	}
 		if(informationNode.action != null && !informationNode.action.isEmpty()) {
-			CommandFactory cf = CommandFactory.getInstance();
+			if(isDone) {
+				isDone = CheckAction();
 
-			for(String command : informationNode.action) {
-				cf.create();
-				ArrayList<String> returnOfExecute = cf.executeCommand(command);
-				
-				// get the boolean of the execution
-				if(returnOfExecute.get(0).contains("true")) {
-					isDone = true;
-				}
-				else {
-					isDone = false;
-				}
-				
-				// get the logs of the execution
-				if(!returnOfExecute.get(1).isEmpty()) {
-					logForFiles.add(returnOfExecute.get(1));
-				}
 			}
+			else {
+				// use juste for the log
+				CheckAction();
+	    	}
 		}
 		
     	if(isDone) {
     		this.state = State.DONE;
     	}
     	
+    }
+    
+    /**
+     * use to analyze the actions of the nodes 
+     * @Returns true if actions are valid
+     * 
+     */
+    public boolean CheckAction() {
+    	CommandFactory cf = CommandFactory.getInstance();
+    	boolean isDone = false;
+
+		for(String command : informationNode.action) {
+			cf.create();
+			ArrayList<String> returnOfExecute = cf.executeCommand(command);
+			
+			// get the boolean of the execution
+			if(returnOfExecute.get(0).contains("true")) {
+				isDone = true;
+			}
+			else  {
+				isDone = false;
+			}
+			
+			// get the logs of the execution
+			if(!returnOfExecute.get(1).isEmpty()) {
+				log.add(returnOfExecute.get(1));
+			}
+		}
+		return isDone;
     }
     
     /**
@@ -163,11 +181,11 @@ public class Node implements Visitable {
     	for (String filePath : informationNode.path) {
 			if(!new File(filePath).exists()) {
 				System.err.println("The file " + filePath + " was not found to validate the node " + label);
-				logForFiles.add("[ ] " + filePath + " - (not found)");
+				log.add("[ ] " + filePath + " - (not found)");
 				isDone = false;
 			}
 			else {
-				logForFiles.add("[X] " + filePath);
+				log.add("[X] " + filePath);
 
 			}
 		}
@@ -185,16 +203,16 @@ public class Node implements Visitable {
     		String filePath = mapentry.getKey();
     		int currentLenght = 0;
 			if(!new File(mapentry.getKey()).exists()) {
-				logForFiles.add("[ ] " + filePath  + " - (not found)");
+				log.add("[ ] " + filePath  + " - (not found)");
 				isDone = false;
 			}
 			else if((currentLenght = new File(filePath).listFiles().length) != mapentry.getValue()) {
-				logForFiles.add("[ ] " +  filePath  + " - (" + mapentry.getValue()+" file expected, but " + currentLenght   + " found)" );
+				log.add("[ ] " +  filePath  + " - (" + mapentry.getValue()+" file expected, but " + currentLenght   + " found)" );
 				System.err.println("The repetoire " + filePath + " has " + currentLenght + " files instead of " + mapentry.getValue() + " . The node " + label + " can't be validate");
 				isDone = false;
 			}
 			else {
-				logForFiles.add("[x] "+  filePath + " (" + mapentry.getValue() + " Files found)");
+				log.add("[x] "+  filePath + " (" + mapentry.getValue() + " Files found)");
 
 			}
 		}

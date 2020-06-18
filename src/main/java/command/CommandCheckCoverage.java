@@ -26,42 +26,12 @@ public class CommandCheckCoverage implements Command{
 	public ArrayList<String> execute(String args) {
 		
 		setArgs(args);
-		ArrayList<String> result = new ArrayList<String> ();
+		ArrayList<String> result = new ArrayList<> ();
 		
 		
 		int coverageFind = parsingHTMLJacocoReport();
-		String isDone = "false";
 		
-		if(operator.equals("==")) {
-			if(coverageFind == coverage) {
-				isDone = "true";
-			}
-		}
-		else if(operator.equals("<")) {
-			if(coverageFind < coverage) {
-				isDone = "true";
-			}
-		}
-		else if(operator.equals("<=")) {
-			if(coverageFind <= coverage) {
-				isDone = "true";
-			}
-		}
-		else if(operator.equals(">")) {
-			if(coverageFind > coverage) {
-				isDone = "true";
-			}
-		}
-		else if(operator.equals(">=")) {
-			if(coverageFind >= coverage) {
-				isDone = "true";
-			}
-		}
-		else if(operator.equals("!=")) {
-			if(coverageFind != coverage) {
-				isDone = "true";
-			}
-		}
+		String isDone = searchIdItsDone(coverageFind);
 		
 		String log = "";
 		if(isDone.contains("true")) {
@@ -81,38 +51,76 @@ public class CommandCheckCoverage implements Command{
 		
 	}
 	
+	@SuppressWarnings("java:S1871")
+	public String searchIdItsDone(int coverageFind) {		
+		if(operator.equals("==") && coverageFind == coverage) {
+			return "true";
+		}
+		else if(operator.equals("<") && coverageFind < coverage) {
+			return "true";
+		}
+		else if(operator.equals("<=") && coverageFind <= coverage) {
+			return "true";
+		}
+		else if(operator.equals(">") && coverageFind > coverage) {
+			return "true";
+		}
+		else if(operator.equals(">=") && coverageFind >= coverage) {
+			return "true";
+			
+		}
+		else if(operator.equals("!=") && coverageFind != coverage) {
+			return "true";
+		}
+		
+		return "false";
+	}
+	
+	/**
+	 * 
+	 * Used to analyze the "index.html" of the jacoco report and find the total coverage of the project.
+	 * 
+	 * @return return the total coverage of the project
+	 */
 	public int parsingHTMLJacocoReport() {
 		
 		int coverageFind = 0;
-		BufferedReader in = null;
-		try {
-			in = new BufferedReader(new FileReader(path));
-		} catch (FileNotFoundException e) {
-			System.err.println("The file '" + path + "' was not found.");
-			return 0;
-		}
-		String line;
-		try {
-			while ((line = in.readLine()) != null)
-			{
-				  int position = line.indexOf("<td class=\"ctr2\">");
-				  coverageFind = Integer.parseInt(line.substring(position +17,position+19));
+		BufferedReader input = null;
+		
+		if(inputIsValid(path)) {
+			try {
+				input = new BufferedReader(new FileReader(path));
+			} catch (FileNotFoundException e) {
+				System.err.println("The file '" + path + "' was not found. Please indicate the index.html of the jacoco report.");
+				return 0;
 			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			String line;
+			try {
+				while ((line = input.readLine()) != null)
+				{
+					  int position = line.indexOf("<td class=\"ctr2\">");
+					  coverageFind = Integer.parseInt(line.substring(position +17,position+19));
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			try {
+				input.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
-		try {
-			in.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		
 		return coverageFind;
 		
 	}
 	
+	/**
+	 * Set the path, the operator and the coverage.
+	 * 
+	 * @param args the normal ligne, example : "target/site/jacoco/index.html < 10"
+	 */
 	public void setArgs(String args) {
 		// example :
 		//justification/IUTtest/test < 10
@@ -124,6 +132,15 @@ public class CommandCheckCoverage implements Command{
 		
 		coverage = Integer.parseInt(tmp[2]);
 	}
+	
+	private static boolean inputIsValid(String in) {
+		if (!in.matches(".*\\.(html)")) {
+			System.err.println(in + " is not a valid name. Please indicate the index.html of the jacoco report.");
+			return false;
+		}
+		return true;
+	}
+
 
 	
 	

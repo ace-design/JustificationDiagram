@@ -34,7 +34,7 @@ public class CommandFactory {
 		else {
 			System.err.println("This command does not exist, pliz check the command valid : \n" );
 			this.listCommands();
-			ArrayList<String> result = new ArrayList<String> ();
+			ArrayList<String> result = new ArrayList<> ();
 			result.add("false");
 			result.add(name + " this command does not exist");
 			return result;

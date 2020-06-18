@@ -12,7 +12,7 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.apache.commons.cli.*;
 import parsing.*;
 import java.io.*;
-import java.util.ArrayList;
+
 
 public class JDCompiler {
 
@@ -86,7 +86,7 @@ public class JDCompiler {
 		}
 		
 		
-		JustificationDiagram diagram = createDiagram(inputFilePath, inputRealizationFilePath);
+		JustificationDiagram diagram = createDiagram(inputFilePath);
 		
 		// if inputInformationFile is not null, I analyse the information file
 		if(inputInformationFile != null) {
@@ -111,9 +111,8 @@ public class JDCompiler {
 				Graphviz.fromGraph(g).render(Format.SVG).toFile(new File(outputFilePath + "_REA" + ".svg"));
 			} else {
 				System.err.println(
-						"\nimpossible to generate a realization diagram without a realization file. Please add a realization file\n"
-								+ "'example.jd -o output/example -svgR example/realization.txt -rea'");
-				// TODO: message d'érreur en si il n'y a pas de fichier d'information
+						"\nimpossible to generate a realization diagram without a realization file. Please add a realization file and the information file\n"
+								+ "'example.jd -o output/example -rea example/realization.txt info example/information.json -svgR'");
 			}
 
 		}
@@ -181,7 +180,7 @@ public class JDCompiler {
 		return true;
 	}
 
-	public static JustificationDiagram createDiagram(String file, String realizationFile) {
+	public static JustificationDiagram createDiagram(String file) {
 
 		JDInitializer factory = new JDInitializer();
 		factory.visit(parseAntlr(file));
@@ -206,39 +205,4 @@ public class JDCompiler {
 		return parser.diagram();
 	}
 
-	/**
-	 * Used to parse the file 'realizationPath' who correpond to the tasks
-	 * acomplished, required number of files and references of nodes.
-	 * 
-	 * @param realizationPath path to the realization file
-	 * @return list of node information
-	 */
-	public static ArrayList<String> realizationParse(String realizationPath) {
-
-		File realization;
-		ArrayList<String> realizationResult = new ArrayList<String>();
-		if (realizationPath != null) {
-			if ((realization = new File(realizationPath)).exists()) {
-				RandomAccessFile ranRealization = null;
-				try {
-					ranRealization = new RandomAccessFile(realization, "r");
-					String line;
-
-					while ((line = ranRealization.readLine()) != null) {
-						realizationResult.add("\"" + line + "\"");
-					}
-					ranRealization.close();
-
-				} catch (IOException e) {
-					e.printStackTrace();
-				} 
-			} else {
-				System.err.println(realizationPath + " don't exist");
-			}
-
-		}
-
-		return realizationResult;
-
-	}
 }

@@ -37,28 +37,13 @@ public class InformationNodeParsing {
 	 */
 	public void parseInfomation() {
 
-		information = new HashMap<String,InformationNode>();
+		information = new HashMap<>();
 
 		// JSON parser object to parse read file
 		JSONParser jsonParser = new JSONParser();
-
 		try (FileReader reader = new FileReader(path)) {
-			// Read JSON file
-			Object obj = null;
-			try {
-				obj = jsonParser.parse(reader);
-			} catch (org.json.simple.parser.ParseException e) {
-				// if the information files is null
-	    		System.err.println("InformationNodes is null, there is no information in this file.");
-	    		return;
-			}
-
-			JSONArray employeeList = (JSONArray) obj;
-
-			for (Object object : employeeList) {
-				InformationNode info = parseInformation((JSONObject) object);
-				information.put(info.label, info);
-			}
+			
+			readInformation(jsonParser,reader);
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -67,6 +52,26 @@ public class InformationNodeParsing {
 		}
 
 	}
+	
+	public void readInformation(JSONParser jsonParser, FileReader reader) {
+		// Read JSON file
+		Object obj = null;
+		try {
+			obj = jsonParser.parse(reader);
+			JSONArray employeeList = (JSONArray) obj;
+
+			for (Object object : employeeList) {
+				InformationNode info = parseInformation((JSONObject) object);
+				information.put(info.label, info);
+			}
+			
+		} catch (org.json.simple.parser.ParseException | IOException e) {
+			// if the information files is null
+    		System.err.println("InformationNodes is null, there is no information in this file.");
+		}
+		
+		
+	}
 
 	/**
 	 * create an InformationNode with the information from the JsonInformation
@@ -74,7 +79,7 @@ public class InformationNodeParsing {
 	 * @param JsonInformation object find in the file, the object correspond to a node
 	 * @return
 	 */
-	public static InformationNode parseInformation(JSONObject JsonInformation) {
+	public InformationNode parseInformation(JSONObject JsonInformation) {
 
 		ArrayList<String> fileList = null;
 		HashMap<String, Integer> fileNumberMap = null;
@@ -104,7 +109,7 @@ public class InformationNodeParsing {
 		JSONArray arrFiles = (JSONArray) informationObject.get("Files");
 
 		if (arrFiles != null) {
-			fileList = new ArrayList<String>();
+			fileList = new ArrayList<>();
 			for (Object object : arrFiles) {
 				fileList.add(object.toString());
 			}
@@ -115,7 +120,7 @@ public class InformationNodeParsing {
 		JSONArray arrFilesNumber = (JSONArray) informationObject.get("FilesNumber");
 
 		if (arrFilesNumber != null) {
-			fileNumberMap = new HashMap<String, Integer>();
+			fileNumberMap = new HashMap<>();
 
 			for (Object object : arrFilesNumber) {
 				JSONObject o = (JSONObject) object;
@@ -128,7 +133,7 @@ public class InformationNodeParsing {
 		JSONArray arrActions = (JSONArray) informationObject.get("Actions");
 
 		if (arrActions != null) {
-			actionList = new ArrayList<String>();
+			actionList = new ArrayList<>();
 			for (Object object : arrActions) {
 				actionList.add(object.toString());
 			}
