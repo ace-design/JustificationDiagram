@@ -20,15 +20,19 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
+    #Build of the project, 'Creation of the README' and 'Build Maven passed' are done
     - name: 
         Build with Maven;
       run: 
         mvn -B package --file pom.xml;
         echo -e "\nCreation of the README" >> realization.txt;
         echo -e "Build Maven passed" >> realization.txt;
-        echo -e "Test Maven passed" >> realization.txt;
+    #Test of the project, 'Test Maven passed' is done
     - name: Test with Maven
-      run: mvn test
+      run: 
+        mvn test;
+        echo -e "Test Maven passed" >> realization.txt;
+    #Scanning the project with SonarCloud
     - name: SonarCloud Scan
       run: 
        mvn -B verify sonar:sonar;
@@ -36,52 +40,73 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-    - name: cat Realization
-      run: cat realization.txt
-   
+    
+    #I archive the diagrams generated during the test
     - name: Archive images
       uses: actions/upload-artifact@v2
       with: 
         name: images
         path: justification/output/images
+        
+    #I archive the Jacoco report
     - name: Archive Jacoco report
       uses: actions/upload-artifact@v2
       with: 
         name: jacoco
         path: target/site/jacoco
+        
+    #I archive the generated codes     
     - name: Archive generated codes
       uses: actions/upload-artifact@v2
       with: 
         name: generatedCode
         path: src/main/java/models
         
+    #---------JustificationDiagram-----------
+     
+    #'Jacoco Report' and 'Jacoco report Archivate' are done
     - name: Realization part1   
       run: echo -e "Jacoco Report\nJacoco report Archivate" >> realization.txt
+      
+    #'images Archivate' and 'code Archivate' are done
     - name: Realization part2
-      run: echo -e "images Archivate\ncode Archivate" >> realization.txt
-    
+      run: 
+        echo -e "images Archivate" >> realization.txt;
+        echo -e "code Archivate" >> realization.txt;
+        
+    #I generate the two diagrams and the TODO list
     - name: JD&TODO generation 
       run: mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="justification/examples/exampleCI/Pattern4CI.jd -o justification/output/GeneratedJD/Pattern4CI -rea realization.txt -info justification/examples/exampleCI/infoValid.json -svg -svgR -td "
+      
+    #I archive my diagrams create during the CI
     - name: Archive JD&TODO
       uses: actions/upload-artifact@v2
       with: 
         name: GeneratedJD
         path: justification/output/GeneratedJD/
+    
+    #I archive my realization file in the same artifacts as my diagrams
     - name: Archive realization
       uses: actions/upload-artifact@v2
       with: 
         name: GeneratedJD
         path: realization.txt
-        
+    
+    #I archive my information file in the same artifacts as my diagrams
     - name: Archive information
       uses: actions/upload-artifact@v2
       with: 
         name: GeneratedJD
         path: justification/examples/exampleCI/infoValid.json
+    
+    #---------------Saving the last diagrams generated---------------       
+    
+    #I memorize all my files contained in the output directory 
     - name: memorise the final result
       run: 
        git config user.name "GitHub Actions";
        git diff --quiet && git diff --staged --quiet || (git add justification/output/GeneratedJD/*;git commit -m “${COMMIT_MSG}“;git push origin master)
     
-
+    #---------------Saving the last diagrams generated---------------       
     
+    #---------JustificationDiagram-----------

@@ -533,9 +533,9 @@ I'll just add comments with "@comment": "this is a comment".
 	        "@comment": "The node labeled 'Jacoco Repor' is not optional... ",     
             "Label":"Jacoco Report",
             "Optional":"false",
-	        "@comment2": "...the total coverage need to be superior to 80%... ",     
+	        "@comment2": "...the total coverage need to be superior to 70%... ",     
             "Actions": [
-                "CheckCoverage target/site/jacoco/index.html >= 80", 
+                "CheckCoverage target/site/jacoco/index.html >= 70", 
             ],
 	        "@comment3": "...and need to check the exitance of the file 'target/site/jacoco/index.html'." ,
             "Files": [  
@@ -548,7 +548,6 @@ I'll just add comments with "@comment": "this is a comment".
 	        "@comment": "The node labeled 'code Archivate' has 'generatedCode' for reference.",
             "Label":"code Archivate",
             "Reference":"generatedCode",    
-            "Action":"CheckSize > 10",
         }
     },
     {
@@ -657,63 +656,33 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-    #Build of the project
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml
-    #Test of the project
+    #Build of the project, 'Creation of the README' and 'Build Maven passed' are done
+    - name: 
+        Build with Maven;
+      run: 
+        mvn -B package --file pom.xml;
+        echo -e "\nCreation of the README" >> realization.txt;
+        echo -e "Build Maven passed" >> realization.txt;
+    #Test of the project, 'Test Maven passed' is done
     - name: Test with Maven
-      run: mvn test
-      
-    #---------JustificationDiagram-----------
-
-    #Here, I'm going to create the realization file
+      run: 
+        mvn test;
+        echo -e "Test Maven passed" >> realization.txt;
+    #Scanning the project with SonarCloud
+    - name: SonarCloud Scan
+      run: 
+       mvn -B verify sonar:sonar;
+       echo -e "Scanning the project with SonarCloud" >> realization.txt;
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
     
-    #"Jacoco Report" and "code Archivate" are done
-    - name: Realization part1
-          run: echo -e "Jacoco Report\ncode Archivate\n" >> realization.txt
-
-    #"images Archivate", "Test Maven passed" and "Build Maven passed" are done
-    - name: Realization part2
-          run: 
-	  	echo -e "images Archivate" >> realization.txt;
-		echo -e "Test Maven passed" >> realization.txt;
-		echo -e "Build Maven passed" >> realization.txt;
-		
-     #"Jacoco report", "Valid Continuous" and "Jacoco report Archivate" are done
-    - name: Realization part3
-         run: echo -e "Jacoco report Archivate\nValid Continuous Integration" >> realization.txt
-         
-    #I generate the two diagrams and the TODO list
-    - name: JD&TODO Generation     
-       run : mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/exampleCI/Pattern4CI.jd -o output/GeneratedJD/Pattern4CI -rea realization.txt -info example/exampleCI/infoValid.json -png -td"
-    
-    #I archive my diagrams create during the CI
-    - name: Archive JD&TODO
-      uses: actions/upload-artifact@v2
-      with: 
-        name: GeneratedJD
-        path: output/GeneratedJD
-        
-    #I archive my realization file in the same artifacts as my diagrams
-    - name: Archive realization
-      uses: actions/upload-artifact@v2
-      with: 
-        name: GeneratedJD
-        path: realization.txt
-	
-    #I archive my information file in the same artifacts as my diagrams
-    - name: Archive realization
-      uses: actions/upload-artifact@v2
-      with: 
-        name: GeneratedJD
-        path: example/exampleCI/infoValid.json
-        
     #I archive the diagrams generated during the test
     - name: Archive images
       uses: actions/upload-artifact@v2
       with: 
         name: images
-        path: output/images
+        path: justification/output/images
         
     #I archive the Jacoco report
     - name: Archive Jacoco report
@@ -722,14 +691,51 @@ jobs:
         name: jacoco
         path: target/site/jacoco
         
-    #I archive the generated codes
+    #I archive the generated codes     
     - name: Archive generated codes
       uses: actions/upload-artifact@v2
       with: 
         name: generatedCode
         path: src/main/java/models
         
-     #---------JustificationDiagram-----------
+    #---------JustificationDiagram-----------
+     
+    #'Jacoco Report' and 'Jacoco report Archivate' are done
+    - name: Realization part1   
+      run: echo -e "Jacoco Report\nJacoco report Archivate" >> realization.txt
+      
+    #'images Archivate' and 'code Archivate' are done
+    - name: Realization part2
+      run: 
+        echo -e "images Archivate" >> realization.txt;
+        echo -e "code Archivate" >> realization.txt;
+        
+    #I generate the two diagrams and the TODO list
+    - name: JD&TODO generation 
+      run: mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="justification/examples/exampleCI/Pattern4CI.jd -o justification/output/GeneratedJD/Pattern4CI -rea realization.txt -info justification/examples/exampleCI/infoValid.json -svg -svgR -td "
+      
+    #I archive my diagrams create during the CI
+    - name: Archive JD&TODO
+      uses: actions/upload-artifact@v2
+      with: 
+        name: GeneratedJD
+        path: justification/output/GeneratedJD/
+    
+    #I archive my realization file in the same artifacts as my diagrams
+    - name: Archive realization
+      uses: actions/upload-artifact@v2
+      with: 
+        name: GeneratedJD
+        path: realization.txt
+    
+    #I archive my information file in the same artifacts as my diagrams
+    - name: Archive information
+      uses: actions/upload-artifact@v2
+      with: 
+        name: GeneratedJD
+        path: justification/examples/exampleCI/infoValid.json
+    
+    #---------JustificationDiagram-----------
 
 
 ```
@@ -784,7 +790,7 @@ Requirements list
 
 
 ## Invalid Example with realization 
-Here is an example of a text file, the graphic and the to-do list it generates if you have not enabled "Build Maven passed", "Test Maven passed" and "Jacoco Report" (the latter being optional).
+Here is an example of a text file, the graph and the list of tasks it generates if you have not validated "Build Maven passed", "Test Maven passed", "Jacoco Report" and "Jacoco report Archivate", with "Test Coverage validated and Archived" as an option.
 
 #### infoInvalid.json - Invalid
 
@@ -927,63 +933,33 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-    #Build of the project
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml
-    #Test of the project
+    #Build of the project, 'Creation of the README' and 'Build Maven passed' are done
+    - name: 
+        Build with Maven;
+      run: 
+        mvn -B package --file pom.xml;
+        echo -e "\nCreation of the README" >> realization.txt;
+        echo -e "Build Maven passed" >> realization.txt;
+    #Test of the project, 'Test Maven passed' is done
     - name: Test with Maven
-      run: mvn test
-      
-    #---------JustificationDiagram-----------
-
-    #Here, I'm going to create the realization file
+      run: 
+        mvn test;
+        echo -e "Test Maven passed" >> realization.txt;
+    #Scanning the project with SonarCloud
+    - name: SonarCloud Scan
+      run: 
+       mvn -B verify sonar:sonar;
+       echo -e "Scanning the project with SonarCloud" >> realization.txt;
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
     
-    #"code Archivate" are done
-    - name: Realization part1
-          run: echo -e "code Archivate\n" >> realization.txt
-
-    #"images Archivate", "Test Maven passed" and "Build Maven passed" are done
-    - name: Realization part2
-          run: 
-	  	echo -e "images Archivate" >> realization.txt;
-		echo -e "Test Maven passed" >> realization.txt;
-		echo -e "Build Maven passed" >> realization.txt;
-		
-     #"Jacoco report", "Valid Continuous" and "Jacoco report Archivate" are done
-    - name: Realization part3
-         run: echo -e "Jacoco report Archivate\nValid Continuous Integration" >> realization.txt
-         
-    #I generate the two diagrams and the TODO list
-    - name: JD&TODO Generation     
-       run : mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="examples/exampleCI/Pattern4CI.jd -o output/GeneratedJD/Pattern4CI -rea realization.txt -info example/exampleCI/infoInvalid.json -png -td"
-    
-    #I archive my diagrams create during the CI
-    - name: Archive JD&TODO
-      uses: actions/upload-artifact@v2
-      with: 
-        name: GeneratedJD
-        path: output/GeneratedJD
-        
-    #I archive my realization file in the same artifacts as my diagrams
-    - name: Archive realization
-      uses: actions/upload-artifact@v2
-      with: 
-        name: GeneratedJD
-        path: realization.txt
-	
-    #I archive my information file in the same artifacts as my diagrams
-    - name: Archive realization
-      uses: actions/upload-artifact@v2
-      with: 
-        name: GeneratedJD
-        path: example/exampleCI/infoValid.json
-        
     #I archive the diagrams generated during the test
     - name: Archive images
       uses: actions/upload-artifact@v2
       with: 
         name: images
-        path: output/images
+        path: justification/output/images
         
     #I archive the Jacoco report
     - name: Archive Jacoco report
@@ -992,14 +968,51 @@ jobs:
         name: jacoco
         path: target/site/jacoco
         
-    #I archive the generated codes
+    #I archive the generated codes     
     - name: Archive generated codes
       uses: actions/upload-artifact@v2
       with: 
         name: generatedCode
         path: src/main/java/models
         
-     #---------JustificationDiagram-----------
+    #---------JustificationDiagram-----------
+     
+    #'Jacoco Report' and 'Jacoco report Archivate' are done
+    - name: Realization part1   
+      run: echo -e "Jacoco Report\nJacoco report Archivate" >> realization.txt
+      
+    #'images Archivate' and 'code Archivate' are done
+    - name: Realization part2
+      run: 
+        echo -e "images Archivate" >> realization.txt;
+        echo -e "code Archivate" >> realization.txt;
+        
+    #I generate the two diagrams and the TODO list
+    - name: JD&TODO generation 
+      run: mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="justification/examples/exampleCI/Pattern4CI.jd -o justification/output/GeneratedJD/Pattern4CI -rea realization.txt -info justification/examples/exampleCI/infoValid.json -svg -svgR -td "
+      
+    #I archive my diagrams create during the CI
+    - name: Archive JD&TODO
+      uses: actions/upload-artifact@v2
+      with: 
+        name: GeneratedJD
+        path: justification/output/GeneratedJD/
+    
+    #I archive my realization file in the same artifacts as my diagrams
+    - name: Archive realization
+      uses: actions/upload-artifact@v2
+      with: 
+        name: GeneratedJD
+        path: realization.txt
+    
+    #I archive my information file in the same artifacts as my diagrams
+    - name: Archive information
+      uses: actions/upload-artifact@v2
+      with: 
+        name: GeneratedJD
+        path: justification/examples/exampleCI/infoValid.json
+    
+    #---------JustificationDiagram-----------
 
 ```
 
@@ -1139,7 +1152,7 @@ jobs:
     - name: JD&TODO Generation     
        run : java -jar JDGenerator-jar-with-dependencies.jar $(cat varInput.txt)/Pattern4CI.jd -o $(cat varOutput.txt)Pattern4CI -rea realization.txt  -svg -td 
     
-    #---------------Saving the last diagrams generated in a readme---------------
+    #---------------Saving the last diagrams generated---------------       
     #I memorize all my files contained in the output directory 
     - name: memorise the final result
       #If you don't have any changes for your diagrams, nothing will be push.
@@ -1147,7 +1160,8 @@ jobs:
        git config user.name "GitHub Actions";
        git diff --quiet && git diff --staged --quiet || (git add $(cat varOutput.txt)*;git commit -m “${COMMIT_MSG}“; git push origin master)
        
-    #---------------Saving the last diagrams generated in a readme---------------       
+    #---------------Saving the last diagrams generated---------------     
+    
     #---------JustificationDiagram-----------
 ```
 

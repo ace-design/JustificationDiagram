@@ -4,7 +4,7 @@
 	        "@comment": "The node labeled 'Jacoco Repor' is not optional... ",     
             "Label":"Jacoco Report",
             "Optional":"false",
-	        "@comment2": "...the total coverage need to be superior to 80%... ",     
+	        "@comment2": "...the total coverage need to be superior to 70%... ",     
             "Actions": [
                 "CheckCoverage target/site/jacoco/index.html >= 70", 
             ],
@@ -19,7 +19,6 @@
 	        "@comment": "The node labeled 'code Archivate' has 'generatedCode' for reference.",
             "Label":"code Archivate",
             "Reference":"generatedCode",    
-            "Action":"CheckSize > 10",
         }
     },
     {
