@@ -181,7 +181,7 @@ public class Node implements Visitable {
     	for (String filePath : informationNode.path) {
 			if(!new File(filePath).exists()) {
 				System.err.println("The file " + filePath + " was not found to validate the node " + label);
-				log.add("[ ] " + filePath + " - (not found)");
+				log.add("[ ] " + filePath + " (not found)");
 				isDone = false;
 			}
 			else {
