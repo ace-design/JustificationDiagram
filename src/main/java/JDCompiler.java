@@ -122,7 +122,7 @@ public class JDCompiler {
 
 			InputStream dot = new ByteArrayInputStream(gv.toString().getBytes());
 			MutableGraph g = new guru.nidi.graphviz.parse.Parser().read(dot);
-			Graphviz.fromGraph(g).render(Format.PNG).toFile(new File(outputFilePath + ".png"));
+			Graphviz.fromGraph(g).render(Format.SVG).toFile(new File(outputFilePath + ".svg"));
 		}
 		if (cmd.hasOption("gv")) {
 			GraphDrawer drawer = new GraphDrawer();
