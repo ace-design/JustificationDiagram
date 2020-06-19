@@ -67,7 +67,7 @@ public class Node implements Visitable {
 
 		}
     	else {
-    		// use juste for the log
+			// used just for the log
     		relationAnalyse();
 
     	}
@@ -78,7 +78,7 @@ public class Node implements Visitable {
 
 			}
 			else {
-				// use juste for the log
+				// used just for the log
 				checkFileAnalyses();
 
 	    	}
@@ -91,7 +91,7 @@ public class Node implements Visitable {
 
 			}
 			else {
-				// use juste for the log
+				// used just for the log
 				CheckFileWithNumberAnalyses();
 
 	    	}
@@ -103,7 +103,7 @@ public class Node implements Visitable {
 
 			}
 			else {
-				// use juste for the log
+				// used just for the log
 				CheckAction();
 	    	}
 		}
@@ -203,7 +203,7 @@ public class Node implements Visitable {
     		String filePath = mapentry.getKey();
     		int currentLenght = 0;
 			if(!new File(mapentry.getKey()).exists()) {
-				log.add("[ ] " + filePath  + " - (not found)");
+				log.add("[ ] " + filePath  + " (not found)");
 				isDone = false;
 			}
 			else if((currentLenght = new File(filePath).listFiles().length) != mapentry.getValue()) {

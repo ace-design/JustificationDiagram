@@ -1050,10 +1050,10 @@ Requirements list
 [X]	code Archivate - reference : generatedCode
 [ ]	Test Maven passed
 [ ]	Jacoco Report - reference : Archi1
-	[ ] dontExist.todo - (not found)
+	[ ] dontExist.todo (not found)
 	[X] target/site/jacoco/index.html
 	[ ] justification/examples - (3 file expected, but 10 found)
-	[ ] dontExist.txt - (not found)
+	[ ] dontExist.txt (not found)
 	[x] Current coverage is 80, it's > 70
 [X]	images Archivate - reference : images
 	[X] justification/examples/exampleCI/Pattern4CI.jd

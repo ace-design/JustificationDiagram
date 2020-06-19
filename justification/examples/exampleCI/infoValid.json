@@ -44,6 +44,21 @@
         }
         
     },
+     {
+        "Node": {
+	        "@comment": "The node labeled 'Test Maven Passed' has 'images' for reference and...",
+            "Label":"Test Maven Passed",
+	    
+            "FilesNumber": [  
+                {   
+         	       "@comment2": "...need to check if of the repertory 'justification/output/images/' have 13 files..." ,
+                    "Path":"justification/output/images/",
+                    "Number":"13"     
+                },
+            ],    
+        }
+        
+    },
     {
         "Node":{
 	        "@comment": "The node labeled 'Build Maven passed'...",
