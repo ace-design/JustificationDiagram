@@ -207,7 +207,7 @@ public class Node implements Visitable {
 				isDone = false;
 			}
 			else if((currentLenght = new File(filePath).listFiles().length) != mapentry.getValue()) {
-				log.add("[ ] " +  filePath  + " - (" + mapentry.getValue()+" file expected, but " + currentLenght   + " found)" );
+				log.add("[ ] " +  filePath  + " (" + mapentry.getValue()+" file expected, but " + currentLenght   + " found)" );
 				System.err.println("The repetoire " + filePath + " has " + currentLenght + " files instead of " + mapentry.getValue() + " . The node " + label + " can't be validate");
 				isDone = false;
 			}
@@ -245,10 +245,6 @@ public class Node implements Visitable {
         return Objects.hash(alias, label);
     }
     
-    // TODO: faire la javadoc ! 
-    /**
-	 *
-     */
     public void setInformationNode(InformationNode informationNode) {
     	this.informationNode = informationNode;
     }
