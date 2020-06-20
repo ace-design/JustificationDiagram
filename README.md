@@ -99,14 +99,13 @@ The prototype permits two types of oriented link.
 ```
 
 ## Realization
+In a file, you state the supports produced.
 
-During the Continuous integration, please add to a file named 'realization.txt' the nodes without childs that have been validated. ( normaly the supports, domains and rationale)
-
-For this purpose, in '.github\workflows\maven.yml' add this after the Build and Test of your project and before the generation of diagrams :
+For example, during the continuous integration, we add a file named "réalisation.txt" in which we trace the supports produced.  
 
 ```
 - name: Realization
-      run: echo -e "[Label of the accompliseh task]" >> output/realization/realization.txt
+      run: echo -e "[Label of the accomplish task or support]" >> output/realization/realization.txt
 ```
 
 ## Information
@@ -145,9 +144,7 @@ For the example, we will put the node "Validated Architecture" as optional.
     },
  ]
 ```
-The last information you can write is to verify that a specific directory contains a certain number of files in order to validate a node. 
 
-For the example, we will say that the "Validated Architecture" node must verify that "test3" have 2 files and "test4" have 3 files.
 
 ### informationFiles.json
 ```
@@ -166,9 +163,10 @@ For the example, we will say that the "Validated Architecture" node must verify 
  ]
 ```
 
-The next information than you can write is to specify for a node to verify than a specific repertory contains a specific numbers of files.  
 
-For the example, we will say that the "Validated Architecture" node must verify that "test3" have 2 files and "test4" have 3 files.
+You can also specify that a justification is only valid if a specific directory contains a specific number of files.  
+
+For the example, we will say that the "Validated Architecture" node must verify that "test3" contains 2 files and "test4" contains 3 files.
 
 ### informationFilesNumber.json
 ```
@@ -198,7 +196,8 @@ For the example, we will say that the "Validated Architecture" node must verify 
  ]
 ```
 
-The last information is a list of information to verify. This one can have a lot of options. For now, there is a verification of the test coverage of your project.
+More generally, you can check different properties depending on the actions described. 
+For example, below, an action to check the test coverage of your project is explained.
 
 ### CheckCoverage
 
