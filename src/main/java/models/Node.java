@@ -11,6 +11,8 @@ import command.CommandFactory;
 import export.JDVisitor;
 
 public class Node implements Visitable {
+	
+	//TODO :  Do we really need all these variables to be public?
     public String alias;
     public String label;
     public Set<Relation> inputs;
@@ -99,12 +101,12 @@ public class Node implements Visitable {
     	}
 		if(informationNode != null && informationNode.action != null && !informationNode.action.isEmpty()) {
 			if(isDone) {
-				isDone = CheckAction();
+				isDone = checkAction();
 
 			}
 			else {
 				// used just for the log
-				CheckAction();
+				checkAction();
 	    	}
 		}
 		
@@ -119,10 +121,12 @@ public class Node implements Visitable {
      * @Returns true if actions are valid
      * 
      */
-    public boolean CheckAction() {
+    //TODO : why logs are stored in the node whereas the validity of the node is not stored
+    public boolean checkAction() {
     	CommandFactory cf = CommandFactory.getInstance();
     	boolean isDone = false;
 
+    	//TODO : change for a list of Objects ?
 		for(String command : informationNode.action) {
 			cf.create();
 			ArrayList<String> returnOfExecute = cf.executeCommand(command);

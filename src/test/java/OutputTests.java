@@ -1,16 +1,33 @@
 import org.junit.jupiter.api.Test;
+
+import java.io.File;
 import java.io.IOException;
+
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class OutputTests {
 
 	String inputPath = "justification/examples/";
 	String outputPath = "justification/output/images/";
-    @Test
+ 
+	@Test
     public void dummy() {
         assertEquals(0, 0);
         assertEquals(1, 1);
     }
+	
+	@Test
+	public void test_CI4CVS() throws IOException {
+	    JDCompiler.main(new String[] { inputPath+"exampleCI/Pattern4CI.jd", "-o", outputPath+"Pattern4CI_CVS_Valid", "-rea", inputPath+"exampleCI/realizationPattern4CI.txt", "-info", inputPath+"exampleCI/infoValid4CVS.json", "-td","-svg", "-svgR"});
+	    File fichier = new File(outputPath+"Pattern4CI_CVS_Valid.svg");
+	    assertTrue(fichier.exists());
+	    fichier = new File(outputPath+"Pattern4CI_CVS_Valid_REA.svg");
+	    assertTrue(fichier.exists());
+	    fichier = new File(outputPath+"Pattern4CI_CVS_Valid.todo");
+	    assertTrue(fichier.exists());
+	}
+	   
 
     @Test
     public void test_CI() throws IOException {

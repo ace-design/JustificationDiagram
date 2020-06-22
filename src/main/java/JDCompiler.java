@@ -16,36 +16,44 @@ import java.io.*;
 
 public class JDCompiler {
 
+
+
+	
 	public static void main(String[] args) throws IOException {
 		CommandLine cmd = setup(args);
+		
+		
 		String outputOption = cmd.getOptionValue("output");
-
-		if (outputOption != null) {
-			if (!outputIsValid(outputOption)) {
+		if ( (outputOption != null) && (!outputIsValid(outputOption) ) ) {
 				System.exit(1);
-			}
 		}
-		int numOutput = -1;
+		
+		String inputFile = null;
 		for (int i = 0; i < cmd.getArgs().length; ++i) {
-			String inputFile = cmd.getArgs()[i];
-			String inputRealizationFile = null;
-			String inputInformationFile = null;
-			numOutput++;
-			if (!inputIsValid(inputFile)) {
-				continue;
+			inputFile = cmd.getArgs()[i];
+			if (inputIsValid(inputFile)) {
+				break;
 			}
-			if (cmd.hasOption("rea") && inputIsValid(cmd.getArgs()[i + 1]) && i < cmd.getArgs().length) {
-				i++;
-				inputRealizationFile = cmd.getArgs()[i];
-
-			}
-			if (cmd.hasOption("info") && inputIsValid(cmd.getArgs()[i + 1]) && i < cmd.getArgs().length) {
-				i++;
-				inputInformationFile = cmd.getArgs()[i];
-
-			}
-			generateFiles(cmd, inputFile, generateOutputName(outputOption, numOutput, inputFile), inputRealizationFile,inputInformationFile);
 		}
+		
+		String inputRealizationFile = null;
+		String inputInformationFile = null;
+		
+		if (cmd.hasOption("rea")) {
+				inputRealizationFile = cmd.getOptionValue("rea");
+
+		}
+		
+		if (cmd.hasOption("info")) {
+				inputInformationFile = cmd.getOptionValue("info");
+		}
+			
+		//TODO : Why this number?
+		generateFiles(cmd, inputFile, 
+				generateOutputName(outputOption, 0, inputFile), 
+				inputRealizationFile,
+				inputInformationFile);
+		
 	}
 
 	private static CommandLine setup(String[] args) {
