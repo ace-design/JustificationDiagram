@@ -36,6 +36,10 @@ public class JDCompiler {
 			}
 		}
 		
+		if (inputFile == null) {
+			System.err.println("A justification pattern is required : no input diagram in " + args);
+			System.exit(1);
+		}
 		String inputRealizationFile = null;
 		String inputInformationFile = null;
 		
@@ -164,8 +168,7 @@ public class JDCompiler {
 				return outputOption;
 			}
 		} else {
-			String res = inputOption.split("\\.")[0];
-			return res;
+			return inputOption.split("\\.")[0];
 		}
 	}
 
