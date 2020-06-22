@@ -47,7 +47,7 @@ public class OutputTests {
     
     @Test
     public void basicEmpty() throws IOException {
-        JDCompiler.main(new String[] {inputPath+"basic.jd", "-o", outputPath+"basicEmpty","-td", "-svgR", inputPath+"realization/empty.txt", "-rea"});
+        JDCompiler.main(new String[] {inputPath+"basic.jd", "-o", outputPath+"basicEmpty","-td", "-svgR", "-rea",inputPath+"realization/empty.txt"});
     }
     
     
