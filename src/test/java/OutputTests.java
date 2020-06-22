@@ -27,7 +27,7 @@ public class OutputTests {
 	    fichier = new File(outputPath+"Pattern4CI_CVS_Valid.todo");
 	    assertTrue(fichier.exists());
 	}
-	   
+	    
 
     @Test
     public void test_CI() throws IOException {

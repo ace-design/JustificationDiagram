@@ -19,8 +19,6 @@ public class InformationNode {
 	public boolean optional;
 
 	public ArrayList<String> action; 
-
-	//TODO: ajouter une liste de action
 	
 	public InformationNode() {
 		label = null;

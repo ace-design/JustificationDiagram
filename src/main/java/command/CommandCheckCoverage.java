@@ -58,18 +58,18 @@ public class CommandCheckCoverage implements Command{
 
 		String isDone = searchIdItsDone(coverageFind);
 
-		String log = "";
+		String step = "";
 		if(isDone.contains("true")) {
 			// [x] Current coverage is 80, it's > 50
-			log = "[x] Current coverage is " + coverageFind + ", it's " + operator + " " + coverage;
+			step = "[x] Current coverage is " + coverageFind + ", it's " + operator + " " + coverage;
 		}
 		else {
 			// [ ] Current coverage is 30, it's not > 50
-			log = "[ ] Current coverage is " + coverageFind + ",  it's not " + operator + " " + coverage;
+			step = "[ ] Current coverage is " + coverageFind + ",  it's not " + operator + " " + coverage;
 		}
 
 		result.add(isDone);
-		result.add(log);
+		result.add(step);
 
 		return result;
 
@@ -222,7 +222,7 @@ public class CommandCheckCoverage implements Command{
 		operator = tmp[1];
 
 		coverage = Integer.parseInt(tmp[2]);
-		//@todo
+		//TODO 
 		//System.out.println("args : " + path + " for " + operator + " coverage " + coverage);
 	}
 

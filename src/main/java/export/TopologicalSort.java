@@ -56,9 +56,9 @@ public class TopologicalSort {
 
     private void depthFirstSearchVisit(Node u) {
         ++time;
-        toBeVisited.remove(u.alias);
+        toBeVisited.remove(u.getAlias());
 
-        for (Relation relation: u.outputs) {
+        for (Relation relation: u.getOutputs()) {
             Node v = relation.to;
 
             if (toBeVisited.containsValue(v)) {

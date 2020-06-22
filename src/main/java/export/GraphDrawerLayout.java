@@ -35,16 +35,16 @@ public class GraphDrawerLayout implements JDVisitor {
 
     @Override
     public void visitDomain(Domain domain) {
-        for (Relation relation : domain.outputs) {
-            gv.append("\t{rank = same; ").append(domain.alias).append("; ").append(relation.to.alias).append(";}\n");
+        for (Relation relation : domain.getOutputs()) {
+            gv.append("\t{rank = same; ").append(domain.getAlias()).append("; ").append(relation.to.getAlias()).append(";}\n");
         }
     }
 
     @Override
     public void visitRationale(Rationale rationale) {
-        for (Relation relation : rationale.outputs) {
-            gv.append("\t").append(relation.to.alias).append(" -> ").append(relation.from.alias).append(" [style=invis];\n");
-            gv.append("\t{rank = same; ").append(rationale.alias).append("; ").append(relation.to.alias).append(";}\n");
+        for (Relation relation : rationale.getOutputs()) {
+            gv.append("\t").append(relation.to.getAlias()).append(" -> ").append(relation.from.getAlias()).append(" [style=invis];\n");
+            gv.append("\t{rank = same; ").append(rationale.getAlias()).append("; ").append(relation.to.getAlias()).append(";}\n");
         }
     }
 

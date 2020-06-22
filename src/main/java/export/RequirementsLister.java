@@ -60,7 +60,7 @@ public class RequirementsLister implements JDVisitor {
 
     @Override
     public void visitStrategy(Strategy strategy) {
-    	if(!strategy.log.isEmpty()) {
+    	if(!strategy.getSteps().isEmpty()) {
     		setModelUsed(strategy);
         	String stringToWrite = setStringToWrite(strategy);
 
@@ -71,7 +71,7 @@ public class RequirementsLister implements JDVisitor {
 
     @Override
     public void visitDomain(Domain domain) {
-    	if(!domain.log.isEmpty()) {
+    	if(!domain.getSteps().isEmpty()) {
     		setModelUsed(domain);
         	String stringToWrite = setStringToWrite(domain);
 
@@ -83,7 +83,7 @@ public class RequirementsLister implements JDVisitor {
 
     @Override
     public void visitRationale(Rationale rationale) {
-    	if(!rationale.log.isEmpty()) {
+    	if(!rationale.getSteps().isEmpty()) {
     		setModelUsed(rationale);
         	String stringToWrite = setStringToWrite(rationale);
 
@@ -112,7 +112,7 @@ public class RequirementsLister implements JDVisitor {
      * @param node current node to analyse.
      */
     public void setModelUsed(Node node) {
-    	if (node.state.equals(State.DONE)) {
+    	if (node.getState().equals(State.DONE)) {
     		modelUsed = model[1];
 
     	}
@@ -132,21 +132,21 @@ public class RequirementsLister implements JDVisitor {
      * @return string to write in the todo file.
      */
     public String setStringToWrite(Node node) {
-    	if(node.informationNode.reference != null && !node.informationNode.reference.contains("!noRef!") && !node.informationNode.reference.equals(" ")) {
-    		if(node.informationNode.optional) {
-    			return node.label.substring(0,node.label.length()-1) + " - reference : " + node.informationNode.reference + " (optional) \"";
+    	if(node.getInformationNode().reference != null && !node.getInformationNode().reference.contains("!noRef!") && !node.getInformationNode().reference.equals(" ")) {
+    		if(node.getInformationNode().optional) {
+    			return node.getLabel().substring(0,node.getLabel().length()-1) + " - reference : " + node.getInformationNode().reference + " (optional) \"";
     		}
     		else  {
-    			return node.label.substring(0,node.label.length()-1) + " - reference : " + node.informationNode.reference + "\"";
+    			return node.getLabel().substring(0,node.getLabel().length()-1) + " - reference : " + node.getInformationNode().reference + "\"";
     		}
     		
     	}
     	else {
-    		if(node.informationNode.optional) {
-    			return node.label.substring(0,node.label.length()-1)  + " (optional) \"";
+    		if(node.getInformationNode().optional) {
+    			return node.getLabel().substring(0,node.getLabel().length()-1)  + " (optional) \"";
     		}
     		else  {
-        		return node.label;
+        		return node.getLabel();
     		}
     	}
     	 
@@ -158,9 +158,9 @@ public class RequirementsLister implements JDVisitor {
      * @param node to check
      */
     public void setLogForFiles(Node node) {
-    	if(!node.log.isEmpty()) {
-    		for (String log : node.log) {
-        		list.append("\t").append(log, 0, log.length()).append("\n");
+    	if(!node.getSteps().isEmpty()) {
+    		for (String step : node.getSteps()) {
+        		list.append("\t").append(step, 0, step.length()).append("\n");
     		}
     	}
     	

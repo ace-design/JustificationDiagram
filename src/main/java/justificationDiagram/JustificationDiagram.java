@@ -39,7 +39,7 @@ public class JustificationDiagram implements Visitable {
     		    		
     		for (Entry<String, Node> node : nodes.entrySet()) {
     			
-    			String realLabel = node.getValue().label;
+    			String realLabel = node.getValue().getLabel();
     			realLabel = realLabel.substring(1,realLabel.length()-1);
 
     			if(informationNodes.containsKey(realLabel)) {

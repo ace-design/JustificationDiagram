@@ -16,8 +16,6 @@ import java.io.*;
 
 public class JDCompiler {
 
-
-
 	
 	public static void main(String[] args) throws IOException {
 		CommandLine cmd = setup(args);
@@ -67,14 +65,18 @@ public class JDCompiler {
 
 		Option output = new Option("o", "output", true, "output file path");
 		options.addOption(output);
+		
+		Option rea = new Option("rea","realization",true, "indicate the realization file");
+		Option info = new Option("info","information",true, "indicate the information file");
+
+		options.addOption(rea);
+		options.addOption(info);
 
 		options.addOption("svg", "generate graph");
 		options.addOption("gv", "generate gv file");
 		options.addOption("td", "generate todo list");
 		options.addOption("svgR", "generate realization graph");
-		options.addOption("rea", "indicate the realization file");
-		options.addOption("info", "indicate the information file");
-
+		
 		try {
 			return parser.parse(options, args);
 		} catch (org.apache.commons.cli.ParseException e) {
@@ -100,7 +102,7 @@ public class JDCompiler {
 		
 		JustificationDiagram diagram = createDiagram(inputFilePath);
 		
-		// if inputInformationFile is not null, I analyse the information file
+		// if inputInformationFile is not null, I analyze the information file
 		if(inputInformationFile != null) {
 			InformationNodeParsing informationNodeParsing = new InformationNodeParsing(inputInformationFile);	
 			diagram.setInformationNode(informationNodeParsing.information);
@@ -215,5 +217,5 @@ public class JDCompiler {
 		JustificationDiagramParser parser = new JustificationDiagramParser(tokens);
 		return parser.diagram();
 	}
-
+ 
 }

@@ -12,22 +12,18 @@ import export.JDVisitor;
 
 public class Node implements Visitable {
 	
-	//TODO :  Do we really need all these variables to be public?
-    public String alias;
-    public String label;
-    public Set<Relation> inputs;
-    public Set<Relation> outputs;
-    public State state;
+	private String alias;
+	private String label;
+	private Set<Relation> inputs;
+	private Set<Relation> outputs;
+	private State state;
     
     //information
-    public InformationNode informationNode; 
+	private InformationNode informationNode; 
     
-    // - log
-    public ArrayList<String> log = new ArrayList<>();
-    
-    // - constant
-    public String constantNoReferences = "!noRef!";
- 
+    // - steps
+	private ArrayList<String> steps = new ArrayList<>();
+     
     public Node(String alias, String label) { 
     	this.label = label;
         this.alias = alias;
@@ -69,7 +65,7 @@ public class Node implements Visitable {
 
 		}
     	else {
-			// used just for the log
+			// used just for the steps
     		relationAnalyse();
 
     	}
@@ -80,7 +76,7 @@ public class Node implements Visitable {
 
 			}
 			else {
-				// used just for the log
+				// used just for the steps
 				checkFileAnalyses();
 
 	    	}
@@ -93,7 +89,7 @@ public class Node implements Visitable {
 
 			}
 			else {
-				// used just for the log
+				// used just for the steps
 				CheckFileWithNumberAnalyses();
 
 	    	}
@@ -105,7 +101,7 @@ public class Node implements Visitable {
 
 			}
 			else {
-				// used just for the log
+				// used just for the steps
 				checkAction();
 	    	}
 		}
@@ -139,9 +135,9 @@ public class Node implements Visitable {
 				isDone = false;
 			}
 			
-			// get the logs of the execution
+			// get the steps of the execution
 			if(!returnOfExecute.get(1).isEmpty()) {
-				log.add(returnOfExecute.get(1));
+				steps.add(returnOfExecute.get(1));
 			}
 		}
 		return isDone;
@@ -185,11 +181,11 @@ public class Node implements Visitable {
     	for (String filePath : informationNode.path) {
 			if(!new File(filePath).exists()) {
 				System.err.println("The file " + filePath + " was not found to validate the node " + label);
-				log.add("[ ] " + filePath + " (not found)");
+				steps.add("[ ] " + filePath + " (not found)");
 				isDone = false;
 			}
 			else {
-				log.add("[X] " + filePath);
+				steps.add("[X] " + filePath);
 
 			}
 		}
@@ -207,16 +203,16 @@ public class Node implements Visitable {
     		String filePath = mapentry.getKey();
     		int currentLenght = 0;
 			if(!new File(mapentry.getKey()).exists()) {
-				log.add("[ ] " + filePath  + " (not found)");
+				steps.add("[ ] " + filePath  + " (not found)");
 				isDone = false;
 			}
 			else if((currentLenght = new File(filePath).listFiles().length) != mapentry.getValue()) {
-				log.add("[ ] " +  filePath  + " (" + mapentry.getValue()+" file expected, but " + currentLenght   + " found)" );
+				steps.add("[ ] " +  filePath  + " (" + mapentry.getValue()+" file expected, but " + currentLenght   + " found)" );
 				System.err.println("The repetoire " + filePath + " has " + currentLenght + " files instead of " + mapentry.getValue() + " . The node " + label + " can't be validate");
 				isDone = false;
 			}
 			else {
-				log.add("[x] "+  filePath + " (" + mapentry.getValue() + " Files found)");
+				steps.add("[x] "+  filePath + " (" + mapentry.getValue() + " Files found)");
 
 			}
 		}
@@ -252,5 +248,61 @@ public class Node implements Visitable {
     public void setInformationNode(InformationNode informationNode) {
     	this.informationNode = informationNode;
     }
+
+    // Getter and Setter
+    
+	public String getAlias() {
+		return alias;
+	}
+
+	public void setAlias(String alias) {
+		this.alias = alias;
+	}
+
+	public String getLabel() {
+		return label;
+	}
+
+	public void setLabel(String label) {
+		this.label = label;
+	}
+
+	public Set<Relation> getInputs() {
+		return inputs;
+	}
+
+	public void setInputs(Set<Relation> inputs) {
+		this.inputs = inputs;
+	}
+
+	public Set<Relation> getOutputs() {
+		return outputs;
+	}
+
+	public void setOutputs(Set<Relation> outputs) {
+		this.outputs = outputs;
+	}
+
+	public State getState() {
+		return state;
+	}
+
+	public void setState(State state) {
+		this.state = state;
+	}
+
+	public ArrayList<String> getSteps() {
+		return steps;
+	}
+
+	public void setStpes(ArrayList<String> steps) {
+		this.steps = steps;
+	}
+
+	public InformationNode getInformationNode() {
+		return informationNode;
+	}
+    
+    
     
 }

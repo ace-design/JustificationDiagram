@@ -28,67 +28,67 @@ public class GraphDrawer implements JDVisitor {
 
     @Override
     public void visitNode(Node node) {
-        gv.append("\t").append(node.alias).append(" [shape=box, label=").append(node.label).append("];\n");
+        gv.append("\t").append(node.getAlias()).append(" [shape=box, label=").append(node.getAlias()).append("];\n");
     }
  
     @Override
     public void visitConclusion(Conclusion conclusion) {
         if (conclusion.restriction != null) {
-            gv.append("\t").append(conclusion.alias).append(" [shape=none margin=0 label=<<table cellspacing=\"0\" " +
+            gv.append("\t").append(conclusion.getAlias()).append(" [shape=none margin=0 label=<<table cellspacing=\"0\" " +
                     "cellborder=\"1\" border=\"0\"><tr><td COLSPAN=\"2\" sides=\"LT\" BGCOLOR=\"gray75\" " +
-                    "COLOR=\"royalblue\">").append(conclusion.label, 1, conclusion.label.length() - 1)
+                    "COLOR=\"royalblue\">").append(conclusion.getLabel(), 1, conclusion.getLabel().length() - 1)
                     .append("</td><td sides=\"TR\" BGCOLOR=\"gray75\" COLOR=\"royalblue\"></td><td sides=\"L\" " +
                     "COLOR=\"royalblue\"></td></tr><tr><td sides=\"LB\" BGCOLOR=\"gray75\" COLOR=\"royalblue\"></td>" +
                     "<td sides=\"LTRB\" ROWSPAN=\"2\" colspan=\"3\" port=\"a\" BGCOLOR=\"khaki1\" style=\"dashed\">")
                     .append(conclusion.restriction, 1, conclusion.restriction.length() - 1)
                     .append("</td></tr></table>>];\n");
         } else {
-            gv.append("\t").append(conclusion.alias).append(" [shape=box, style=\"filled,rounded\", color=royalblue, " +
-                    "fillcolor=gray75, label=").append(conclusion.label).append("];\n");
+            gv.append("\t").append(conclusion.getAlias()).append(" [shape=box, style=\"filled,rounded\", color=royalblue, " +
+                    "fillcolor=gray75, label=").append(conclusion.getLabel()).append("];\n");
         }
     }
 
     @Override
     public void visitSubConclusion(SubConclusion subConclusion) {
         if (subConclusion.restriction != null) {
-            gv.append("\t").append(subConclusion.alias).append(" [shape=none margin=0 label=<<table cellspacing=\"0\" " +
+            gv.append("\t").append(subConclusion.getAlias()).append(" [shape=none margin=0 label=<<table cellspacing=\"0\" " +
                     "cellborder=\"1\" border=\"0\"><tr><td COLSPAN=\"2\" sides=\"LT\" BGCOLOR=\"none\" " +
-                    "COLOR=\"royalblue\">").append(subConclusion.label, 1, subConclusion.label.length() - 1)
+                    "COLOR=\"royalblue\">").append(subConclusion.getLabel(), 1, subConclusion.getLabel().length() - 1)
                     .append("</td><td sides=\"TR\" BGCOLOR=\"none\" COLOR=\"royalblue\"></td><td sides=\"L\" " +
                             "COLOR=\"royalblue\"></td></tr><tr><td sides=\"LB\" BGCOLOR=\"none\" COLOR=\"royalblue\"></td>" +
                             "<td sides=\"LTRB\" ROWSPAN=\"2\" colspan=\"3\" port=\"a\" BGCOLOR=\"khaki1\" style=\"dashed\">")
                     .append(subConclusion.restriction, 1, subConclusion.restriction.length() - 1)
                     .append("</td></tr></table>>];\n");
         } else {
-            gv.append("\t").append(subConclusion.alias).append(" [shape=box, style=\"filled,rounded\", color=royalblue, " +
-                    "fillcolor=none, label=").append(subConclusion.label).append("];\n");
+            gv.append("\t").append(subConclusion.getAlias()).append(" [shape=box, style=\"filled,rounded\", color=royalblue, " +
+                    "fillcolor=none, label=").append(subConclusion.getLabel()).append("];\n");
         }
     }
 
     @Override
     public void visitStrategy(Strategy strategy) {
-        gv.append("\t").append(strategy.alias).append(" [shape=polygon, style=filled, fillcolor=darkolivegreen3, sides=4, skew=.4, label=")
-                .append(strategy.label).append("];\n");
+        gv.append("\t").append(strategy.getAlias()).append(" [shape=polygon, style=filled, fillcolor=darkolivegreen3, sides=4, skew=.4, label=")
+                .append(strategy.getLabel()).append("];\n");
     }
 
     @Override
     public void visitDomain(Domain domain) {
-        gv.append("\t").append(domain.alias).append(" [shape=ellipse, style=\"filled,dashed\", fillcolor=darkseagreen1, label=").append(domain.label).append("];\n");
+        gv.append("\t").append(domain.getAlias()).append(" [shape=ellipse, style=\"filled,dashed\", fillcolor=darkseagreen1, label=").append(domain.getLabel()).append("];\n");
     }
 
     @Override
     public void visitRationale(Rationale rationale) {
-        gv.append("\t").append(rationale.alias).append(" [shape=ellipse, style=filled, fillcolor=peachpuff, label=").append(rationale.label).append("];\n");
+        gv.append("\t").append(rationale.getAlias()).append(" [shape=ellipse, style=filled, fillcolor=peachpuff, label=").append(rationale.getLabel()).append("];\n");
     }
 
     @Override
     public void visitSupport(Support support) {
-        gv.append("\t").append(support.alias).append(" [shape=box, style=\"filled,rounded\", color=black fillcolor=skyblue, label=").append(support.label).append("];\n");
+        gv.append("\t").append(support.getAlias()).append(" [shape=box, style=\"filled,rounded\", color=black fillcolor=skyblue, label=").append(support.getLabel()).append("];\n");
     }
 
     @Override
     public void visitRelation(Relation relation) {
-        gv.append("\t").append(relation.from.alias).append(" -> ").append(relation.to.alias);
+        gv.append("\t").append(relation.from.getAlias()).append(" -> ").append(relation.to.getAlias());
 
         if (relation.collapsed) {
             gv.append(" [style=dashed]");

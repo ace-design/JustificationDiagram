@@ -46,10 +46,10 @@ public class InformationNodeParsing {
 			readInformation(jsonParser,reader);
 
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			System.err.println("The file " + path + " was not found");
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		} 
 
 	}
 	

@@ -34,7 +34,7 @@ public class GraphDrawerRealization implements JDVisitor {
 
     @Override
     public void visitNode(Node node) {
-        gv.append("\t").append(node.alias).append(" [shape=box, label=").append(node.label).append("];\n");
+        gv.append("\t").append(node.getAlias()).append(" [shape=box, label=").append(node.getLabel()).append("];\n");
     }
     
     @Override
@@ -43,17 +43,17 @@ public class GraphDrawerRealization implements JDVisitor {
 
         if (conclusion.restriction != null) {
 
-            gv.append("\t").append(conclusion.alias).append(" [shape=none margin=0 fontcolor= " + colorUsed + " label=<<table cellspacing=\"0\" " +
+            gv.append("\t").append(conclusion.getAlias()).append(" [shape=none margin=0 fontcolor= " + colorUsed + " label=<<table cellspacing=\"0\" " +
                     "cellborder=\"1\" border=\"0\"><tr><td COLSPAN=\"2\" sides=\"LT\" BGCOLOR=\"gray75\" " +
-                    "COLOR=\"" + colorUsed + "\">").append(conclusion.label, 1, conclusion.label.length() - 1) 
+                    "COLOR=\"" + colorUsed + "\">").append(conclusion.getLabel(), 1, conclusion.getLabel().length() - 1) 
                     .append("</td><td sides=\"TR\" BGCOLOR=\"gray75\" COLOR=\"" + colorUsed + "\"></td><td sides=\"L\" " +
                     "COLOR=\"" + colorUsed + "\"></td></tr><tr><td sides=\"LB\" BGCOLOR=\"gray75\" COLOR=\"" + colorUsed + "\"></td>" +
                     "<td sides=\"LTRB\" ROWSPAN=\"2\" colspan=\"3\" port=\"a\" BGCOLOR=\"khaki1\" style=\"dashed\">")
                     .append(conclusion.restriction, 1, conclusion.restriction.length() -1)
                     .append("</td></tr></table>>];\n");
         } else {
-            gv.append("\t").append(conclusion.alias).append(" [shape=box, style=\"filled,rounded\", fontcolor= " + colorUsed + " color=\"" + colorUsed + "\", " +
-                    "fillcolor=gray75, label=").append(conclusion.label).append("];\n");
+            gv.append("\t").append(conclusion.getAlias()).append(" [shape=box, style=\"filled,rounded\", fontcolor= " + colorUsed + " color=\"" + colorUsed + "\", " +
+                    "fillcolor=gray75, label=").append(conclusion.getLabel()).append("];\n");
         }
     }
  
@@ -63,17 +63,17 @@ public class GraphDrawerRealization implements JDVisitor {
     	setColorUsed(subConclusion); 
 
         if (subConclusion.restriction != null) {
-        	gv.append("\t").append(subConclusion.alias).append(" [shape=none margin=0  fontcolor= " + colorUsed + " label=<<table cellspacing=\"0\" " +
+        	gv.append("\t").append(subConclusion.getAlias()).append(" [shape=none margin=0  fontcolor= " + colorUsed + " label=<<table cellspacing=\"0\" " +
                     "cellborder=\"1\" border=\"0\"><tr><td COLSPAN=\"2\" sides=\"LT\" BGCOLOR=\"gray75\" " +
-                    "COLOR=\"" + colorUsed + "\">").append(subConclusion.label, 1, subConclusion.label.length() - 1)
+                    "COLOR=\"" + colorUsed + "\">").append(subConclusion.getLabel(), 1, subConclusion.getLabel().length() - 1)
                     .append("</td><td sides=\"TR\" BGCOLOR=\"gray75\" COLOR=\"" + colorUsed + "\"></td><td sides=\"L\" " +
                     "COLOR=\"" + colorUsed + "\"></td></tr><tr><td sides=\"LB\" BGCOLOR=\"gray75\" COLOR=\"" + colorUsed + "\"></td>" +
                     "<td sides=\"LTRB\" ROWSPAN=\"2\" colspan=\"3\" port=\"a\" BGCOLOR=\"khaki1\" style=\"dashed\">")
                     .append(subConclusion.restriction, 1, subConclusion.restriction.length() -1)
                     .append("</td></tr></table>>];\n");
         } else {
-            gv.append("\t").append(subConclusion.alias).append(" [shape=box, style=\"filled,rounded\", fontcolor= " + colorUsed + " color=\"" + colorUsed + "\", " +
-                    "fillcolor=none, label=").append(subConclusion.label).append("];\n");
+            gv.append("\t").append(subConclusion.getAlias()).append(" [shape=box, style=\"filled,rounded\", fontcolor= " + colorUsed + " color=\"" + colorUsed + "\", " +
+                    "fillcolor=none, label=").append(subConclusion.getLabel()).append("];\n");
         }
     }
 
@@ -81,32 +81,32 @@ public class GraphDrawerRealization implements JDVisitor {
     public void visitStrategy(Strategy strategy) {
     	setColorUsed(strategy);
 
-        gv.append("\t").append(strategy.alias).append(" [shape=polygon, style=filled, fontcolor= " + colorUsed + " fillcolor=darkolivegreen3, color=\"" + colorUsed + "\" sides=4, skew=.4, label=")
-                .append(strategy.label).append("];\n");
+        gv.append("\t").append(strategy.getAlias()).append(" [shape=polygon, style=filled, fontcolor= " + colorUsed + " fillcolor=darkolivegreen3, color=\"" + colorUsed + "\" sides=4, skew=.4, label=")
+                .append(strategy.getLabel()).append("];\n");
     }
 
     @Override
     public void visitDomain(Domain domain) {
     	setColorUsed(domain);
-        gv.append("\t").append(domain.alias).append(" [shape=ellipse, style=\"filled,dashed\", fontcolor= " + colorUsed + " fillcolor=darkseagreen1, color=\"" + colorUsed + "\" label=").append(domain.label).append("];\n");
+        gv.append("\t").append(domain.getAlias()).append(" [shape=ellipse, style=\"filled,dashed\", fontcolor= " + colorUsed + " fillcolor=darkseagreen1, color=\"" + colorUsed + "\" label=").append(domain.getLabel()).append("];\n");
     }
 
     @Override
     public void visitRationale(Rationale rationale) {
     	setColorUsed(rationale);
-        gv.append("\t").append(rationale.alias).append(" [shape=ellipse, style=filled,fontcolor= " + colorUsed + ", fillcolor=peachpuff, color=\"" + colorUsed + "\" label=").append(rationale.label).append("];\n");
+        gv.append("\t").append(rationale.getAlias()).append(" [shape=ellipse, style=filled,fontcolor= " + colorUsed + ", fillcolor=peachpuff, color=\"" + colorUsed + "\" label=").append(rationale.getLabel()).append("];\n");
     }
 
     @Override
     public void visitSupport(Support support) {
     	setColorUsed(support);
 
-        gv.append("\t").append(support.alias).append(" [shape=box, style=\"filled,rounded\", fontcolor= " + colorUsed + ", fillcolor=skyblue, color=\"" + colorUsed + "\" label=").append(support.label).append("];\n");
+        gv.append("\t").append(support.getAlias()).append(" [shape=box, style=\"filled,rounded\", fontcolor= " + colorUsed + ", fillcolor=skyblue, color=\"" + colorUsed + "\" label=").append(support.getLabel()).append("];\n");
     }
 
     @Override
     public void visitRelation(Relation relation) {
-        gv.append("\t").append(relation.from.alias).append(" -> ").append(relation.to.alias);
+        gv.append("\t").append(relation.from.getAlias()).append(" -> ").append(relation.to.getAlias());
 
         if (relation.collapsed) {
             gv.append(" [style=dashed]");
@@ -123,7 +123,7 @@ public class GraphDrawerRealization implements JDVisitor {
  
     	colorUsed = colorUsedModel[0];
 
-    	if(node.state.equals(State.DONE)) {
+    	if(node.getState().equals(State.DONE)) {
     		colorUsed = colorUsedModel[1];
     	}
     }
