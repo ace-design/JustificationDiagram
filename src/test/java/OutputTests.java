@@ -4,18 +4,11 @@ import java.io.File;
 import java.io.IOException;
 
 import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class OutputTests {
 
 	String inputPath = "justification/examples/";
 	String outputPath = "justification/output/images/";
- 
-	@Test
-    public void dummy() {
-        assertEquals(0, 0);
-        assertEquals(1, 1);
-    }
 	
 	@Test
 	public void test_CI4CVS() throws IOException {
