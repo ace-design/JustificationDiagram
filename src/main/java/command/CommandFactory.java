@@ -18,15 +18,11 @@ public class CommandFactory {
 	
 	public ArrayList<String> executeCommand(String commandLigne) {
 		
-		
-		String[] tmp = commandLigne.split(" ");
-		String name = tmp[0];
+		String name = commandLigne.split(" ")[0];
 		String args = "";
-		
-		//TODO :Work Working with a string list instead of a string (double transformation)
-		for(int i = 1; i < tmp.length; i++ ) {
-			args += tmp[i] + " ";
-		}
+			
+		args = commandLigne.replace(name + " ", "");
+
 		// remove the last " "
 		args = args.substring(0,args.length()-1);
 		
@@ -50,7 +46,7 @@ public class CommandFactory {
 		System.out.println("Commands enabled :");
 		this.commands.keySet().stream().forEach(System.out::println);
 	}
-	
+	 
 	/* Singleton pattern */
     public static CommandFactory getInstance() {
         if (instance == null) {

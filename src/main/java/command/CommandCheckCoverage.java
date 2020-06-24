@@ -52,7 +52,8 @@ public class CommandCheckCoverage implements Command{
 			try {
 				coverageFind = parsingCSVJacocoReport();
 			} catch (IOException e) {
-				//e.printStackTrace();
+
+				System.err.println("The file " + path + " was null" );
 				result.add(FAIL);
 			}
 
@@ -128,19 +129,18 @@ public class CommandCheckCoverage implements Command{
 					coverageFind = Integer.parseInt(line.substring(position +17,position+19));
 				}
 			} catch (IOException e) {
-				e.printStackTrace();
+				System.err.println("The file " + path + " was null" );
 			}
 			try {
 				input.close();
 			} catch (IOException e) {
-				e.printStackTrace();
+				System.err.println("The input " + input + " was null" );
 			}
 		}
 
-
 		return coverageFind;
-
-	}
+		
+	} 
 
 
 	/**
@@ -222,8 +222,8 @@ public class CommandCheckCoverage implements Command{
 		operator = tmp[1];
 
 		coverage = Integer.parseInt(tmp[2]);
-		//TODO 
-		//System.out.println("args : " + path + " for " + operator + " coverage " + coverage);
+
+		System.out.println("CheckCover action - args : '" + path + "' for " + operator + " coverage " + coverage);
 	}
 
 
