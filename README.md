@@ -275,14 +275,14 @@ Here is a more detailed example
     {
         "Node":{
             "Label":"Architecture validated",
-	        "Optional":"false",
+	    "Optional":"false",
             "Reference":"archi1"
         }
     },
     {
         "Node":{
             "Label":"Risks consistency",
-	       "Optional":"true",
+	    "Optional":"true",
             "Reference":"archi2"
         }
     },
@@ -533,14 +533,14 @@ I'll just add comments with "@comment": "this is a comment".
 [  
     { 
         "Node":{
-	        "@comment": "The node labeled 'Jacoco Repor' is not optional... ",     
+	    "@comment": "The node labeled 'Jacoco Repor' is not optional... ",     
             "Label":"Jacoco Report",
             "Optional":"false",
-	        "@comment2": "...the total coverage need to be superior to 70%... ",     
+	    "@comment2": "...the total coverage need to be superior to 70%... ",     
             "Actions": [
                 "CheckCoverage target/site/jacoco/index.html >= 70", 
             ],
-	        "@comment3": "...and need to check the exitance of the file 'target/site/jacoco/index.html'." ,
+	    "@comment3": "...and need to check the exitance of the file 'target/site/jacoco/index.html'." ,
             "Files": [  
                 "target/site/jacoco/index.html"
             ]    
@@ -548,20 +548,20 @@ I'll just add comments with "@comment": "this is a comment".
     },
     {
         "Node":{
-	        "@comment": "The node labeled 'code Archivate' has 'generatedCode' for reference.",
+	    "@comment": "The node labeled 'code Archivate' has 'generatedCode' for reference.",
             "Label":"code Archivate",
             "Reference":"generatedCode",    
         }
     },
     {
         "Node": {
-	        "@comment": "The node labeled 'images Archivate' has 'images' for reference and...",
+	    "@comment": "The node labeled 'images Archivate' has 'images' for reference and...",
             "Label":"images Archivate",
             "Reference":"images",
 	    
             "FilesNumber": [  
                 {   
-         	       "@comment2": "...need to check if of the repertory 'justification/output/images/' have 13 files..." ,
+         	    "@comment2": "...need to check if of the repertory 'justification/output/images/' have 13 files..." ,
                     "Path":"justification/output/images/",
                     "Number":"13"     
                 },
@@ -578,11 +578,11 @@ I'll just add comments with "@comment": "this is a comment".
     },
     {
         "Node":{
-	        "@comment": "The node labeled 'Build Maven passed'...",
+	    "@comment": "The node labeled 'Build Maven passed'...",
             "Label":"Build Maven passed",
             "FilesNumber": [  
                 {   
-		           "@comment2":"need to check if of the repertory 'justification/examples' have 10 files.",
+		    "@comment2":"need to check if of the repertory 'justification/examples' have 10 files.",
                     "Path":"justification/examples",
                     "Number":"10"     
                 },
@@ -593,7 +593,7 @@ I'll just add comments with "@comment": "this is a comment".
     },
     {
         "Node":{
-	        "@comment": "The node labeled 'Jacoco report Archivate' has 'jacoco' for reference.",
+	    "@comment": "The node labeled 'Jacoco report Archivate' has 'jacoco' for reference.",
             "Label":"Jacoco report Archivate",
             "Reference":"jacoco",    
         }
@@ -611,17 +611,17 @@ I'll just add comments with "@comment": "this is a comment".
     },
     {
         "Node":{
-	        "@comment": "The node labeled 'Test Coverage validated and Archived' is optional. ",     
+	    "@comment": "The node labeled 'Test Coverage validated and Archived' is optional. ",     
             "Label":"Test Coverage validated and Archived",
             "Optional":"true",      
         }
     },
     {
         "Node":{
-	        "@comment": "The node labeled 'Creation of the README' is optional and... ",     
+	    "@comment": "The node labeled 'Creation of the README' is optional and... ",     
             "Label":"Creation of the README",
             "Optional":"true",  
-	        "@comment3": "...and need to check the exitance of the file 'README.md'",
+	    "@comment3": "...and need to check the exitance of the file 'README.md'",
             "Files": [  
                 "README.md"
             ]  
@@ -814,17 +814,17 @@ I'll just add comments with "@comment": "this is a comment".
             "Label":"Jacoco Report",
             "Optional":"false",
             "Reference":"Archi1",
-	        "@comment2": "...the total coverage need to be superior to 80%... ",     
+	    "@comment2": "...the total coverage need to be superior to 80%... ",     
             "Actions": [
                 "CheckCoverage target/site/jacoco/index.html > 80", 
             ],
-	        "@comment3": "...need to check the exitance of the file 'target/site/jacoco/index.html'..." ,
+	    "@comment3": "...need to check the exitance of the file 'target/site/jacoco/index.html'..." ,
             "Files": [  
                 "dontExist.todo","target/site/jacoco/index.html"
             ],
             "FilesNumber": [  
                 {   
-		            "@comment4":"...need to check if of the repertory 'justification/examples' have 10 files...",
+		    "@comment4":"...need to check if of the repertory 'justification/examples' have 10 files...",
                     "Path":"justification/examples",
                     "Number":"3"     
                 },
@@ -838,17 +838,17 @@ I'll just add comments with "@comment": "this is a comment".
     },
     {
         "Node":{
-	        "@comment": "The node labeled 'code Archivate' has 'generatedCode' for reference.",
+	    "@comment": "The node labeled 'code Archivate' has 'generatedCode' for reference.",
             "Label":"code Archivate",
             "Reference":"generatedCode",    
         }
     },
     {
         "Node": {
-	        "@comment": "The node labeled 'images Archivate' has 'images' for reference and...",
+            "@comment": "The node labeled 'images Archivate' has 'images' for reference and...",
             "Label":"images Archivate",
             "Reference":"images",
-	        "@comment2": "...need to check the exitance of the file 'justification/examples/exampleCI/Pattern4CI.jd'." ,
+	    "@comment2": "...need to check the exitance of the file 'justification/examples/exampleCI/Pattern4CI.jd'." ,
             "Files": [  
                 "justification/examples/exampleCI/Pattern4CI.jd"
             ],
@@ -857,11 +857,11 @@ I'll just add comments with "@comment": "this is a comment".
     },
     {
         "Node":{
-	        "@comment": "The node labeled 'Build Maven passed'...",
+	    "@comment": "The node labeled 'Build Maven passed'...",
             "Label":"Build Maven passed",
             "FilesNumber": [  
                 {   
-		           "@comment2":"need to check if of the repertory 'justification/examples' have 10 files.",
+		    "@comment2":"need to check if of the repertory 'justification/examples' have 10 files.",
                     "Path":"justification/examples",
                     "Number":"10"     
                 },
@@ -872,7 +872,7 @@ I'll just add comments with "@comment": "this is a comment".
     },
     {
         "Node":{
-	        "@comment": "The node labeled 'Jacoco report Archivate' has 'jacoco' for reference.",
+	    "@comment": "The node labeled 'Jacoco report Archivate' has 'jacoco' for reference.",
             "Label":"Jacoco report Archivate",
             "Reference":"jacoco",    
         }
@@ -882,9 +882,9 @@ I'll just add comments with "@comment": "this is a comment".
     
     {
         "Node": {
-	        "@comment": "The node labeled 'Data Archivat'...",
+	    "@comment": "The node labeled 'Data Archivat'...",
             "Label":"Data Archivate",
-	        "@comment2": "...need to check the exitance of the file 'dontExist.todo' and 'justification/output/images' and..." ,
+	    "@comment2": "...need to check the exitance of the file 'dontExist.todo' and 'justification/output/images' and..." ,
             "Files": [  
                 "justification/output/images"
             ],
@@ -893,17 +893,17 @@ I'll just add comments with "@comment": "this is a comment".
     },
     {
         "Node":{
-	        "@comment": "The node labeled 'Test Coverage validated and Archived' is optional and... ",     
+	    "@comment": "The node labeled 'Test Coverage validated and Archived' is optional and... ",     
             "Label":"Test Coverage validated and Archived",
             "Optional":"true",      
         }
     },
     {
         "Node":{
-	        "@comment": "The node labeled 'Creation of the README' is optional and... ",     
+	    "@comment": "The node labeled 'Creation of the README' is optional and... ",     
             "Label":"Creation of the README",
             "Optional":"true",  
-	        "@comment3": "...and need to check the exitance of the file 'README.md'",
+	    "@comment3": "...and need to check the exitance of the file 'README.md'",
             "Files": [  
                 "README.md"
             ]  
