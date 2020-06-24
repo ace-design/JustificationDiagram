@@ -11,6 +11,10 @@ If you want to see the quick start, [go here](https://github.com/Nicolas-Corbier
 
 Or see the test project used [here](https://github.com/Nicolas-Corbiere/TestProjet).
 
+## SonarCloud report 
+
+If you want to see the quality of the project, [see here](https://sonarcloud.io/dashboard?id=MireilleBF_JustificationDiagram).
+
 ## Installation
 
 JDGenerator is a Maven program. You can either clone the repo and run the following commands :
@@ -206,13 +210,13 @@ For example, below, an action to check the test coverage of your project is expl
     {
         "Node":{
 	    "Actions": [
-            "CheckCoverage [INPUT_JACOCO_REPORT_INDEX.hml] [OPERATOR] [NUMBER]", 
+            "CheckCoverage [INPUT_JACOCO_REPORT] [OPERATOR] [NUMBER]", 
         ]
     },
  ]
 ```
 
-You need to specify where is the index.html of the jacoco report in 'INPUT_JACOCO_REPORT_INDEX.html'.
+You need to specify where is the index.html or the jacoco.csv of the jacoco report in 'INPUT_JACOCO_REPORT' .
 
 
 ### OPERATOR
@@ -1192,4 +1196,10 @@ Here is the realization diagram:
 
 ![link to Google](https://github.com/MireilleBF/JustificationDiagram/blob/master/justification/examples/exampleCI/Pattern4CI_Valid_REA.svg)
 
+
+### SonarCloud
+
+
+If you want to scan your project and get a report on its quality, check out [this tutorial](https://dev.to/remast/using-sonarcloud-with-github-actions-and-maven-31kg).
+It will explain how to use the SonarCloud.
 
