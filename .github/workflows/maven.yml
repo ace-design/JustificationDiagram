@@ -33,12 +33,12 @@ jobs:
     #Test of the project, 'Test Maven passed' is done
     - name: Test with Maven
       run: 
-        mvn test;
-        echo $?;
-        echo $?  + " test";
-        'echo ::set-env name=TESTVAR::'$?;
-        echo env.TESTVAR;
-    
+        mvn test; 
+    - name: Test with Maven
+      env: 
+        TEST: ${{test}} 
+      run:
+        echo "$TEST";
     - name: Add test in realization
       if: env.exitCode == 0  
       run: echo -e "Test Maven passed" >> realization.txt;
