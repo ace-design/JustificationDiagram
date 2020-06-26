@@ -29,14 +29,15 @@ jobs:
         Build with Maven;
       run: 
         mvn -B package --file pom.xml;
-        if ((Test-Path -LiteralPath variable:\LASTEXITCODE)) {
-                echo -e "Build Maven passed" >> realization.txt;
-        }
+        echo -e "Build Maven passed" >> realization.txt;
     #Test of the project, 'Test Maven passed' is done
     - name: Test with Maven
       run: 
         mvn test;
-        echo -e "Test Maven passed" >> realization.txt;
+    - name: Add test in realization
+        if: ((Test-Path -LiteralPath variable:\LASTEXITCODE)) {
+            echo -e "Test Maven passed" >> realization.txt;
+        }
     #Scanning the project with SonarCloud
     - name: SonarCloud Scan
       run: 
