@@ -37,7 +37,7 @@ jobs:
         echo$?;
         echo$? $(echo$?) + " test";
     - name: Add test in realization
-        if: ${{ echo$? == 0 }} 
+        if: ${{ $(echo$?) == 0 }} 
         run:    echo -e "Test Maven passed" >> realization.txt;
     #Scanning the project with SonarCloud
     - name: SonarCloud Scan
