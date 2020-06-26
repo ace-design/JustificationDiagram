@@ -38,7 +38,7 @@ jobs:
         echo $?  + " test";
     - name: Add test in realization
       env:
-            myIntegerNumber: ${{ $(echo $?) }}
+            myIntegerNumber: ${{ echo $? }}
       if: ${{ "$myIntegerNumber" == 0 }} 
       run:    echo -e "Test Maven passed" >> realization.txt;
     #Scanning the project with SonarCloud
