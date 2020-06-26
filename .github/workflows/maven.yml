@@ -36,7 +36,7 @@ jobs:
         mvn test; 
     - name: Test with Maven
       env: 
-        TEST: $(cat realization.txt)
+        TEST: ${{ $(cat realization.txt) }}
       run:
         echo "$TEST";
     - name: Add test in realization
