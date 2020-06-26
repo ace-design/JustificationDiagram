@@ -38,8 +38,8 @@ jobs:
       run:
         echo test;
         echo $?;
-        echo ::set-env name=TEST::$(echo $?);
-        echo $TEST;
+        echo ::set-env name=exitCode::$(echo $?);
+        echo "$exitCode";
         echo $?;
         echo test;
     - name: Add test in realization
