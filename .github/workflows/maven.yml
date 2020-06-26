@@ -38,8 +38,10 @@ jobs:
         echo $?  + " test";
     - name: test
       env: 
-        exitCode : $?;
-      run: echo $exitCode
+        exitCode : $(echo $?);
+      run: 
+        echo $exitCode;
+        echo $?;
     - name: Add test in realization
       env: 
         exitCode : $?;
