@@ -36,7 +36,7 @@ jobs:
         mvn test;
         echo $?;
         echo $?  + " test";
-        'echo ::set-env name=TESTVAR::$(echo $?)';
+        echo ::set-env name=TESTVAR::$?;
         echo TESTVAR;
     
     - name: Add test in realization
