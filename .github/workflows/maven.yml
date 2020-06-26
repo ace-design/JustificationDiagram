@@ -37,7 +37,7 @@ jobs:
         echo $?;
         echo $?  + " test";
         echo ::set-env name=TESTVAR::$?;
-        echo TESTVAR;
+        echo env.TESTVAR;
     
     - name: Add test in realization
       if: env.exitCode == 0  
