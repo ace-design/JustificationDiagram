@@ -36,7 +36,7 @@ jobs:
         mvn test; 
     - name: Test with Maven
       env: 
-        TEST: ${{ ? }} 
+        TEST: "test"
       run:
         echo "$TEST";
     - name: Add test in realization
