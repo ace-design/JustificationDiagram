@@ -38,7 +38,7 @@ jobs:
         echo $?  + " test";
     - name: test
       env: 
-        exitCode : $(echo $?);
+        exitCode : ${{ echo $? }};
       run: 
         echo $exitCode;
         echo $?;
