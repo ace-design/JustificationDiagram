@@ -35,13 +35,8 @@ jobs:
       if: always()
       run: 
         mvn test; 
-    - name: Test with Maven
-      run: echo ::set-env name=exitCode::$(echo $?);
-    - name: Add test in realization
-      if: env.exitCode == 0 
-      run: 
         echo -e "Test Maven passed" >> realization.txt;
-        echo $exitCode;
+
     #Scanning the project with SonarCloud
     - name: SonarCloud Scan
       run: 
@@ -107,7 +102,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with: 
         name: GeneratedJD
-        path: justification/examples/exampleCI/infoValid.json
+        path: justification/examples/exampleCI/actionValid.json
     
     #---------------Saving the last diagrams generated---------------       
     
