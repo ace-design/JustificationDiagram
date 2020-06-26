@@ -35,9 +35,8 @@ jobs:
       run: 
         mvn test; 
     - name: Test with Maven
-      env: 
-        TEST: ${{ $(cat realization.txt) }}
       run:
+        echo ::set-env name=TEST::$(echo $?);
         echo "$TEST";
     - name: Add test in realization
       if: env.exitCode == 0  
