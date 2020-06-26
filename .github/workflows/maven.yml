@@ -20,15 +20,18 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-    #Build of the project, 'Creation of the README' and 'Build Maven passed' are done
+    #Build of the project, 'Creation of the README' is done
+    - name: Creation of the realization file
+      run: 
+        echo -e "\nCreation of the README" >> realization.txt;
+    #Build of the project, 'Build Maven passed' is done
     - name: 
         Build with Maven;
       run: 
-        testestest;
-        echo "fail";
         mvn -B package --file pom.xml;
-        echo -e "\nCreation of the README" >> realization.txt;
-        echo -e "Build Maven passed" >> realization.txt;
+        if ((Test-Path -LiteralPath variable:\LASTEXITCODE)) {
+                echo -e "Build Maven passed" >> realization.txt;
+        }
     #Test of the project, 'Test Maven passed' is done
     - name: Test with Maven
       run: 
