@@ -24,6 +24,8 @@ jobs:
     - name: 
         Build with Maven;
       run: 
+        testestest;
+        echo "fail";
         mvn -B package --file pom.xml;
         echo -e "\nCreation of the README" >> realization.txt;
         echo -e "Build Maven passed" >> realization.txt;
