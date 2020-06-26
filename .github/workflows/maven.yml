@@ -39,7 +39,7 @@ jobs:
     - name: test
       env: 
         exitCode : $?;
-      run: echo env.exitCode
+      run: echo $exitCode
     - name: Add test in realization
       env: 
         exitCode : $?;
