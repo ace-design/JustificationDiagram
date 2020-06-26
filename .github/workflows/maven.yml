@@ -37,9 +37,7 @@ jobs:
         echo $?;
         echo $?  + " test";
     - name: Add test in realization
-      env: 
-        exitCode : $?;
-      if: "$exitCode" == 0  
+      if: $? == 0  
       run: echo -e "Test Maven passed" >> realization.txt;
     #Scanning the project with SonarCloud
     - name: SonarCloud Scan
