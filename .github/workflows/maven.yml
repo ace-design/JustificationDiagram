@@ -38,7 +38,9 @@ jobs:
       run: echo ::set-env name=exitCode::$(echo $?);
     - name: Add test in realization
       if: env.exitCode == 0 
-      run: echo -e "Test Maven passed" >> realization.txt
+      run: 
+        echo -e "Test Maven passed" >> realization.txt
+        echo $exitCode;
     #Scanning the project with SonarCloud
     - name: SonarCloud Scan
       run: 
