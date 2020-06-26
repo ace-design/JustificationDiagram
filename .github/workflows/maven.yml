@@ -32,6 +32,7 @@ jobs:
         echo -e "Build Maven passed" >> realization.txt;
     #Test of the project, 'Test Maven passed' is done
     - name: Test with Maven
+      if: always()
       run: 
         mvn test; 
     - name: Test with Maven
