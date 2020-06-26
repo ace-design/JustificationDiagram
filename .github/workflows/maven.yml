@@ -35,7 +35,7 @@ jobs:
       run: 
         mvn test;
     - name: Add test in realization
-        if: ((Test-Path -LiteralPath variable:\LASTEXITCODE)) {
+        if: ${{ echo$? == 0 }} {
             echo -e "Test Maven passed" >> realization.txt;
         }
     #Scanning the project with SonarCloud
