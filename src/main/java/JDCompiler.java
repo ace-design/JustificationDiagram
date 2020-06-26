@@ -39,22 +39,22 @@ public class JDCompiler {
 			System.exit(1);
 		}
 		String inputRealizationFile = null;
-		String inputInformationFile = null;
+		String inputActionFile = null;
 		
 		if (cmd.hasOption("rea")) {
 				inputRealizationFile = cmd.getOptionValue("rea");
 
 		}
 		
-		if (cmd.hasOption("info")) {
-				inputInformationFile = cmd.getOptionValue("info");
+		if (cmd.hasOption("act")) {
+			inputActionFile = cmd.getOptionValue("act");
 		}
 			
 		//TODO : Why this number?
 		generateFiles(cmd, inputFile, 
 				generateOutputName(outputOption, 0, inputFile), 
 				inputRealizationFile,
-				inputInformationFile);
+				inputActionFile);
 		
 	}
 
@@ -67,10 +67,10 @@ public class JDCompiler {
 		options.addOption(output);
 		
 		Option rea = new Option("rea","realization",true, "indicate the realization file");
-		Option info = new Option("info","information",true, "indicate the information file");
+		Option action = new Option("act","action",true, "indicate the action file");
 
 		options.addOption(rea);
-		options.addOption(info);
+		options.addOption(action);
 
 		options.addOption("svg", "generate graph");
 		options.addOption("gv", "generate gv file");
@@ -89,23 +89,23 @@ public class JDCompiler {
 	}
 
 	private static void generateFiles(CommandLine cmd, String inputFilePath, String outputFilePath,
-			String inputRealizationFilePath,String inputInformationFile) throws IOException {
+			String inputRealizationFilePath,String inputActionFile) throws IOException {
 		System.out.println("Generate from \n" + new File(inputFilePath).getAbsolutePath() + "\nTo  \n"
 				+ new File(outputFilePath).getAbsolutePath());
 		if (inputRealizationFilePath != null) {
 			System.out.println("With Realization \n" + new File(inputRealizationFilePath).getAbsolutePath() + "\n");
 		}
-		if (inputInformationFile != null) {
-			System.out.println("And With Information \n" + new File(inputInformationFile).getAbsolutePath() + "\n");
+		if (inputActionFile != null) {
+			System.out.println("And With Action \n" + new File(inputActionFile).getAbsolutePath() + "\n");
 		}
 		
 		
 		JustificationDiagram diagram = createDiagram(inputFilePath);
 		
-		// if inputInformationFile is not null, I analyze the information file
-		if(inputInformationFile != null) {
-			InformationNodeParsing informationNodeParsing = new InformationNodeParsing(inputInformationFile);	
-			diagram.setInformationNode(informationNodeParsing.information);
+		// if inputActionFile is not null, I analyze the action file
+		if(inputActionFile != null) {
+			ActionNodeParsing actionNodeParsing = new ActionNodeParsing(inputActionFile);	
+			diagram.setActionNode(actionNodeParsing.information);
 		}
 		
 		// if inputRealizationFilePath is not null, I analyze the realization file and the state of the nodes
@@ -125,8 +125,8 @@ public class JDCompiler {
 				Graphviz.fromGraph(g).render(Format.SVG).toFile(new File(outputFilePath + "_REA" + ".svg"));
 			} else {
 				System.err.println(
-						"\nimpossible to generate a realization diagram without a realization file. Please add a realization file and the information file\n"
-								+ "'example.jd -o output/example -rea example/realization.txt info example/information.json -svgR'");
+						"\nimpossible to generate a realization diagram without a realization file. Please add a realization file and the action file\n"
+								+ "'example.jd -o output/example -rea example/realization.txt -act example/action.json -svgR'");
 			}
 
 		}

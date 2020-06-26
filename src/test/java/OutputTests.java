@@ -12,7 +12,7 @@ public class OutputTests {
 	
 	@Test
 	public void test_CI4CVS() throws IOException {
-	    JDCompiler.main(new String[] { inputPath+"exampleCI/Pattern4CI.jd", "-o", outputPath+"Pattern4CI_CVS_Valid", "-rea", inputPath+"exampleCI/realizationPattern4CI.txt", "-info", inputPath+"exampleCI/infoValid4CVS.json", "-td","-svg", "-svgR"});
+	    JDCompiler.main(new String[] { inputPath+"exampleCI/Pattern4CI.jd", "-o", outputPath+"Pattern4CI_CVS_Valid", "-rea", inputPath+"exampleCI/realizationPattern4CI.txt", "-act", inputPath+"exampleCI/actionValid4CVS.json", "-td","-svg", "-svgR"});
 	    File fichier = new File(outputPath+"Pattern4CI_CVS_Valid.svg");
 	    assertTrue(fichier.exists());
 	    fichier = new File(outputPath+"Pattern4CI_CVS_Valid_REA.svg");
@@ -24,18 +24,18 @@ public class OutputTests {
 
     @Test
     public void test_CI() throws IOException {
-    	JDCompiler.main(new String[] { inputPath+"exampleCI/Pattern4CI.jd", "-o", outputPath+"Pattern4CI_Valid", "-rea", inputPath+"exampleCI/realizationPattern4CI.txt", "-info", inputPath+"exampleCI/infoValid.json", "-td","-svg", "-svgR"});
+    	JDCompiler.main(new String[] { inputPath+"exampleCI/Pattern4CI.jd", "-o", outputPath+"Pattern4CI_Valid", "-rea", inputPath+"exampleCI/realizationPattern4CI.txt", "-act", inputPath+"exampleCI/actionValid.json", "-td","-svg", "-svgR"});
     }
     
     
     @Test
     public void figToDOWithRea() throws IOException {
-        JDCompiler.main(new String[] { inputPath+"fig3.jd", "-o", outputPath+"fig3","-rea", inputPath+"realization/realizationFig3.txt", "-info", inputPath+"information/infoFig3.json", "-td", "-svg", "-svgR"});
+        JDCompiler.main(new String[] { inputPath+"fig3.jd", "-o", outputPath+"fig3","-rea", inputPath+"realization/realizationFig3.txt", "-act", inputPath+"action/actionFig3.json", "-td", "-svg", "-svgR"});
     }
     
     @Test
     public void figToDOWithReaAndFileVerification() throws IOException {
-    	JDCompiler.main(new String[] { inputPath+"exampleCI/Pattern4CI.jd", "-o", outputPath+"Pattern4CI_Invalid", "-rea", inputPath+"exampleCI/realizationPattern4CIInvalid.txt", "-info", inputPath+"exampleCI/infoInvalid.json", "-td", "-svgR"});
+    	JDCompiler.main(new String[] { inputPath+"exampleCI/Pattern4CI.jd", "-o", outputPath+"Pattern4CI_Invalid", "-rea", inputPath+"exampleCI/realizationPattern4CIInvalid.txt", "-act", inputPath+"exampleCI/actionInvalid.json", "-td", "-svgR"});
     }
     
     @Test

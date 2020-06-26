@@ -5,12 +5,12 @@ import java.util.HashMap;
 
 /**
  * 
- * This class is used to store information retrieved with the "InformationNodeParsing" parser.
+ * This class is used to store information retrieved with the "ActionNodeParsing" parser.
  * 
  * @author Nicolas-Corbiere
  *
  */
-public class InformationNode {
+public class ActionNode {
 	
 	public String label;
 	public String reference;
@@ -20,7 +20,7 @@ public class InformationNode {
 
 	public ArrayList<String> action; 
 	
-	public InformationNode() {
+	public ActionNode() {
 		label = null;
 		reference = null;
 		path = new ArrayList<String> ();
@@ -28,7 +28,7 @@ public class InformationNode {
 		optional = false;
 	}
 	
-	public InformationNode(String label,String reference,ArrayList<String> path, HashMap<String,Integer> pathWithNumber,boolean optional,ArrayList<String> action) {
+	public ActionNode(String label,String reference,ArrayList<String> path, HashMap<String,Integer> pathWithNumber,boolean optional,ArrayList<String> action) {
 		this.label = label;
 		this.path = path;
 		this.pathWithNumber = pathWithNumber;

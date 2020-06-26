@@ -29,11 +29,6 @@ class CommandCheckCoverageTest {
 	}
 	
 	@Test
-	void testflase() {
-		assertEquals(1,0);
-	}
-	
-	@Test
 	void testCoverageInCSVIsVerified() {
 		ArrayList<String> result = c.execute("./src/test/resources/jacocoSimple.csv >= 18");
 		assertEquals("true", result.get(0));

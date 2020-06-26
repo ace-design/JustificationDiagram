@@ -10,21 +10,21 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import models.InformationNode;
+import models.ActionNode;
 
 /**
  * 
- * This class analyzes an information file and creates a map that contains the label of the node and the corresponding InformationNode.
+ * This class analyzes an action file and creates a map that contains the label of the node and the corresponding ActionNode.
  * 
  * @author Nicolas-Corbiere
  *
  */
-public class InformationNodeParsing {
+public class ActionNodeParsing {
 
 	public String path;
-	public HashMap<String,InformationNode> information;
+	public HashMap<String,ActionNode> information;
 
-	public InformationNodeParsing(String path) {
+	public ActionNodeParsing(String path) {
 		this.path = path;
 		if(path != null) {
 			parseInfomation();
@@ -61,25 +61,25 @@ public class InformationNodeParsing {
 			JSONArray employeeList = (JSONArray) obj;
 
 			for (Object object : employeeList) {
-				InformationNode info = parseInformation((JSONObject) object);
+				ActionNode info = parseInformation((JSONObject) object);
 				information.put(info.label, info);
 			}
 			
 		} catch (org.json.simple.parser.ParseException | IOException e) {
 			// if the information files is null
-    		System.err.println("InformationNodes is null, there is no information in this file.");
+    		System.err.println("ActionNode is null, there is no information in this file.");
 		}
 		
 		
 	}
 
 	/**
-	 * create an InformationNode with the information from the JsonInformation
+	 * create an ActionNode with the information from the JsonInformation
 	 * 
 	 * @param JsonInformation object find in the file, the object correspond to a node
 	 * @return
 	 */
-	public InformationNode parseInformation(JSONObject JsonInformation) {
+	public ActionNode parseInformation(JSONObject JsonInformation) {
 
 		ArrayList<String> fileList = null;
 		HashMap<String, Integer> fileNumberMap = null;
@@ -140,7 +140,7 @@ public class InformationNodeParsing {
 
 		}
 
-		return new InformationNode(label, reference, fileList, fileNumberMap,optional,actionList);
+		return new ActionNode(label, reference, fileList, fileNumberMap,optional,actionList);
 	}
 
 

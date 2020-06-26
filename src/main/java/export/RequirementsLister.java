@@ -132,17 +132,17 @@ public class RequirementsLister implements JDVisitor {
      * @return string to write in the todo file.
      */
     public String setStringToWrite(Node node) {
-    	if(node.getInformationNode().reference != null && !node.getInformationNode().reference.contains("!noRef!") && !node.getInformationNode().reference.equals(" ")) {
-    		if(node.getInformationNode().optional) {
-    			return node.getLabel().substring(0,node.getLabel().length()-1) + " - reference : " + node.getInformationNode().reference + " (optional) \"";
+    	if(node.getActionNode().reference != null && !node.getActionNode().reference.contains("!noRef!") && !node.getActionNode().reference.equals(" ")) {
+    		if(node.getActionNode().optional) {
+    			return node.getLabel().substring(0,node.getLabel().length()-1) + " - reference : " + node.getActionNode().reference + " (optional) \"";
     		}
     		else  {
-    			return node.getLabel().substring(0,node.getLabel().length()-1) + " - reference : " + node.getInformationNode().reference + "\"";
+    			return node.getLabel().substring(0,node.getLabel().length()-1) + " - reference : " + node.getActionNode().reference + "\"";
     		}
     		
     	}
     	else {
-    		if(node.getInformationNode().optional) {
+    		if(node.getActionNode().optional) {
     			return node.getLabel().substring(0,node.getLabel().length()-1)  + " (optional) \"";
     		}
     		else  {

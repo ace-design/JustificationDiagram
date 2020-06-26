@@ -27,14 +27,14 @@ or [download the jar file](https://github.com/MireilleBF/JustificationDiagram/re
 ## Execution
 From the cloned repo, run 
 ```
-mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="[INPUT_FILE] -o [OUTPUT_FILE] (-rea [INPUT_REALIZATION_FILE]) (-info
-[INPUT_INFORMATION_FILE]) [OPTIONS]"
+mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="[INPUT_FILE] -o [OUTPUT_FILE] (-rea [INPUT_REALIZATION_FILE]) (-act
+[INPUT_ACTION_FILE]) [OPTIONS]"
 
 ```
 
 or execute the jar file with 
 ```
-java -jar JDGenerator-jar-with-dependencies.jar [INPUT_FILE] -o [OUTPUT_FILE] (-rea [INPUT_REALIZATION_FILE]) (-info [INPUT_INFORMATION_FILE]) [OPTIONS] 
+java -jar JDGenerator-jar-with-dependencies.jar [INPUT_FILE] -o [OUTPUT_FILE] (-rea [INPUT_REALIZATION_FILE]) (-act [INPUT_ACTION_FILE]) [OPTIONS] 
 ```
 
 ### Options
@@ -42,7 +42,7 @@ java -jar JDGenerator-jar-with-dependencies.jar [INPUT_FILE] -o [OUTPUT_FILE] (-
 |-------|----------|------------------------------------------|
 | -o    | path     | Output file (no extension)               |
 | -rea  | path     | indicate the realization file            |
-| -info | path     | indicate the information file            |
+| -act  | path     | indicate the action file                 |
 | ----- | -------- | ---------------------------------------- |
 | -svg  | -        | Generate visual graph                    |
 | -svgR | -        | Generate visual realisation graph        |
@@ -63,7 +63,7 @@ mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="example/basic.jd -o out
 mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="justification/example/basic.jd -o output/images/basic -rea output/realization/realization.txt -svg  "
 ```
 ```
-java -jar DGenerator-jar-with-dependencies.jar -Dexec.args="example/basic.jd -o output/images/basic -rea output/realization/realization.txt -info information/infoBasic.json -svg -td  "
+java -jar DGenerator-jar-with-dependencies.jar -Dexec.args="example/basic.jd -o output/images/basic -rea output/realization/realization.txt -act action/actionBasic.json -svg -td  "
 ```
 
 ## Syntax
@@ -112,13 +112,13 @@ For example, during the continuous integration, we add a file named "réalisatio
       run: echo -e "[Label of the accomplish task or support]" >> output/realization/realization.txt
 ```
 
-## Information
+## Action
 
-The information file is a json file that contains all additional information for a node (like the information to verify or the reference).
+The action file is a json file that contains all additional information for a node (like the information to verify or the reference).
 
 For example, if you have a node with a "Validated Architecture" label and you want to add a "archi1" reference, you should write this :
 
-### informationReference.json
+### ActionReference.json
 
 ```
 [
@@ -135,7 +135,7 @@ You can also specify whether a node is optional. In this case, if that node is t
 
 For the example, we will put the node "Validated Architecture" as optional.
 
-### informationOptional.json
+### ActionOptional.json
 
 ```
 [
@@ -150,7 +150,7 @@ For the example, we will put the node "Validated Architecture" as optional.
 ```
 
 
-### informationFiles.json
+### ActionFiles.json
 ```
 [
     {
@@ -172,7 +172,7 @@ You can also specify that a justification is only valid if a specific directory 
 
 For the example, we will say that the "Validated Architecture" node must verify that "test3" contains 2 files and "test4" contains 3 files.
 
-### informationFilesNumber.json
+### ActionFilesNumber.json
 ```
 [
     {
@@ -233,7 +233,7 @@ You need to specify where is the index.html or the jacoco.csv of the jacoco repo
 
 For the example, we will say that the "Validated Architecture" node must verify that the coverage is greater than or equal to 80. For this, we need "site/jacoco/index.html". 
 
-### informationActionsCheckCoverage.json
+### ActionsCheckCoverage.json
 ```
 [
     {
@@ -356,7 +356,7 @@ if you want to save a specific file, you can write this :
 If you want more information about worflows, please [go here](https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions)
 
 
-## Example without realization and information
+## Example without realization and action
 Here's an example of a text file, the graph and the todo list it generates.
 
 
@@ -460,7 +460,7 @@ Requirements list
 -----------------------------------------------
 ```
 
-## Example with realization file,information file and application in IC
+## Example with realization file,action file and application in IC
 
 Now we will see 2 examples of valid and invalid diagrams.
 To do so, we will use the following example for both diagrams.
@@ -521,10 +521,10 @@ SJ --> JV
 ![](justification/examples/exampleCI/Pattern4CI.svg)
 
 
-## Valid Example with realization and information files
+## Valid Example with realization and action files
 Here's an example of a text file, the graph and the todo list it generates if you have validate all the evidences.
 
-#### infoValid.json - Valid
+#### ActionValid.json - Valid
 
 In this file, I will specify any additional information, such as the reference and files to check for each node.
 I'll just add comments with "@comment": "this is a comment".
@@ -715,7 +715,7 @@ jobs:
         
     #I generate the two diagrams and the TODO list
     - name: JD&TODO generation 
-      run: mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="justification/examples/exampleCI/Pattern4CI.jd -o justification/output/GeneratedJD/Pattern4CI -rea realization.txt -info justification/examples/exampleCI/infoValid.json -svg -svgR -td "
+      run: mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="justification/examples/exampleCI/Pattern4CI.jd -o justification/output/GeneratedJD/Pattern4CI -rea realization.txt -act justification/examples/exampleCI/actionValid.json -svg -svgR -td "
       
     #I archive my diagrams create during the CI
     - name: Archive JD&TODO
@@ -731,12 +731,12 @@ jobs:
         name: GeneratedJD
         path: realization.txt
     
-    #I archive my information file in the same artifacts as my diagrams
-    - name: Archive information
+    #I archive my action file in the same artifacts as my diagrams
+    - name: Archive action
       uses: actions/upload-artifact@v2
       with: 
         name: GeneratedJD
-        path: justification/examples/exampleCI/infoValid.json
+        path: justification/examples/exampleCI/actionValid.json
     
     #---------JustificationDiagram-----------
 
@@ -801,7 +801,7 @@ Requirements list
 ## Invalid Example with realization 
 Here is an example of a text file, the graph and the list of tasks it generates if you have not validated "Build Maven passed", "Test Maven passed", "Jacoco Report" and "Jacoco report Archivate", with "Test Coverage validated and Archived" as an option.
 
-#### infoInvalid.json - Invalid
+#### actionInvalid.json - Invalid
 
 In this file, I will specify any additional information, such as the reference and files to check for each node.
 I'll just add comments with "@comment": "this is a comment".
@@ -998,7 +998,7 @@ jobs:
         
     #I generate the two diagrams and the TODO list
     - name: JD&TODO generation 
-      run: mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="justification/examples/exampleCI/Pattern4CI.jd -o justification/output/GeneratedJD/Pattern4CI -rea realization.txt -info justification/examples/exampleCI/infoValid.json -svg -svgR -td "
+      run: mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="justification/examples/exampleCI/Pattern4CI.jd -o justification/output/GeneratedJD/Pattern4CI -rea realization.txt -act justification/examples/exampleCI/actionValid.json -svg -svgR -td "
       
     #I archive my diagrams create during the CI
     - name: Archive JD&TODO
@@ -1015,11 +1015,11 @@ jobs:
         path: realization.txt
     
     #I archive my information file in the same artifacts as my diagrams
-    - name: Archive information
+    - name: Archive action
       uses: actions/upload-artifact@v2
       with: 
         name: GeneratedJD
-        path: justification/examples/exampleCI/infoValid.json
+        path: justification/examples/exampleCI/actionValid.json
     
     #---------JustificationDiagram-----------
 

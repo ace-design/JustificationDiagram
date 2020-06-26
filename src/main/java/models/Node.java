@@ -19,7 +19,7 @@ public class Node implements Visitable {
 	private State state;
     
     //information
-	private InformationNode informationNode; 
+	private ActionNode actionNode; 
     
     // - steps
 	private ArrayList<String> steps = new ArrayList<>();
@@ -31,7 +31,7 @@ public class Node implements Visitable {
         this.outputs = new HashSet<>();
         this.state = State.TODO;  
         
-        informationNode = new InformationNode();
+        actionNode = new ActionNode();
     }
 
     public Node(Node node) {
@@ -41,7 +41,7 @@ public class Node implements Visitable {
         this.outputs = node.outputs;
         this.state = node.state;
         
-        informationNode = new InformationNode();
+        actionNode = new ActionNode();
     }
     
 
@@ -70,7 +70,7 @@ public class Node implements Visitable {
 
     	}
     	// used to verify that the necessary files are present. 
-		if(informationNode != null && informationNode.path != null && !informationNode.path.isEmpty()) {
+		if(actionNode != null && actionNode.path != null && !actionNode.path.isEmpty()) {
 			if(isDone) {
 				isDone = checkFileAnalyses();
 
@@ -83,7 +83,7 @@ public class Node implements Visitable {
 
     	}
 		// used to check the number of files in a repertory
-		if(informationNode != null && informationNode.pathWithNumber != null&& !informationNode.pathWithNumber.isEmpty()) {
+		if(actionNode != null && actionNode.pathWithNumber != null&& !actionNode.pathWithNumber.isEmpty()) {
 			if(isDone) {
 				isDone = CheckFileWithNumberAnalyses();
 
@@ -95,7 +95,7 @@ public class Node implements Visitable {
 	    	}
 
     	}
-		if(informationNode != null && informationNode.action != null && !informationNode.action.isEmpty()) {
+		if(actionNode != null && actionNode.action != null && !actionNode.action.isEmpty()) {
 			if(isDone) {
 				isDone = checkAction();
 
@@ -123,7 +123,7 @@ public class Node implements Visitable {
     	boolean isDone = false;
 
     	//TODO : change for a list of Objects ?
-		for(String command : informationNode.action) {
+		for(String command : actionNode.action) {
 			cf.create();
 			ArrayList<String> returnOfExecute = cf.executeCommand(command);
 			
@@ -150,7 +150,7 @@ public class Node implements Visitable {
      */
     public boolean relationAnalyse() {
 		for (Relation relation : inputs) {
-			if(!relation.from.informationNode.optional && relation.from.state.equals(State.TODO)) {
+			if(!relation.from.actionNode.optional && relation.from.state.equals(State.TODO)) {
 				return false;
 			}
 		}
@@ -178,7 +178,7 @@ public class Node implements Visitable {
      */
     public boolean checkFileAnalyses() {
     	boolean isDone = true;
-    	for (String filePath : informationNode.path) {
+    	for (String filePath : actionNode.path) {
 			if(!new File(filePath).exists()) {
 				System.err.println("The file " + filePath + " was not found to validate the node " + label);
 				steps.add("[ ] " + filePath + " (not found)");
@@ -199,7 +199,7 @@ public class Node implements Visitable {
      */
     public boolean CheckFileWithNumberAnalyses() {
     	boolean isDone = true;
-    	for (Map.Entry<String,Integer> mapentry : informationNode.pathWithNumber.entrySet()) {
+    	for (Map.Entry<String,Integer> mapentry : actionNode.pathWithNumber.entrySet()) {
     		String filePath = mapentry.getKey();
     		int currentLenght = 0;
 			if(!new File(mapentry.getKey()).exists()) {
@@ -245,8 +245,8 @@ public class Node implements Visitable {
         return Objects.hash(alias, label);
     }
     
-    public void setInformationNode(InformationNode informationNode) {
-    	this.informationNode = informationNode;
+    public void setActionNode(ActionNode actionNode) {
+    	this.actionNode = actionNode;
     }
 
     // Getter and Setter
@@ -299,8 +299,8 @@ public class Node implements Visitable {
 		this.steps = steps;
 	}
 
-	public InformationNode getInformationNode() {
-		return informationNode;
+	public ActionNode getActionNode() {
+		return actionNode;
 	}
     
     

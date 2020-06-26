@@ -1,7 +1,7 @@
 package justificationDiagram;
 
 import export.*;
-import models.InformationNode;
+import models.ActionNode;
 import models.Node;
 import models.Relation;
 import models.Visitable;
@@ -29,26 +29,26 @@ public class JustificationDiagram implements Visitable {
     }
     
     /**
-     * Used to set the informationNode to the corresponding node.
+     * Used to set the ActionNodes to the corresponding node.
      * 
-     * @param informationNodes Map of information found in the informations file with the label of the node and the informationNode
+     * @param ActionNodes Map of information found in the action file with the label of the node and the ActionNodes
      */
-    public void setInformationNode(HashMap<String,InformationNode> informationNodes) {
+    public void setActionNode(HashMap<String,ActionNode> ActionNodes) {
    
-    	if(informationNodes != null) {
+    	if(ActionNodes != null) {
     		    		
     		for (Entry<String, Node> node : nodes.entrySet()) {
     			
     			String realLabel = node.getValue().getLabel();
     			realLabel = realLabel.substring(1,realLabel.length()-1);
 
-    			if(informationNodes.containsKey(realLabel)) {
-    	    	 	node.getValue().setInformationNode(informationNodes.get(realLabel));
+    			if(ActionNodes.containsKey(realLabel)) {
+    	    	 	node.getValue().setActionNode(ActionNodes.get(realLabel));
     			}	
             }
     	}
     	else {
-    		System.err.println("InformationNodes is null, there is no information in this file.");
+    		System.err.println("ActionNodes is null, there is no information in this file.");
     	}
     }
      
