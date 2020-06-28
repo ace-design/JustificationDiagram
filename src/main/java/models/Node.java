@@ -207,7 +207,7 @@ public class Node implements Visitable {
 				isDone = false;
 			}
 			else if((currentLenght = new File(filePath).listFiles().length) != mapentry.getValue()) {
-				steps.add("[ ] " +  filePath  + " (" + mapentry.getValue()+" file expected, but " + currentLenght   + " found)" );
+				steps.add("[ ] " +  filePath  + " (" + mapentry.getValue()+" files expected, but " + currentLenght   + " found)" );
 				System.err.println("The repetoire " + filePath + " has " + currentLenght + " files instead of " + mapentry.getValue() + " . The node " + label + " can't be validate");
 				isDone = false;
 			}
