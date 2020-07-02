@@ -62,11 +62,11 @@ public class CommandCheckCoverage implements Command{
 		String step = "";
 		if(isDone.contains("true")) {
 			// [x] Current coverage is 80, it's > 50
-			step = "[x] Current coverage is " + coverageFind + ", it's " + operator + " " + coverage;
+			step = "[x] Current coverage is " + coverageFind + ", it's " + operator + " " + coverage + " ";
 		}
 		else {
 			// [ ] Current coverage is 30, it's not > 50
-			step = "[ ] Current coverage is " + coverageFind + ",  it's not " + operator + " " + coverage;
+			step = "[ ] Current coverage is " + coverageFind + ",  it's not " + operator + " " + coverage + " ";
 		}
 
 		result.add(isDone);

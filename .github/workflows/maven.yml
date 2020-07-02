@@ -81,7 +81,7 @@ jobs:
         
     #I generate the two diagrams and the TODO list
     - name: JD&TODO generation 
-      run: mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="justification/examples/exampleCI/Pattern4CI.jd -o justification/output/GeneratedJD/Pattern4CI -rea realization.txt -act justification/examples/exampleCI/infoValid.json -svg -svgR -td "
+      run: mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="justification/examples/exampleCI/Pattern4CI.jd -o justification/output/GeneratedJD/Pattern4CI -rea realization.txt -act justification/examples/exampleCI/actionValid.json -svg -svgR -td "
       
     #I archive my diagrams create during the CI
     - name: Archive JD&TODO

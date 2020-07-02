@@ -22,9 +22,6 @@ public class CommandFactory {
 		String args = "";
 			
 		args = commandLigne.replace(name + " ", "");
-
-		// remove the last " "
-		args = args.substring(0,args.length()-1);
 		
 		//todo
 		//Use reflexivity
