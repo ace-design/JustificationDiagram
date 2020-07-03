@@ -52,7 +52,7 @@ class CommandCheckValueInCSVTest {
 	
 	@Test
 	void testPropertyFails() {
-		ArrayList<String> result = c.execute(PATH+ "jacocoEclEmma2.csv 3 3 >= 90 ");
+		ArrayList<String> result = c.execute(PATH+ "jacocoEclEmma2.csv 3 3 >= 90");
 		assertEquals("fail", result.get(0));
     }
 

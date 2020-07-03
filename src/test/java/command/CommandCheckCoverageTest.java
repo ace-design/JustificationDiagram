@@ -25,7 +25,7 @@ class CommandCheckCoverageTest {
 	
 	@Test
 	void testCoverageInCSVisNotVerified() {
-		ArrayList<String> result = c.execute(PATH+ "jacocoComplexe0.csv >= 2 ");
+		ArrayList<String> result = c.execute(PATH+ "jacocoComplexe0.csv >= 2");
 		assertEquals("false", result.get(0));
 		assertEquals("[ ] Current coverage is 0,  it's not >= 2 ", result.get(1));
 		
@@ -33,14 +33,14 @@ class CommandCheckCoverageTest {
 	
 	@Test
 	void testCoverageInCSVIsVerified() {
-		ArrayList<String> result = c.execute(PATH+ "jacocoSimple.csv >= 18 ");
+		ArrayList<String> result = c.execute(PATH+ "jacocoSimple.csv >= 18");
 		assertEquals("true", result.get(0));
 		assertEquals("[x] Current coverage is 18, it's >= 18 ", result.get(1) );
 	}
 	
 	@Test
 	void testCoverageInComplexCSV() {
-		ArrayList<String> result = c.execute(PATH+ "jacocoEclEmma.csv >= 90 ");
+		ArrayList<String> result = c.execute(PATH+ "jacocoEclEmma.csv >= 90");
 		assertEquals("true", result.get(0));
 		assertEquals("[x] Current coverage is 95, it's >= 90 ", result.get(1) );
 	}
