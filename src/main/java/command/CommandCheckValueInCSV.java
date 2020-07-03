@@ -1,7 +1,10 @@
 package command;
 
-import java.io.IOException;
 import java.util.ArrayList;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 /**
  * @author blay
@@ -12,6 +15,8 @@ public class CommandCheckValueInCSV implements Command {
 	public CommandCheckValueInCSV() {
 	};
 
+	private static final Logger logger = LogManager.getLogger(CommandCheckValueInCSV.class);
+
 	private String path;
 	private String column;
 	private String operator;
@@ -20,13 +25,15 @@ public class CommandCheckValueInCSV implements Command {
 
 	@Override
 	public ArrayList<String> execute(String args) {
-		boolean fail = false;
 		setArgs(args);
 		ArrayList<String> result = new ArrayList<>();
 
 		// Read the CSV File
-		if (!CommandHelper.inputIsCSVFile(path)) {
+		if (Boolean.FALSE.equals(CommandHelper.inputIsCSVFile(path))) {
 			result.add(CommandHelper.FAIL);
+			result.add("unexpected File :" + path);
+			String logMsg =String.format("not a csv File :%s" , path);
+			logger.error(logMsg);
 			return result;
 		}
 
@@ -34,7 +41,9 @@ public class CommandCheckValueInCSV implements Command {
 		try {
 			csvReader = new CSVReader(path);
 		} catch (Exception e) {
-			System.err.println("error reading the file :" + path + "\n" + e);
+			String logMsg =String.format("error reading the file : %s %n %s", path,  e);
+			logger.error("error reading the file : %s %n %s", path,  e);
+			logger.error(logMsg);
 			result.add(CommandHelper.FAIL);
 			return result;
 		}
@@ -53,12 +62,14 @@ public class CommandCheckValueInCSV implements Command {
 				try {
 					value = csvReader.getValue(column, lineNumber);
 				} catch (OutOfCSVException e1) {
-					System.err.println("non valid case in csv" + e);
+					String logMsg =String.format("Reference to an invalid Cell (%s, %d)in the csv : %s", column,lineNumber, e);
+					logger.error(logMsg);
 					result.add(CommandHelper.FAIL);
 					return result;
 				}
 			} catch (OutOfCSVException e) {
-				System.err.println("non valid case in csv" + e);
+				String logMsg =String.format("Reference to an invalid Cell_ (%d, %d)in the csv : %s", columnNumber,lineNumber, e);
+				logger.error(logMsg);
 				result.add(CommandHelper.FAIL);
 				return result;
 			}
@@ -67,7 +78,8 @@ public class CommandCheckValueInCSV implements Command {
 			try {
 				valueInt = Integer.parseInt(value);
 			} catch (NumberFormatException e2) {
-				System.err.println(value + " is not an integer");
+				String logMsg =String.format("%s : Not an integer in Cell (%d, %d)in the csv %s : %s",value, columnNumber,lineNumber, path, e2);
+				logger.error(logMsg);
 				result.add(CommandHelper.FAIL);
 				return result;
 			}
@@ -86,21 +98,22 @@ public class CommandCheckValueInCSV implements Command {
 			}
 			return result;
 		} catch (NumberFormatException e2) {
-			System.err.println(line + " is not a number for the line");
+			String logMsg =String.format("%s is not a line number", line);
+			logger.error(logMsg);
 			result.add(CommandHelper.FAIL);
+			result.add(logMsg);
 			return result;
 		}
 
 	}
 
-	// todo : use logger
 	// example
 	// csvFile.scv "INSTRUCTION_MISSED" "1" "==" 546
 	// csvFile.scv "3" "1" ">" 500
 	private void setArgs(String args) {
 		String[] tmp = args.split(" ");
 		if (tmp.length != 5) {
-			System.err.println(args + " is not a valid command to check value in a CSV file (5 args are expected).");
+			logger.error("%s is not a valid command to check value in a CSV file (5 args are expected).",args);
 			return;
 		}
 		path = tmp[0];
@@ -108,8 +121,7 @@ public class CommandCheckValueInCSV implements Command {
 		line = tmp[2];
 		operator = tmp[3];
 		valueToCompare = Integer.parseInt(tmp[4]);
-		System.out.println("CheckValueInCSV action - args : '" + path + " column :" + column + " line : " + line
-				+ "operator:" + operator + " value " + valueToCompare);
+		logger.info("CheckValueInCSV action - args :  %s : [%s, %s] %s %d", path, column, line, operator, valueToCompare);
 	}
 
 }

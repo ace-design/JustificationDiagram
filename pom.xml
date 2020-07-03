@@ -19,7 +19,7 @@
         <sonar.organization>mireillebf-github</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <sonar.login>5ce8a205c4e7861d7c31ea0a1ddffe4142cc01d9</sonar.login>
-
+        <version.log4j>2.13.3</version.log4j>
 	</properties>
 
 	<dependencies>
@@ -62,6 +62,18 @@
 			<version>5.6.2</version>
 			<scope>test</scope>
 		</dependency>
+		        <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
+		<dependency>
+		    <groupId>org.apache.logging.log4j</groupId>
+		    <artifactId>log4j-api</artifactId>
+		    <version>2.13.3</version>
+		</dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${version.log4j}</version>
+        </dependency>
 	</dependencies>
 
 	<build>
