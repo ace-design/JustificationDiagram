@@ -7,7 +7,8 @@
 	        "@comment2": "...the total coverage need to be superior to 70%... ",     
             "Actions": [
                 "CheckCoverage target/site/jacoco/jacoco.csv >= 70", 
-            ],
+                "CheckValueInCSV target/site/jacoco/jacoco.csv INSTRUCTION_MISSED 1 <= 100", 
+            ], 
 	        "@comment3": "...and need to check the exitance of the file 'target/site/jacoco/index.html'." ,
             "Files": [  
                 "target/site/jacoco/index.html"
