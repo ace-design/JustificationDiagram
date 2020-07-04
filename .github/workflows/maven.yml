@@ -111,7 +111,6 @@ jobs:
       run: 
        git config user.name "GitHub Actions";
        git diff --quiet && git diff --staged --quiet || (git add justification/output/GeneratedJD/*;git commit -m “${COMMIT_MSG}“;git push origin CVSParsing)
-    
-    #---------------Saving the last diagrams generated---------------       
+      
     
     #---------JustificationDiagram-----------
