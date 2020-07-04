@@ -5,12 +5,16 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import models.ActionNode;
+import models.Node;
 
 /**
  * 
@@ -20,9 +24,11 @@ import models.ActionNode;
  *
  */
 public class ActionNodeParsing {
+	
+	private static final Logger logger = LogManager.getLogger(ActionNodeParsing.class);
 
 	public String path;
-	public HashMap<String,ActionNode> information;
+	public Map<String,ActionNode> actionNodes;
 
 	public ActionNodeParsing(String path) {
 		this.path = path;
@@ -37,7 +43,7 @@ public class ActionNodeParsing {
 	 */
 	public void parseInfomation() {
 
-		information = new HashMap<>();
+		actionNodes = new HashMap<>();
 
 		// JSON parser object to parse read file
 		JSONParser jsonParser = new JSONParser();
@@ -46,7 +52,7 @@ public class ActionNodeParsing {
 			readInformation(jsonParser,reader);
 
 		} catch (FileNotFoundException e) {
-			System.err.println("The file " + path + " was not found");
+			logger.error("The file for actions %s was not found", path);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} 
@@ -62,12 +68,12 @@ public class ActionNodeParsing {
 
 			for (Object object : employeeList) {
 				ActionNode info = parseInformation((JSONObject) object);
-				information.put(info.label, info);
+				actionNodes.put(info.label, info);
 			}
 			
 		} catch (org.json.simple.parser.ParseException | IOException e) {
 			// if the information files is null
-    		System.err.println("ActionNode is null, there is no information in this file.");
+			logger.error("ActionNode is null, there is no information in this file.");
 		}
 		
 		
@@ -76,17 +82,17 @@ public class ActionNodeParsing {
 	/**
 	 * create an ActionNode with the information from the JsonInformation
 	 * 
-	 * @param JsonInformation object find in the file, the object correspond to a node
+	 * @param jsonInformation object find in the file, the object correspond to a node
 	 * @return
 	 */
-	public ActionNode parseInformation(JSONObject JsonInformation) {
+	public ActionNode parseInformation(JSONObject jsonInformation) {
 
 		ArrayList<String> fileList = null;
 		HashMap<String, Integer> fileNumberMap = null;
 		ArrayList<String> actionList = null;
 		
 		// Get Node object within list
-		JSONObject informationObject = (JSONObject) JsonInformation.get("Node");
+		JSONObject informationObject = (JSONObject) jsonInformation.get("Node");
 
 		// Get Node Label
 		String label = (String) informationObject.get("Label");

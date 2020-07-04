@@ -55,6 +55,12 @@ class CommandCheckValueInCSVTest {
 		ArrayList<String> result = c.execute(PATH+ "jacocoEclEmma2.csv 3 3 >= 90");
 		assertEquals("fail", result.get(0));
     }
+	
+	@Test
+	void testNotCsvFile() {
+		ArrayList<String> result = c.execute(PATH+ "jacocoEclEmma2.html 3 3 >= 90");
+		assertEquals("fail", result.get(0));
+    }
 
 	
 	//TODO manage IOexception

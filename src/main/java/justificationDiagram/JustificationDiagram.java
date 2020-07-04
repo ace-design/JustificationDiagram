@@ -10,7 +10,7 @@ import java.util.*;
 import java.util.Map.Entry;
 
 public class JustificationDiagram implements Visitable {
-    public HashMap<String, Node> nodes;
+    public Map<String, Node> nodes;
     public Set<Relation> relations;
 
     public JustificationDiagram() {
@@ -18,7 +18,7 @@ public class JustificationDiagram implements Visitable {
         relations = new HashSet<>();
     }
     
-    public JustificationDiagram(HashMap<String,Node> nodes, Set<Relation> relations) {
+    public JustificationDiagram(Map<String,Node> nodes, Set<Relation> relations) {
         this.nodes = nodes;
         this.relations = relations;
     }
@@ -31,19 +31,19 @@ public class JustificationDiagram implements Visitable {
     /**
      * Used to set the ActionNodes to the corresponding node.
      * 
-     * @param ActionNodes Map of information found in the action file with the label of the node and the ActionNodes
+     * @param actionNodes Map of information found in the action file with the label of the node and the ActionNodes
      */
-    public void setActionNode(HashMap<String,ActionNode> ActionNodes) {
+    public void setActionNode(Map<String, ActionNode> actionNodes) {
    
-    	if(ActionNodes != null) {
+    	if(actionNodes != null) {
     		    		
     		for (Entry<String, Node> node : nodes.entrySet()) {
     			
     			String realLabel = node.getValue().getLabel();
     			realLabel = realLabel.substring(1,realLabel.length()-1);
 
-    			if(ActionNodes.containsKey(realLabel)) {
-    	    	 	node.getValue().setActionNode(ActionNodes.get(realLabel));
+    			if(actionNodes.containsKey(realLabel)) {
+    	    	 	node.getValue().setActionNode(actionNodes.get(realLabel));
     			}	
             }
     	}
@@ -58,7 +58,7 @@ public class JustificationDiagram implements Visitable {
      * Uses a TopologicalSort but does not change the order of the nodes in the diagram (to avoid problems).
      * call Node.analyseRelation();
      */
-    public void analysesDiagrammeRelation(ArrayList<String> labelList) {
+    public void analysesDiagrammeRelation(List<String> labelList) {
     	
     	TopologicalSort sort = new TopologicalSort(this);
                 

@@ -8,50 +8,57 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class CSVReader {
 	
+	private static final Logger logger = LogManager.getLogger(CSVReader.class);
 	
 	private List<List<String>> records = new ArrayList<>();
 	private String path;
 	
-	private static final String COMMA_DELIMITER = ",";
+	private static final String DEFAULT_COMMA_DELIMITER = ",";
 	
-	private String comma_delimiter = COMMA_DELIMITER;
+	private String commaDelimiter = DEFAULT_COMMA_DELIMITER;
 	
 
 	public CSVReader(String path) throws IOException {
-		this(path,COMMA_DELIMITER);
+		this(path,DEFAULT_COMMA_DELIMITER);
 	}
 	
-	public CSVReader(String path, String comma_delimiter) throws IOException {
+	public CSVReader(String path, String pcommaDelimiter) throws IOException {
 		super();
 		this.path = path;
-		this.comma_delimiter = comma_delimiter;
+		this.commaDelimiter = pcommaDelimiter;
 		records = readCSV();
 	}
 	
 
-	private List<List<String>>  readCSV() throws IOException {
-		List<List<String>> records = new ArrayList<>();
+	public List<List<String>>  readCSV() throws IOException {
+		records = new ArrayList<>();
 		try (
 				BufferedReader input  = new BufferedReader(new FileReader(path));
 				){
 			String line;
 			while ((line = input.readLine()) != null) {
-				String[] values = line.split(comma_delimiter);
+				String[] values = line.split(commaDelimiter);
 				records.add(Arrays.asList(values));
 			}
 			return records;
 		}
 		catch (FileNotFoundException e) {
-			System.err.println("The file '" + path + "' was not found.");
+			String logMsg =String.format("The file %s was not found",path);
+			logger.error(logMsg);
 			throw e;
 		} catch (IOException ie) {
-			System.err.println("Not able to read the file '" + path );
+			String logMsg =String.format("Not able to read the file %s",path);
+			logger.error(logMsg);
 			throw ie;
 		}
 	}
 	
+	//Todo : Tests it
 	public List<String> getLine(int indice ) throws OutOfCSVException {
 		if (indice >= records.size())
 			throw new OutOfCSVException(path,indice);

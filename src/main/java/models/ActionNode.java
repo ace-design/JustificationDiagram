@@ -2,6 +2,8 @@ package models;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 
@@ -14,27 +16,27 @@ public class ActionNode {
 	
 	public String label;
 	public String reference;
-	public ArrayList<String> path; 
-	public HashMap<String,Integer> pathWithNumber;
+	public List<String> path; 
+	public Map<String,Integer> pathWithNumber;
 	public boolean optional;
 
-	public ArrayList<String> action; 
+	public List<String> actions; 
 	
 	public ActionNode() {
 		label = null;
 		reference = null;
-		path = new ArrayList<String> ();
-		pathWithNumber = new HashMap<String,Integer> ();
+		path = new ArrayList<> ();
+		pathWithNumber = new HashMap<> ();
 		optional = false;
 	}
 	
-	public ActionNode(String label,String reference,ArrayList<String> path, HashMap<String,Integer> pathWithNumber,boolean optional,ArrayList<String> action) {
+	public ActionNode(String label,String reference,List<String> path, Map<String,Integer> pathWithNumber,boolean optional,List<String> action) {
 		this.label = label;
 		this.path = path;
 		this.pathWithNumber = pathWithNumber;
 		this.reference = reference;
 		this.optional = optional;
-		this.action = action;
+		this.actions = action;
 	}
 
 
@@ -47,16 +49,16 @@ public class ActionNode {
 		this.reference = reference;
 	}
 
-	public void setPath(ArrayList<String> path) {
+	public void setPath(List<String> path) {
 		this.path = path;
 	}
 
-	public void setPathWithNumber(HashMap<String, Integer> pathWithNumber) {
+	public void setPathWithNumber(Map<String, Integer> pathWithNumber) {
 		this.pathWithNumber = pathWithNumber;
 	}
 	
-	public void setAction(ArrayList<String> action) {
-		this.action = action;
+	public void setAction(List<String> action) {
+		this.actions = action;
 	}
 
 }

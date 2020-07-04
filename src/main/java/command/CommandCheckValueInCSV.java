@@ -12,8 +12,6 @@ import org.apache.logging.log4j.Logger;
  */
 public class CommandCheckValueInCSV implements Command {
 
-	public CommandCheckValueInCSV() {
-	};
 
 	private static final Logger logger = LogManager.getLogger(CommandCheckValueInCSV.class);
 
@@ -31,8 +29,8 @@ public class CommandCheckValueInCSV implements Command {
 		// Read the CSV File
 		if (Boolean.FALSE.equals(CommandHelper.inputIsCSVFile(path))) {
 			result.add(CommandHelper.FAIL);
-			result.add("unexpected File :" + path);
 			String logMsg =String.format("not a csv File :%s" , path);
+			result.add(logMsg);
 			logger.error(logMsg);
 			return result;
 		}

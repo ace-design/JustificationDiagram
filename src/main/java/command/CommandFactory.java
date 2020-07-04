@@ -3,13 +3,14 @@ package command;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class CommandFactory {
 
     private static CommandFactory instance; //Singleton
 	private final HashMap<String, Command>	commands;
 	
-	private final String ANTECEDENT = "command.Command";
+	private static final String ANTECEDENT = "command.Command";
 	
 	private CommandFactory() {
 		this.commands = new HashMap<>();
@@ -19,7 +20,7 @@ public class CommandFactory {
 		this.commands.put(name, command);
 	}
 	
-	public ArrayList<String> executeCommand(String commandLigne) {
+	public List<String> executeCommand(String commandLigne) {
 		
 		String commandName = commandLigne.split(" ")[0];
 		String args = "";
@@ -48,11 +49,7 @@ public class CommandFactory {
 	}
 	
 
-	public void listCommands() {
-		// using stream (Java 8)
-		System.out.println("Commands enabled :");
-		this.commands.keySet().stream().forEach(System.out::println);
-	}
+
 	 
 	/* Singleton pattern */
     public static CommandFactory getInstance() {

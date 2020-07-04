@@ -1,11 +1,19 @@
 package command;
 
+
+
 public class CommandHelper {
 
 	public static final String CSV = "csv";
 	public static final String FAIL = "fail";
 	public static final String TRUE = "true";
 	public static final String FALSE = "false";
+	public static final String HTML = "html";
+
+	
+	private CommandHelper() {
+		throw new IllegalStateException("Utility class");
+	}
 	
 	public static boolean compareInt (int value1, int value2, String operator) {		
 	if(operator.equals("=="))
@@ -26,15 +34,11 @@ public class CommandHelper {
 	
 	
 	public static String extension(String in) {
-		System.out.println("check extension for :" + in);
 		return in.substring(in.lastIndexOf(".")+1);
 	}
 	
 	public static Boolean inputIsCSVFile(String in) {
-		if (extension(in).contentEquals(CSV))
-			return true;
-		else 
-			System.err.println(in + " is not a valid name."+ " Unexpected extension :"+ CommandHelper.extension(in));
-		return false;
+		String extension = extension(in);
+		return extension.contentEquals(CSV);
 	}
 }

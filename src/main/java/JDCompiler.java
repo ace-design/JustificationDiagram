@@ -105,7 +105,7 @@ public class JDCompiler {
 		// if inputActionFile is not null, I analyze the action file
 		if(inputActionFile != null) {
 			ActionNodeParsing actionNodeParsing = new ActionNodeParsing(inputActionFile);	
-			diagram.setActionNode(actionNodeParsing.information);
+			diagram.setActionNode(actionNodeParsing.actionNodes);
 		}
 		
 		// if inputRealizationFilePath is not null, I analyze the realization file and the state of the nodes

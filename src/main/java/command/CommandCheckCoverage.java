@@ -1,28 +1,29 @@
 package command;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+
+
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class CommandCheckCoverage implements Command {
 
-	private static final String COMMA_DELIMITER = ",";
+	private static final Logger logger = LogManager.getLogger(CommandCheckCoverage.class);
+
 	private static final Object MISSED = "INSTRUCTION_MISSED";
 	private static final Object COVERED = "INSTRUCTION_COVERED";
-	private static final String HTML = "html";
-	private static final String CSV = "csv";
-	private static final String FAIL = "fail";
-	public String path;
-	public String operator;
-	public int coverage;
+
+	private String path;
+	private String operator;
+	private int coverage;
 
 	public CommandCheckCoverage(String path, int coverage) {
 		this.path = path;
 		this.coverage = coverage;
+		 
 	}
 
 	public CommandCheckCoverage() {
@@ -31,23 +32,23 @@ public class CommandCheckCoverage implements Command {
 
 	@Override
 	public ArrayList<String> execute(String args) {
-
 		setArgs(args);
 		ArrayList<String> result = new ArrayList<>();
 
-		if (!CommandHelper.inputIsCSVFile(path)) {
-			result.add(FAIL);
+		if (Boolean.FALSE.equals(CommandHelper.inputIsCSVFile(path))) {
+			result.add(CommandHelper.FAIL);
 			result.add("Unexpected format for " + path);
 		}
 
 		int coverageFind = 0;
 
-		// TODO improve exception managment‡
 		try {
 			coverageFind = parsingCSVJacocoReport();
 		} catch (IOException e) {
-			System.err.println("The file " + path + " was null");
-			result.add(FAIL);
+			String logMsg = String.format("error Parsing CSV file : %s", path);
+			logger.error(logMsg);
+			result.add(CommandHelper.FAIL);
+			result.add(logMsg);
 		}
 
 		String isDone = searchIdItsDone(coverageFind);
@@ -69,10 +70,9 @@ public class CommandCheckCoverage implements Command {
 	}
 
 	public String searchIdItsDone(int coverageFind) {
-		System.out.println("compare " + coverageFind +  operator +  coverage);
+		logger.debug("compare %d %s %d", coverageFind, operator, coverage);
 		return String.valueOf(CommandHelper.compareInt(coverageFind, coverage, operator));
 	}
-
 
 	/**
 	 * 
@@ -114,16 +114,15 @@ public class CommandCheckCoverage implements Command {
 
 		int coverageFind = 0;
 
-		List<List<String>> records = readCSV();
-		
-		System.out.println(records);
+		CSVReader cs = new CSVReader(path);
+		List<List<String>> records = cs.readCSV();
 
 		int indiceCovered = records.get(0).indexOf(COVERED);
 		int indiceMissed = records.get(0).indexOf(MISSED);
 
 		// Remove the header, i.e. the first line
 		records.remove(0);
-
+		logger.debug("Records after removing the first line : {}", records);
 		int covered = getSumOfOneIndice(indiceCovered, records);
 		int missed = getSumOfOneIndice(indiceMissed, records);
 		if (missed + covered == 0)
@@ -133,29 +132,18 @@ public class CommandCheckCoverage implements Command {
 		return coverageFind;
 	}
 
-	private List<List<String>> readCSV() throws IOException {
-		List<List<String>> records = new ArrayList<>();
-		try (BufferedReader input = new BufferedReader(new FileReader(path));) {
-			String line;
-			while ((line = input.readLine()) != null) {
-				String[] values = line.split(COMMA_DELIMITER);
-				records.add(Arrays.asList(values));
-			}
-			return records;
-		} catch (FileNotFoundException e) {
-			System.err.println(
-					"The file '" + path + "' was not found. Please indicate the jacoco.csv of the jacoco report.");
-			throw e;
-		} catch (IOException ie) {
-			System.err.println("Not able to read the file '" + path);
-			throw ie;
-		}
-	}
-
 	private int getSumOfOneIndice(int indice, List<List<String>> records) {
+
 		int value = 0;
+
 		for (List<String> line : records) {
-			value += Integer.parseInt(line.get(indice));
+			try {
+				value += Integer.parseInt(line.get(indice));
+			} catch (NumberFormatException e) {
+				String logMsg = String.format("error Parsing CSV file, expecting a number : %s", line.get(indice));
+				logger.error(logMsg);
+				throw e;
+			}
 		}
 		return value;
 	}
@@ -170,25 +158,14 @@ public class CommandCheckCoverage implements Command {
 		// justification/IUTtest/test < 10
 		String[] tmp = args.split(" ");
 		if (tmp.length != 3) {
-			System.err.println(args + " is not a valid command to check coverage in jacoco report.");
+			logger.error("%s is not a valid command to check coverage in jacoco report.",args);
 			return;
 		}
 		path = tmp[0];
-
 		operator = tmp[1];
-
 		coverage = Integer.parseInt(tmp[2]);
-
-		System.out.println("CheckCover action - args : '" + path + "' for " + operator + " coverage " + coverage);
 	}
 
-	private static String inputIsExpectedFile(String in) {
-		if (CommandHelper.extension(in).contentEquals(CSV))
-			return CSV;
-		else
-			System.err.println(in + " is not a valid name." + " Unexpected extension :" + CommandHelper.extension(in)
-					+ " Please indicate the .csv of the jacoco report.");
-		return FAIL;
-	}
+
 
 }

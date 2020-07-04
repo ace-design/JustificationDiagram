@@ -3,7 +3,7 @@ package models;
 import export.*;
 
 public class Conclusion extends Node {
-    public String restriction;
+    public final String restriction;
 
     public Conclusion(String alias, String label, String restriction) {
         super(alias, label);
@@ -11,8 +11,8 @@ public class Conclusion extends Node {
     }
     
     @Override
-    public void accept(JDVisitor JDVisitor) {
-        JDVisitor.visitConclusion(this);
+    public void accept(JDVisitor jDVisitor) {
+        jDVisitor.visitConclusion(this);
     } 
 
 }

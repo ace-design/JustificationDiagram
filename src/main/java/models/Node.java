@@ -3,15 +3,20 @@ package models;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import command.CommandFactory;
 import export.JDVisitor;
 
 public class Node implements Visitable {
 	
+	private static final Logger logger = LogManager.getLogger(Node.class);
 	private String alias;
 	private String label;
 	private Set<Relation> inputs;
@@ -22,7 +27,7 @@ public class Node implements Visitable {
 	private ActionNode actionNode; 
     
     // - steps
-	private ArrayList<String> steps = new ArrayList<>();
+	private List<String> steps = new ArrayList<>();
      
     public Node(String alias, String label) { 
     	this.label = label;
@@ -52,64 +57,42 @@ public class Node implements Visitable {
      * If he has no children, no change will be made.  
      * 
      */
-    public void prerequisiteAnalysis(ArrayList<String> labelList) {
+    public void prerequisiteAnalysis(List<String> labelList) {
   
     	boolean isDone = true;
+    	
     	// Use to check that the current node depends on the state of these inputs.
     	if(inputs.isEmpty()) {
     		isDone = realizationListAnalyses(labelList);
     	}
+    	
 		// use to analyze the state of the child nodes 
     	if(isDone) {
     		isDone = relationAnalyse();
-
 		}
-    	else {
-			// used just for the steps
-    		relationAnalyse();
 
-    	}
     	// used to verify that the necessary files are present. 
+    
+    	
 		if(actionNode != null && actionNode.path != null && !actionNode.path.isEmpty()) {
-			if(isDone) {
-				isDone = checkFileAnalyses();
+			boolean areFilesValid = checkFileAnalyses();
+			isDone = isDone && areFilesValid;
+		}
 
-			}
-			else {
-				// used just for the steps
-				checkFileAnalyses();
-
-	    	}
-
-    	}
-		// used to check the number of files in a repertory
+		// used to check the number of files in a repository
 		if(actionNode != null && actionNode.pathWithNumber != null&& !actionNode.pathWithNumber.isEmpty()) {
-			if(isDone) {
-				isDone = CheckFileWithNumberAnalyses();
+			boolean areNumberOfFilesValid = checkFileWithNumberAnalyses();
+			isDone = isDone && areNumberOfFilesValid;
+		}
 
-			}
-			else {
-				// used just for the steps
-				CheckFileWithNumberAnalyses();
-
-	    	}
-
-    	}
-		if(actionNode != null && actionNode.action != null && !actionNode.action.isEmpty()) {
-			if(isDone) {
-				isDone = checkAction();
-
-			}
-			else {
-				// used just for the steps
-				checkAction();
-	    	}
+		if(actionNode != null && actionNode.actions != null && !actionNode.actions.isEmpty()) {
+			boolean areActionsValid = checkAction();
+				isDone = isDone && areActionsValid;
 		}
 		
     	if(isDone) {
     		this.state = State.DONE;
     	}
-    	
     }
     
     /**
@@ -123,17 +106,12 @@ public class Node implements Visitable {
     	boolean isDone = false;
 
     	//TODO : change for a list of Objects ?
-		for(String command : actionNode.action) {
+		for(String command : actionNode.actions) {
 			cf.create();
-			ArrayList<String> returnOfExecute = cf.executeCommand(command);
+			List<String> returnOfExecute = cf.executeCommand(command);
 			
 			// get the boolean of the execution
-			if(returnOfExecute.get(0).contains("true")) {
-				isDone = true;
-			}
-			else  {
-				isDone = false;
-			}
+			isDone = returnOfExecute.get(0).contains("true");
 			
 			// get the steps of the execution
 			if(!returnOfExecute.get(1).isEmpty()) {
@@ -161,14 +139,9 @@ public class Node implements Visitable {
      * used to check if the label is contains in 'labelList'
      * @return true if the label is containt in 'labelList'
      */
-    public boolean realizationListAnalyses(ArrayList<String> labelList) {
+    public boolean realizationListAnalyses(List<String> labelList) {
     	
-		if(labelList != null && labelList.contains(label)) {
-			return true;
-		}
-		else {
-			return false;
-		}
+		return (labelList != null && labelList.contains(label)) ;
     }
     
     /**
@@ -180,7 +153,7 @@ public class Node implements Visitable {
     	boolean isDone = true;
     	for (String filePath : actionNode.path) {
 			if(!new File(filePath).exists()) {
-				System.err.println("The file " + filePath + " was not found to validate the node " + label);
+				logger.error("The file %s was not found to validate the node %s ", filePath, label);
 				steps.add("[ ] " + filePath + " (not found)");
 				isDone = false;
 			}
@@ -197,7 +170,7 @@ public class Node implements Visitable {
      * 
      * @return returns true if the necessary number corresponds to the number of files to be found, else returen false.	
      */
-    public boolean CheckFileWithNumberAnalyses() {
+    public boolean checkFileWithNumberAnalyses() {
     	boolean isDone = true;
     	for (Map.Entry<String,Integer> mapentry : actionNode.pathWithNumber.entrySet()) {
     		String filePath = mapentry.getKey();
@@ -208,7 +181,7 @@ public class Node implements Visitable {
 			}
 			else if((currentLenght = new File(filePath).listFiles().length) != mapentry.getValue()) {
 				steps.add("[ ] " +  filePath  + " (" + mapentry.getValue()+" files expected, but " + currentLenght   + " found)" );
-				System.err.println("The repetoire " + filePath + " has " + currentLenght + " files instead of " + mapentry.getValue() + " . The node " + label + " can't be validate");
+				logger.error("The directory %s has %d files instead of %s. The node %s can't be validate", filePath,currentLenght,  mapentry.getValue(),label);
 				isDone = false;
 			}
 			else {
@@ -291,11 +264,11 @@ public class Node implements Visitable {
 		this.state = state;
 	}
 
-	public ArrayList<String> getSteps() {
+	public List<String> getSteps() {
 		return steps;
 	}
 
-	public void setStpes(ArrayList<String> steps) {
+	public void setStpes(List<String> steps) {
 		this.steps = steps;
 	}
 
