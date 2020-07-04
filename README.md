@@ -1203,3 +1203,4 @@ Here is the realization diagram:
 If you want to scan your project and get a report on its quality, check out [this tutorial](https://dev.to/remast/using-sonarcloud-with-github-actions-and-maven-31kg).
 It will explain how to use the SonarCloud.
 
+   
