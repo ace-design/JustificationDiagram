@@ -73,7 +73,7 @@ public class CommandCheckValueInCSV implements Command {
 				result.add(CommandHelper.FAIL);
 				return result;
 			}
-			// Chack value
+			// Check value
 			int valueInt;
 			try {
 				valueInt = Integer.parseInt(value);
