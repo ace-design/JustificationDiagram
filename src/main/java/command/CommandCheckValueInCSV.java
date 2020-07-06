@@ -63,12 +63,14 @@ public class CommandCheckValueInCSV implements Command {
 					String logMsg =String.format("Reference to an invalid Cell (%s, %d)in the csv : %s", column,lineNumber, e);
 					logger.error(logMsg);
 					result.add(CommandHelper.FAIL);
+					result.add(logMsg);
 					return result;
 				}
 			} catch (OutOfCSVException e) {
 				String logMsg =String.format("Reference to an invalid Cell_ (%d, %d)in the csv : %s", columnNumber,lineNumber, e);
 				logger.error(logMsg);
 				result.add(CommandHelper.FAIL);
+				result.add(logMsg);
 				return result;
 			}
 			// Check value
@@ -79,6 +81,7 @@ public class CommandCheckValueInCSV implements Command {
 				String logMsg =String.format("%s : Not an integer in Cell (%d, %d)in the csv %s : %s",value, columnNumber,lineNumber, path, e2);
 				logger.error(logMsg);
 				result.add(CommandHelper.FAIL);
+				result.add(logMsg);
 				return result;
 			}
 

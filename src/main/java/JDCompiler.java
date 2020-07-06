@@ -12,6 +12,8 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.apache.commons.cli.*;
 import parsing.*;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class JDCompiler {
@@ -110,8 +112,15 @@ public class JDCompiler {
 		
 		// if inputRealizationFilePath is not null, I analyze the realization file and the state of the nodes
 		if(inputRealizationFilePath != null) {
-			RealizationParser realizationParser = new RealizationParser(inputRealizationFilePath);
-			diagram.analysesDiagrammeRelation(realizationParser.labelList);
+			RealizationParser realizationParser;
+			List<String> labels = new ArrayList<>();
+			try {
+				realizationParser = new RealizationParser(inputRealizationFilePath);
+				labels = realizationParser.getLabelList();
+			} catch (ExceptionParsingRealizationFile e) {
+				System.out.println("Error reading Realzation File" + e);
+			}
+			diagram.analysesDiagrammeRelation(labels);
 
 		}
 		

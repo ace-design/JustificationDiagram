@@ -1,0 +1,3 @@
+Test Maven passed
+Build Maven passed
+Jacoco report Archivate

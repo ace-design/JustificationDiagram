@@ -4,74 +4,64 @@ import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
+import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import command.CommandCheckCoverage;
 import models.Node;
 
 public class RealizationParser {
-	
-	public String path;
-	
-	public ArrayList<String> labelList;
-	
-	public RealizationParser(String path) {
-		this.path = path;
-		
-		try {
-			labelList = realizationParse(path);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		
+
+	private static final Logger logger = LogManager.getLogger(RealizationParser.class);
+
+	private String path;
+
+	private List<String> labelList;
+
+
+	public List<String> getLabelList() {
+		return labelList;
 	}
-	
+
+	public RealizationParser(String path) throws ExceptionParsingRealizationFile {
+		this.path = path;
+		labelList = realizationParse(path);
+
+	}
+
 	/**
-	 * Used to parse the file 'realizationPath' who correpond to the tasks
-	 * acomplished, required number of files and references of nodes.
+	 * Used to parse the file 'realizationPath' that corresponds to the accomplished
+	 * tasks , required number of files and references of nodes.
 	 * 
 	 * @param realizationPath path to the realization file
 	 * @return list of node information
-	 * @throws IOException 
+	 * @throws IOException
 	 */
-	public static ArrayList<String> realizationParse(String realizationPath) throws IOException {
+	public static List<String> realizationParse(String realizationPath) throws ExceptionParsingRealizationFile {
 
 		File realization;
-		ArrayList<String> realizationResult = new ArrayList<String>();
-		
-		if (realizationPath != null) {
-			
-			if ((realization = new File(realizationPath)).exists()) {
-				
-				RandomAccessFile ranRealization = null;
-				try {
-					ranRealization = new RandomAccessFile(realization, "r");
-					String line;
+		ArrayList<String> realizationResult = new ArrayList<>();
 
+		if (realizationPath != null) {
+			realization = new File(realizationPath);
+			if (realization.exists()) {
+				try (RandomAccessFile ranRealization = new RandomAccessFile(realization, "r")){
+					String line;
 					while ((line = ranRealization.readLine()) != null) {
 						realizationResult.add("\"" + line + "\"");
 					}
-					ranRealization.close();
-
 				} catch (IOException e) {
-					e.printStackTrace();
-					
-				} 
-				finally {
-					if(ranRealization != null) {
-						ranRealization.close();
-					}
-				  }
+					logger.error("Exception raised during reading of the realization file %s", realizationPath);
+					throw new ExceptionParsingRealizationFile(realizationPath);
+				}
 
 			} else {
-				System.err.println(realizationPath + " don't exist");
+				logger.error("%s  doesn't exist", realizationPath);
+				throw new ExceptionParsingRealizationFile(realizationPath);
 			}
-
-		}
-
+		}	
 		return realizationResult;
-
 	}
-	
-	
-
 }

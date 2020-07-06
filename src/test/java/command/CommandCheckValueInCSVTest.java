@@ -36,6 +36,14 @@ class CommandCheckValueInCSVTest {
 	}
 	
 	@Test
+	void testPropertyOutOfCVS() {
+		ArrayList<String> result = c.execute(PATH+ "jacocoComplexe0.csv 3 100 == 546");
+		assertEquals("fail", result.get(0));
+		assertTrue(result.get(1).contains("OutOfCSVException"));
+	}
+	
+	
+	@Test
 	void testPropertylessInCSVisVerified() {
 		ArrayList<String> result = c.execute(PATH+ "jacocoComplexe0.csv 3 3 >= 50");
 		assertEquals("true", result.get(0));
