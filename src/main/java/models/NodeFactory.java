@@ -1,6 +1,5 @@
 package models;
 
-import java.util.ArrayList;
 
 public class NodeFactory {
 	/** 
@@ -26,4 +25,9 @@ public class NodeFactory {
                 return new Node(alias, label);
         }
     } 
+    
+    private NodeFactory() {
+        throw new IllegalStateException("Utility class");
+      }
+    
 }

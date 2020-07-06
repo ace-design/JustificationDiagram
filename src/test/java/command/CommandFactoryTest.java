@@ -33,5 +33,14 @@ class CommandFactoryTest {
 		assertEquals("[x] following property is verified : value[INSTRUCTION_MISSED , 1] =546 <=600",result.get(1));
 	}
 	
+	
+	@Test
+	void testUnknownCommand() {
+		List<String> result = cf.executeCommand("unexpected "+ PATH+ "jacocoComplexe0.csv INSTRUCTION_MISSED 1 <= 600");
+		assertEquals("false", result.get(0));
+		assertTrue(result.get(1).contains("command does not exist"));
+	}
+	
+	
 
 }

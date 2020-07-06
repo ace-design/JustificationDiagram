@@ -2,7 +2,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 public class Log4J2PropertiesConf {
     private static Logger logger = LogManager.getLogger(Log4J2PropertiesConf.class);
-    public void performSomeTask(){
+    void performSomeTask(){
         logger.debug("This is a debug message");
         logger.info("This is an info message");
         logger.warn("This is a warn message");

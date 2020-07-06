@@ -1,14 +1,16 @@
 package parsing;
 
-import java.util.ArrayList;
-
 import justificationDiagram.JustificationDiagram;
 import models.*;
 
 public class JDInitializer extends JustificationDiagramBaseVisitor<String> {
-    public JustificationDiagram diagram;
+    private JustificationDiagram diagram;
 
-    @Override
+    public JustificationDiagram getDiagram() {
+		return diagram;
+	}
+
+	@Override
     public String visitDiagram(JustificationDiagramParser.DiagramContext ctx) {
         diagram = new JustificationDiagram();
         return super.visitDiagram(ctx);

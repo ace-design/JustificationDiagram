@@ -42,6 +42,13 @@ class CommandCheckValueInCSVTest {
 		assertTrue(result.get(1).contains("OutOfCSVException"));
 	}
 	
+	@Test
+	void testPropertyNonExpectedValueOfCVS() {
+		ArrayList<String> result = c.execute(PATH+ "jacocoComplexe0.csv Coverage 100 == 546");
+		assertEquals("fail", result.get(0));
+		assertTrue(result.get(1).contains("Reference to an invalid Cell"));
+	}
+	
 	
 	@Test
 	void testPropertylessInCSVisVerified() {

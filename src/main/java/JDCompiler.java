@@ -107,7 +107,7 @@ public class JDCompiler {
 		// if inputActionFile is not null, I analyze the action file
 		if(inputActionFile != null) {
 			ActionNodeParsing actionNodeParsing = new ActionNodeParsing(inputActionFile);	
-			diagram.setActionNode(actionNodeParsing.actionNodes);
+			diagram.setActionNode(actionNodeParsing.getActionNodes());
 		}
 		
 		// if inputRealizationFilePath is not null, I analyze the realization file and the state of the nodes
@@ -206,7 +206,7 @@ public class JDCompiler {
 
 		JDInitializer factory = new JDInitializer();
 		factory.visit(parseAntlr(file));
-		JDLinker linker = new JDLinker(factory.diagram);
+		JDLinker linker = new JDLinker(factory.getDiagram());
 		linker.visit(parseAntlr((file)));
 
 		return linker.diagram;

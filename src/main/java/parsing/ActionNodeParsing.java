@@ -27,8 +27,12 @@ public class ActionNodeParsing {
 	
 	private static final Logger logger = LogManager.getLogger(ActionNodeParsing.class);
 
-	public String path;
-	public Map<String,ActionNode> actionNodes;
+	private String path;
+	private Map<String,ActionNode> actionNodes;
+
+	public Map<String, ActionNode> getActionNodes() {
+		return actionNodes;
+	}
 
 	public ActionNodeParsing(String path) {
 		this.path = path;
@@ -54,7 +58,7 @@ public class ActionNodeParsing {
 		} catch (FileNotFoundException e) {
 			logger.error("The file for actions %s was not found", path);
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error("Fail reading the file for actions %s ", path);
 		} 
 
 	}

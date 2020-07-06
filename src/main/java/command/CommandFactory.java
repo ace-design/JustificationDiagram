@@ -5,13 +5,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import parsing.ActionNodeParsing;
+
 public class CommandFactory {
 
-    private static CommandFactory instance; //Singleton
-	private final HashMap<String, Command>	commands;
+	private static CommandFactory instance; // Singleton
+	private final HashMap<String, Command> commands;
+
+	private static final Logger logger = LogManager.getLogger(CommandFactory.class);
 	
 	private static final String ANTECEDENT = "command.Command";
-	
+
 	private CommandFactory() {
 		this.commands = new HashMap<>();
 	}
@@ -19,50 +26,47 @@ public class CommandFactory {
 	public void addCommand(String name, Command command) {
 		this.commands.put(name, command);
 	}
-	
+
 	public List<String> executeCommand(String commandLigne) {
-		
+
 		String commandName = commandLigne.split(" ")[0];
 		String args = "";
-			
+
 		args = commandLigne.replace(commandName + " ", "");
-		
-		//todo : improve with args
-		//Use reflexivity
+
+		// todo : improve with args
+		// Use reflexivity
 		try {
-			Class<?> commandClass = Class.forName(ANTECEDENT+commandName);
+			Class<?> commandClass = Class.forName(ANTECEDENT + commandName);
 			Command command = (Command) commandClass.getDeclaredConstructor().newInstance();
 			return command.execute(args);
-		} 
-		catch (InstantiationException | IllegalAccessException |ClassNotFoundException |IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
-				return unexpectedBehavior(commandName, args, e);
-			}
+		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | IllegalArgumentException
+				| InvocationTargetException | NoSuchMethodException | SecurityException e) {
+			return unexpectedBehavior(commandName, args, e);
+		}
 	}
-	
 
 	private ArrayList<String> unexpectedBehavior(String commandName, String args, Exception e) {
-		System.err.println("This command does not exist or there is a problem with args, please check the command validity : \n" + e +"\n");
-		ArrayList<String> result = new ArrayList<> ();
+		logger.error(
+				"This command does not exist or there is a problem with args, please check the command validity : %n %s %s %n",
+				commandName, args);
+		ArrayList<String> result = new ArrayList<>();
 		result.add("false");
 		result.add(commandName + " this command does not exist with " + args);
 		return result;
 	}
-	
 
-
-	 
 	/* Singleton pattern */
-    public static CommandFactory getInstance() {
-        if (instance == null) {
-            instance = new CommandFactory();
-        }
-        return instance;
-    }
-	
-    //TODO = Why???
-	/* Factory pattern */
-	public void create() {
-		// commands are added here using lambda. It also possible to dynamically add commands without editing code.
-		addCommand("CheckCoverage", new CommandCheckCoverage());
+	public static CommandFactory getInstance() {
+		if (instance == null) {
+			instance = new CommandFactory();
+		}
+		return instance;
 	}
+
+	/*
+	 * Factory pattern public void create() { // commands are added here using
+	 * lambda. It also possible to dynamically add commands without editing code.
+	 * addCommand("CheckCoverage", new CommandCheckCoverage()); }
+	 */
 }

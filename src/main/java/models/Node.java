@@ -107,7 +107,6 @@ public class Node implements Visitable {
 
     	//TODO : change for a list of Objects ?
 		for(String command : actionNode.actions) {
-			cf.create();
 			List<String> returnOfExecute = cf.executeCommand(command);
 			
 			// get the boolean of the execution
