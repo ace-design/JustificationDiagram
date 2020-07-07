@@ -51,7 +51,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with: 
         name: images
-        path: justification/output/images
+        path: justification/examples/output/images
         
     #I archive the Jacoco report
     - name: Archive Jacoco report
@@ -81,7 +81,7 @@ jobs:
         
     #I generate the two diagrams and the TODO list
     - name: JD&TODO generation 
-      run: mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="justification/examples/exampleCI/Pattern4CI.jd -o justification/output/GeneratedJD/Pattern4CI -rea realization.txt -act justification/examples/exampleCI/actionValid.json -svg -svgR -td "
+      run: mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="justification/Pattern4CI.jd -o justification/output/CI -rea justification/realization.txt -act justification/actions.json -svg -svgR -td "
       
     #I archive my diagrams create during the CI
     - name: Archive JD&TODO
@@ -110,7 +110,7 @@ jobs:
     - name: memorise the final result
       run: 
        git config user.name "GitHub Actions";
-       git diff --quiet && git diff --staged --quiet || (git add justification/output/GeneratedJD/*;git commit -m “${COMMIT_MSG}“;git push origin CVSParsing)
+       git diff --quiet && git diff --staged --quiet || (git add justification/output/*;git commit -m “${COMMIT_MSG}“;git push origin CVSParsing)
       
     
     #---------JustificationDiagram-----------
