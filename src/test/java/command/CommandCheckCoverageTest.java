@@ -2,12 +2,15 @@ package command;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import command.Command;
 import command.CommandCheckCoverage;
+import parsing.ExceptionParsingRealizationFile;
+import parsing.RealizationParser;
 
 
 class CommandCheckCoverageTest {
@@ -15,7 +18,7 @@ class CommandCheckCoverageTest {
 	
 	Command c = new CommandCheckCoverage();
 	
-	String PATH = "./src/test/resources/";
+	String PATH = "./src/test/resources/jacoco/";
 	
 	@BeforeEach
 	public void setUp() {
@@ -51,6 +54,12 @@ class CommandCheckCoverageTest {
 		assertEquals("fail", result.get(0));
     }
 
+	@Test
+	void testJacocoCoverage4ThisProject() throws ExceptionParsingRealizationFile {
+		ArrayList<String> result = c.execute("target/site/jacoco/jacoco.csv >= 80");
+		assertEquals("true", result.get(0));
+	}
+	
 	
 	//TODO manage IOexception
 	//@Test

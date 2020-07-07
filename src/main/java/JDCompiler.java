@@ -45,7 +45,6 @@ public class JDCompiler {
 		
 		if (cmd.hasOption("rea")) {
 				inputRealizationFile = cmd.getOptionValue("rea");
-
 		}
 		
 		if (cmd.hasOption("act")) {

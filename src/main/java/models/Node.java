@@ -152,7 +152,8 @@ public class Node implements Visitable {
     	boolean isDone = true;
     	for (String filePath : actionNode.path) {
 			if(!new File(filePath).exists()) {
-				logger.error("The file %s was not found to validate the node %s ", filePath, label);
+				String logMsg = String.format("The file %s was not found to validate the node %s ", filePath, label);
+				logger.error(logMsg);
 				steps.add("[ ] " + filePath + " (not found)");
 				isDone = false;
 			}

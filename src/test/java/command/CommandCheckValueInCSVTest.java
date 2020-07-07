@@ -15,7 +15,7 @@ class CommandCheckValueInCSVTest {
 	
 	Command c = new CommandCheckValueInCSV();
 	
-	String PATH = "./src/test/resources/";
+	String PATH = "./src/test/resources/jacoco/";
 	
 	@BeforeEach
 	public void setUp() {

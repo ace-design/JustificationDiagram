@@ -7,7 +7,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 class CommandFactoryTest {
-	String PATH = "./src/test/resources/";
+	String PATH = "./src/test/resources/jacoco/";
 	CommandFactory cf = CommandFactory.getInstance();
 	
 	

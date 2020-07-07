@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 class RealizationParserTest {
 
 
-	String inputPath = "justification/examples/realization/";
+	String inputPath = "./src/test/resources/realization/";
 	RealizationParser parser;
 	
 	@Test
@@ -36,6 +36,9 @@ class RealizationParserTest {
 		assertEquals(0, labels.size());
 		
 	}
+	
+	
+
 	
 
 	

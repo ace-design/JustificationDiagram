@@ -1,5 +1,0 @@
-Identified risks
-Functional specifications
-Technical specifications
-Architectures
-Risks consistency

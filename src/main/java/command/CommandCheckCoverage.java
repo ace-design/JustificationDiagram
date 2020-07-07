@@ -70,7 +70,8 @@ public class CommandCheckCoverage implements Command {
 	}
 
 	public String searchIdItsDone(int coverageFind) {
-		logger.debug("compare %d %s %d", coverageFind, operator, coverage);
+		String logMsg = String.format("compare %d %s %d", coverageFind, operator, coverage);
+		logger.debug(logMsg);
 		return String.valueOf(CommandHelper.compareInt(coverageFind, coverage, operator));
 	}
 
@@ -124,7 +125,9 @@ public class CommandCheckCoverage implements Command {
 		records.remove(0);
 		logger.debug("Records after removing the first line : {}", records);
 		int covered = getSumOfOneIndice(indiceCovered, records);
+		logger.debug("Covered : {}", covered);
 		int missed = getSumOfOneIndice(indiceMissed, records);
+		logger.debug("Missed : {}", missed);
 		if (missed + covered == 0)
 			coverageFind = 0;
 		else

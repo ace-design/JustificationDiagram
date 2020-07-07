@@ -39,8 +39,7 @@ public class CommandCheckValueInCSV implements Command {
 		try {
 			csvReader = new CSVReader(path);
 		} catch (Exception e) {
-			String logMsg =String.format("error reading the file : %s %n %s", path,  e);
-			logger.error("error reading the file : %s %n %s", path,  e);
+			String logMsg =String.format("error reading the file : %s %n %s", path,  e.getClass());
 			logger.error(logMsg);
 			result.add(CommandHelper.FAIL);
 			return result;
@@ -122,7 +121,8 @@ public class CommandCheckValueInCSV implements Command {
 		line = tmp[2];
 		operator = tmp[3];
 		valueToCompare = Integer.parseInt(tmp[4]);
-		logger.info("CheckValueInCSV action - args :  %s : [%s, %s] %s %d", path, column, line, operator, valueToCompare);
+		String logMsg =String.format("CheckValueInCSV action - args :  %s : [%s, %s] %s %d", path, column, line, operator, valueToCompare);
+		logger.info(logMsg);
 	}
 
 }
