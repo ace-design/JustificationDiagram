@@ -43,6 +43,21 @@ class CommandCheckCoverageTest {
 	}
 	
 	@Test
+	void testCoverageInCSVIsVerified_notEquals() {
+		ArrayList<String> result = c.execute(PATH+ "jacocoSimple.csv != 19");
+		assertEquals("true", result.get(0));
+		assertEquals("[x] Current coverage is 18, it's != 19 ", result.get(1) );
+	}
+	
+	@Test
+	void testCoverageInCSVIsVerified_less() {
+		ArrayList<String> result = c.execute(PATH+ "jacocoSimple.csv < 20");
+		assertEquals("true", result.get(0));
+		assertEquals("[x] Current coverage is 18, it's < 20 ", result.get(1) );
+	}
+	
+	
+	@Test
 	void testCoverageInComplexCSV() {
 		ArrayList<String> result = c.execute(PATH+ "jacocoEclEmma.csv >= 90");
 		assertEquals("true", result.get(0));

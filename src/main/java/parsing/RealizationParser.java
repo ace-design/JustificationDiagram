@@ -9,14 +9,12 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import command.CommandCheckCoverage;
-import models.Node;
 
 public class RealizationParser {
 
 	private static final Logger logger = LogManager.getLogger(RealizationParser.class);
 
-	private String path;
+	//private String path;
 
 	private List<String> labelList;
 
@@ -26,7 +24,7 @@ public class RealizationParser {
 	}
 
 	public RealizationParser(String path) throws ExceptionParsingRealizationFile {
-		this.path = path;
+		//this.path = path;
 		labelList = realizationParse(path);
 
 	}

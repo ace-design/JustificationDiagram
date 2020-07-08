@@ -12,19 +12,15 @@ import org.apache.logging.log4j.Logger;
 public class CommandFactory {
 
 	private static CommandFactory instance; // Singleton
-	private final HashMap<String, Command> commands;
 
 	private static final Logger logger = LogManager.getLogger(CommandFactory.class);
 	
 	private static final String ANTECEDENT = "command.Command";
 
 	private CommandFactory() {
-		this.commands = new HashMap<>();
+		//nothing to do
 	}
 
-	public void addCommand(String name, Command command) {
-		this.commands.put(name, command);
-	}
 
 	public List<String> executeCommand(String commandLigne) {
 
