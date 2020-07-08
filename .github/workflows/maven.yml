@@ -40,7 +40,7 @@ jobs:
     #Scanning the project with SonarCloud
     - name: SonarCloud Scan
       run: 
-       mvn -B verify sonar:sonar;
+       mvn -B -X verify sonar:sonar;
        echo -e "Scanning the project with SonarCloud" >> realization.txt;
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
