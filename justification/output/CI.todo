@@ -1,22 +1,17 @@
 Requirements list
 
 [X]	Creation of the README
-	[X] README.md
-[X]	code Archivate - reference : generatedCode
+[X]	code Archivate
 [X]	Test Maven passed
 [X]	Jacoco Report
-	[X] target/site/jacoco/jacoco.csv
-[X]	images Archivate - reference : images
-[X]	Validate testCoverage
-	[x] Current coverage is 82, it's >= 80 
-[X]	Jacoco report Archivate - reference : jacoco
+[X]	images Archivate
+[X]	Jacoco report Archivate
 [X]	Scanning the project with SonarCloud
-[X]	Documentation ready (optional) 
+[X]	Documentation ready
 [X]	Test Coverage validated
 [X]	Build Maven passed
-	[x] justification/examples/output/images (17 Files found)
 [X]	Maven ready
-[X]	Test Coverage validated and Archived (optional) 
+[X]	Test Coverage validated and Archived
 [X]	Archivees Data
 [X]	SonarCloud ready
 [X]	Project Valid

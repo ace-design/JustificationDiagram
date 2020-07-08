@@ -1,0 +1,9 @@
+
+Creation of the README
+Build Maven passed
+Test Maven passed
+Scanning the project with SonarCloud
+Jacoco Report
+Jacoco report Archivate
+images Archivate
+code Archivate
