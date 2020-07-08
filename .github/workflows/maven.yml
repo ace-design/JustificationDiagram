@@ -75,7 +75,7 @@ jobs:
     - name: Realization part2
       run: 
         echo -e "images Archivate" >> realization.txt;
-        echo -e "code Archivate" >> realization.txt;
+       # echo -e "code Archivate" >> realization.txt;
         
     #---------JustificationDiagram for my project-----------
      
@@ -105,11 +105,12 @@ jobs:
     #I memorize all my files contained in the output directory 
     - name: memorise the final result
       run: 
-       git config user.name "GitHub Actions"; 
+       git diff --quiet && git diff --staged --quiet || 
+       (git config user.name "GitHub Actions"; 
        ls -la justification/output; 
        git add justification/output/*;
        git commit -m “justify${GITHUB_RUN_ID}“;
-       git push origin master
-       #git diff --quiet && git diff --staged --quiet || 
+       git push origin master)
+       
     
     #---------JustificationDiagram-----------
