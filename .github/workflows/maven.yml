@@ -105,14 +105,14 @@ jobs:
     #---------------Saving the last diagrams generated---------------       
     
     #I memorize all my files contained in the output directory 
-    - name: memorise the final result
-      run: 
-       ls -la justification/output; 
-       git diff --quiet && git diff --staged --quiet || 
-       (git config user.name "GitHub Actions"; 
-       git add justification/output/*;
-       git commit -m “justify${GITHUB_RUN_ID}“;
-       git push origin master)
+    #- name: memorise the final result
+    #  run: 
+    #   ls -la justification/output; 
+    #   git diff --quiet && git diff --staged --quiet || 
+    #   (git config user.name "GitHub Actions"; 
+    #   git add justification/output/*;
+    #   git commit -m “justify${GITHUB_RUN_ID}“;
+    #   git push origin master)
        
     
     #---------JustificationDiagram-----------
