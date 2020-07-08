@@ -84,7 +84,6 @@ jobs:
       run: 
         echo -e "BEFORE--------------"; ls -la justification/output;
         mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="justification/Pattern4CI.jd -o justification/output/CI -rea realization.txt -act justification/actions.json -svg -svgR -td ";
-        cp realization.txt justification/output/realisation.txt;
         echo -e "After--------------"; ls -la justification/output
   
     #I archive my diagrams created during the CI
