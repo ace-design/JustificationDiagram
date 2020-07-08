@@ -108,7 +108,7 @@ jobs:
        git config user.name "GitHub Actions"; 
        ls -la justification/output; 
        git add justification/output/*;
-       git commit -m “${GITHUB_RUN_ID}“;
+       git commit -m “justify${GITHUB_RUN_ID}“;
        git push origin master
        #git diff --quiet && git diff --staged --quiet || 
     
