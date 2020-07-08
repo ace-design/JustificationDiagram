@@ -106,9 +106,11 @@ jobs:
     - name: memorise the final result
       run: 
        git config user.name "GitHub Actions"; 
-       ls -la justification; 
+       ls -la justification/outpuy; 
        echo “${COMMIT_MSG}“;
-       git diff --quiet && git diff --staged --quiet || (git add justification/output/*;git commit -m “${GITHUB_RUN_ID}“;git push origin master)
-      
+       git add justification/output/*;
+       git commit -m “${GITHUB_RUN_ID}“;
+       git push origin master
+       #git diff --quiet && git diff --staged --quiet || 
     
     #---------JustificationDiagram-----------
