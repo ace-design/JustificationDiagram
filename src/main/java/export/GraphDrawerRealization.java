@@ -6,6 +6,8 @@ import models.*;
 public class GraphDrawerRealization implements JDVisitor {
     private StringBuilder gv = new StringBuilder();
     
+    private static final String  COLOR = "COLOR=\"";
+    
     // color to use according to the state of the node (todo or done)
     private String[] colorUsedModel = {"red3","blue3"}; 
     private String colorUsed;
@@ -21,10 +23,10 @@ public class GraphDrawerRealization implements JDVisitor {
     public void visitDiagram(JustificationDiagram diagram) {
         gv.append("digraph G {\n\trankdir = \"BT\"\n");
 
-        for (String alias : diagram.nodes.keySet()) {
-            diagram.nodes.get(alias).accept(this);
+        for (String alias : diagram.getNodes().keySet()) {
+            diagram.getNodes().get(alias).accept(this);
         }
-        for (Relation relation : diagram.relations) {
+        for (Relation relation : diagram.getRelations()) {
             relation.accept(this);
         }
         GraphDrawerLayout layout = new GraphDrawerLayout();
@@ -41,15 +43,15 @@ public class GraphDrawerRealization implements JDVisitor {
     public void visitConclusion(Conclusion conclusion) {
     	setColorUsed(conclusion);
 
-        if (conclusion.restriction != null) {
+        if (conclusion.getRestriction() != null) {
 
             gv.append("\t").append(conclusion.getAlias()).append(" [shape=none margin=0 fontcolor= " + colorUsed + " label=<<table cellspacing=\"0\" " +
                     "cellborder=\"1\" border=\"0\"><tr><td COLSPAN=\"2\" sides=\"LT\" BGCOLOR=\"gray75\" " +
-                    "COLOR=\"" + colorUsed + "\">").append(conclusion.getLabel(), 1, conclusion.getLabel().length() - 1) 
+                    COLOR + colorUsed + "\">").append(conclusion.getLabel(), 1, conclusion.getLabel().length() - 1) 
                     .append("</td><td sides=\"TR\" BGCOLOR=\"gray75\" COLOR=\"" + colorUsed + "\"></td><td sides=\"L\" " +
-                    "COLOR=\"" + colorUsed + "\"></td></tr><tr><td sides=\"LB\" BGCOLOR=\"gray75\" COLOR=\"" + colorUsed + "\"></td>" +
+                    COLOR + colorUsed + "\"></td></tr><tr><td sides=\"LB\" BGCOLOR=\"gray75\" COLOR=\"" + colorUsed + "\"></td>" +
                     "<td sides=\"LTRB\" ROWSPAN=\"2\" colspan=\"3\" port=\"a\" BGCOLOR=\"khaki1\" style=\"dashed\">")
-                    .append(conclusion.restriction, 1, conclusion.restriction.length() -1)
+                    .append(conclusion.getRestriction(), 1, conclusion.getRestriction().length() -1)
                     .append("</td></tr></table>>];\n");
         } else {
             gv.append("\t").append(conclusion.getAlias()).append(" [shape=box, style=\"filled,rounded\", fontcolor= " + colorUsed + " color=\"" + colorUsed + "\", " +
@@ -62,14 +64,14 @@ public class GraphDrawerRealization implements JDVisitor {
 
     	setColorUsed(subConclusion); 
 
-        if (subConclusion.restriction != null) {
+        if (subConclusion.getRestriction() != null) {
         	gv.append("\t").append(subConclusion.getAlias()).append(" [shape=none margin=0  fontcolor= " + colorUsed + " label=<<table cellspacing=\"0\" " +
                     "cellborder=\"1\" border=\"0\"><tr><td COLSPAN=\"2\" sides=\"LT\" BGCOLOR=\"gray75\" " +
-                    "COLOR=\"" + colorUsed + "\">").append(subConclusion.getLabel(), 1, subConclusion.getLabel().length() - 1)
+                    COLOR + colorUsed + "\">").append(subConclusion.getLabel(), 1, subConclusion.getLabel().length() - 1)
                     .append("</td><td sides=\"TR\" BGCOLOR=\"gray75\" COLOR=\"" + colorUsed + "\"></td><td sides=\"L\" " +
-                    "COLOR=\"" + colorUsed + "\"></td></tr><tr><td sides=\"LB\" BGCOLOR=\"gray75\" COLOR=\"" + colorUsed + "\"></td>" +
+                    COLOR + colorUsed + "\"></td></tr><tr><td sides=\"LB\" BGCOLOR=\"gray75\" COLOR=\"" + colorUsed + "\"></td>" +
                     "<td sides=\"LTRB\" ROWSPAN=\"2\" colspan=\"3\" port=\"a\" BGCOLOR=\"khaki1\" style=\"dashed\">")
-                    .append(subConclusion.restriction, 1, subConclusion.restriction.length() -1)
+                    .append(subConclusion.getRestriction(), 1, subConclusion.getRestriction().length() -1)
                     .append("</td></tr></table>>];\n");
         } else {
             gv.append("\t").append(subConclusion.getAlias()).append(" [shape=box, style=\"filled,rounded\", fontcolor= " + colorUsed + " color=\"" + colorUsed + "\", " +
@@ -106,9 +108,9 @@ public class GraphDrawerRealization implements JDVisitor {
 
     @Override
     public void visitRelation(Relation relation) {
-        gv.append("\t").append(relation.from.getAlias()).append(" -> ").append(relation.to.getAlias());
+        gv.append("\t").append(relation.getFrom().getAlias()).append(" -> ").append(relation.getTo().getAlias());
 
-        if (relation.collapsed) {
+        if (relation.isCollapsed()) {
             gv.append(" [style=dashed]");
         }
         gv.append(";\n");

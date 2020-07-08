@@ -8,7 +8,7 @@ public class RequirementsLister implements JDVisitor {
     StringBuilder list;
     
     // model to use according to the state of the node (todo or done)
-    String model[] = {"[ ]\t","[X]\t"}; 
+    String[] model = {"[ ]\t","[X]\t"}; 
     String modelUsed = model[0]; 
     
     public StringBuilder generate(JustificationDiagram diagram) {
@@ -103,7 +103,9 @@ public class RequirementsLister implements JDVisitor {
     }
 
     @Override
-    public void visitRelation(Relation relation) { }
+    public void visitRelation(Relation relation) { 
+    	//Do nothing because a relation doesn't imply a requirement
+    }
     
      
     /**

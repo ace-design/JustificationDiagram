@@ -39,6 +39,7 @@ public class Node implements Visitable {
         actionNode = new ActionNode();
     }
 
+    
     public Node(Node node) {
     	this.label = node.label;
         this.alias = node.alias;
@@ -127,7 +128,7 @@ public class Node implements Visitable {
      */
     public boolean relationAnalyse() {
 		for (Relation relation : inputs) {
-			if(!relation.from.actionNode.optional && relation.from.state.equals(State.TODO)) {
+			if(!relation.getFrom().actionNode.optional && relation.getFrom().state.equals(State.TODO)) {
 				return false;
 			}
 		}
@@ -268,7 +269,7 @@ public class Node implements Visitable {
 		return steps;
 	}
 
-	public void setStpes(List<String> steps) {
+	public void setSteps(List<String> steps) {
 		this.steps = steps;
 	}
 

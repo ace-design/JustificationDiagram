@@ -9,8 +9,9 @@ public class Domain extends Node {
         super(alias, label);
     }
 
-    public void accept(JDVisitor JDVisitor) {
-        JDVisitor.visitDomain(this);
+    @Override
+    public void accept(JDVisitor jDVisitor) {
+        jDVisitor.visitDomain(this);
     }
     
 }

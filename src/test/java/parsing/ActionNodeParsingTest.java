@@ -18,7 +18,10 @@ class ActionNodeParsingTest {
 	void test() {
 		anp = new ActionNodeParsing(path + "actions.json");
 		Map<String, ActionNode> values = anp.getActionNodes();
-		System.out.println(values);
+		assertTrue(values.containsKey("images Archivate"));
+		assertTrue(values.containsKey("Validate testCoverage"));
+		assertEquals("models.ActionNode",values.get("Validate testCoverage").getClass().getName());
+		
 	}
 
 }

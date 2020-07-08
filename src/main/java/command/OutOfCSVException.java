@@ -1,29 +1,22 @@
 package command;
 
 public class OutOfCSVException extends Exception {
-	private final String path;
-	private final int indice;
-	private String message = " Out of CVS";
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
-	public String getPath() {
-		return path;
+	public OutOfCSVException(String message) {
+		super(message);		
 	}
-	
-	public int getIndice() {
-		return indice;
-	}
-	
 	
 	public OutOfCSVException(String path, int indice) {
-		this.path=path;
-		this.indice = indice;		
+		this("Out of CVS Exception for" + path +" to" + indice);	
 	}
 
 	public OutOfCSVException(String path, String message) {
-		this(path,-1);
-		this.message = message;
-		
-		
+		this(message + "for : " + path);		
 	}
 
 }

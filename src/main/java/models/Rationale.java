@@ -8,8 +8,9 @@ public class Rationale extends Node {
         super(alias, label);
     }
 
-    public void accept(JDVisitor JDVisitor) {
-        JDVisitor.visitRationale(this);
+    @Override
+    public void accept(JDVisitor jDVisitor) {
+        jDVisitor.visitRationale(this);
     }
     
 }

@@ -8,7 +8,6 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import parsing.ActionNodeParsing;
 
 public class CommandFactory {
 
@@ -34,7 +33,6 @@ public class CommandFactory {
 
 		args = commandLigne.replace(commandName + " ", "");
 
-		// todo : improve with args
 		// Use reflexivity
 		try {
 			Class<?> commandClass = Class.forName(ANTECEDENT + commandName);
@@ -48,8 +46,8 @@ public class CommandFactory {
 
 	private ArrayList<String> unexpectedBehavior(String commandName, String args, Exception e) {
 		logger.error(
-				"This command does not exist or there is a problem with args, please check the command validity : %n %s %s %n",
-				commandName, args);
+				"This command does not exist or there is a problem with args, please check the command validity : %n %s %s %n %s",
+				commandName, args, e);
 		ArrayList<String> result = new ArrayList<>();
 		result.add("false");
 		result.add(commandName + " this command does not exist with " + args);
@@ -63,10 +61,4 @@ public class CommandFactory {
 		}
 		return instance;
 	}
-
-	/*
-	 * Factory pattern public void create() { // commands are added here using
-	 * lambda. It also possible to dynamically add commands without editing code.
-	 * addCommand("CheckCoverage", new CommandCheckCoverage()); }
-	 */
 }

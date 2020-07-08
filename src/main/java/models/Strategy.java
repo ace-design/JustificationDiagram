@@ -9,8 +9,9 @@ public class Strategy extends Node {
     }
     
     @Override
-    public void accept(JDVisitor JDVisitor) {
-        JDVisitor.visitStrategy(this);
+    public void accept(JDVisitor jDVisitor) {
+        jDVisitor.visitStrategy(this);
     }
 
 }
+

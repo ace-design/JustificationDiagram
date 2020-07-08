@@ -8,6 +8,7 @@ class Log4J2PropertiesConfTest {
     public void testPerformSomeTask() throws Exception {
         Log4J2PropertiesConf log4J2PropertiesConf=new Log4J2PropertiesConf();
         log4J2PropertiesConf.performSomeTask();
+        
     }
 
 }

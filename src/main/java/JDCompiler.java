@@ -5,6 +5,7 @@ import guru.nidi.graphviz.engine.Format;
 import guru.nidi.graphviz.engine.Graphviz;
 import guru.nidi.graphviz.model.MutableGraph;
 import justificationDiagram.JustificationDiagram;
+
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -117,7 +118,7 @@ public class JDCompiler {
 				realizationParser = new RealizationParser(inputRealizationFilePath);
 				labels = realizationParser.getLabelList();
 			} catch (ExceptionParsingRealizationFile e) {
-				System.out.println("Error reading Realzation File" + e);
+				System.out.println("Error reading Realization File" + e);
 			}
 			diagram.analysesDiagrammeRelation(labels);
 
@@ -217,7 +218,7 @@ public class JDCompiler {
 		try {
 			input = CharStreams.fromFileName(file);
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.err.println("the file " + file + "can't be parsed IO exeception is raised");
 		}
 		JustificationDiagramLexer lexer = new JustificationDiagramLexer(input); // create a buffer of tokens pulled from
 																				// the lexer

@@ -1,9 +1,10 @@
 package export;
 
-import justificationDiagram.JustificationDiagram;
 import models.Node;
 import models.Relation;
 import java.util.*;
+
+import justificationDiagram.JustificationDiagram;
 
 public class TopologicalSort {
     private Map<String, Node> toBeVisited;
@@ -20,6 +21,8 @@ public class TopologicalSort {
             this.node = node;
         }
  
+
+        //"Note: this class has a natural ordering that is inconsistent with equals."
         public int compareTo(OrderedNode n) {
             if (n != null) {
                 return this.weight - n.weight;
@@ -27,6 +30,7 @@ public class TopologicalSort {
                 return -1;
             }
         }
+        
     }
 
     // Algorithm provided by Thomas H. Cormen et alt. in Introduction to algorithms 3rd Edition (2009), pp.603-615
@@ -43,13 +47,13 @@ public class TopologicalSort {
         toBeVisited = new HashMap<>();
         finishingTime = new PriorityQueue<>();
 
-        for (String u: diagraph.nodes.keySet()) {
-            toBeVisited.put(u, diagraph.nodes.get(u));
+        for (String u: diagraph.getNodes().keySet()) {
+            toBeVisited.put(u, diagraph.getNodes().get(u));
         }
         time = 0;
-        for (String u: diagraph.nodes.keySet()) {
+        for (String u: diagraph.getNodes().keySet()) {
             if (toBeVisited.containsKey(u)) {
-                depthFirstSearchVisit(diagraph.nodes.get(u));
+                depthFirstSearchVisit(diagraph.getNodes().get(u));
             }
         }
     }
@@ -59,7 +63,7 @@ public class TopologicalSort {
         toBeVisited.remove(u.getAlias());
 
         for (Relation relation: u.getOutputs()) {
-            Node v = relation.to;
+            Node v = relation.getTo();
 
             if (toBeVisited.containsValue(v)) {
                 depthFirstSearchVisit(v);
@@ -69,7 +73,7 @@ public class TopologicalSort {
         finishingTime.add(new OrderedNode(time, u));
     }
     
-    public LinkedList<Node> getOrder() {
+    public List<Node> getOrder() {
     	return order;
     }
 }

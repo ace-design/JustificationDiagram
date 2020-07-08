@@ -23,11 +23,11 @@ public class JDLinker extends JustificationDiagramBaseVisitor<String> {
 
     @Override
     public String visitRelation(JustificationDiagramParser.RelationContext ctx) {
-        Relation relation = RelationFactory.create(ctx.LINK().getText(), diagram.nodes.get(ctx.ALIAS(0).getText()),
-                diagram.nodes.get(ctx.ALIAS(1).getText()));
-        diagram.relations.add(relation);
-        diagram.nodes.get(ctx.ALIAS(0).getText()).addOutput(relation); 
-        diagram.nodes.get(ctx.ALIAS(1).getText()).addInput(relation);
+        Relation relation = RelationFactory.create(ctx.LINK().getText(), diagram.getNodes().get(ctx.ALIAS(0).getText()),
+                diagram.getNodes().get(ctx.ALIAS(1).getText()));
+        diagram.getRelations().add(relation);
+        diagram.getNodes().get(ctx.ALIAS(0).getText()).addOutput(relation); 
+        diagram.getNodes().get(ctx.ALIAS(1).getText()).addInput(relation);
         return super.visitRelation(ctx);
     }
 

@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -52,6 +53,7 @@ class CommandCheckCoverageTest {
 	void testCoverageFails() {
 		ArrayList<String> result = c.execute(PATH+ "jacocoEclEmma2.csv >= 90");
 		assertEquals("fail", result.get(0));
+		assertTrue(result.get(1).contains("error Parsing CSV file"));
     }
 
 	@Test
@@ -60,15 +62,5 @@ class CommandCheckCoverageTest {
 		assertEquals("true", result.get(0));
 	}
 	
-	
-	//TODO manage IOexception
-	//@Test
-	/* void testCoverageThrowException() {
-		ArrayList<String> result = c.execute("./src/test/resources/jacocoEclEmma2.csv >= 90");
-		System.out.println("----------------------------- " + result);
-		Assertions.assertThrows(java.io.FileNotFoundException.class, () -> {
-		   c.execute("./src/test/resources/jacocoEclEmma2.csv >= 90");} );
-	}
-	*/
 
 }

@@ -9,8 +9,8 @@ public class Support extends Node {
     }
 
     @Override
-    public void accept(JDVisitor JDVisitor) {
-        JDVisitor.visitSupport(this);
+    public void accept(JDVisitor jDVisitor) {
+        jDVisitor.visitSupport(this);
     }
     
     

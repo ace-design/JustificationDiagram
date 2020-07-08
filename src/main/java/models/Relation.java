@@ -5,9 +5,9 @@ import export.*;
 import java.util.Objects;
 
 public class Relation implements Visitable {
-    public Node from;
-    public Node to;
-    public boolean collapsed;
+    private Node from;
+    private Node to;
+    private boolean collapsed;
 
     public Relation(Node from, Node to) {
         this.from = from;
@@ -30,12 +30,24 @@ public class Relation implements Visitable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Relation relation = (Relation) o;
-        return Objects.equals(from, relation.from) &&
-                Objects.equals(to, relation.to);
+        return Objects.equals(getFrom(), relation.getFrom()) &&
+                Objects.equals(getTo(), relation.getTo());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(from, to);
+        return Objects.hash(getFrom(), getTo());
     }
+
+	public Node getFrom() {
+		return from;
+	}
+
+	public Node getTo() {
+		return to;
+	}
+
+	public boolean isCollapsed() {
+		return collapsed;
+	}
 }

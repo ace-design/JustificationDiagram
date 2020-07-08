@@ -13,38 +13,46 @@ public class GraphDrawerLayout implements JDVisitor {
 
     @Override
     public void visitDiagram(JustificationDiagram diagram) {
-        for (String alias : diagram.nodes.keySet()) {
-            diagram.nodes.get(alias).accept(this);
+        for (String alias : diagram.getNodes().keySet()) {
+            diagram.getNodes().get(alias).accept(this);
         }
-        for (Relation relation : diagram.relations) {
+        for (Relation relation : diagram.getRelations()) {
             relation.accept(this);
         }
     }
 
     @Override
-    public void visitNode(Node node) { }
+    public void visitNode(Node node) {
+    	//Do nothing because Node is too general
+    }
 
     @Override
-    public void visitConclusion(Conclusion conclusion) { }
+    public void visitConclusion(Conclusion conclusion) { 
+    	//Do nothing because of ...
+    }
 
     @Override
-    public void visitSubConclusion(SubConclusion subConclusion) { }
+    public void visitSubConclusion(SubConclusion subConclusion) { 
+    	//Do nothing because of ...
+    }
 
     @Override
-    public void visitStrategy(Strategy strategy) { } 
+    public void visitStrategy(Strategy strategy) { 
+    	//Do nothing because of ...
+    } 
 
     @Override
     public void visitDomain(Domain domain) {
         for (Relation relation : domain.getOutputs()) {
-            gv.append("\t{rank = same; ").append(domain.getAlias()).append("; ").append(relation.to.getAlias()).append(";}\n");
+            gv.append("\t{rank = same; ").append(domain.getAlias()).append("; ").append(relation.getTo().getAlias()).append(";}\n");
         }
     }
 
     @Override
     public void visitRationale(Rationale rationale) {
         for (Relation relation : rationale.getOutputs()) {
-            gv.append("\t").append(relation.to.getAlias()).append(" -> ").append(relation.from.getAlias()).append(" [style=invis];\n");
-            gv.append("\t{rank = same; ").append(rationale.getAlias()).append("; ").append(relation.to.getAlias()).append(";}\n");
+            gv.append("\t").append(relation.getTo().getAlias()).append(" -> ").append(relation.getFrom().getAlias()).append(" [style=invis];\n");
+            gv.append("\t{rank = same; ").append(rationale.getAlias()).append("; ").append(relation.getTo().getAlias()).append(";}\n");
         }
     }
 

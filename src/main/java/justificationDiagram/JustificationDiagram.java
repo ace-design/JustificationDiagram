@@ -10,17 +10,17 @@ import java.util.*;
 import java.util.Map.Entry;
 
 public class JustificationDiagram implements Visitable {
-    public Map<String, Node> nodes;
-    public Set<Relation> relations;
+    private Map<String, Node> nodes;
+    private Set<Relation> relations;
 
     public JustificationDiagram() {
-        nodes = new HashMap<>();
-        relations = new HashSet<>();
+        setNodes(new HashMap<>());
+        setRelations(new HashSet<>());
     }
     
     public JustificationDiagram(Map<String,Node> nodes, Set<Relation> relations) {
-        this.nodes = nodes;
-        this.relations = relations;
+        this.setNodes(nodes);
+        this.setRelations(relations);
     }
 
     @Override
@@ -37,7 +37,7 @@ public class JustificationDiagram implements Visitable {
    
     	if(actionNodes != null) {
     		    		
-    		for (Entry<String, Node> node : nodes.entrySet()) {
+    		for (Entry<String, Node> node : getNodes().entrySet()) {
     			
     			String realLabel = node.getValue().getLabel();
     			realLabel = realLabel.substring(1,realLabel.length()-1);
@@ -68,5 +68,21 @@ public class JustificationDiagram implements Visitable {
 
 
     }
+
+	public Set<Relation> getRelations() {
+		return relations;
+	}
+
+	public void setRelations(Set<Relation> relations) {
+		this.relations = relations;
+	}
+
+	public Map<String, Node> getNodes() {
+		return nodes;
+	}
+
+	public void setNodes(Map<String, Node> nodes) {
+		this.nodes = nodes;
+	}
 
 }
