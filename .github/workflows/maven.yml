@@ -106,8 +106,7 @@ jobs:
     - name: memorise the final result
       run: 
        git config user.name "GitHub Actions"; 
-       ls -la justification/outpuy; 
-       echo “${COMMIT_MSG}“;
+       ls -la justification/output; 
        git add justification/output/*;
        git commit -m “${GITHUB_RUN_ID}“;
        git push origin master
