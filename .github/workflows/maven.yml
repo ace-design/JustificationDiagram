@@ -75,7 +75,7 @@ jobs:
     - name: Realization part2
       run: 
         echo -e "images Archivate" >> realization.txt;
-       # echo -e "code Archivate" >> realization.txt;
+        echo -e "code Archivate" >> realization.txt;
         
     #---------JustificationDiagram for my project-----------
      
