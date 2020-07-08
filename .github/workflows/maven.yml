@@ -79,10 +79,7 @@ jobs:
         echo -e "images Archivate" >> realization.txt;
         echo -e "code Archivate" >> realization.txt;
         
-    #I generate the two diagrams and the TODO list
-    - name: JD&TODO generation 
-      run: mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="justification/Pattern4CI.jd -o justification/output/CI -rea justification/realization.txt -act justification/actions.json -svg -svgR -td "
-      
+    
     #I archive my diagrams created during the CI
     - name: Archive JD&TODO
       uses: actions/upload-artifact@v2
@@ -103,14 +100,18 @@ jobs:
       with: 
         name: GeneratedJD
         path: justification/examples/exampleCI/actionValid.json
-    
+        
+    #I generate the two diagrams and the TODO list
+    - name: JD&TODO generation 
+      run: mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="justification/Pattern4CI.jd -o justification/output/CI -rea justification/realization.txt -act justification/actions.json -svg -svgR -td "
+  
     #---------------Saving the last diagrams generated---------------       
     
     #I memorize all my files contained in the output directory 
     - name: memorise the final result
       run: 
-       git config user.name "GitHub Actions";
-       git diff --quiet && git diff --staged --quiet || (git add justification/output/*;git commit -m “${COMMIT_MSG}“;git push origin CVSParsing)
+       git config user.name "GitHub Actions"; ls -la; 
+       git diff --quiet && git diff --staged --quiet || (git add justification/output/*;git commit -m “${COMMIT_MSG}“;git push origin master)
       
     
     #---------JustificationDiagram-----------
