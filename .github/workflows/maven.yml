@@ -47,7 +47,7 @@ jobs:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
     
     #I archive the diagrams generated during the test
-    - name: Archive images
+    - name: Archive images of examples
       uses: actions/upload-artifact@v2
       with: 
         name: images
@@ -67,8 +67,6 @@ jobs:
         name: generatedCode
         path: src/main/java/models
         
-    #---------JustificationDiagram-----------
-     
     #'Jacoco Report' and 'Jacoco report Archivate' are done
     - name: Realization part1   
       run: echo -e "Jacoco Report\nJacoco report Archivate" >> realization.txt
@@ -79,13 +77,18 @@ jobs:
         echo -e "images Archivate" >> realization.txt;
         echo -e "code Archivate" >> realization.txt;
         
-    
+    #---------JustificationDiagram for my project-----------
+     
+   #I generate the two diagrams and the TODO list
+    - name: JD&TODO generation 
+      run: mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="justification/Pattern4CI.jd -o justification/output/CI -rea realization.txt -act justification/actions.json -svg -svgR -td "
+  
     #I archive my diagrams created during the CI
     - name: Archive JD&TODO
       uses: actions/upload-artifact@v2
       with: 
         name: GeneratedJD
-        path: justification/examples/output/GeneratedJD
+        path: justification/output
     
     #I archive my realization file in the same artifacts as my diagrams
     - name: Archive realization
@@ -93,24 +96,16 @@ jobs:
       with: 
         name: GeneratedJD
         path: realization.txt
-    
-    #I archive my information file in the same artifacts as my diagrams
-    - name: Archive information
-      uses: actions/upload-artifact@v2
-      with: 
-        name: GeneratedJD
-        path: justification/examples/exampleCI/actionValid.json
         
-    #I generate the two diagrams and the TODO list
-    - name: JD&TODO generation 
-      run: mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="justification/Pattern4CI.jd -o justification/output/CI -rea realization.txt -act justification/actions.json -svg -svgR -td "
-  
+
     #---------------Saving the last diagrams generated---------------       
     
     #I memorize all my files contained in the output directory 
     - name: memorise the final result
       run: 
-       git config user.name "GitHub Actions"; ls -la justification; 
+       git config user.name "GitHub Actions"; 
+       ls -la justification; 
+       echo “${COMMIT_MSG}“;
        git diff --quiet && git diff --staged --quiet || (git add justification/output/*;git commit -m “${COMMIT_MSG}“;git push origin master)
       
     
