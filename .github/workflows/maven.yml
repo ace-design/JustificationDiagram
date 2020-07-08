@@ -37,10 +37,10 @@ jobs:
         mvn test; 
         echo -e "Test Maven passed" >> realization.txt;
 
-    #Scanning the project with SonarCloud
+    #Scanning the project with SonarCloud 
     - name: SonarCloud Scan
       run: 
-       mvn -B -X verify sonar:sonar;
+       mvn -B verify sonar:sonar;
        echo -e "Scanning the project with SonarCloud" >> realization.txt;
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
