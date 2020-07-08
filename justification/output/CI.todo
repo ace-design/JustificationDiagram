@@ -2,7 +2,7 @@ Requirements list
 
 [X]	Creation of the README
 	[X] README.md
-[X]	code Archivate - reference : generatedCode
+[ ]	code Archivate - reference : generatedCode
 [X]	Test Maven passed
 [X]	Jacoco Report
 	[X] target/site/jacoco/jacoco.csv
@@ -17,9 +17,9 @@ Requirements list
 	[x] justification/examples/output/images (17 Files found)
 [X]	Maven ready
 [X]	Test Coverage validated and Archived (optional) 
-[X]	Archivees Data
+[ ]	Archivees Data
 [X]	SonarCloud ready
-[X]	Project Valid
+[ ]	Project Valid
 -----------------------------------------------
-[X]		Valid Continuous Integration
+[ ]		Valid Continuous Integration
 -----------------------------------------------

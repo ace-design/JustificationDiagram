@@ -7,16 +7,16 @@
 <g id="node1" class="node">
 <title>C</title>
 <polygon fill="#bfbfbf" stroke="transparent" points="523.9257,-670 523.9257,-692 693.9257,-692 693.9257,-670 523.9257,-670"/>
-<polyline fill="none" stroke="#0000cd" points="693.9257,-692 523.9257,-692 523.9257,-670 "/>
-<text text-anchor="start" x="526.8822" y="-676.4" font-family="Times,serif" font-size="14.00" fill="#0000cd">Valid Continuous Integration</text>
+<polyline fill="none" stroke="#cd0000" points="693.9257,-692 523.9257,-692 523.9257,-670 "/>
+<text text-anchor="start" x="526.8822" y="-676.4" font-family="Times,serif" font-size="14.00" fill="#cd0000">Valid Continuous Integration</text>
 <polygon fill="#bfbfbf" stroke="transparent" points="693.9257,-670 693.9257,-692 699.9257,-692 699.9257,-670 693.9257,-670"/>
-<polyline fill="none" stroke="#0000cd" points="699.9257,-670 699.9257,-692 693.9257,-692 "/>
-<polyline fill="none" stroke="#0000cd" points="699.9257,-692 699.9257,-670 "/>
+<polyline fill="none" stroke="#cd0000" points="699.9257,-670 699.9257,-692 693.9257,-692 "/>
+<polyline fill="none" stroke="#cd0000" points="699.9257,-692 699.9257,-670 "/>
 <polygon fill="#bfbfbf" stroke="transparent" points="523.9257,-656 523.9257,-670 595.9257,-670 595.9257,-656 523.9257,-656"/>
-<polyline fill="none" stroke="#0000cd" points="523.9257,-670 523.9257,-656 595.9257,-656 "/>
+<polyline fill="none" stroke="#cd0000" points="523.9257,-670 523.9257,-656 595.9257,-656 "/>
 <polygon fill="#fff68f" stroke="transparent" points="595.9257,-648 595.9257,-670 705.9257,-670 705.9257,-648 595.9257,-648"/>
 <polygon fill="none" stroke="#000000" stroke-dasharray="5,2" points="595.9257,-648 595.9257,-670 705.9257,-670 705.9257,-648 595.9257,-648"/>
-<text text-anchor="start" x="631.4902" y="-654.4" font-family="Times,serif" font-size="14.00" fill="#0000cd">interne</text>
+<text text-anchor="start" x="631.4902" y="-654.4" font-family="Times,serif" font-size="14.00" fill="#cd0000">interne</text>
 </g>
 <!-- PS -->
 <g id="node2" class="node">
@@ -39,8 +39,8 @@
 <!-- SE -->
 <g id="node4" class="node">
 <title>SE</title>
-<polygon fill="#a2cd5a" stroke="#0000cd" points="764.6462,-540 512.1015,-540 465.2052,-504 717.7499,-504 764.6462,-540"/>
-<text text-anchor="middle" x="614.9257" y="-517.8" font-family="Times,serif" font-size="14.00" fill="#0000cd">Evaluate Project Quality</text>
+<polygon fill="#a2cd5a" stroke="#cd0000" points="764.6462,-540 512.1015,-540 465.2052,-504 717.7499,-504 764.6462,-540"/>
+<text text-anchor="middle" x="614.9257" y="-517.8" font-family="Times,serif" font-size="14.00" fill="#cd0000">Evaluate Project Quality</text>
 </g>
 <!-- SCR&#45;&gt;SE -->
 <g id="edge2" class="edge">
@@ -51,8 +51,8 @@
 <!-- PV -->
 <g id="node5" class="node">
 <title>PV</title>
-<path fill="transparent" stroke="#0000cd" d="M648.1821,-612C648.1821,-612 581.6693,-612 581.6693,-612 575.6693,-612 569.6693,-606 569.6693,-600 569.6693,-600 569.6693,-588 569.6693,-588 569.6693,-582 575.6693,-576 581.6693,-576 581.6693,-576 648.1821,-576 648.1821,-576 654.1821,-576 660.1821,-582 660.1821,-588 660.1821,-588 660.1821,-600 660.1821,-600 660.1821,-606 654.1821,-612 648.1821,-612"/>
-<text text-anchor="middle" x="614.9257" y="-589.8" font-family="Times,serif" font-size="14.00" fill="#0000cd">Project Valid</text>
+<path fill="transparent" stroke="#cd0000" d="M648.1821,-612C648.1821,-612 581.6693,-612 581.6693,-612 575.6693,-612 569.6693,-606 569.6693,-600 569.6693,-600 569.6693,-588 569.6693,-588 569.6693,-582 575.6693,-576 581.6693,-576 581.6693,-576 648.1821,-576 648.1821,-576 654.1821,-576 660.1821,-582 660.1821,-588 660.1821,-588 660.1821,-600 660.1821,-600 660.1821,-606 654.1821,-612 648.1821,-612"/>
+<text text-anchor="middle" x="614.9257" y="-589.8" font-family="Times,serif" font-size="14.00" fill="#cd0000">Project Valid</text>
 </g>
 <!-- SE&#45;&gt;PV -->
 <g id="edge3" class="edge">
@@ -81,8 +81,8 @@
 <!-- SD -->
 <g id="node7" class="node">
 <title>SD</title>
-<polygon fill="#a2cd5a" stroke="#0000cd" points="555.708,-396 389.0846,-396 358.1434,-360 524.7668,-360 555.708,-396"/>
-<text text-anchor="middle" x="456.9257" y="-373.8" font-family="Times,serif" font-size="14.00" fill="#0000cd">Data Archivate</text>
+<polygon fill="#a2cd5a" stroke="#cd0000" points="555.708,-396 389.0846,-396 358.1434,-360 524.7668,-360 555.708,-396"/>
+<text text-anchor="middle" x="456.9257" y="-373.8" font-family="Times,serif" font-size="14.00" fill="#cd0000">Data Archivate</text>
 </g>
 <!-- AJS&#45;&gt;SD -->
 <g id="edge5" class="edge">
@@ -93,8 +93,8 @@
 <!-- ASC -->
 <g id="node8" class="node">
 <title>ASC</title>
-<path fill="transparent" stroke="#0000cd" d="M523.0988,-468C523.0988,-468 444.7526,-468 444.7526,-468 438.7526,-468 432.7526,-462 432.7526,-456 432.7526,-456 432.7526,-444 432.7526,-444 432.7526,-438 438.7526,-432 444.7526,-432 444.7526,-432 523.0988,-432 523.0988,-432 529.0988,-432 535.0988,-438 535.0988,-444 535.0988,-444 535.0988,-456 535.0988,-456 535.0988,-462 529.0988,-468 523.0988,-468"/>
-<text text-anchor="middle" x="483.9257" y="-445.8" font-family="Times,serif" font-size="14.00" fill="#0000cd">Archivees Data</text>
+<path fill="transparent" stroke="#cd0000" d="M523.0988,-468C523.0988,-468 444.7526,-468 444.7526,-468 438.7526,-468 432.7526,-462 432.7526,-456 432.7526,-456 432.7526,-444 432.7526,-444 432.7526,-438 438.7526,-432 444.7526,-432 444.7526,-432 523.0988,-432 523.0988,-432 529.0988,-432 535.0988,-438 535.0988,-444 535.0988,-444 535.0988,-456 535.0988,-456 535.0988,-462 529.0988,-468 523.0988,-468"/>
+<text text-anchor="middle" x="483.9257" y="-445.8" font-family="Times,serif" font-size="14.00" fill="#cd0000">Archivees Data</text>
 </g>
 <!-- SD&#45;&gt;ASC -->
 <g id="edge7" class="edge">
@@ -273,8 +273,8 @@
 <!-- CA -->
 <g id="node22" class="node">
 <title>CA</title>
-<path fill="#87ceeb" stroke="#0000cd" d="M469.5472,-324C469.5472,-324 392.3042,-324 392.3042,-324 386.3042,-324 380.3042,-318 380.3042,-312 380.3042,-312 380.3042,-300 380.3042,-300 380.3042,-294 386.3042,-288 392.3042,-288 392.3042,-288 469.5472,-288 469.5472,-288 475.5472,-288 481.5472,-294 481.5472,-300 481.5472,-300 481.5472,-312 481.5472,-312 481.5472,-318 475.5472,-324 469.5472,-324"/>
-<text text-anchor="middle" x="430.9257" y="-301.8" font-family="Times,serif" font-size="14.00" fill="#0000cd">code Archivate</text>
+<path fill="#87ceeb" stroke="#cd0000" d="M469.5472,-324C469.5472,-324 392.3042,-324 392.3042,-324 386.3042,-324 380.3042,-318 380.3042,-312 380.3042,-312 380.3042,-300 380.3042,-300 380.3042,-294 386.3042,-288 392.3042,-288 392.3042,-288 469.5472,-288 469.5472,-288 475.5472,-288 481.5472,-294 481.5472,-300 481.5472,-300 481.5472,-312 481.5472,-312 481.5472,-318 475.5472,-324 469.5472,-324"/>
+<text text-anchor="middle" x="430.9257" y="-301.8" font-family="Times,serif" font-size="14.00" fill="#cd0000">code Archivate</text>
 </g>
 <!-- CA&#45;&gt;SD -->
 <g id="edge23" class="edge">
