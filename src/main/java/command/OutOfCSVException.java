@@ -3,7 +3,7 @@ package command;
 public class OutOfCSVException extends Exception {
 	private final String path;
 	private final int indice;
-
+	private String message = " Out of CVS";
 
 	public String getPath() {
 		return path;
@@ -16,7 +16,14 @@ public class OutOfCSVException extends Exception {
 	
 	public OutOfCSVException(String path, int indice) {
 		this.path=path;
-		this.indice = indice;
+		this.indice = indice;		
+	}
+
+	public OutOfCSVException(String path, String message) {
+		this(path,-1);
+		this.message = message;
+		
+		
 	}
 
 }

@@ -68,6 +68,9 @@ public class CSVReader {
 	 //The first line is number 0. Be careful, it's often a header line.
 	public String getValue(String column, int lineIndice) throws OutOfCSVException {
 		int columnIndice= records.get(0).indexOf(column);
+		if (columnIndice == -1) {
+			throw new OutOfCSVException(path, "unexpected column name :"+ column);
+		}
 		List<String> line = getLine(lineIndice);
 		return line.get(columnIndice);
 	}

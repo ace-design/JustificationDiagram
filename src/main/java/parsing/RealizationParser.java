@@ -53,12 +53,14 @@ public class RealizationParser {
 						realizationResult.add("\"" + line + "\"");
 					}
 				} catch (IOException e) {
-					logger.error("Exception raised during reading of the realization file %s", realizationPath);
+					String logMsg = String.format("Exception raised during reading of the realization file %s", realizationPath);
+					logger.error(logMsg);
 					throw new ExceptionParsingRealizationFile(realizationPath);
 				}
 
 			} else {
-				logger.error("%s  doesn't exist", realizationPath);
+				String logMsg = String.format("%s  doesn't exist", realizationPath);
+				logger.error(logMsg);
 				throw new ExceptionParsingRealizationFile(realizationPath);
 			}
 		}	

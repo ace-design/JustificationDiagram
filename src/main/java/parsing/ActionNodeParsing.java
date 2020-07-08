@@ -52,13 +52,13 @@ public class ActionNodeParsing {
 		// JSON parser object to parse read file
 		JSONParser jsonParser = new JSONParser();
 		try (FileReader reader = new FileReader(path)) {
-			
 			readInformation(jsonParser,reader);
-
 		} catch (FileNotFoundException e) {
-			logger.error("The file for actions %s was not found", path);
+			String logMsg = String.format("The file for actions %s was not found", path);
+			logger.error(logMsg);
 		} catch (IOException e) {
-			logger.error("Fail reading the file for actions %s ", path);
+			String logMsg = String.format("Fail reading the file for actions %s ", path);
+			logger.error(logMsg);
 		} 
 
 	}
@@ -68,16 +68,17 @@ public class ActionNodeParsing {
 		Object obj = null;
 		try {
 			obj = jsonParser.parse(reader);
-			JSONArray employeeList = (JSONArray) obj;
-
-			for (Object object : employeeList) {
+			JSONArray actionList = (JSONArray) obj;
+			logger.debug("reading the action file" + actionList);
+			for (Object object : actionList) {
 				ActionNode info = parseInformation((JSONObject) object);
 				actionNodes.put(info.label, info);
 			}
 			
 		} catch (org.json.simple.parser.ParseException | IOException e) {
 			// if the information files is null
-			logger.error("ActionNode is null, there is no information in this file.");
+			String logMsg = String.format("ActionNode is null, there is no information in this file : %s.", e);
+			logger.error(logMsg);
 		}
 		
 		
