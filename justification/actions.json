@@ -3,10 +3,8 @@
         "Node":{
 	        "@comment": "The node labeled 'Jacoco Report' is not optional... ",     
             "Label":"Jacoco Report",
-            "Optional":"false",
-	        "@comment2": "...the total coverage need to be superior to 70%... ",     
-            
-	        "@comment3": "...and need to check the exitence of the file 'target/site/jacoco/jacoco.csv'." ,
+            "Optional":"false",  
+	        "@comment3": "...and need to check the existence of the file 'target/site/jacoco/jacoco.csv'." ,
             "Files": [  
                 "target/site/jacoco/jacoco.csv"
             ]    
@@ -18,6 +16,7 @@
             "Label":"Validate testCoverage",
             "Actions": [
                 "CheckCoverage target/site/jacoco/jacoco.csv >= 80", 
+                "CheckValueInCSV target/site/jacoco/jacoco.csv "INSTRUCTION_COVERED" 1 >= 20"
             ],
         }
     },
