@@ -78,8 +78,8 @@ import static org.junit.Assert.assertTrue;
     @Test
 	 void test_CI4ThisProject() throws IOException {
     	String pattern = "justification/Pattern4CI.jd";
-    	String output="justification/output/CI";
-    	String realization = "justification/realization.txt";
+    	String output="justification/output/local/CI";
+    	String realization = "justification/local/realization.txt";
     	String actions = "justification/actions.json";
 	    JDCompiler.main(new String[] { pattern, "-o", output, "-rea",realization, "-act", actions, "-td","-svg", "-svgR"});
 	    File fichier = new File(output+".svg");
