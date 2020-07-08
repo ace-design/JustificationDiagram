@@ -5,9 +5,9 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ master, CVSParsing ]
+    branches: [ master]
   pull_request:
-    branches: [ master, CVSParsing ]
+    branches: [ master]
 
 jobs:
   build:
@@ -47,11 +47,11 @@ jobs:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
     
     #I archive the diagrams generated during the test
-    - name: Archive images
+    - name: Archive images of examples
       uses: actions/upload-artifact@v2
       with: 
         name: images
-        path: justification/output/images
+        path: justification/examples/output/images
         
     #I archive the Jacoco report
     - name: Archive Jacoco report
@@ -67,8 +67,6 @@ jobs:
         name: generatedCode
         path: src/main/java/models
         
-    #---------JustificationDiagram-----------
-     
     #'Jacoco Report' and 'Jacoco report Archivate' are done
     - name: Realization part1   
       run: echo -e "Jacoco Report\nJacoco report Archivate" >> realization.txt
@@ -79,16 +77,22 @@ jobs:
         echo -e "images Archivate" >> realization.txt;
         echo -e "code Archivate" >> realization.txt;
         
-    #I generate the two diagrams and the TODO list
+    #---------JustificationDiagram for my project-----------
+     
+   #I generate the two diagrams and the TODO list
     - name: JD&TODO generation 
-      run: mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="justification/examples/exampleCI/Pattern4CI.jd -o justification/output/GeneratedJD/Pattern4CI -rea realization.txt -act justification/examples/exampleCI/actionValid.json -svg -svgR -td "
-      
-    #I archive my diagrams create during the CI
+      run: 
+        echo -e "BEFORE--------------"; ls -la justification/output;
+        mvn exec:java -Dexec.mainClass="JDCompiler" -Dexec.args="justification/Pattern4CI.jd -o justification/output/CI -rea realization.txt -act justification/actions.json -svg -svgR -td ";
+        cp realization.txt justification/output/realisation.txt;
+        echo -e "After--------------"; ls -la justification/output
+  
+    #I archive my diagrams created during the CI
     - name: Archive JD&TODO
       uses: actions/upload-artifact@v2
       with: 
         name: GeneratedJD
-        path: justification/output/GeneratedJD/
+        path: justification/output
     
     #I archive my realization file in the same artifacts as my diagrams
     - name: Archive realization
@@ -96,21 +100,19 @@ jobs:
       with: 
         name: GeneratedJD
         path: realization.txt
-    
-    #I archive my information file in the same artifacts as my diagrams
-    - name: Archive information
-      uses: actions/upload-artifact@v2
-      with: 
-        name: GeneratedJD
-        path: justification/examples/exampleCI/actionValid.json
-    
+        
+
     #---------------Saving the last diagrams generated---------------       
     
     #I memorize all my files contained in the output directory 
     - name: memorise the final result
       run: 
-       git config user.name "GitHub Actions";
-       git diff --quiet && git diff --staged --quiet || (git add justification/output/GeneratedJD/*;git commit -m “${COMMIT_MSG}“;git push origin CVSParsing)
-      
+       ls -la justification/output; 
+       git diff --quiet && git diff --staged --quiet || 
+       (git config user.name "GitHub Actions"; 
+       git add justification/output/*;
+       git commit -m “justify${GITHUB_RUN_ID}“;
+       git push origin master)
+       
     
     #---------JustificationDiagram-----------
