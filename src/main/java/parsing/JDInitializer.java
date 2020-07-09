@@ -16,7 +16,7 @@ public class JDInitializer extends JustificationDiagramBaseVisitor<String> {
         return super.visitDiagram(ctx);
     } 
 
-    @Override
+ /*   @Override
     public String visitDeclaration(JustificationDiagramParser.DeclarationContext ctx) {
         return super.visitDeclaration(ctx);
     }
@@ -30,7 +30,7 @@ public class JDInitializer extends JustificationDiagramBaseVisitor<String> {
     public String visitInstruction(JustificationDiagramParser.InstructionContext ctx) {
         return super.visitInstruction(ctx);
     }
-
+*/
     @Override
     public String visitElement(JustificationDiagramParser.ElementContext ctx) {
         diagram.getNodes().put(ctx.ALIAS().getText(),

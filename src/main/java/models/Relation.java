@@ -9,10 +9,9 @@ public class Relation implements Visitable {
     private Node to;
     private boolean collapsed;
 
+    
     public Relation(Node from, Node to) {
-        this.from = from;
-        this.to = to;
-        this.collapsed = false;
+        this(from,to, false);
     } 
 
     public Relation(Node from, Node to, boolean collapsed) {

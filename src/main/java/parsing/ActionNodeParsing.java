@@ -69,10 +69,11 @@ public class ActionNodeParsing {
 		try {
 			obj = jsonParser.parse(reader);
 			JSONArray actionList = (JSONArray) obj;
-			logger.debug("reading the action file" + actionList);
+			String logMsg = String.format("reading the action file : %s", actionList);
+			logger.debug(logMsg);
 			for (Object object : actionList) {
 				ActionNode info = parseInformation((JSONObject) object);
-				actionNodes.put(info.label, info);
+				actionNodes.put(info.getLabel(), info);
 			}
 			
 		} catch (org.json.simple.parser.ParseException | IOException e) {

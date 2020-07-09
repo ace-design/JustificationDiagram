@@ -15,6 +15,7 @@ public class CommandHelper {
 		throw new IllegalStateException("Utility class");
 	}
 	
+	//todo : raise an exception when the operator is not expected
 	public static boolean compareInt (int value1, int value2, String operator) {		
 	if(operator.equals("=="))
 			return value1 == value2;

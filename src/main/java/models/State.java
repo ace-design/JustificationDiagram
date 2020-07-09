@@ -23,12 +23,8 @@ public enum State {
          return nom;  
     } 
      
-     public State setState(String state) {
-     	if(state.equalsIgnoreCase("DONE")) {
-     		return DONE;
-     	}
-     	else {
-     		return TODO;
-     	}
-     }
+	/*
+	 * public State setState(String state) { if(state.equalsIgnoreCase("DONE")) {
+	 * return DONE; } else { return TODO; } }
+	 */
 }

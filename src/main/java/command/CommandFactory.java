@@ -2,7 +2,6 @@ package command;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -41,9 +40,9 @@ public class CommandFactory {
 	}
 
 	private ArrayList<String> unexpectedBehavior(String commandName, String args, Exception e) {
-		logger.error(
-				"This command does not exist or there is a problem with args, please check the command validity : %n %s %s %n %s",
+		String logMsg = String.format("This command does not exist or there is a problem with args, please check the command validity : %n %s %s %n %s",
 				commandName, args, e);
+		logger.error(logMsg);
 		ArrayList<String> result = new ArrayList<>();
 		result.add("false");
 		result.add(commandName + " this command does not exist with " + args);

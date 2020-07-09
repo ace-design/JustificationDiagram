@@ -75,18 +75,18 @@ public class Node implements Visitable {
     	// used to verify that the necessary files are present. 
     
     	
-		if(actionNode != null && actionNode.path != null && !actionNode.path.isEmpty()) {
+		if(actionNode != null && actionNode.getPath() != null && !actionNode.getPath().isEmpty()) {
 			boolean areFilesValid = checkFileAnalyses();
 			isDone = isDone && areFilesValid;
 		}
 
 		// used to check the number of files in a repository
-		if(actionNode != null && actionNode.pathWithNumber != null&& !actionNode.pathWithNumber.isEmpty()) {
+		if(actionNode != null && actionNode.getPathWithNumber()!= null&& !actionNode.getPathWithNumber().isEmpty()) {
 			boolean areNumberOfFilesValid = checkFileWithNumberAnalyses();
 			isDone = isDone && areNumberOfFilesValid;
 		}
 
-		if(actionNode != null && actionNode.actions != null && !actionNode.actions.isEmpty()) {
+		if(actionNode != null && actionNode.getActions() != null && !actionNode.getActions().isEmpty()) {
 			boolean areActionsValid = checkAction();
 				isDone = isDone && areActionsValid;
 		}
@@ -107,7 +107,7 @@ public class Node implements Visitable {
     	boolean isDone = false;
 
     	//TODO : change for a list of Objects ?
-		for(String command : actionNode.actions) {
+		for(String command : actionNode.getActions()) {
 			List<String> returnOfExecute = cf.executeCommand(command);
 			
 			// get the boolean of the execution
@@ -128,7 +128,7 @@ public class Node implements Visitable {
      */
     public boolean relationAnalyse() {
 		for (Relation relation : inputs) {
-			if(!relation.getFrom().actionNode.optional && relation.getFrom().state.equals(State.TODO)) {
+			if(!relation.getFrom().actionNode.isOptional() && relation.getFrom().state.equals(State.TODO)) {
 				return false;
 			}
 		}
@@ -137,7 +137,7 @@ public class Node implements Visitable {
     
     /**
      * used to check if the label is contains in 'labelList'
-     * @return true if the label is containt in 'labelList'
+     * @return true if the label is contained in 'labelList'
      */
     public boolean realizationListAnalyses(List<String> labelList) {
     	
@@ -151,7 +151,7 @@ public class Node implements Visitable {
      */
     public boolean checkFileAnalyses() {
     	boolean isDone = true;
-    	for (String filePath : actionNode.path) {
+    	for (String filePath : actionNode.getPath()) {
 			if(!new File(filePath).exists()) {
 				String logMsg = String.format("The file %s was not found to validate the node %s ", filePath, label);
 				logger.error(logMsg);
@@ -173,7 +173,7 @@ public class Node implements Visitable {
      */
     public boolean checkFileWithNumberAnalyses() {
     	boolean isDone = true;
-    	for (Map.Entry<String,Integer> mapentry : actionNode.pathWithNumber.entrySet()) {
+    	for (Map.Entry<String,Integer> mapentry : actionNode.getPathWithNumber().entrySet()) {
     		String filePath = mapentry.getKey();
     		int currentLenght = 0;
 			if(!new File(mapentry.getKey()).exists()) {

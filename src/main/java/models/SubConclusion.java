@@ -26,17 +26,12 @@ public class SubConclusion extends Node {
 	public boolean equals(Object obj) {
 		if (!super.equals(obj))
 			return false;
-		if (getClass() != obj.getClass())
-			return false;
 		SubConclusion other = (SubConclusion) obj;
 		if (restriction == null) {
-			if (other.restriction != null)
-				return false;
+			return (other.restriction == null);
 		} else {
-			if (!restriction.equals(other.restriction))
-				return false;
+			return restriction.equals(other.restriction);
 		}
-		return true;
 	}
 
 	public String getRestriction() {

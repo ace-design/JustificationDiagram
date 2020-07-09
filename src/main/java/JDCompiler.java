@@ -206,10 +206,11 @@ public class JDCompiler {
 
 		JDInitializer factory = new JDInitializer();
 		factory.visit(parseAntlr(file));
-		JDLinker linker = new JDLinker(factory.getDiagram());
+		JustificationDiagram newDiagram= factory.getDiagram();
+		JDLinker linker = new JDLinker(newDiagram);
 		linker.visit(parseAntlr((file)));
 
-		return linker.diagram;
+		return linker.getDiagram();
 	}
 
 	public static ParseTree parseAntlr(String file) {

@@ -29,14 +29,10 @@ public class Conclusion extends Node {
 			return false;
 		Conclusion other = (Conclusion) obj;
 		if (restriction == null) {
-			if (other.restriction != null)
-				return false;
-		} 
-		else {
-			if (!restriction.equals(other.restriction))
-				return false;
+			return (other.restriction == null);
+		} else {
+			return restriction.equals(other.restriction);
 		}
-		return true;
 	}
 
 	public String getRestriction() {

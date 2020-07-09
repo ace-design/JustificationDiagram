@@ -57,8 +57,12 @@ public class GraphDrawerLayout implements JDVisitor {
     }
 
     @Override
-    public void visitSupport(Support support) { }
+    public void visitSupport(Support support) {
+    	//Do nothing because of ...
+    }
 
     @Override
-    public void visitRelation(Relation relation) { }
+    public void visitRelation(Relation relation) { 
+    	//Do nothing because of ...
+    }
 }

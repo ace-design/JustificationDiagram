@@ -5,9 +5,13 @@ import models.Relation;
 import models.RelationFactory;
 
 public class JDLinker extends JustificationDiagramBaseVisitor<String> {
-    public JustificationDiagram diagram;
+    private JustificationDiagram diagram;
 
-    public JDLinker(JustificationDiagram diagram) {
+    public JustificationDiagram getDiagram() {
+		return diagram;
+	}
+
+	public JDLinker(JustificationDiagram diagram) {
         this.diagram = diagram;
     }
 

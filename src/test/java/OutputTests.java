@@ -57,21 +57,33 @@ import static org.junit.Assert.assertTrue;
     @Test
      void basic() throws IOException {
         JDCompiler.main(new String[] {inputPathJD+"basic.jd", "-o", outputPath+"basic", "-svg"});
+        File fichier = new File(outputPath+"basic.svg");
+	    assertTrue(fichier.exists());
+	    fichier = new File(outputPath+"basic.todo");
+	    assertTrue(!fichier.exists());
+	    fichier = new File(outputPath+"basic_REA.svg");
+	    assertTrue(!fichier.exists());	
     }
 
     @Test
      void fig1() throws IOException {
         JDCompiler.main(new String[] {inputPathJD+"fig1.jd", "-o", outputPath+"fig1", "-svg"});
+        File fichier = new File(outputPath+"fig1.svg");
+	    assertTrue(fichier.exists());
     }
  
     @Test
      void fig2() throws IOException {
         JDCompiler.main(new String[] {inputPathJD+"fig2.jd", "-o", outputPath+"fig2", "-gv"});
+        File fichier = new File(outputPath+"fig2.gv");
+	    assertTrue(fichier.exists());
     }
  
     @Test
      void fig3() throws IOException {
         JDCompiler.main(new String[] { inputPathJD+"fig3.jd", "-o", outputPath+"fig3", "-svg"});
+        File fichier = new File(outputPath+"fig3.svg");
+	    assertTrue(fichier.exists());
     }
     
 
@@ -88,6 +100,7 @@ import static org.junit.Assert.assertTrue;
 	    assertTrue(fichier.exists());
 	    fichier = new File(output + ".todo");
 	    assertTrue(fichier.exists());
+	    
 	}
 
     
