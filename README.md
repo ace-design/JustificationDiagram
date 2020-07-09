@@ -1194,7 +1194,7 @@ Here is the realization diagram:
 ![link to Google](https://github.com/MireilleBF/JustificationDiagram/blob/master/justification/examples/exampleCI/Pattern4CI_Valid_REA.svg)
 ```
 
-![link to Google](https://github.com/MireilleBF/JustificationDiagram/blob/master/justification/examples/exampleCI/Pattern4CI_Valid_REA.svg)
+![link to justification Diagram](https://github.com/MireilleBF/JustificationDiagram/blob/master/documents/CI_REA.svg)
 
 
 ### SonarCloud
