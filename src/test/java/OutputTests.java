@@ -25,21 +25,33 @@ import static org.junit.Assert.assertTrue;
 	}
 	    
 
+	//TODO : improve test
     @Test
      void test_CI() throws IOException {
     	JDCompiler.main(new String[] { inputPath+"exampleCI/Pattern4CI.jd", "-o", outputPath+"Pattern4CI_Valid", "-rea", inputPath+"exampleCI/realizationPattern4CI.txt", "-act", inputPath+"exampleCI/actionValid.json", "-td","-svg", "-svgR"});
+    	File fichier = new File(outputPath+"Pattern4CI_Valid.svg");
+	    assertTrue(fichier.exists());
+	    fichier = new File(outputPath+"Pattern4CI_Valid_REA.svg");
+	    assertTrue(fichier.exists());
+	    fichier = new File(outputPath+"Pattern4CI_Valid.todo");
+	    assertTrue(fichier.exists());
     }
     
     
     @Test
      void figToDOWithRea() throws IOException {
         JDCompiler.main(new String[] { inputPathJD+"fig3.jd", "-o", outputPath+"fig3","-rea", inputPath+"realization/realizationFig3.txt", "-act", inputPath+"action/actionFig3.json", "-td", "-svg", "-svgR"});
+        File fichier = new File(outputPath+"fig3.svg");
+	    assertTrue(fichier.exists());
     }
     
     @Test
      void figToDOWithReaAndFileVerification() throws IOException {
     	JDCompiler.main(new String[] { inputPath+"exampleCI/Pattern4CI.jd", "-o", outputPath+"Pattern4CI_Invalid", "-rea", inputPath+"exampleCI/realizationPattern4CIInvalid.txt", "-act", inputPath+"exampleCI/actionInvalid.json", "-td", "-svgR"});
+    	File fichier = new File(outputPath+"Pattern4CI_Invalid_REA.svg");
+	    assertTrue(fichier.exists());
     }
+    
     
     @Test
      void basicEmpty() throws IOException {
