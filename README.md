@@ -1,4 +1,5 @@
 # Justification Diagram Generator
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=MireilleBF_JustificationDiagram&metric=alert_status)](https://sonarcloud.io/dashboard?id=MireilleBF_JustificationDiagram)
 
 - Author : Corinne Pulgar and Nicolas Corbière
 - Supervision : Sébastien Mosser and Mireille Blay-Fornarino
