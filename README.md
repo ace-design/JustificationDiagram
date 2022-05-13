@@ -5,6 +5,10 @@
 
 This prototype generates a justification diagram from a text file. 
 
+## Dependencies
+
+This project requires the installation of [Graphviz](https://graphviz.org/download/).
+
 ## Installation
 
 JDGenerator is a Maven program. You can either clone the repo and run the following commands :
@@ -32,7 +36,7 @@ java -jar JDGenerator-jar-with-dependencies.jar [OPTIONS] [FILE]
 | -o    | path     | Output file (no extension)               |
 | -png  | -        | Generate visual graph                    |
 | -gv   | -        | Generate text files before dot formating |
-| -list | -        | Generate todo list                       |
+| -td   | -        | Generate todo list                       |
 
 If no output file is entered, the generated files will be named from the input file name. 
 
