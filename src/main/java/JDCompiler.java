@@ -12,6 +12,8 @@ import org.apache.commons.cli.*;
 import parsing.*;
 import java.io.*;
 
+import static org.apache.commons.io.FilenameUtils.removeExtension;
+
 public class JDCompiler {
 
     public static void main(String[] args) throws IOException {
@@ -94,7 +96,7 @@ public class JDCompiler {
                 return outputOption;
             }
         } else {
-            return inputOption.split("\\.")[0];
+            return removeExtension(inputOption);
         }
     }
 

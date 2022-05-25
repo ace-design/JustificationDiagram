@@ -17,7 +17,7 @@ mvn install
 mvn compile
 ```
 
-or [download the jar file](https://github.com/ace-design/JustificationDiagram/releases/tag/v1.1).
+or [download the jar file](https://github.com/ace-design/JustificationDiagram/releases/tag/v1.2).
 
 ## Execution
 From the cloned repo, run 
