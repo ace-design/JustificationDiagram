@@ -1,7 +1,9 @@
 .DS_Store
 .idea/
+.vscode/
 target/
 *.gv
+*.pdf
 *.iml
 
 # Compiled class file
