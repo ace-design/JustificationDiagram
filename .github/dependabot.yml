@@ -8,10 +8,8 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "cron"
-      cronjob: "26 13 * * *"
+      interval: "daily"
   - package-ecosystem: "maven"
     directory: "/"
     schedule:
-      interval: "cron"
-      cronjob: "26 13 * * *"
+      interval: "daily"
